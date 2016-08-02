@@ -1,1 +1,2 @@
-GET         /       controllers.Presentation.start
+GET         /                   controllers.Presentation.start
+GET         /slides/:number     controllers.Presentation.slide(number: Integer)
