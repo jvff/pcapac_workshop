@@ -1,6 +1,10 @@
+import org.gradle.play.plugins.PlayCoffeeScriptPlugin;
+
 plugins {
     id 'play'
 }
+
+apply plugin: PlayCoffeeScriptPlugin.class;
 
 repositories {
     jcenter()
@@ -14,5 +18,10 @@ repositories {
         name "typesafe-ivy-release"
         url "https://repo.typesafe.com/typesafe/ivy-releases"
         layout "ivy"
+    }
+
+    maven {
+        name "gradle-repo"
+        url "https://repo.gradle.org/gradle/javascript-public"
     }
 }

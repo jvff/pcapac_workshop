@@ -1,2 +1,4 @@
 GET         /                   controllers.Presentation.start
 GET         /slides/:number     controllers.Presentation.slide(number: Integer)
+
+GET         /assets/*file       controllers.Assets.at(path="/public", file)
