@@ -38,6 +38,7 @@ public class Presentation extends Controller {
     static {
         slides = new SlideHandler[] {
             new SlideHandler(title.class),
+            new SlideHandler(agenda.class),
             new SlideHandler(thanks.class)
         };
     }
