@@ -11,17 +11,20 @@ download_slide = (number, action) ->
     req.open 'GET', "/slides/#{number}", false
     req.send()
 
+current_slide = 0
+
 show_slide = (number) ->
     download_slide(number, (content) ->
         contentBox = document.getElementById("content")
         contentBox.innerHTML = content
+        current_slide = number
     )
 
 next_slide = ->
-    show_slide(1)
+    show_slide(current_slide + 1)
 
 previous_slide = ->
-    show_slide(0)
+    show_slide(current_slide - 1)
 
 previous_slide_button = document.getElementById 'previous_slide'
 previous_slide_button.addEventListener 'click', previous_slide, false
