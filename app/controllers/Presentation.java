@@ -4,10 +4,15 @@ import java.lang.reflect.Method;
 
 import play.mvc.Controller;
 import play.mvc.Result;
+import play.mvc.WebSocket;
+import play.Routes;
 import play.twirl.api.Html;
+import play.twirl.api.JavaScript;
 
 import views.html.Presentation.start;
 import views.html.Presentation.slides.*;
+
+import actors.SynchronizationActor;
 
 public class Presentation extends Controller {
     private static class SlideHandler {
@@ -52,5 +57,18 @@ public class Presentation extends Controller {
             return slides[number].render();
         else
             return notFound();
+    }
+
+    public static Result jsRoutes() {
+        response().setContentType("text/javascript");
+
+        JavaScript router = Routes.javascriptRouter("jsRoutes",
+                routes.javascript.Presentation.synchronizationSocket());
+
+        return ok(router);
+    }
+
+    public static WebSocket<String> synchronizationSocket() {
+        return WebSocket.withActor(SynchronizationActor::props);
     }
 }

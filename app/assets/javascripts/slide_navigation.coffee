@@ -26,8 +26,17 @@ next_slide = ->
 previous_slide = ->
     show_slide(current_slide - 1)
 
+sync_slides = ->
+    syncUrl = jsRoutes.controllers.Presentation.synchronizationSocket()
+    syncSocket = new WebSocket(syncUrl.webSocketURL())
+    syncSocket.onmessage = (event) ->
+        show_slide(parseInt(event.data, 10))
+
 previous_slide_button = document.getElementById 'previous_slide'
 previous_slide_button.addEventListener 'click', previous_slide, false
+
+sync_slides_button = document.getElementById 'sync_slides'
+sync_slides_button.addEventListener 'click', sync_slides, false
 
 next_slide_button = document.getElementById 'next_slide'
 next_slide_button.addEventListener 'click', next_slide, false

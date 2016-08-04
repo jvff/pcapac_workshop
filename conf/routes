@@ -1,4 +1,6 @@
 GET         /                   controllers.Presentation.start
+GET         /slides/sync        controllers.Presentation.synchronizationSocket()
 GET         /slides/:number     controllers.Presentation.slide(number: Integer)
 
+GET         /assets/js/routes   controllers.Presentation.jsRoutes()
 GET         /assets/*file       controllers.Assets.at(path="/public", file)
