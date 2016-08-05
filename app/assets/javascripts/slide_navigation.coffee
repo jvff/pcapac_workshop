@@ -12,6 +12,7 @@ download_slide = (number, action) ->
     req.send()
 
 current_slide = 0
+syncSocket = null
 
 show_slide = (number) ->
     download_slide(number, (content) ->
@@ -20,11 +21,15 @@ show_slide = (number) ->
         current_slide = number
     )
 
+change_slide = (number) ->
+    syncSocket?.send("#{number}")
+    show_slide(number)
+
 next_slide = ->
-    show_slide(current_slide + 1)
+    change_slide(current_slide + 1)
 
 previous_slide = ->
-    show_slide(current_slide - 1)
+    change_slide(current_slide - 1)
 
 sync_slides = ->
     syncUrl = jsRoutes.controllers.Presentation.synchronizationSocket()

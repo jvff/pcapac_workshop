@@ -12,7 +12,7 @@ import play.twirl.api.JavaScript;
 import views.html.Presentation.start;
 import views.html.Presentation.slides.*;
 
-import actors.SynchronizationActor;
+import actors.ViewerActor;
 
 public class Presentation extends Controller {
     private static class SlideHandler {
@@ -69,6 +69,6 @@ public class Presentation extends Controller {
     }
 
     public static WebSocket<String> synchronizationSocket() {
-        return WebSocket.withActor(SynchronizationActor::props);
+        return WebSocket.withActor(ViewerActor::props);
     }
 }
