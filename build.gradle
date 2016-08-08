@@ -25,3 +25,7 @@ repositories {
         url "https://repo.gradle.org/gradle/javascript-public"
     }
 }
+
+dependencies {
+    play 'ws.securesocial:securesocial_2.11:3.0-M3'
+}
