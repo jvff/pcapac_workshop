@@ -24,6 +24,7 @@ public class ViewerActor extends UntypedActor {
 
     private final ActorRef out;
     private final ActorRef synchronizer;
+    private boolean authorizedToLead = false;
 
     public ViewerActor(ActorRef out) {
         this.out = out;
@@ -33,11 +34,17 @@ public class ViewerActor extends UntypedActor {
         registerViewer();
     }
 
+    public ViewerActor(ActorRef out, boolean authorizedToLead) {
+        this(out);
+
+        this.authorizedToLead = authorizedToLead;
+    }
+
     @Override
     public void onReceive(Object message) {
         if (message instanceof CommandMessage)
             handleCommand((CommandMessage)message);
-        else
+        else if (authorizedToLead)
             notifySynchronizer((String)message);
     }
 

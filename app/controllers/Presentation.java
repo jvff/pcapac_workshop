@@ -9,10 +9,17 @@ import play.Routes;
 import play.twirl.api.Html;
 import play.twirl.api.JavaScript;
 
+import securesocial.core.java.UserAwareAction;
+
 import views.html.Presentation.start;
 import views.html.Presentation.slides.*;
 
+import actors.PresenterActor;
 import actors.ViewerActor;
+
+import models.User;
+
+import static securesocial.core.java.SecureSocial.USER_KEY;
 
 public class Presentation extends Controller {
     private static class SlideHandler {
@@ -48,7 +55,15 @@ public class Presentation extends Controller {
         };
     }
 
+    @UserAwareAction
     public static Result start() {
+        User user = (User)ctx().args.get(USER_KEY);
+
+        if (user != null)
+            session("user", "presenter");
+        else
+            session("user", "guest");
+
         return ok(start.render());
     }
 
@@ -69,6 +84,11 @@ public class Presentation extends Controller {
     }
 
     public static WebSocket<String> synchronizationSocket() {
-        return WebSocket.withActor(ViewerActor::props);
+        String user = session("user");
+
+        if (user == null || !user.equals("presenter"))
+            return WebSocket.withActor(ViewerActor::props);
+        else
+            return WebSocket.withActor(PresenterActor::props);
     }
 }
