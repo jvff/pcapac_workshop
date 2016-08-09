@@ -1,0 +1,3 @@
+[submodule "external/xterm.js"]
+	path = external/xterm.js
+	url = https://github.com/sourcelair/xterm.js/

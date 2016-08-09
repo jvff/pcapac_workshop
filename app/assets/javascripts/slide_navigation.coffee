@@ -11,6 +11,25 @@ download_slide = (number, action) ->
     req.open 'GET', "/slides/#{number}", false
     req.send()
 
+clone_script_node = (node) ->
+    newNode = document.createElement "script"
+    newNode.text = node.innerHTML
+
+    for attribute in node.attributes
+        newNode.setAttribute(attribute.name, attribute.value)
+
+    return newNode
+
+replace_script_tags = (node) ->
+    if node.tagName is "SCRIPT"
+        node.parentNode.replaceChild(clone_script_node(node), node)
+    else
+        for child in node.childNodes
+            replace_script_tags(child)
+
+run_slide_scripts = () ->
+    replace_script_tags(document.getElementById("content"))
+
 current_slide = 0
 syncSocket = null
 
@@ -18,6 +37,7 @@ show_slide = (number) ->
     download_slide(number, (content) ->
         contentBox = document.getElementById("content")
         contentBox.innerHTML = content
+        run_slide_scripts()
         current_slide = number
     )
 

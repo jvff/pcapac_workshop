@@ -1,6 +1,18 @@
 <html>
     <head>
         <title>PCaPAC: Introduction to Git</title>
+
+        <link rel="stylesheet" href="@routes.Assets.at("stylesheets/xterm.js/xterm.css")" />
+
+        <script src="@routes.Assets.at("javascripts/xterm.js/xterm.js")">
+        </script>
+        <script src="@routes.Assets.at("javascripts/xterm.js/addons/attach.js")">
+        </script>
+        <script src="@routes.Assets.at("javascripts/xterm.js/addons/fit.js")">
+        </script>
+
+        <script src="@controllers.routes.Presentation.jsRoutes()">
+        </script>
     </head>
 
     <body>
@@ -14,8 +26,6 @@
             <div id="next_slide"><a>Next</a></div>
         </div>
 
-        <script src="@controllers.routes.Presentation.jsRoutes()">
-        </script>
         <script src="@routes.Assets.at("javascripts/slide_navigation.js")">
         </script>
     </body>

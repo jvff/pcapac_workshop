@@ -51,6 +51,7 @@ public class Presentation extends Controller {
         slides = new SlideHandler[] {
             new SlideHandler(title.class),
             new SlideHandler(agenda.class),
+            new SlideHandler(terminal.class),
             new SlideHandler(thanks.class)
         };
     }
@@ -78,7 +79,9 @@ public class Presentation extends Controller {
         response().setContentType("text/javascript");
 
         JavaScript router = Routes.javascriptRouter("jsRoutes",
-                routes.javascript.Presentation.synchronizationSocket());
+                routes.javascript.Presentation.synchronizationSocket(),
+                routes.javascript.Terminal.resize(),
+                routes.javascript.Terminal.socket());
 
         return ok(router);
     }

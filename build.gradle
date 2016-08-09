@@ -28,4 +28,5 @@ repositories {
 
 dependencies {
     play 'ws.securesocial:securesocial_2.11:3.0-M3'
+    play 'com.typesafe.play:play-java_2.11:2.3.9'
 }
