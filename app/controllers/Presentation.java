@@ -52,6 +52,7 @@ public class Presentation extends Controller {
             new SlideHandler(introduction.class),
             new SlideHandler(motivation.class),
             new SlideHandler(solution.class),
+            new SlideHandler(version_control_system.class),
             new SlideHandler(terminal.class),
             new SlideHandler(thanks.class)
         };
