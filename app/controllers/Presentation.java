@@ -49,6 +49,7 @@ public class Presentation extends Controller {
         slides = new SlideHandler[] {
             new SlideHandler(title.class),
             new SlideHandler(agenda.class),
+            new SlideHandler(introduction.class),
             new SlideHandler(terminal.class),
             new SlideHandler(thanks.class)
         };
