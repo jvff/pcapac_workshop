@@ -54,6 +54,7 @@ public class Presentation extends Controller {
             new SlideHandler(solution.class),
             new SlideHandler(version_control_system.class),
             new SlideHandler(git.class),
+            new SlideHandler(basic_concepts.class),
             new SlideHandler(terminal.class),
             new SlideHandler(thanks.class)
         };

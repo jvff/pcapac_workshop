@@ -1,0 +1,31 @@
+<h1>Basic Concepts</h1>
+
+<ul>
+    <li>Git controls a directory that contains the repository
+        <ul>
+            <li>The <kbd>git init</kbd> command prepares a directory to be used
+                as a repository managed by Git</li>
+        </ul>
+    </li>
+    <li>Inside the directory, a hidden <samp>.git</samp> directory is created
+        <ul>
+            <li>Stores copies of artefacts, meta-data and other internal files
+            </li>
+        </ul>
+    </li>
+    <li>Git assumes ownership of the directory, and controls the artefacts
+        stored in it
+        <ul>
+            <li>The <samp>.gitignore</samp> file can be used to tell Git to not
+                treat certain files as artefacts
+                <ul>
+                    <li>Temporary files</li>
+                    <li>Files that can be generated from the artefacts</li>
+                    <li>Files specific to the local computer environment</li>
+                    <li>Security-sensitive files (that store a password, for
+                        example)</li>
+                </ul>
+            </li>
+        </ul>
+    </li>
+</ul>
