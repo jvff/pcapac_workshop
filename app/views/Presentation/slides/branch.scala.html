@@ -1,0 +1,36 @@
+<h1>Branch</h1>
+
+<ul>
+    <li>In theory, a branch is a sequence of commits</li>
+
+    <svg viewBox="0 20 200 200" width="200" height="200">
+        <defs>
+            <marker id="head" orient="auto" marker-width="6" markerHeight="6"
+                    viewBox="0 0 10 10" refX="8" refY="5">
+            <!--<path d="M0,0 V2 L2,2 L0,-2 Z" fill="red" stroke="red" />-->
+                <path d="M0,0 L10,5 L0,10" fill="none" stroke="black" stroke-width="2"/>
+            </marker>
+        </defs>
+
+        <circle cx="32" cy="62" r="10" stroke="black" stroke-width="2"
+                fill="none" />
+
+        <circle cx="32" cy="102" r="10" stroke="black" stroke-width="2"
+                fill="none" />
+
+        <circle cx="32" cy="142" r="10" stroke="black" stroke-width="2"
+                fill="none" />
+
+        <path marker-end="url(#head)" stroke-width="2" fill="none"
+                stroke="black" d="M32,72 L32,92" />
+
+        <path marker-end="url(#head)" stroke-width="2" fill="none"
+                stroke="black" d="M32,112 L32,132" />
+
+        <text x="47" y="62" dy="0.3em">Third commit</text>
+        <text x="47" y="102" dy="0.3em">Second commit</text>
+        <text x="47" y="142" dy="0.3em">First commit</text>
+
+        <text x="32" y="40" text-anchor="middle" fill="green">Branch</text>
+    </svg>
+</ul>
