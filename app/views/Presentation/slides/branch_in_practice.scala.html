@@ -1,0 +1,20 @@
+<h1>Branch</h1>
+
+<ul>
+    <li>In practice, a branch is a "moving commit reference"</li>
+    <li>The reference is updated automatically for each new commit added to the
+        branch</li>
+</ul>
+
+<svg id="svgContainer" viewBox="0 20 200 200" width="200" height="200">
+</svg>
+
+<script src="@routes.Assets.at("javascripts/branch_draw_tools.js")">
+</script>
+
+<script type="text/javascript">
+    var head = window.branch_draw_tools.draw_branch(
+            ["First commit", "Second commit", "Third commit"]);
+
+    window.branch_draw_tools.label_branch(head, "Branch");
+</script>

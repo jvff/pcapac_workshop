@@ -60,6 +60,8 @@ draw_arrow = (startX, startY, endX, endY) ->
 
     container.appendChild(path)
 
+    return path
+
 draw_vertical_arrow = (startCommit, endCommit) ->
     x = startCommit.cx.baseVal.value
 
@@ -103,10 +105,27 @@ add_label = (commit, label) ->
     element.setAttributeNS(null, "text-anchor", "middle")
     element.setAttributeNS(null, "fill", "green")
 
+label_branch = (commit, label) ->
+    commitX = commit.cx.baseVal.value
+    commitY = commit.cy.baseVal.value
+
+    commitTop = commitY - commit.r.baseVal.value
+
+    x = commitX + 20
+    y = commitTop - 20
+
+    element = draw_label(label, x, y)
+    element.setAttributeNS(null, "fill", "green")
+
+    arrow = draw_arrow(x, y, commitX, commitTop)
+    arrow.setAttributeNS(null, "stroke", "green")
+    arrow.setAttributeNS(null, "stroke-dasharray", "5,5")
+
 create_arrow_head()
 
 window.branch_draw_tools = {
     draw_branch: draw_branch
+    label_branch: label_branch
     add_label: add_label
 }
 

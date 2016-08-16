@@ -60,6 +60,7 @@ public class Presentation extends Controller {
             new SlideHandler(index.class),
             new SlideHandler(commit.class),
             new SlideHandler(branch.class),
+            new SlideHandler(branch_in_practice.class),
             new SlideHandler(terminal.class),
             new SlideHandler(thanks.class)
         };
