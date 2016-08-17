@@ -5,15 +5,17 @@ import akka.actor.ActorSystem;
 import akka.actor.UntypedActor;
 import akka.actor.Props;
 
+import com.fasterxml.jackson.databind.JsonNode;
+
 public class ViewerActor extends UntypedActor {
     public static class CommandMessage {
-        private final String command;
+        private final JsonNode command;
 
-        public CommandMessage(String command) {
+        public CommandMessage(JsonNode command) {
             this.command = command;
         }
 
-        public String getCommand() {
+        public JsonNode getCommand() {
             return command;
         }
     }
@@ -45,14 +47,14 @@ public class ViewerActor extends UntypedActor {
         if (message instanceof CommandMessage)
             handleCommand((CommandMessage)message);
         else if (authorizedToLead)
-            notifySynchronizer((String)message);
+            notifySynchronizer((JsonNode)message);
     }
 
     private void handleCommand(CommandMessage message) {
         out.tell(message.getCommand(), self());
     }
 
-    private void notifySynchronizer(String message) {
+    private void notifySynchronizer(JsonNode message) {
         synchronizer.tell(message, self());
     }
 

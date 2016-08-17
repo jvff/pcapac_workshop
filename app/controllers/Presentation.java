@@ -7,6 +7,8 @@ import play.mvc.Result;
 import play.mvc.WebSocket;
 import play.twirl.api.Html;
 
+import com.fasterxml.jackson.databind.JsonNode;
+
 import securesocial.core.java.UserAwareAction;
 
 import views.html.Presentation.start;
@@ -85,7 +87,7 @@ public class Presentation extends Controller {
             return notFound();
     }
 
-    public static WebSocket<String> synchronizationSocket() {
+    public static WebSocket<JsonNode> synchronizationSocket() {
         String user = session("user");
 
         if (user == null || !user.equals("presenter"))
