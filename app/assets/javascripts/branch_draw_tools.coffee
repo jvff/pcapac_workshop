@@ -128,4 +128,3 @@ window.branch_draw_tools = {
     label_branch: label_branch
     add_label: add_label
 }
-
