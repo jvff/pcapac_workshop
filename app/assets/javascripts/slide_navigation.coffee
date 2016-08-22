@@ -42,7 +42,7 @@ show_slide = (number) ->
     )
 
 change_slide = (number) ->
-    syncSocket?.send("#{number}")
+    syncSocket?.send("{\"slide\": #{number}}")
     show_slide(number)
 
 next_slide = ->
@@ -55,7 +55,8 @@ sync_slides = ->
     syncUrl = jsRoutes.controllers.Presentation.synchronizationSocket()
     syncSocket = new WebSocket(syncUrl.webSocketURL())
     syncSocket.onmessage = (event) ->
-        show_slide(parseInt(event.data, 10))
+        syncData = JSON.parse(event.data)
+        show_slide(syncData.slide)
 
 previous_slide_button = document.getElementById 'previous_slide'
 previous_slide_button.addEventListener 'click', previous_slide, false
