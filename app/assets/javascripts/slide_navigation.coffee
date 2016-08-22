@@ -41,15 +41,23 @@ show_slide = (number) ->
         current_slide = number
     )
 
+sync_slide = () ->
+    syncData =
+        slide: current_slide
+        step: window.slide_animation.get_current_step()
+
+    syncSocket?.send(JSON.stringify(syncData))
+
 change_slide = (number) ->
-    syncSocket?.send("{\"slide\": #{number}}")
     show_slide(number)
 
 next_slide = ->
     change_slide(current_slide + 1)
+    window.slide_animation.restart()
 
 previous_slide = ->
     change_slide(current_slide - 1)
+    window.slide_animation.restart_at_end()
 
 sync_slides = ->
     syncUrl = jsRoutes.controllers.Presentation.synchronizationSocket()
@@ -57,12 +65,26 @@ sync_slides = ->
     syncSocket.onmessage = (event) ->
         syncData = JSON.parse(event.data)
         show_slide(syncData.slide)
+        window.slide_animation.go_to_step(syncData.step)
+
+next_step = ->
+    window.slide_animation.next_step()
+    sync_slide()
+
+previous_step = ->
+    window.slide_animation.previous_step()
+    sync_slide()
 
 previous_slide_button = document.getElementById 'previous_slide'
-previous_slide_button.addEventListener 'click', previous_slide, false
+previous_slide_button.addEventListener 'click', previous_step, false
 
 sync_slides_button = document.getElementById 'sync_slides'
 sync_slides_button.addEventListener 'click', sync_slides, false
 
 next_slide_button = document.getElementById 'next_slide'
-next_slide_button.addEventListener 'click', next_slide, false
+next_slide_button.addEventListener 'click', next_step, false
+
+window.slide_navigation = {
+    next_slide: next_slide
+    previous_slide: previous_slide
+}
