@@ -36,7 +36,7 @@ number_of_steps_for_list_item_elements = ->
 number_of_steps_for_animated_elements = ->
     highest_step = 0
 
-    for element in document.querySelectorAll('[data-step]')
+    for element in document.querySelectorAll('[*|data-step]')
         step = last_known_step_of_animation(element)
         highest_step = Math.max(highest_step, step)
 
@@ -86,7 +86,7 @@ load_list_item_elements = ->
         step += 1
 
 load_animated_non_list_item_elements = ->
-    animated_elements = document.querySelectorAll('[data-step]')
+    animated_elements = document.querySelectorAll('[*|data-step]')
 
     for element in animated_elements
         if element.tagName != 'LI'
@@ -159,13 +159,13 @@ go_to_step = (step) ->
 
 update_element_visibility = ->
     for element in shown_elements_at_step[current_step]
-        element.style.visibility = 'visible'
+        element.setAttribute('style', 'visibility: visible')
 
     for element in active_elements_at_step[current_step]
-        element.style.visibility = 'visible'
+        element.setAttribute('style', 'visibility: visible')
 
     for element in hidden_elements_at_step[current_step]
-        element.style.visibility = 'hidden'
+        element.setAttribute('style', 'visibility: hidden')
 
 next_step = ->
     go_to_step(current_step + 1)
