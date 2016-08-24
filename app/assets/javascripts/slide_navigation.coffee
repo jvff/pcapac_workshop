@@ -11,6 +11,52 @@ download_slide = (number, action) ->
     req.open 'GET', "/slides/#{number}", false
     req.send()
 
+run_slide_scripts = (continuation) ->
+    nodes = find_script_tags(document.getElementById("content"))
+    external_nodes = filter_external_nodes(nodes)
+    external_node_count = external_nodes.length
+
+    callback = callback_for_loaded_nodes(external_node_count, continuation)
+    replace_script_tags(nodes, callback)
+
+    if external_node_count == 0
+        continuation()
+
+find_script_tags = (node) ->
+    if node.tagName is "SCRIPT"
+        return [node]
+    else
+        nodes = []
+
+        for child in node.childNodes
+            nodes_from_child = find_script_tags(child)
+            nodes.push nodes_from_child...
+
+        return nodes
+
+filter_external_nodes = (nodes) ->
+    external_nodes = []
+
+    for node in nodes
+        if node.hasAttribute("src")
+            external_nodes.push node
+
+callback_for_loaded_nodes = (external_script_tags, continuation) ->
+    window.remaining_script_tag_nodes = external_script_tags
+
+    return ->
+        if window.remaining_script_tag_nodes >= 1
+            window.remaining_script_tag_nodes -= 1
+
+            if window.remaining_script_tag_nodes == 0
+                continuation()
+
+replace_script_tags = (nodes, load_callback) ->
+    for node in nodes
+        new_node = clone_script_node(node)
+        new_node.onload = load_callback
+        node.parentNode.replaceChild(new_node, node)
+
 clone_script_node = (node) ->
     newNode = document.createElement "script"
     newNode.text = node.innerHTML
@@ -20,25 +66,15 @@ clone_script_node = (node) ->
 
     return newNode
 
-replace_script_tags = (node) ->
-    if node.tagName is "SCRIPT"
-        node.parentNode.replaceChild(clone_script_node(node), node)
-    else
-        for child in node.childNodes
-            replace_script_tags(child)
-
-run_slide_scripts = () ->
-    replace_script_tags(document.getElementById("content"))
-
 current_slide = 0
 syncSocket = null
 
-show_slide = (number) ->
+show_slide = (number, continuation) ->
     download_slide(number, (content) ->
         contentBox = document.getElementById("content")
         contentBox.innerHTML = content
-        run_slide_scripts()
         current_slide = number
+        run_slide_scripts(continuation)
     )
 
 sync_slide = () ->
@@ -48,16 +84,15 @@ sync_slide = () ->
 
     syncSocket?.send(JSON.stringify(syncData))
 
-change_slide = (number) ->
-    show_slide(number)
-
 next_slide = ->
-    change_slide(current_slide + 1)
-    window.slide_animation.restart()
+    show_slide(current_slide + 1, ->
+        window.slide_animation.restart()
+    )
 
 previous_slide = ->
-    change_slide(current_slide - 1)
-    window.slide_animation.restart_at_end()
+    show_slide(current_slide - 1, ->
+        window.slide_animation.restart_at_end()
+    )
 
 sync_slides = ->
     syncUrl = jsRoutes.controllers.Presentation.synchronizationSocket()
