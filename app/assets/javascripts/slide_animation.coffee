@@ -18,7 +18,7 @@ calculate_number_of_steps = ->
     list_item_steps = number_of_steps_for_list_item_elements()
     animated_steps = number_of_steps_for_animated_elements()
 
-    return Math.max(1, list_item_steps, animated_steps)
+    return Math.max(0, list_item_steps, animated_steps)
 
 number_of_steps_for_list_item_elements = ->
     step = 0
@@ -49,7 +49,7 @@ first_step_of_animation = (element) ->
     first_range_start = parseInt(first_range_values[0])
 
 last_known_step_of_animation = (element) ->
-    highest_step = 1
+    highest_step = 0
 
     step_attribute = element.getAttribute("data-step")
     step_ranges = step_attribute.split ','
