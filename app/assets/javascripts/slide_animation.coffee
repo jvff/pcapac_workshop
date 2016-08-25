@@ -159,13 +159,13 @@ go_to_step = (step) ->
 
 update_element_visibility = ->
     for element in shown_elements_at_step[current_step]
-        element.setAttribute('style', 'visibility: visible')
+        element.setAttribute('data-step-status', 'shown')
 
     for element in active_elements_at_step[current_step]
-        element.setAttribute('style', 'visibility: visible')
+        element.setAttribute('data-step-status', 'active')
 
     for element in hidden_elements_at_step[current_step]
-        element.setAttribute('style', 'visibility: hidden')
+        element.setAttribute('data-step-status', 'hidden')
 
 next_step = ->
     go_to_step(current_step + 1)

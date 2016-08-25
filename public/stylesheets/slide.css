@@ -1,0 +1,11 @@
+[data-step-status='shown'] {
+    visibility: visible
+}
+
+[data-step-status='active'] {
+    visibility: visible
+}
+
+[data-step-status='hidden'] {
+    visibility: hidden
+}
