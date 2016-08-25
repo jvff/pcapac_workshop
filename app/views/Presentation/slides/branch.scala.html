@@ -2,17 +2,17 @@
 
 <ul>
     <li>In theory, a branch is a sequence of commits</li>
-
-    <svg id="svgContainer" viewBox="0 20 200 200" width="200" height="200">
-    </svg>
-
-    <script src="@routes.Assets.at("javascripts/branch_draw_tools.js")">
-    </script>
-
-    <script type="text/javascript">
-        var head = window.branch_draw_tools.draw_branch(
-                ["First commit", "Second commit", "Third commit"]);
-
-        window.branch_draw_tools.add_label(head, "Branch");
-    </script>
 </ul>
+
+<div class="git_tree">
+    <ul>
+        <li data-step="0">
+            <span class="branch">(Branch)</span> Third commit
+        </li>
+        <li data-step="0">Second commit</li>
+        <li data-step="0">First commit</li>
+    </ul>
+</div>
+
+<script src="@routes.Assets.at("javascripts/git_tree_to_svg.js")">
+</script>
