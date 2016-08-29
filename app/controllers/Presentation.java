@@ -63,12 +63,12 @@ public class Presentation extends Controller {
             return notFound();
     }
 
-    public static WebSocket<JsonNode> synchronizationSocket() {
+    public static WebSocket<JsonNode> synchronizationSocket(
+            String presentationId) {
         String user = session("user");
+        boolean authorizedToLead = user != null && user.equals("presenter");
 
-        if (user == null || !user.equals("presenter"))
-            return WebSocket.withActor(ViewerActor::props);
-        else
-            return WebSocket.withActor(PresenterActor::props);
+        return WebSocket.withActor(
+                ViewerActor.propsFor(presentationId, authorizedToLead));
     }
 }

@@ -7,6 +7,8 @@ import akka.actor.Props;
 
 import com.fasterxml.jackson.databind.JsonNode;
 
+import play.libs.F;
+
 public class ViewerActor extends UntypedActor {
     public static class CommandMessage {
         private final JsonNode command;
@@ -20,26 +22,31 @@ public class ViewerActor extends UntypedActor {
         }
     }
 
-    public static Props props(ActorRef out) {
-        return Props.create(ViewerActor.class, out);
+    public static F.Function<ActorRef, Props> propsFor(
+            final String presentationId, final boolean authorizedToLead) {
+        return (ActorRef out) -> props(out, presentationId, authorizedToLead);
+    }
+
+    public static Props props(ActorRef out, String presentationId,
+            boolean authorizedToLead) {
+        return Props.create(ViewerActor.class, out, presentationId,
+                authorizedToLead);
     }
 
     private final ActorRef out;
     private final ActorRef synchronizer;
+    private String presentationId;
     private boolean authorizedToLead = false;
 
-    public ViewerActor(ActorRef out) {
+    public ViewerActor(ActorRef out, String presentationId,
+            boolean authorizedToLead) {
         this.out = out;
+        this.presentationId = presentationId;
+        this.authorizedToLead = authorizedToLead;
 
         synchronizer = getSynchronizer();
 
         registerViewer();
-    }
-
-    public ViewerActor(ActorRef out, boolean authorizedToLead) {
-        this(out);
-
-        this.authorizedToLead = authorizedToLead;
     }
 
     @Override

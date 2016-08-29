@@ -1,5 +1,6 @@
+GET         /:presentation/slides/sync   controllers.Presentation.synchronizationSocket(presentation: String)
+
 GET         /intro_to_git                controllers.IntroductionToGitPresentation.start
-GET         /intro_to_git/slides/sync    controllers.Presentation.synchronizationSocket()
 GET         /intro_to_git/slides/:number controllers.IntroductionToGitPresentation.slide(number: Integer)
 
 GET         /terminal                    controllers.Terminal.socket
