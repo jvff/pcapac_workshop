@@ -2,6 +2,8 @@ import org.gradle.play.plugins.PlayCoffeeScriptPlugin;
 
 plugins {
     id 'play'
+
+    id 'com.janitovff.play-less' version '0.0.1'
 }
 
 apply plugin: PlayCoffeeScriptPlugin.class;
