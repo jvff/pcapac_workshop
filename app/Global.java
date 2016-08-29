@@ -20,6 +20,7 @@ public class Global extends GlobalSettings {
         system.actorOf(PresentationManagerActor.props(), actorName);
 
         registerPresentation(system, "intro_to_git");
+        registerPresentation(system, "intro_to_opencl");
     }
 
     private void registerPresentation(ActorSystem system, String id) {
