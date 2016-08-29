@@ -6,6 +6,7 @@ import akka.actor.ActorSystem;
 
 import securesocial.core.RuntimeEnvironment;
 
+import actors.PresentationManagerActor;
 import actors.SynchronizationActor;
 
 public class Global extends GlobalSettings {
@@ -14,8 +15,15 @@ public class Global extends GlobalSettings {
     @Override
     public void onStart(Application application) {
         ActorSystem system = Akka.system();
+        String actorName = PresentationManagerActor.NAME;
 
-        system.actorOf(SynchronizationActor.props(), SynchronizationActor.NAME);
+        system.actorOf(PresentationManagerActor.props(), actorName);
+
+        registerPresentation(system, "intro_to_git");
+    }
+
+    private void registerPresentation(ActorSystem system, String id) {
+        system.actorOf(SynchronizationActor.props(id));
     }
 
     @Override

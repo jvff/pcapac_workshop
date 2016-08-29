@@ -9,6 +9,8 @@ import com.fasterxml.jackson.databind.JsonNode;
 
 import play.libs.F;
 
+import actors.PresentationManagerActor.NewPresentationViewerMessage;
+
 public class ViewerActor extends UntypedActor {
     public static class CommandMessage {
         private final JsonNode command;
@@ -20,6 +22,9 @@ public class ViewerActor extends UntypedActor {
         public JsonNode getCommand() {
             return command;
         }
+    }
+
+    public static class SynchronizerConnectionMessage {
     }
 
     public static F.Function<ActorRef, Props> propsFor(
@@ -34,7 +39,8 @@ public class ViewerActor extends UntypedActor {
     }
 
     private final ActorRef out;
-    private final ActorRef synchronizer;
+
+    private ActorRef synchronizer;
     private String presentationId;
     private boolean authorizedToLead = false;
 
@@ -44,8 +50,6 @@ public class ViewerActor extends UntypedActor {
         this.presentationId = presentationId;
         this.authorizedToLead = authorizedToLead;
 
-        synchronizer = getSynchronizer();
-
         registerViewer();
     }
 
@@ -53,6 +57,8 @@ public class ViewerActor extends UntypedActor {
     public void onReceive(Object message) {
         if (message instanceof CommandMessage)
             handleCommand((CommandMessage)message);
+        else if (message instanceof SynchronizerConnectionMessage)
+            synchronizer = sender();
         else if (authorizedToLead)
             notifySynchronizer((JsonNode)message);
     }
@@ -66,12 +72,16 @@ public class ViewerActor extends UntypedActor {
     }
 
     private void registerViewer() {
-        synchronizer.tell("new viewer", self());
+        ActorRef manager = getPresentationManager();
+        NewPresentationViewerMessage message =
+                new NewPresentationViewerMessage(presentationId);
+
+        manager.tell(message, self());
     }
 
-    private ActorRef getSynchronizer() {
+    private ActorRef getPresentationManager() {
         ActorSystem system = getContext().system();
 
-        return system.actorFor(SynchronizationActor.URL);
+        return system.actorFor(PresentationManagerActor.URL);
     }
 }
