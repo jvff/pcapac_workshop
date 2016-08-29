@@ -11,8 +11,7 @@ import com.fasterxml.jackson.databind.JsonNode;
 
 import securesocial.core.java.UserAwareAction;
 
-import views.html.Presentation.start;
-import views.html.Presentation.slides.*;
+import views.html.presentation.start;
 
 import actors.PresenterActor;
 import actors.ViewerActor;
@@ -22,7 +21,7 @@ import models.User;
 import static securesocial.core.java.SecureSocial.USER_KEY;
 
 public class Presentation extends Controller {
-    private static class SlideHandler {
+    protected static class SlideHandler {
         private Method renderMethod;
 
         SlideHandler(Class slideClass) {
@@ -45,31 +44,8 @@ public class Presentation extends Controller {
         }
     }
 
-    private static SlideHandler[] slides;
-
-    static {
-        slides = new SlideHandler[] {
-            new SlideHandler(title.class),
-            new SlideHandler(agenda.class),
-            new SlideHandler(introduction.class),
-            new SlideHandler(motivation.class),
-            new SlideHandler(solution.class),
-            new SlideHandler(version_control_system.class),
-            new SlideHandler(git.class),
-            new SlideHandler(installation.class),
-            new SlideHandler(basic_concepts.class),
-            new SlideHandler(managing_the_directory.class),
-            new SlideHandler(index.class),
-            new SlideHandler(commit.class),
-            new SlideHandler(branch.class),
-            new SlideHandler(branch_in_practice.class),
-            new SlideHandler(terminal.class),
-            new SlideHandler(thanks.class)
-        };
-    }
-
     @UserAwareAction
-    public static Result start() {
+    public static Result start(String title, String route) {
         User user = (User)ctx().args.get(USER_KEY);
 
         if (user != null)
@@ -77,10 +53,10 @@ public class Presentation extends Controller {
         else
             session("user", "guest");
 
-        return ok(start.render());
+        return ok(start.render(title, route));
     }
 
-    public static Result slide(Integer number) {
+    public static Result slide(SlideHandler[] slides, Integer number) {
         if (number >= 0 && number < slides.length)
             return slides[number].render();
         else

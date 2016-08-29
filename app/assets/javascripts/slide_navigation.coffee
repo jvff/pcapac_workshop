@@ -8,7 +8,7 @@ download_slide = (number, action) ->
             if req.status in successResultCodes
                 action(req.responseText)
 
-    req.open 'GET', "/slides/#{number}", false
+    req.open 'GET', "/#{window.presentation_route}/slides/#{number}", false
     req.send()
 
 run_slide_scripts = (continuation) ->
@@ -120,6 +120,7 @@ next_slide_button = document.getElementById 'next_slide'
 next_slide_button.addEventListener 'click', next_step, false
 
 window.slide_navigation = {
+    show_slide: show_slide
     next_slide: next_slide
     previous_slide: previous_slide
 }

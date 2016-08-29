@@ -1,11 +1,11 @@
-GET         /                   controllers.Presentation.start
-GET         /slides/sync        controllers.Presentation.synchronizationSocket()
-GET         /slides/:number     controllers.Presentation.slide(number: Integer)
+GET         /intro_to_git                controllers.IntroductionToGitPresentation.start
+GET         /intro_to_git/slides/sync    controllers.Presentation.synchronizationSocket()
+GET         /intro_to_git/slides/:number controllers.IntroductionToGitPresentation.slide(number: Integer)
 
-GET         /terminal           controllers.Terminal.socket
-POST        /terminal/resize    controllers.Terminal.resize
+GET         /terminal                    controllers.Terminal.socket
+POST        /terminal/resize             controllers.Terminal.resize
 
-GET         /assets/js/routes   controllers.JavaScriptRoutes.jsRoutes()
-GET         /assets/*file       controllers.Assets.at(path="/public", file)
+GET         /assets/js/routes            controllers.JavaScriptRoutes.jsRoutes()
+GET         /assets/*file                controllers.Assets.at(path="/public", file)
 
-->          /auth               securesocial.Routes
+->          /auth                        securesocial.Routes
