@@ -3,11 +3,13 @@ package actors;
 import java.util.LinkedList;
 
 import akka.actor.ActorRef;
+import akka.actor.ActorSystem;
 import akka.actor.Props;
 import akka.actor.UntypedActor;
 
 import com.fasterxml.jackson.databind.JsonNode;
 
+import actors.PresentationManagerActor.NewPresentationMessage;
 import actors.ViewerActor.CommandMessage;
 import actors.ViewerActor.SynchronizerConnectionMessage;
 
@@ -35,6 +37,8 @@ public class SynchronizationActor extends UntypedActor {
         this.presentationId = presentationId;
 
         viewers = new LinkedList<ActorRef>();
+
+        registerPresentation();
     }
 
     @Override
@@ -58,5 +62,20 @@ public class SynchronizationActor extends UntypedActor {
 
         for (ActorRef viewer : viewers)
             viewer.tell(message, self());
+    }
+
+    private void registerPresentation() {
+        ActorRef manager = getPresentationManager();
+        NewPresentationMessage message =
+                new NewPresentationMessage(presentationId);
+
+        System.err.println("Registering presentation: " + presentationId);
+        manager.tell(message, self());
+    }
+
+    private ActorRef getPresentationManager() {
+        ActorSystem system = getContext().system();
+
+        return system.actorFor(PresentationManagerActor.URL);
     }
 }
