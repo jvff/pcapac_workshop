@@ -9,6 +9,7 @@ import views.html.intro_to_opencl.slides.*;
 public class IntroductionToOpenCLPresentation extends Presentation {
     private static SlideHandler[] slides = new SlideHandler[] {
         new SlideHandler(title.class),
+        new SlideHandler(agenda.class),
         new SlideHandler(thanks.class),
     };
 
