@@ -84,6 +84,11 @@ sync_slide = () ->
 
     syncSocket?.send(JSON.stringify(syncData))
 
+go_to_slide = (slide, step) ->
+    show_slide(slide, ->
+        window.slide_animation.restart_at_step(step)
+    )
+
 next_slide = ->
     show_slide(current_slide + 1, ->
         window.slide_animation.restart()
@@ -95,12 +100,12 @@ previous_slide = ->
     )
 
 sync_slides = ->
-    syncUrl = jsRoutes.controllers.Presentation.synchronizationSocket()
+    syncId = window.presentation_route
+    syncUrl = jsRoutes.controllers.Presentation.synchronizationSocket(syncId)
     syncSocket = new WebSocket(syncUrl.webSocketURL())
     syncSocket.onmessage = (event) ->
         syncData = JSON.parse(event.data)
-        show_slide(syncData.slide)
-        window.slide_animation.go_to_step(syncData.step)
+        go_to_slide(syncData.slide, syncData.step)
 
 next_step = ->
     window.slide_animation.next_step()
@@ -120,7 +125,7 @@ next_slide_button = document.getElementById 'next_slide'
 next_slide_button.addEventListener 'click', next_step, false
 
 window.slide_navigation = {
-    show_slide: show_slide
+    go_to_slide: go_to_slide
     next_slide: next_slide
     previous_slide: previous_slide
 }

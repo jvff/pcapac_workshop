@@ -177,6 +177,10 @@ restart = ->
     load_animated_elements()
     go_to_step(0)
 
+restart_at_step = (step) ->
+    load_animated_elements()
+    go_to_step(step)
+
 restart_at_end = ->
     load_animated_elements()
     go_to_step(last_step)
@@ -185,7 +189,7 @@ window.slide_animation = {
     next_step: next_step
     previous_step: previous_step
     restart: restart
+    restart_at_step: restart_at_step
     restart_at_end: restart_at_end
-    go_to_step: go_to_step
     get_current_step: get_current_step
 }
