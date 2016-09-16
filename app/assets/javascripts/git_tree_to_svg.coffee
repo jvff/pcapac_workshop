@@ -55,21 +55,32 @@ create_arrow_head = (container) ->
 draw_git_tree_on = (container, git_tree_element) ->
     for child in git_tree_element.children
         if child.tagName == 'UL'
-            draw_git_tree_commits(container, child.children)
+            if child.hasAttribute('data-step')
+                default_steps = child.getAttribute('data-step')
+            else
+                default_steps = ''
 
-draw_git_tree_commits = (container, commit_nodes) ->
+            draw_git_tree_commits(container, child.children, default_steps)
+
+draw_git_tree_commits = (container, commit_nodes, default_steps) ->
     x = 32
     y = 32
 
     for commit in commit_nodes
         if commit.tagName == 'LI'
             older_commit_object = draw_commit(container, commit, x, y)
+            add_default_steps_to(older_commit_object, default_steps)
 
             if newer_commit_object?
                 draw_arrow(container, newer_commit_object, older_commit_object)
 
             newer_commit_object = older_commit_object
             y += 40
+
+add_default_steps_to = (object, default_steps) ->
+    if !object.hasAttribute('data-step')
+        if !!default_steps
+            object.setAttributeNS(null, 'data-step', default_steps)
 
 draw_commit = (container, commit, x, y) ->
     circle = document.createElementNS(svgNameSpace, "circle")

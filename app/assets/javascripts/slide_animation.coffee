@@ -25,7 +25,7 @@ number_of_steps_for_list_item_elements = ->
     highest_step = 0
 
     for list_item in document.getElementsByTagName("LI")
-        if (list_item.hasAttribute("data-step"))
+        if (has_animation(list_item))
             step = first_step_of_animation(list_item)
 
         highest_step = Math.max(highest_step, step)
@@ -42,8 +42,24 @@ number_of_steps_for_animated_elements = ->
 
     return highest_step
 
+has_animation = (element) ->
+    if element.hasAttribute("data-step")
+        return true
+    else if element.parentNode is document
+        return false
+    else
+        return has_animation(element.parentNode)
+
+get_animation = (element) ->
+    if element.hasAttribute("data-step")
+        return element.getAttribute("data-step")
+    else if element.parentNode is document
+        return null
+    else
+        return get_animation(element.parentNode)
+
 first_step_of_animation = (element) ->
-    step_attribute = element.getAttribute("data-step")
+    step_attribute = get_animation(element)
     first_range = step_attribute.split(',', 1)[0]
     first_range_values = first_range.split('..', 2)
     first_range_start = parseInt(first_range_values[0])
@@ -51,7 +67,7 @@ first_step_of_animation = (element) ->
 last_known_step_of_animation = (element) ->
     highest_step = 0
 
-    step_attribute = element.getAttribute("data-step")
+    step_attribute = get_animation(element)
     step_ranges = step_attribute.split ','
 
     for step_range in step_ranges
@@ -78,7 +94,7 @@ load_list_item_elements = ->
     step = 0
 
     for list_item in document.getElementsByTagName("LI")
-        if (list_item.hasAttribute("data-step"))
+        if (has_animation(list_item))
             step = add_element_to_requested_steps(list_item)
         else
             add_list_element_to_steps_from(list_item, step)
@@ -101,7 +117,7 @@ add_list_element_to_steps_from = (element, starting_step) ->
         activate_element_in_step(element, step)
 
 add_element_to_requested_steps = (element) ->
-    step_attribute = element.getAttribute("data-step")
+    step_attribute = get_animation(element)
     step_ranges = step_attribute.split ','
 
     hide_element_in_all_steps(element)
