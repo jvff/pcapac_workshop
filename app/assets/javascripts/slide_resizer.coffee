@@ -16,3 +16,5 @@ calculate_scale = ->
     return Math.min scaleX, scaleY
 
 document.getElementsByTagName('BODY')[0].onresize = resize_slide
+
+resize_slide()
