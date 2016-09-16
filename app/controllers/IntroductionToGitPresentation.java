@@ -22,6 +22,7 @@ public class IntroductionToGitPresentation extends Presentation {
         new SlideHandler(commit.class),
         new SlideHandler(branch.class),
         new SlideHandler(branch_in_practice.class),
+        new SlideHandler(branch_commands.class),
         new SlideHandler(terminal.class),
         new SlideHandler(thanks.class)
     };
