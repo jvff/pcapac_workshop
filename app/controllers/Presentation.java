@@ -13,7 +13,6 @@ import securesocial.core.java.UserAwareAction;
 
 import views.html.presentation.start;
 
-import actors.PresenterActor;
 import actors.ViewerActor;
 
 import models.User;
