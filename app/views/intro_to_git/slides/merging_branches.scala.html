@@ -1,0 +1,33 @@
+<h1>Merging Branches</h1>
+
+<ul>
+    <li>A useful feature of branches is that they can be merged</li>
+</ul>
+
+<div class="git_tree" data-steps="1..">
+    <ul data-step="0">
+        <li data-git-merge="fork">Merge commit</li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li>
+            Common ancestor
+
+            <ul>
+                <li data-git-id="fork"></li>
+                <li></li>
+                <li></li>
+            </ul>
+        </li>
+    </ul>
+</div>
+
+<script src="@routes.Assets.at("javascripts/git_tree_from_ul.js")">
+</script>
+<script src="@routes.Assets.at("javascripts/git_tree_to_svg.js")">
+</script>
+
+<script type="text/javascript">
+    window.git_tree_from_ul.load_git_tree_elements();
+    window.git_tree_to_svg.draw_git_trees();
+</script>
