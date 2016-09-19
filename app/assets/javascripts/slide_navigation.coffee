@@ -15,14 +15,11 @@ download_slide = (number, action) ->
 
 run_slide_scripts = (continuation) ->
     nodes = find_script_tags(document.getElementById("content"))
-    external_nodes = filter_external_nodes(nodes)
-    external_node_count = external_nodes.length
 
-    callback = callback_for_loaded_nodes(external_node_count, continuation)
-    replace_script_tags(nodes, callback)
-
-    if external_node_count == 0
+    if nodes.length == 0
         continuation()
+    else
+        replace_next_script_tag(nodes, continuation)
 
 find_script_tags = (node) ->
     if node.tagName is "SCRIPT"
@@ -36,28 +33,19 @@ find_script_tags = (node) ->
 
         return nodes
 
-filter_external_nodes = (nodes) ->
-    external_nodes = []
+replace_next_script_tag = (remaining_nodes, continuation) ->
+    node = remaining_nodes[0]
+    next_nodes = remaining_nodes[1..]
 
-    for node in nodes
-        if node.hasAttribute("src")
-            external_nodes.push node
+    new_node = clone_script_node(node)
+    load_next_nodes = script_tag_loaded_callback(next_nodes, continuation)
 
-callback_for_loaded_nodes = (external_script_tags, continuation) ->
-    window.remaining_script_tag_nodes = external_script_tags
-
-    return ->
-        if window.remaining_script_tag_nodes >= 1
-            window.remaining_script_tag_nodes -= 1
-
-            if window.remaining_script_tag_nodes == 0
-                continuation()
-
-replace_script_tags = (nodes, load_callback) ->
-    for node in nodes
-        new_node = clone_script_node(node)
-        new_node.onload = load_callback
+    if new_node.hasAttribute("src")
+        new_node.onload = load_next_nodes
         node.parentNode.replaceChild(new_node, node)
+    else
+        node.parentNode.replaceChild(new_node, node)
+        load_next_nodes()
 
 clone_script_node = (node) ->
     newNode = document.createElement "script"
@@ -67,6 +55,13 @@ clone_script_node = (node) ->
         newNode.setAttribute(attribute.name, attribute.value)
 
     return newNode
+
+script_tag_loaded_callback = (remaining_nodes, continuation) ->
+    if remaining_nodes.length > 0
+        return ->
+            replace_next_script_tag(remaining_nodes, continuation)
+    else
+        return continuation
 
 current_slide = 0
 syncSocket = null
