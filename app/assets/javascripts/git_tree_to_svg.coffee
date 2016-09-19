@@ -1,5 +1,9 @@
 svgNameSpace = "http://www.w3.org/2000/svg"
 
+zero_size =
+    width: 0
+    height: 0
+
 draw_git_trees = ->
     git_trees = document.getElementsByClassName("git_tree")
 
@@ -7,12 +11,17 @@ draw_git_trees = ->
         draw_git_tree(git_tree)
 
 draw_git_tree = (git_tree_element) ->
-    hide_all_children(git_tree_element)
-    container = add_svg_container(git_tree_element)
+    container = replace_contents_with_svg_container(git_tree_element)
+
+    draw_git_tree_on(container, git_tree_element)
+
+replace_contents_with_svg_container = (element) ->
+    hide_all_children(element)
+    container = add_svg_container(element)
 
     prepare_svg_container(container)
 
-    draw_git_tree_on(container, git_tree_element)
+    return container
 
 hide_all_children = (parent) ->
     for child in parent.children
@@ -20,8 +29,8 @@ hide_all_children = (parent) ->
 
 add_svg_container = (parent) ->
     container = document.createElementNS(svgNameSpace, "svg")
-    container.setAttribute("viewBox", "0 20 1000 200")
-    container.setAttribute("height", "200")
+    container.setAttribute("viewBox", "0 20 1000 300")
+    container.setAttribute("height", "300")
 
     parent.appendChild(container)
 
@@ -53,68 +62,49 @@ create_arrow_head = (container) ->
     marker.appendChild(path)
 
 draw_git_tree_on = (container, git_tree_element) ->
-    for child in git_tree_element.children
-        if child.tagName == 'UL'
-            if child.hasAttribute('data-step')
-                default_steps = child.getAttribute('data-step')
-            else
-                default_steps = ''
+    git_tree = git_tree_element.git_trees[0]
 
-            draw_git_tree_commits(container, child.children, default_steps)
+    create_git_tree_elements(container, git_tree)
+    place_git_tree_elements(git_tree)
 
-draw_git_tree_commits = (container, commit_nodes, default_steps) ->
-    x = 32
-    y = 32
+create_git_tree_elements = (container, git_tree) ->
+    create_commit_svg_data(container, git_tree)
 
-    for commit in commit_nodes
-        if commit.tagName == 'LI'
-            older_commit_object = draw_commit(container, commit, x, y)
-            add_default_steps_to(older_commit_object, default_steps)
+    for child in git_tree.children
+        create_git_tree_elements(container, child)
 
-            if newer_commit_object?
-                draw_arrow(container, newer_commit_object, older_commit_object)
+create_commit_svg_data = (container, commit) ->
+    commit.svg =
+        node: create_commit_node(container, commit)
+        text: create_commit_text(container, commit)
+        positioned: false
 
-            newer_commit_object = older_commit_object
-            y += 40
+    commit.svg.arrows = create_commit_arrows(container, commit)
 
-add_default_steps_to = (object, default_steps) ->
-    if !object.hasAttribute('data-step')
-        if !!default_steps
-            object.setAttributeNS(null, 'data-step', default_steps)
+create_commit_node = (container, commit) ->
+    node = document.createElementNS(svgNameSpace, "circle")
+    node.setAttributeNS(null, "r", 10)
+    node.setAttributeNS(null, "stroke", "black")
+    node.setAttributeNS(null, "stroke-width", 2)
+    node.setAttributeNS(null, "fill", "none")
+    node.setAttributeNS(null, "data-step", commit.animation)
 
-draw_commit = (container, commit, x, y) ->
-    circle = document.createElementNS(svgNameSpace, "circle")
-    circle.setAttributeNS(null, "cx", x)
-    circle.setAttributeNS(null, "cy", y)
-    circle.setAttributeNS(null, "r", 10)
-    circle.setAttributeNS(null, "stroke", "black")
-    circle.setAttributeNS(null, "stroke-width", 2)
-    circle.setAttributeNS(null, "fill", "none")
+    container.appendChild(node)
 
-    if commit.hasAttribute('data-step')
-        animation_steps = commit.getAttribute('data-step')
-        circle.setAttributeNS(null, 'data-step', animation_steps)
+    return node
 
-    container.appendChild(circle)
-
-    draw_commit_text(container, commit, x, y)
-
-    return circle
-
-draw_commit_text = (container, commit, x, y) ->
+create_commit_text = (container, commit) ->
     text = document.createElementNS(svgNameSpace, "text")
-    text.setAttributeNS(null, "x", x + 40)
-    text.setAttributeNS(null, "y", y)
 
-    if commit.hasAttribute('data-step')
-        animation_steps = commit.getAttribute('data-step')
-        text.setAttributeNS(null, 'data-step', animation_steps)
+    text.setAttributeNS(null, "data-step", commit.animation)
 
-    add_text_nodes_to(text, commit.childNodes)
+    add_text_nodes_to(text, commit.text_nodes, commit.animation)
 
     container.appendChild(text)
 
-add_text_nodes_to = (parent, nodes) ->
+    return text
+
+add_text_nodes_to = (parent, nodes, default_animation) ->
     for node in nodes
         if node.nodeType is Node.TEXT_NODE
             textNode = document.createTextNode(node.textContent)
@@ -124,31 +114,180 @@ add_text_nodes_to = (parent, nodes) ->
 
             if node.hasAttribute('data-step')
                 animation_steps = node.getAttribute('data-step')
-                tspanNode.setAttributeNS(null, 'data-step', animation_steps)
+            else
+                animation_steps = default_animation
+
+            tspanNode.setAttributeNS(null, 'data-step', animation_steps)
 
             add_text_nodes_to(tspanNode, node.childNodes)
             parent.appendChild(tspanNode)
 
-draw_arrow = (container, source_object, target_object) ->
-    startX = source_object.cx.baseVal.value
-    startY = source_object.cy.baseVal.value
-    endX = target_object.cx.baseVal.value
-    endY = target_object.cy.baseVal.value
+create_commit_arrows = (container, commit) ->
+    for parent in commit.parents
+        create_commit_arrow(container, commit, parent)
 
-    startY += source_object.r.baseVal.value
-    endY -= target_object.r.baseVal.value
+create_commit_arrow = (container, commit, parent) ->
+    arrow =
+        object: create_arrow_element(container, commit)
+        source_commit: commit
+        target_commit: parent
 
-    path = document.createElementNS(svgNameSpace, "path")
-    path.setAttributeNS(null, "marker-end", "url(#head)")
-    path.setAttributeNS(null, "stroke-width", 2)
-    path.setAttributeNS(null, "fill", "none")
-    path.setAttributeNS(null, "stroke", "black")
-    path.setAttributeNS(null, "d", "M#{startX},#{startY} L#{endX},#{endY}")
+create_arrow_element = (container, commit) ->
+    arrow = document.createElementNS(svgNameSpace, "path")
+    arrow.setAttributeNS(null, "marker-end", "url(#head)")
+    arrow.setAttributeNS(null, "stroke-width", 2)
+    arrow.setAttributeNS(null, "fill", "none")
+    arrow.setAttributeNS(null, "stroke", "black")
+    arrow.setAttributeNS(null, 'data-step', commit.animation)
 
-    if (source_object.hasAttribute('data-step'))
-        animation_steps = source_object.getAttribute('data-step')
-        path.setAttributeNS(null, 'data-step', animation_steps)
+    container.appendChild(arrow)
 
-    container.appendChild(path)
+place_git_tree_elements = (git_tree) ->
+    tree_size = place_tree(git_tree, 0, 0)
 
-draw_git_trees()
+    reposition_git_tree(git_tree, tree_size)
+    place_arrows(git_tree)
+
+place_tree = (tree, x, y) ->
+    commit_size = place_commit_object(tree, x, y)
+    tree_size = place_commit_children(tree, x, y)
+
+    radius = tree.svg.node.r.baseVal.value
+    diameter = 2 * radius
+    tree_size.height += diameter
+
+    return max_size(commit_size, tree_size)
+
+max_size = (first, second) ->
+    result =
+        width: Math.max(first.width, second.width)
+        height: Math.max(first.height, second.height)
+
+    return result
+
+place_commit_object = (commit, x, y) ->
+    commit.svg.node.setAttributeNS(null, 'cx', x)
+    commit.svg.node.setAttributeNS(null, 'cy', y)
+
+    radius = commit.svg.node.r.baseVal.value
+    diameter = 2 * radius
+    text_margin = diameter
+    text_size = place_commit_text(commit, radius, diameter, x, y)
+
+    size =
+        width: diameter + text_margin + text_size.width
+        height: Math.max(diameter, text_size.height)
+
+    return size
+
+place_commit_text = (commit, radius, diameter, x, y) ->
+    text_margin = diameter
+    text_height = commit.svg.text.getBBox().height
+
+    textX = x + text_margin + radius
+    textY = y + text_height / 3
+
+    return place_commit_text_at(commit.svg.text, textX, textY)
+
+place_commit_text_at = (text, x, y) ->
+    text.setAttributeNS(null, 'x', x)
+    text.setAttributeNS(null, 'y', y)
+
+    return text.getBBox()
+
+place_commit_children = (commit, x, y) ->
+    radius = commit.svg.node.r.baseVal.value
+    diameter = 2 * radius
+    margin = diameter
+
+    childX = x
+    childY = y - margin - diameter
+
+    size =
+        width: 0
+        height: -margin
+
+    for child in commit.children
+        child_size = maybe_place_commit_child(commit, child, childX, childY)
+
+        size.height = Math.max(size.height, child_size.height)
+
+        childX += child_size.width + margin
+
+    size.width = Math.max(0, childX - x - margin)
+    size.height += margin
+
+    return size
+
+maybe_place_commit_child = (commit, child, x, y) ->
+    if should_place_child(commit, child)
+        return place_tree(child, x, y)
+    else
+        return zero_size
+
+should_place_child = (commit, child) ->
+    first_parent = child.parents[0]
+
+    return first_parent == commit
+
+reposition_git_tree = (commit, tree_size) ->
+    margin = 32
+    deltaX = margin
+    deltaY = tree_size.height + margin
+
+    reposition_commit_tree(commit, deltaX, deltaY)
+
+reposition_commit_tree = (commit, deltaX, deltaY) ->
+    reposition_commit(commit, deltaX, deltaY)
+
+    for child in commit.children
+        reposition_commit_tree(child, deltaX, deltaY)
+
+reposition_commit = (commit, deltaX, deltaY) ->
+    if commit.svg.positioned == false
+        reposition_commit_node(commit.svg.node, deltaX, deltaY)
+        reposition_commit_text(commit.svg.text, deltaX, deltaY)
+
+        commit.svg.positioned = true
+
+reposition_commit_node = (commit_node, deltaX, deltaY) ->
+    x = commit_node.cx.baseVal.value + deltaX
+    y = commit_node.cy.baseVal.value + deltaY
+
+    commit_node.setAttributeNS(null, "cx", "#{x}")
+    commit_node.setAttributeNS(null, "cy", "#{y}")
+
+reposition_commit_text = (commit_text, deltaX, deltaY) ->
+    x = commit_text.x.baseVal[0].value + deltaX
+    y = commit_text.y.baseVal[0].value + deltaY
+
+    commit_text.setAttributeNS(null, "x", "#{x}")
+    commit_text.setAttributeNS(null, "y", "#{y}")
+
+place_arrows = (commit) ->
+    place_arrows_from_commit(commit)
+
+    for child in commit.children
+        place_arrows(child)
+
+place_arrows_from_commit = (commit) ->
+    for arrow in commit.svg.arrows
+        place_arrow(arrow)
+
+place_arrow = (arrow) ->
+    source = arrow.source_commit.svg.node
+    target = arrow.target_commit.svg.node
+    object = arrow.object
+
+    startX = source.cx.baseVal.value
+    startY = source.cy.baseVal.value
+    endX = target.cx.baseVal.value
+    endY = target.cy.baseVal.value
+
+    startY += source.r.baseVal.value
+    endY -= target.r.baseVal.value
+
+    object.setAttributeNS(null, "d", "M#{startX},#{startY} L#{endX},#{endY}")
+
+window.git_tree_to_svg =
+    draw_git_trees: draw_git_trees
