@@ -291,3 +291,5 @@ place_arrow = (arrow) ->
 
 window.git_tree_to_svg =
     draw_git_trees: draw_git_trees
+
+draw_git_trees()

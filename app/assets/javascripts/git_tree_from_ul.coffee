@@ -131,3 +131,5 @@ connect_merge_commit = (merge_commit, named_commits) ->
 
 window.git_tree_from_ul =
     load_git_tree_elements: load_git_tree_elements
+
+load_git_tree_elements()
