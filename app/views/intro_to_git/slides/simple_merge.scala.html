@@ -1,0 +1,62 @@
+<h1>Simple Merge</h1>
+
+<ul>
+    <li>The simplest way to merge is using the <kbd>git merge branch</kbd>
+        command</li>
+    <li>The command creates a special commit</li>
+    <li>The difference to a normal commit is that it has two parents
+        <ul>
+            <li>The first parent is the current commit (HEAD)</li>
+            <li>The second parent is the commit request to merge</li>
+        </ul>
+    </li>
+    <li data-step="6..">Important notes:
+        <ul>
+            <li data-step="7..">It works by joining commits, not branches</li>
+            <li data-step="8..">
+                The branch of the merged commit is not erased
+            </li>
+            <li data-step="9..">
+                Which means that the branch can evolve in the future
+            </li>
+            <li data-step="10..">And require more merges in the future</li>
+        </ul>
+    </li>
+</ul>
+
+<div class="git_tree" data-steps="1..">
+    <ul data-step="0..">
+        <li data-step="1.." data-git-id="special_commit" data-git-merge="fork">
+            <span class="branch" data-step="5..">(HEAD)</span> Special commit
+        </li>
+        <li><span class="branch" data-step="0..4">(HEAD)</span></li>
+        <li></li>
+        <li></li>
+        <li>
+            Common ancestor
+
+            <ul>
+                <li data-git-id="fork">(branch)</li>
+                <li></li>
+                <li></li>
+            </ul>
+        </li>
+    </ul>
+</div>
+
+<script src="@routes.Assets.at("javascripts/git_tree_from_ul.js")">
+</script>
+<script src="@routes.Assets.at("javascripts/git_tree_to_svg.js")">
+</script>
+<script src="@routes.Assets.at("javascripts/git_tree_utils.js")">
+</script>
+
+<script type="text/javascript">
+    commit = window.git_tree_utils.get_git_commit("special_commit");
+
+    arrow_to_first_parent = commit.svg.arrows[0];
+    arrow_to_second_parent = commit.svg.arrows[1];
+
+    arrow_to_first_parent.object.setAttributeNS(null, "data-step", "3..");
+    arrow_to_second_parent.object.setAttributeNS(null, "data-step", "4..");
+</script>
