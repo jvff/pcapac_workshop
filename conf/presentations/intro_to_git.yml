@@ -16,5 +16,6 @@ Introduction to Git:
     - merging_branches
     - simple_merge
     - merge_without_special_commit
+    - merge_with_rebase
     - terminal
     - thanks
