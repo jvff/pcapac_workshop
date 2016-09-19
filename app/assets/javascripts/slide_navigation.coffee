@@ -8,7 +8,9 @@ download_slide = (number, action) ->
             if req.status in successResultCodes
                 action(req.responseText)
 
-    req.open 'GET', "/#{window.presentation_route}/slides/#{number}", false
+    presentation = window.presentation_route
+    url = jsRoutes.controllers.Presentations.slide(presentation, number)
+    req.open 'GET', url.absoluteURL(true), false
     req.send()
 
 run_slide_scripts = (continuation) ->
@@ -102,7 +104,7 @@ previous_slide = ->
 sync_slides = ->
     syncId = window.presentation_route
     syncUrl = jsRoutes.controllers.Presentation.synchronizationSocket(syncId)
-    syncSocket = new WebSocket(syncUrl.webSocketURL())
+    syncSocket = new WebSocket(syncUrl.webSocketURL(true))
     syncSocket.onmessage = (event) ->
         syncData = JSON.parse(event.data)
         go_to_slide(syncData.slide, syncData.step)

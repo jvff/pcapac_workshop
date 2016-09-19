@@ -11,7 +11,9 @@ public class JavaScriptRoutes extends Controller {
         response().setContentType("text/javascript");
 
         JavaScript router = Routes.javascriptRouter("jsRoutes",
-                routes.javascript.Presentation.synchronizationSocket(),
+                routes.javascript.Presentations.slide(),
+                routes.javascript.Presentations.start(),
+                routes.javascript.Presentations.synchronizationSocket(),
                 routes.javascript.Terminal.resize(),
                 routes.javascript.Terminal.socket());
 
