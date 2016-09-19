@@ -29,8 +29,8 @@ hide_all_children = (parent) ->
 
 add_svg_container = (parent) ->
     container = document.createElementNS(svgNameSpace, "svg")
-    container.setAttribute("viewBox", "0 20 1000 300")
-    container.setAttribute("height", "300")
+    container.setAttribute("viewBox", "0 20 1000 400")
+    container.setAttribute("height", "400")
 
     parent.appendChild(container)
 
