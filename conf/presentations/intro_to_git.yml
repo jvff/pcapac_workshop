@@ -18,5 +18,6 @@ Introduction to Git:
     - merge_without_special_commit
     - merge_with_rebase
     - merge_with_rebase_example
+    - advanced_rebasing
     - terminal
     - thanks
