@@ -117,15 +117,22 @@ collect_named_commits = (commit, named_commits) ->
         collect_named_commits(child, named_commits)
 
 connect_merge_commits = (commit, named_commits) ->
-    if commit.merge != ''
-        connect_merge_commit(commit, named_commits)
+    maybe_connect_merge_commit(commit, named_commits)
 
     for child in commit.children
         connect_merge_commits(child, named_commits)
 
-connect_merge_commit = (merge_commit, named_commits) ->
-    merged_commit = named_commits.get(merge_commit.merge)
+maybe_connect_merge_commit = (merge_commit, named_commits) ->
+    if merge_commit.merge != ''
+        merged_commit = named_commits.get(merge_commit.merge)
 
+        if !commit_was_already_merged(merge_commit, merged_commit)
+            connect_merge_commit(merge_commit, merged_commit)
+
+commit_was_already_merged = (merge_commit, merged_commit) ->
+    return merge_commit.parents.indexOf(merged_commit) >= 0
+
+connect_merge_commit = (merge_commit, merged_commit) ->
     merge_commit.parents.push merged_commit
     merged_commit.children.push merge_commit
 
