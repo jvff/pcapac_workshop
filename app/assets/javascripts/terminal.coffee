@@ -1,4 +1,11 @@
-resize_terminal = (size) ->
+resize_terminal = ->
+    if sidebar.className is 'expanded'
+        terminal.fit()
+
+        size = terminal.proposeGeometry()
+        notify_terminal_resize(size)
+
+notify_terminal_resize = (size) ->
     req = new XMLHttpRequest()
     url = jsRoutes.controllers.Terminal.resize()
 
@@ -7,19 +14,19 @@ resize_terminal = (size) ->
     req.send("columns=#{size.cols}&rows=#{size.rows}")
 
 terminal = new Terminal()
-terminal.on 'resize', resize_terminal
+terminal.on 'resize', notify_terminal_resize
 
 container = document.getElementById('terminal-container')
+sidebar = document.getElementById('sidebar-contents')
 
 terminal.open(container)
-terminal.fit()
-
-initialSize = terminal.proposeGeometry()
-
-resize_terminal(initialSize)
+resize_terminal()
 
 terminalUrl = jsRoutes.controllers.Terminal.socket()
 
 socket = new WebSocket(terminalUrl.webSocketURL())
 socket.addEventListener 'open', ->
     terminal.attach(socket)
+
+window.addEventListener('resize', resize_terminal)
+window.sidebar_listener.add_listener(resize_terminal)
