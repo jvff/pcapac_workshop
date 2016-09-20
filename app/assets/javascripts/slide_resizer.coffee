@@ -17,6 +17,6 @@ calculate_scale = (content_box) ->
 
     return Math.min scaleX, scaleY
 
-document.getElementsByTagName('BODY')[0].onresize = resize_slide
+window.addEventListener('resize', resize_slide)
 
 resize_slide()
