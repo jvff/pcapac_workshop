@@ -21,24 +21,15 @@ public class Presentations extends Controller {
     private static PresentationCache presentations = new PresentationCache();
 
     @UserAwareAction
-    public static Result start(String presentation) {
-        String title = getTitleOf(presentation);
+    public static Result start(String presentationName) {
+        Presentation presentation = presentations.get(presentationName);
 
         configureUserSession();
 
-        if (title == null)
+        if (presentation == null)
             return notFound();
         else
-            return ok(start.render(title, presentation));
-    }
-
-    private static String getTitleOf(String presentationName) {
-        Presentation presentation = presentations.get(presentationName);
-
-        if (presentation == null)
-            return null;
-        else
-            return presentation.getTitle();
+            return ok(start.render(presentation));
     }
 
     private static void configureUserSession() {

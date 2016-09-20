@@ -1,8 +1,10 @@
-@(presentation_title: String, presentation_route: String)
+@import controllers.presentation.Presentation
+
+@(presentation: Presentation)
 
 <html>
     <head>
-        <title>PCaPAC: @presentation_title</title>
+        <title>PCaPAC: @presentation.getTitle()</title>
 
         <link rel="stylesheet" href="@routes.Assets.at("stylesheets/xterm.js/xterm.css")" />
         <link rel="stylesheet" href="@routes.Assets.at("stylesheets/slide.css")" />
@@ -50,7 +52,7 @@
         </script>
 
         <script type="text/javascript">
-            window.presentation_route = "@presentation_route";
+            window.presentation_route = "@presentation.getName()";
             window.slide_navigation.go_to_slide(0, 0);
         </script>
     </body>
