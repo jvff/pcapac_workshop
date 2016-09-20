@@ -21,7 +21,29 @@
     </head>
 
     <body>
-        <div id="content">
+        <div id="presentation">
+            <div id="content-holder">
+                <div id="content">
+                </div>
+            </div>
+
+            @if(presentation.hasSideBar()) {
+                <script src="@routes.Assets.at("javascripts/sidebar_listener.js")">
+                </script>
+
+                <div id="sidebar-button" class="collapsed">
+                    <svg viewBox="0 0 240 140">
+                        <path d="M120,20 L34,70 L120,120"/>
+                        <path d="M220,20 L134,70 L220,120"/>
+                    </svg>
+                </div>
+                <div id="sidebar-contents" class="collapsed">
+                    @presentation.renderSideBar()
+                </div>
+
+                <script src="@routes.Assets.at("javascripts/sidebar_handler.js")">
+                </script>
+            }
         </div>
 
         <div id="footer">

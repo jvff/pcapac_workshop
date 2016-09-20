@@ -10,6 +10,11 @@
     .centered;
 }
 
+#presentation {
+    display: flex;
+    height: 100%;
+}
+
 #content {
     width: 800px;
     height: 600px;
@@ -17,6 +22,46 @@
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%) scale(1.0)
+}
+
+#content-holder {
+    flex: 2;
+    position: relative;
+    height: 100%;
+}
+
+#sidebar-button {
+    svg {
+        height: 20px;
+
+        path {
+            fill: none;
+            stroke: black;
+            stroke-width: 20;
+        }
+    }
+}
+
+#sidebar-button.collapsed svg {
+    transform: scale(1, 1);
+}
+
+#sidebar-button.expanded svg {
+    transform: scale(-1, 1);
+}
+
+#sidebar-contents {
+    height: 100%;
+}
+
+#sidebar-contents.collapsed {
+    display: none;
+    flex: 0;
+}
+
+#sidebar-contents.expanded {
+    display: block;
+    flex: 1;
 }
 
 #footer {

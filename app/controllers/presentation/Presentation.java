@@ -15,18 +15,21 @@ import org.yaml.snakeyaml.reader.UnicodeReader;
 import org.yaml.snakeyaml.Yaml;
 
 import play.Logger;
+import play.twirl.api.Html;
 
 public class Presentation {
     private String name;
     private String title;
     private String[] slides;
     private SlideHandler[] slideHandlers;
+    private SideBar sideBar;
 
     public Presentation(String name) throws IOException {
         this.name = name;
 
         loadPresentation();
         createSlideHandlers();
+        loadSideBar();
     }
 
     private void loadPresentation() throws IOException {
@@ -135,11 +138,27 @@ public class Presentation {
         }
     }
 
+    private void loadSideBar() {
+        sideBar = new SideBar(name);
+    }
+
+    public String getName() {
+        return name;
+    }
+
     public String getTitle() {
         return title;
     }
 
     public SlideHandler[] getSlideHandlers() {
         return slideHandlers;
+    }
+
+    public boolean hasSideBar() {
+        return sideBar.isAvailable();
+    }
+
+    public Html renderSideBar() {
+        return sideBar.render();
     }
 }
