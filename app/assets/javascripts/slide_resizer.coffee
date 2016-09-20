@@ -18,5 +18,6 @@ calculate_scale = (content_box) ->
     return Math.min scaleX, scaleY
 
 window.addEventListener('resize', resize_slide)
+window.sidebar_listener?.add_listener(resize_slide)
 
 resize_slide()
