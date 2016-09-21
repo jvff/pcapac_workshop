@@ -1,3 +1,5 @@
+in_sync = false
+
 download_slide = (number, action) ->
     req = new XMLHttpRequest()
 
