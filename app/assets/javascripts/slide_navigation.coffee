@@ -81,6 +81,12 @@ sync_slide = () ->
 
     syncSocket?.send(JSON.stringify(syncData))
 
+request_slide_sync = ->
+    requestData =
+        sync: true
+
+    syncSocket?.send(JSON.stringify(requestData))
+
 go_to_slide = (slide, step) ->
     show_slide(slide, ->
         window.slide_animation.restart_at_step(step)
@@ -96,21 +102,22 @@ previous_slide = ->
         window.slide_animation.restart_at_end()
     )
 
-sync_slides = ->
+connect_to_sync_server = ->
     syncId = window.presentation_route
     syncUrl = jsRoutes.controllers.Presentations.synchronizationSocket(syncId)
     syncSocket = new WebSocket(syncUrl.webSocketURL(true))
     syncSocket.onmessage = (event) ->
-        syncData = JSON.parse(event.data)
-        go_to_slide(syncData.slide, syncData.step)
+        if in_sync
+            syncData = JSON.parse(event.data)
+            go_to_slide(syncData.slide, syncData.step)
 
 next_step = ->
-    show_play_button()
+    pause_sync()
     window.slide_animation.next_step()
     sync_slide()
 
 previous_step = ->
-    show_play_button()
+    pause_sync()
     window.slide_animation.previous_step()
     sync_slide()
 
@@ -125,15 +132,22 @@ show_pause_button = ->
     sync_play_button.style.display = 'none'
     sync_pause_button.style.display = 'block'
 
-toggle_sync_button = ->
-    if sync_play_button.style.display is 'none'
-        show_play_button()
-    else
+update_sync_button = ->
+    if in_sync
         show_pause_button()
+    else
+        show_play_button()
+
+pause_sync = ->
+    in_sync = false
+    update_sync_button()
 
 toggle_sync = ->
-    toggle_sync_button()
-    sync_slides()
+    in_sync = !in_sync
+    update_sync_button()
+
+    if in_sync
+        request_slide_sync()
 
 previous_slide_button = document.getElementById 'previous_slide'
 previous_slide_button.addEventListener 'click', previous_step, false
@@ -144,8 +158,8 @@ sync_slides_button.addEventListener 'click', toggle_sync, false
 next_slide_button = document.getElementById 'next_slide'
 next_slide_button.addEventListener 'click', next_step, false
 
-window.slide_navigation = {
+window.slide_navigation =
+    connect_to_sync_server: connect_to_sync_server
     go_to_slide: go_to_slide
     next_slide: next_slide
     previous_slide: previous_slide
-}

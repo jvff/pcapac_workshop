@@ -41,6 +41,7 @@ public class ViewerActor extends UntypedActor {
     private final ActorRef out;
 
     private ActorRef synchronizer;
+    private JsonNode currentSlidePosition;
     private String presentationId;
     private boolean authorizedToLead = false;
 
@@ -59,12 +60,33 @@ public class ViewerActor extends UntypedActor {
             handleCommand((CommandMessage)message);
         else if (message instanceof SynchronizerConnectionMessage)
             synchronizer = sender();
+        else if (message instanceof JsonNode)
+            handleMessage((JsonNode)message);
+    }
+
+    private void handleCommand(CommandMessage message) {
+        currentSlidePosition = message.getCommand();
+        sendSlidePosition();
+    }
+
+    private void sendSlidePosition() {
+        if (currentSlidePosition != null)
+            out.tell(currentSlidePosition, self());
+    }
+
+    private void handleMessage(JsonNode message) {
+        if (requestsSlidePosition(message))
+            sendSlidePosition();
         else if (authorizedToLead)
             notifySynchronizer((JsonNode)message);
     }
 
-    private void handleCommand(CommandMessage message) {
-        out.tell(message.getCommand(), self());
+    private boolean requestsSlidePosition(JsonNode message) {
+        JsonNode syncField = message.get("sync");
+
+        return syncField != null
+            && syncField.isValueNode()
+            && syncField.booleanValue() == true;
     }
 
     private void notifySynchronizer(JsonNode message) {
