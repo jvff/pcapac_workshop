@@ -11,6 +11,8 @@ import akka.actor.ActorRef;
 import akka.actor.UntypedActor;
 import akka.actor.Props;
 
+import play.Logger;
+
 import com.github.dockerjava.api.command.CreateContainerResponse;
 import com.github.dockerjava.api.DockerClient;
 import com.github.dockerjava.core.DefaultDockerClientConfig;
@@ -97,8 +99,9 @@ public class TerminalActor extends UntypedActor {
 
             containerReader = new InputStreamReader(socketInput);
             containerWriter = new PrintWriter(socketOut);
-        } catch (Exception exception) {
-            exception.printStackTrace();
+        } catch (Exception cause) {
+            Logger.error("Failed to connect to container at " + containerAddress
+                    + ":" + CONTAINER_PORT, cause);
         }
     }
 
