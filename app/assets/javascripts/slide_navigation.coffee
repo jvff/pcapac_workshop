@@ -105,18 +105,41 @@ sync_slides = ->
         go_to_slide(syncData.slide, syncData.step)
 
 next_step = ->
+    show_play_button()
     window.slide_animation.next_step()
     sync_slide()
 
 previous_step = ->
+    show_play_button()
     window.slide_animation.previous_step()
     sync_slide()
+
+sync_play_button = document.getElementById 'play_button'
+sync_pause_button = document.getElementById 'pause_button'
+
+show_play_button = ->
+    sync_play_button.style.display = 'block'
+    sync_pause_button.style.display = 'none'
+
+show_pause_button = ->
+    sync_play_button.style.display = 'none'
+    sync_pause_button.style.display = 'block'
+
+toggle_sync_button = ->
+    if sync_play_button.style.display is 'none'
+        show_play_button()
+    else
+        show_pause_button()
+
+toggle_sync = ->
+    toggle_sync_button()
+    sync_slides()
 
 previous_slide_button = document.getElementById 'previous_slide'
 previous_slide_button.addEventListener 'click', previous_step, false
 
 sync_slides_button = document.getElementById 'sync_slides'
-sync_slides_button.addEventListener 'click', sync_slides, false
+sync_slides_button.addEventListener 'click', toggle_sync, false
 
 next_slide_button = document.getElementById 'next_slide'
 next_slide_button.addEventListener 'click', next_step, false
