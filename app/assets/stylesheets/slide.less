@@ -30,6 +30,11 @@
     height: 100%;
 }
 
+@keyframes sidebar-expand {
+    from { flex: 0; }
+    to { flex: 1; }
+}
+
 #sidebar-button {
     svg {
         height: 20px;
@@ -59,9 +64,22 @@
     flex: 0;
 }
 
+#sidebar-contents.collapsing {
+    animation-name: sidebar-expand;
+    animation-duration: 300ms;
+    animation-fill-mode: forwards;
+    animation-direction: reverse;
+}
+
 #sidebar-contents.expanded {
     display: block;
     flex: 1;
+}
+
+#sidebar-contents.expanding {
+    animation-name: sidebar-expand;
+    animation-duration: 300ms;
+    animation-fill-mode: forwards;
 }
 
 #footer {

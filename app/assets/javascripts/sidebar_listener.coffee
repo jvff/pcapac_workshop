@@ -7,6 +7,9 @@ notify_sidebar_change = ->
     for listener in listeners
         listener()
 
+callback = (parameter) ->
+    notify_sidebar_change()
+
 observe_sidebar = ->
     configuration =
         attributes: true
@@ -15,8 +18,10 @@ observe_sidebar = ->
 
     sidebar = document.getElementById('sidebar-contents')
 
-    observer = new MutationObserver( (mutations) -> notify_sidebar_change() )
+    observer = new MutationObserver(callback)
     observer.observe(sidebar, configuration)
+
+    sidebar.addEventListener('animationend', callback, false)
 
 window.sidebar_listener =
     add_listener: add_listener
