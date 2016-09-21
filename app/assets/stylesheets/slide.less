@@ -51,8 +51,18 @@
     transform: scale(1, 1);
 }
 
+#sidebar-button.collapsing svg {
+    transform: scale(1, 1);
+    transition: 300ms ease;
+}
+
 #sidebar-button.expanded svg {
     transform: scale(-1, 1);
+}
+
+#sidebar-button.expanding svg {
+    transform: scale(-1, 1);
+    transition: 300ms ease;
 }
 
 #sidebar-contents {
