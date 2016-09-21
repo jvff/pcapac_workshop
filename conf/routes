@@ -1,9 +1,9 @@
+GET         /terminal                       controllers.Terminal.socket
+POST        /terminal/resize                controllers.Terminal.resize
+
 GET         /:presentation/slides/sync      controllers.Presentations.synchronizationSocket(presentation: String)
 GET         /:presentation/slides/:number   controllers.Presentations.slide(presentation: String, number: Integer)
 GET         /:presentation                  controllers.Presentations.start(presentation: String)
-
-GET         /terminal                       controllers.Terminal.socket
-POST        /terminal/resize                controllers.Terminal.resize
 
 GET         /assets/js/routes               controllers.JavaScriptRoutes.jsRoutes()
 GET         /assets/*file                   controllers.Assets.at(path="/public", file)
