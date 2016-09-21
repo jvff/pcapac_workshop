@@ -98,7 +98,7 @@ previous_slide = ->
 
 sync_slides = ->
     syncId = window.presentation_route
-    syncUrl = jsRoutes.controllers.Presentation.synchronizationSocket(syncId)
+    syncUrl = jsRoutes.controllers.Presentations.synchronizationSocket(syncId)
     syncSocket = new WebSocket(syncUrl.webSocketURL(true))
     syncSocket.onmessage = (event) ->
         syncData = JSON.parse(event.data)
