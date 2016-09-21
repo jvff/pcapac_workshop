@@ -46,7 +46,7 @@ public class SynchronizationActor extends UntypedActor {
         if (message instanceof NewViewerMessage)
             handleMessage((NewViewerMessage)message);
         else if (message instanceof JsonNode)
-            sendCommandToViewers((JsonNode)message);
+            handleMessage((JsonNode)message);
     }
 
     private void handleMessage(NewViewerMessage message) {
@@ -55,6 +55,19 @@ public class SynchronizationActor extends UntypedActor {
         viewers.add(viewer);
 
         viewer.tell(new SynchronizerConnectionMessage(), self());
+    }
+
+    private void handleMessage(JsonNode message) {
+        if (containsSyncData(message))
+            sendCommandToViewers(message);
+    }
+
+    private boolean containsSyncData(JsonNode message) {
+        JsonNode slideField = message.get("slide");
+        JsonNode stepField = message.get("step");
+
+        return slideField != null && slideField.isInt()
+            && stepField != null && stepField.isInt();
     }
 
     private void sendCommandToViewers(JsonNode command) {
