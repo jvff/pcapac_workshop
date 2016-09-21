@@ -81,18 +81,35 @@ public class TerminalActor extends UntypedActor {
             .exec()
             .getId();
 
+        Logger.debug("Created container: " + containerId);
+
         docker.startContainerCmd(containerId).exec();
+
+        Logger.debug("Started container: " + containerId);
 
         containerAddress = docker.inspectContainerCmd(containerId)
             .exec()
             .getNetworkSettings()
             .getIpAddress();
+
+        Logger.debug("IP address of container " + containerId + " is "
+                + containerAddress);
     }
 
     private void connectToContainer() {
         try {
+            Logger.debug("Waiting to connect to container at "
+                    + containerAddress + ":" + CONTAINER_PORT);
+
             Thread.sleep(2000);
+
+            Logger.debug("Connecting to container at " + containerAddress + ":"
+                    + CONTAINER_PORT);
+
             containerSocket = new Socket(containerAddress, CONTAINER_PORT);
+
+            Logger.debug("Connected to container at " + containerAddress + ":"
+                    + CONTAINER_PORT);
 
             InputStream socketInput = containerSocket.getInputStream();
             OutputStream socketOut = containerSocket.getOutputStream();

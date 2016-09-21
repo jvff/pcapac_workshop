@@ -8,6 +8,7 @@ import akka.actor.Props;
 import com.fasterxml.jackson.databind.JsonNode;
 
 import play.libs.F;
+import play.Logger;
 
 import actors.PresentationManagerActor.NewPresentationViewerMessage;
 
@@ -52,10 +53,15 @@ public class ViewerActor extends UntypedActor {
         this.authorizedToLead = authorizedToLead;
 
         registerViewer();
+
+        Logger.debug("new ViewerActor(" + presentationId + ", "
+                + authorizedToLead + "): " + this);
     }
 
     @Override
     public void onReceive(Object message) {
+        Logger.debug("ViewerActor(" + this + ") <- " + message);
+
         if (message instanceof CommandMessage)
             handleCommand((CommandMessage)message);
         else if (message instanceof SynchronizerConnectionMessage)

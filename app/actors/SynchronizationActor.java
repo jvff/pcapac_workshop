@@ -9,6 +9,8 @@ import akka.actor.UntypedActor;
 
 import com.fasterxml.jackson.databind.JsonNode;
 
+import play.Logger;
+
 import actors.PresentationManagerActor.NewPresentationMessage;
 import actors.ViewerActor.CommandMessage;
 import actors.ViewerActor.SynchronizerConnectionMessage;
@@ -71,6 +73,8 @@ public class SynchronizationActor extends UntypedActor {
     }
 
     private void sendCommandToViewers(JsonNode command) {
+        Logger.debug("sendCommandToViewers(" + command + ")");
+
         CommandMessage message = new CommandMessage(command);
 
         for (ActorRef viewer : viewers)
