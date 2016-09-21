@@ -151,6 +151,47 @@ toggle_sync = ->
     if in_sync
         request_slide_sync()
 
+keys_pressed = new Map()
+
+key_down_handler = (event) ->
+    if is_handled_key(event.keyCode)
+        keys_pressed.set(event.keyCode, true)
+
+key_up_handler = (event) ->
+    if is_handled_key(event.keyCode)
+        if keys_pressed.get(event.keyCode) == true
+            handle_key(event.keyCode)
+
+        keys_pressed.set(event.keyCode, false)
+
+enter = 13
+space = 32
+page_up = 33
+page_down = 34
+
+is_handled_key = (key_code) ->
+    return is_arrow_key(key_code) or key_code is space or key_code is enter or
+        key_code is page_up or key_code is page_down
+
+arrow_left = 37
+arrow_up = 38
+arrow_right = 39
+arrow_down = 40
+
+is_arrow_key = (key_code) ->
+    return key_code is arrow_up or key_code is arrow_down or
+        key_code is arrow_left or key_code is arrow_right
+
+handle_key = (key_code) ->
+    if key_code is space or key_code is enter or key_code is arrow_right
+        next_step()
+    else if key_code is arrow_left
+        previous_step()
+    else if key_code is arrow_up or key_code is page_up
+        previous_slide()
+    else if key_code is arrow_down or key_code is page_down
+        next_slide()
+
 previous_slide_button = document.getElementById 'previous_slide'
 previous_slide_button.addEventListener 'click', previous_step, false
 
@@ -159,6 +200,9 @@ sync_slides_button.addEventListener 'click', toggle_sync, false
 
 next_slide_button = document.getElementById 'next_slide'
 next_slide_button.addEventListener 'click', next_step, false
+
+document.addEventListener 'keydown', key_down_handler
+document.addEventListener 'keyup', key_up_handler
 
 window.slide_navigation =
     connect_to_sync_server: connect_to_sync_server
