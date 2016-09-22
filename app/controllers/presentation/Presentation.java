@@ -5,6 +5,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Iterator;
 
+import org.yaml.snakeyaml.error.YAMLException;
 import org.yaml.snakeyaml.events.Event;
 import org.yaml.snakeyaml.events.MappingStartEvent;
 import org.yaml.snakeyaml.events.ScalarEvent;
@@ -38,7 +39,11 @@ public class Presentation {
 
         Logger.debug("Loading presentation: " + path);
 
-        parsePresentation(stream);
+        try {
+            parsePresentation(stream);
+        } catch (YAMLException cause) {
+            throw new IOException("Failed to parse YAML file: " + path, cause);
+        }
     }
 
     private void parsePresentation(InputStream stream) throws IOException {
