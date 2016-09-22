@@ -9,7 +9,7 @@ notify_terminal_resize = (size) ->
     req = new XMLHttpRequest()
     url = jsRoutes.controllers.Terminal.resize()
 
-    req.open 'POST', url.absoluteURL()
+    req.open 'POST', url.absoluteURL(true)
     req.setRequestHeader "Content-Type", "application/x-www-form-urlencoded"
     req.send("columns=#{size.cols}&rows=#{size.rows}")
 
@@ -24,7 +24,7 @@ resize_terminal()
 
 terminalUrl = jsRoutes.controllers.Terminal.socket()
 
-socket = new WebSocket(terminalUrl.webSocketURL())
+socket = new WebSocket(terminalUrl.webSocketURL(true))
 socket.addEventListener 'open', ->
     terminal.attach(socket)
 
