@@ -3,14 +3,22 @@
 <ul>
     <li>Git controls a directory that contains the repository
         <ul>
-            <li>The <kbd>git init</kbd> command prepares a directory to be used
-                as a repository managed by Git</li>
+            <li>To create an initial repository
+                <ul>
+                    <li><kbd>mkdir new_repo</kbd>: create a new directory</li>
+                    <li><kbd>cd new_repo</kbd>: enter the new directory</li>
+                    <li><kbd>git init</kbd>: prepare directory to be managed by
+                        git</li>
+                </ul>
+            </li><`2`>
         </ul>
     </li>
     <li>Inside the directory, a hidden <samp>.git</samp> directory is created
         <ul>
+            <li><kbd>ls -a</kbd>: to see it</li>
             <li>Stores copies of artefacts, meta-data and other internal files
             </li>
+            <li><kbd>ls -a .git</kbd>: to see its contents</li>
         </ul>
     </li>
     <li>Git assumes ownership of the directory, and controls the artefacts
