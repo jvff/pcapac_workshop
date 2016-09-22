@@ -3,6 +3,8 @@ package controllers.presentation;
 import java.io.IOException;
 import java.util.HashMap;
 
+import play.Logger;
+
 public class PresentationCache {
     private HashMap<String, Presentation> cache = new HashMap<>();
 
@@ -17,7 +19,7 @@ public class PresentationCache {
         try {
             cache.put(name, new Presentation(name));
         } catch (IOException cause) {
-            new Exception("Failed to load presentation: " + name, cause).printStackTrace();
+            Logger.warn("Failed to load presentation: " + name, cause);
         }
     }
 }
