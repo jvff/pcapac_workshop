@@ -32,6 +32,7 @@ Introduction to Git:
     - merge_with_rebase_example
     - advanced_rebasing
     - conflict_resolution
+    - conflict_resolution_example
     - remote_repositories
     - final_thoughts
     - next_steps
