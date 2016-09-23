@@ -9,7 +9,7 @@ Introduction to Git:
     - installation
     - basic_concepts
     - non_artefact_files
-    - managing_the_directory
+    - repository_directory_precautions
     - index
     - commit
     - tags
