@@ -8,9 +8,12 @@ import java.io.PrintWriter;
 import java.net.Socket;
 
 import akka.actor.ActorRef;
-import akka.actor.UntypedActor;
+import akka.actor.ActorSystem;
 import akka.actor.Props;
+import akka.actor.UntypedActor;
 
+import play.libs.Akka;
+import play.libs.F;
 import play.Logger;
 
 import com.github.dockerjava.api.command.CreateContainerResponse;
@@ -19,13 +22,42 @@ import com.github.dockerjava.core.DefaultDockerClientConfig;
 import com.github.dockerjava.core.DockerClientBuilder;
 import com.github.dockerjava.core.DockerClientConfig;
 
+import actors.TerminalManagerActor;
+import actors.TerminalManagerActor.NewTerminalMessage;
+
 import static com.github.dockerjava.core.RemoteApiVersion.VERSION_1_23;
 
 public class TerminalActor extends UntypedActor {
     private static final int CONTAINER_PORT = 15100;
+    private static final int CMD_KEY = 1;
+    private static final int CMD_RESIZE = 2;
 
-    public static Props props(ActorRef out) {
-        return Props.create(TerminalActor.class, out);
+    public static class ResizeMessage {
+        private final short columns;
+        private final short rows;
+
+        public ResizeMessage(short columns, short rows) {
+            this.columns = columns;
+            this.rows = rows;
+        }
+
+        public void writeTo(PrintWriter out) {
+            writeShort(columns, out);
+            writeShort(rows, out);
+        }
+
+        private void writeShort(short value, PrintWriter out) {
+            out.write((value >> 8) & 0xFF);
+            out.write(value & 0xFF);
+        }
+    }
+
+    public static Props props(ActorRef out, String sessionId) {
+        return Props.create(TerminalActor.class, out, sessionId);
+    }
+
+    public static F.Function<ActorRef, Props> propsFor(final String sessionId) {
+        return (ActorRef out) -> props(out, sessionId);
     }
 
     private final ActorRef out;
@@ -46,18 +78,19 @@ public class TerminalActor extends UntypedActor {
         }
     });
 
-    public TerminalActor(ActorRef out) {
+    public TerminalActor(ActorRef out, String sessionId) {
         this.out = out;
 
         startContainer();
+        notifyInstantiationToTerminalManager(sessionId);
     }
 
     @Override
     public void onReceive(Object message) {
-        if (message instanceof String) {
-            containerWriter.print((String)message);
-            containerWriter.flush();
-        }
+        if (message instanceof String)
+            sendDataToContainer((String)message);
+        else if (message instanceof ResizeMessage)
+            resizeContainerTerminal((ResizeMessage)message);
     }
 
     private void startContainer() {
@@ -138,5 +171,26 @@ public class TerminalActor extends UntypedActor {
         String message = Character.toString(character);
 
         out.tell(message, self());
+    }
+
+    private void sendDataToContainer(String dataMessage) {
+        for (byte data : dataMessage.getBytes()) {
+            containerWriter.write(CMD_KEY);
+            containerWriter.write(data);
+            containerWriter.flush();
+        }
+    }
+
+    private void resizeContainerTerminal(ResizeMessage message) {
+        containerWriter.write(CMD_RESIZE);
+
+        message.writeTo(containerWriter);
+    }
+
+    private void notifyInstantiationToTerminalManager(String sessionId) {
+        ActorSystem system = Akka.system();
+        ActorRef manager = system.actorFor(TerminalManagerActor.URL);
+
+        manager.tell(new NewTerminalMessage(sessionId), self());
     }
 }

@@ -14,6 +14,7 @@ public class JavaScriptRoutes extends Controller {
                 routes.javascript.Presentations.slide(),
                 routes.javascript.Presentations.start(),
                 routes.javascript.Presentations.synchronizationSocket(),
+                routes.javascript.Terminal.token(),
                 routes.javascript.Terminal.resize(),
                 routes.javascript.Terminal.socket());
 
