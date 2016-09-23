@@ -1,0 +1,30 @@
+<h1>Remote Repository Example</h1>
+
+<ul>
+    <li><kbd>cd ..</kbd>: leave repository directory</li>
+    <li><kbd>git clone new_repo remote_repo</kbd>: clones repo into a new
+        directory</li>
+    <li><kbd>cd remote_repo</kbd>: enter the remote repository</li>
+    <li><kbd>git status</kbd></li>
+    <li><kbd>git branch</kbd></li>
+    <li><kbd>git branch -a</kbd></li>
+    <li><kbd>git checkout third_branch</kbd></li>
+    <li><kbd>touch first_remote_file</kbd></li>
+    <li><kbd>git add first_remote_file</kbd></li>
+    <li><kbd>git commit</kbd></li>
+    <li><kbd>git log --oneline --decorate --all --graph</kbd></li>
+    <li><kbd>git push origin third_branch</kbd></li>
+    <li><kbd>touch second_remote_file</kbd></li>
+    <li><kbd>git add second_remote_file</kbd></li>
+    <li><kbd>git commit</kbd></li>
+    <li><kbd>git log --oneline --decorate --all --graph</kbd></li>
+    <li><kbd>cd ..</kbd>: leave repository directory</li>
+    <li><kbd>cd new_repo</kbd>: return to original repository</li>
+    <li><kbd>git branch -a</kbd></li>
+    <li><kbd>git log --oneline --decorate --all --graph</kbd></li>
+    <li><kbd>git remote add remote_repo ../remote_repository</kbd></li>
+    <li><kbd>git fetch remote_repo</kbd></li>
+    <li><kbd>git checkout third_branch</kbd></li>
+    <li><kbd>git log --oneline --decorate --all --graph</kbd></li>
+    <li><kbd>git merge remote_repo/third_branch</kbd></li>
+</ul>
