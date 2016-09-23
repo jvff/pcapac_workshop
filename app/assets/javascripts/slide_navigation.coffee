@@ -99,6 +99,11 @@ next_slide = ->
         window.slide_animation.restart()
     )
 
+end_of_next_slide = ->
+    show_slide(current_slide + 1, ->
+        window.slide_animation.restart_at_end()
+    )
+
 previous_slide = ->
     show_slide(current_slide - 1, ->
         window.slide_animation.restart_at_end()
@@ -189,7 +194,7 @@ handle_key = (key_code) ->
     else if key_code is arrow_up or key_code is page_up
         previous_slide()
     else if key_code is arrow_down or key_code is page_down
-        next_slide()
+        end_of_next_slide()
 
 previous_slide_button = document.getElementById 'previous_slide'
 previous_slide_button.addEventListener 'click', previous_step, false
