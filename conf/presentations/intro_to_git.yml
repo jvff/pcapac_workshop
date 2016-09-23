@@ -11,10 +11,10 @@ Introduction to Git:
     - managing_the_directory
     - index
     - commit
+    - tags
     - branch
     - viewing_the_history
     - viewing_differences
-    - tags
     - branch_in_practice
     - branch_example
     - merging_branches
