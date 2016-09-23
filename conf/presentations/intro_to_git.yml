@@ -23,6 +23,7 @@ Introduction to Git:
     - third_branch
     - merging_branches
     - simple_merge
+    - simple_merge_example
     - merge_without_special_commit
     - merge_with_rebase
     - merge_with_rebase_example
