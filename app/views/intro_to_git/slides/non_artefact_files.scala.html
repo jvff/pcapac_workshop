@@ -9,13 +9,17 @@
             <li>Files specific to the local computer environment</li>
             <li>Security-sensitive files (that store a password, for
                 example)</li>
+        </ul>
+    </li>
+    <li>Example:
+        <ul>
             <li><kbd>echo password &gt; password_file</kbd>: create a file that
                 stores a secret password</li>
             <li><kbd>git status</kbd>: shows the password file</li>
             <li><kbd>nano .gitignore</kbd>: edit the <samp>.gitignore</samp>
                 file and add <kbd>password_file</kbd></li>
-            <li><kbd>git status</kbd>: now doesn't show password_file, but does
-                show <samp>.gitignore</samp></li>
+            <li><kbd>git status</kbd>: now it doesn't show password_file, but
+                it does show <samp>.gitignore</samp></li>
         </ul>
     </li>
 </ul>
