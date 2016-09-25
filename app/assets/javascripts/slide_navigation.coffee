@@ -94,19 +94,19 @@ go_to_slide = (slide, step) ->
         window.slide_animation.restart_at_step(step)
     )
 
-next_slide = ->
+next_slide = (continuation) ->
     show_slide(current_slide + 1, ->
-        window.slide_animation.restart()
+        window.slide_animation.restart(continuation)
     )
 
 end_of_next_slide = ->
     show_slide(current_slide + 1, ->
-        window.slide_animation.restart_at_end()
+        window.slide_animation.restart_at_end(-> null)
     )
 
-previous_slide = ->
+previous_slide = (continuation) ->
     show_slide(current_slide - 1, ->
-        window.slide_animation.restart_at_end()
+        window.slide_animation.restart_at_end(continuation)
     )
 
 connect_to_sync_server = ->
@@ -120,13 +120,11 @@ connect_to_sync_server = ->
 
 next_step = ->
     pause_sync()
-    window.slide_animation.next_step()
-    sync_slide()
+    window.slide_animation.next_step(-> sync_slide())
 
 previous_step = ->
     pause_sync()
-    window.slide_animation.previous_step()
-    sync_slide()
+    window.slide_animation.previous_step(-> sync_slide())
 
 sync_play_button = document.getElementById 'play_button'
 sync_pause_button = document.getElementById 'pause_button'
@@ -192,7 +190,7 @@ handle_key = (key_code) ->
     else if key_code is arrow_left
         previous_step()
     else if key_code is arrow_up or key_code is page_up
-        previous_slide()
+        previous_slide(-> null)
     else if key_code is arrow_down or key_code is page_down
         end_of_next_slide()
 

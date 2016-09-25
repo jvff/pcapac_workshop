@@ -160,18 +160,19 @@ remove_element_from_array = (element, array) ->
 get_current_step = ->
     return current_step
 
-go_to_step = (step) ->
+go_to_step = (step, continuation) ->
     current_step = step
 
     if (last_step < 0)
         last_step = 0
 
     if (step < 0)
-        window.slide_navigation.previous_slide()
+        window.slide_navigation.previous_slide(continuation)
     else if (current_step > last_step)
-        window.slide_navigation.next_slide()
+        window.slide_navigation.next_slide(continuation)
     else
         update_element_visibility()
+        continuation()
 
 update_element_visibility = ->
     for element in shown_elements_at_step[current_step]
@@ -183,23 +184,23 @@ update_element_visibility = ->
     for element in hidden_elements_at_step[current_step]
         element.setAttribute('data-step-status', 'hidden')
 
-next_step = ->
-    go_to_step(current_step + 1)
+next_step = (continuation) ->
+    go_to_step(current_step + 1, continuation)
 
-previous_step = ->
-    go_to_step(current_step - 1)
+previous_step = (continuation) ->
+    go_to_step(current_step - 1, continuation)
 
-restart = ->
+restart = (continuation) ->
     load_animated_elements()
-    go_to_step(0)
+    go_to_step(0, continuation)
 
-restart_at_step = (step) ->
+restart_at_step = (step, continuation) ->
     load_animated_elements()
-    go_to_step(step)
+    go_to_step(step, continuation)
 
-restart_at_end = ->
+restart_at_end = (continuation) ->
     load_animated_elements()
-    go_to_step(last_step)
+    go_to_step(last_step, continuation)
 
 window.slide_animation = {
     next_step: next_step
