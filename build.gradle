@@ -1,9 +1,13 @@
+import com.janitovff.gradle.playsentation.model.PresentationSpec
+
 plugins {
     id 'play'
     id 'play-coffeescript'
 
     id 'com.janitovff.play-less' version '0.0.1'
 }
+
+apply plugin: com.janitovff.gradle.playsentation.plugins.PlaysentationPlugin
 
 repositories {
     jcenter()
@@ -30,4 +34,10 @@ dependencies {
     play 'com.typesafe.play:play-java_2.11:2.3.9'
     play 'com.github.docker-java:docker-java:3.0.1'
     play 'org.reflections:reflections:0.9.10'
+}
+
+model {
+    presentations {
+        intro_to_opencl(PresentationSpec)
+    }
 }
