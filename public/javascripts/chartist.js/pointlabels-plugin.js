@@ -1,0 +1,1 @@
+../../../external/chartist-pointlabels-plugin/src/scripts/chartist-plugin-pointlabels.js

@@ -1,3 +1,9 @@
 [submodule "external/xterm.js"]
 	path = external/xterm.js
 	url = https://github.com/sourcelair/xterm.js/
+[submodule "external/chartist-logaxis-patch"]
+	path = external/chartist-logaxis-patch
+	url = https://gist.github.com/0dcf0b525b94ee09edb0e0bcbe8a0f4e.git
+[submodule "external/chartist-pointlabels-plugin"]
+	path = external/chartist-pointlabels-plugin
+	url = https://github.com/gionkunz/chartist-plugin-pointlabels
