@@ -1,8 +1,9 @@
 package com.janitovff.gradle.playsentation.language.jsonfigureinyaml
 
-import org.gradle.language.base.LanguageSourceSet
 import org.gradle.model.Managed
 
+import com.janitovff.gradle.playsentation.language.PresentationSourceSet
+
 @Managed
-public interface JsonAsYamlFigureSet extends LanguageSourceSet {
+public interface JsonAsYamlFigureSet extends PresentationSourceSet {
 }

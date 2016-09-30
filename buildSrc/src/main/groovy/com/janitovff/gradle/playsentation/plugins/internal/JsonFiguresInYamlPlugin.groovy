@@ -30,42 +30,10 @@ public class JsonFiguresInYamlPlugin extends RuleSource {
         presentations.each { presentation ->
             component.sources.create("${presentation.name}Figures",
                     JsonAsYamlFigureSet) { figures ->
+                figures.presentation = presentation
                 figures.source.srcDir "src/$presentation.name/figures"
                 figures.source.include "**/*.json.yml"
             }
-        }
-    }
-
-    @Mutate
-    void createGeneratedJsonFiguresSourceSet(
-            @Path("binaries") ModelMap<PlayApplicationBinarySpec> binaries,
-            @Path("buildDir") File buildDir,
-            final SourceDirectorySetFactory sourceDirectorySetFactory) {
-        binaries.all { binary ->
-            addJsonAsYamlFigureSetsToBinary(binary, buildDir,
-                    sourceDirectorySetFactory)
-        }
-    }
-
-    private void addJsonAsYamlFigureSetsToBinary(
-            PlayApplicationBinarySpec binary, File buildDir,
-            SourceDirectorySetFactory sourceDirectorySetFactory) {
-        binary.inputs.withType(JsonAsYamlFigureSet).each { figures ->
-            String outputSourceSetName = figures.name + "JsonFromYaml"
-            JvmResourceSet outputSourceSet = BaseLanguageSourceSet.create(
-                    JvmResourceSet, DefaultJvmResourceLanguageSourceSet,
-                    binary.identifier.child(outputSourceSetName),
-                    sourceDirectorySetFactory)
-
-            File generatedSourcesDirectory = binary.namingScheme
-                    .getOutputDirectory(buildDir, "src")
-            File outputDirectory = new File(generatedSourcesDirectory,
-                    outputSourceSetName)
-
-            outputSourceSet.source.srcDir outputDirectory
-
-            binary.inputs.add(outputSourceSet)
-            binary.assembly.resourceDirectories.add(outputDirectory)
         }
     }
 

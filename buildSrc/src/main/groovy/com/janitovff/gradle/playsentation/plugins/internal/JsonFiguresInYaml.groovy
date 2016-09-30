@@ -40,7 +40,7 @@ public class JsonFiguresInYaml
         return new SourceTransformTaskConfig() {
             @Override
             public String getTaskPrefix() {
-                return "jsonFiguresInYaml"
+                return "createJsonFiguresFromYaml"
             }
 
             @Override
@@ -50,44 +50,31 @@ public class JsonFiguresInYaml
 
             @Override
             public void configureTask(Task task, BinarySpec binarySpec,
-                    LanguageSourceSet sourceSet,
+                    LanguageSourceSet languageSourceSet,
                     ServiceRegistry serviceRegistry) {
-                PlayApplicationBinarySpec binary =
-                        (PlayApplicationBinarySpec) binarySpec
-                JsonAsYamlFigureSet yamlSourceSet =
-                        (JsonAsYamlFigureSet) sourceSet
-                YamlToJson figureTask = (YamlToJson) task
+                def binary = (PlayApplicationBinarySpec) binarySpec
+                def sourceSet = (JsonAsYamlFigureSet) languageSourceSet
+                def figureTask = (YamlToJson) task
+                def outputDirectory = getOutputDirectory(sourceSet, binary)
 
-                figureTask.source = yamlSourceSet.source
-                figureTask.outputDirectory =
-                        getOutputDirectory(yamlSourceSet, binary)
+                figureTask.source = sourceSet.source
+                figureTask.outputDirectory = outputDirectory
 
                 binarySpec.assets.builtBy figureTask
             }
 
             private getOutputDirectory(JsonAsYamlFigureSet sourceSet,
                     PlayApplicationBinarySpec binary) {
-                JvmResourceSet outputSourceSet =
-                        getOutputSourceSet(sourceSet, binary)
+                def outputSourceSet = getOutputSourceSet(sourceSet, binary)
 
-                File sourceDir = sourceSet.source.srcDirs[0]
-                File presentationSourceDir = sourceDir.parentFile
-                String presentationName = presentationSourceDir.name
-
-                File baseDir = outputSourceSet.source.srcDirs[0]
-                File presentationsDir = new File(baseDir, "presentations")
-                File presentationDir =
-                        new File(presentationsDir, presentationName)
-                File outputDir = new File(presentationDir, sourceDir.name)
-
-                return outputDir
+                return outputSourceSet.source.srcDirs[0]
             }
 
             private JvmResourceSet getOutputSourceSet(
                     JsonAsYamlFigureSet inputSourceSet,
                     PlayApplicationBinarySpec binary) {
-                String outputSourceSetName =
-                        inputSourceSet.name + "JsonFromYaml"
+                def presentation = inputSourceSet.presentation.name
+                def outputSourceSetName = "${presentation}GeneratedResources"
 
                 Set<JvmResourceSet> sourceSets = binary.inputs.matching {
                         sourceSet ->
