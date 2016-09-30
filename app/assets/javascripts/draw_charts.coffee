@@ -129,24 +129,4 @@ order_suffixes_interpolation = (value) ->
     else
         return (value/1000000000) + 'B'
 
-rescale_charts = ->
-    charts = document.getElementsByClassName("ct-chart-line")
-
-    for chart in charts
-        rescale_chart(chart)
-
-rescale_chart = (chart) ->
-    parent = find_content_container(chart)
-    scale = calculate_new_scale(parent.style.transform)
-
-    chart.style.transform = "scale(#{scale})"
-
-find_content_container = (child) ->
-    parent = child.parentNode
-
-    until parent.id is 'container'
-        parent = parent.parentNode
-
 draw_charts()
-
-window.addEventListener('resize', rescale_charts)
