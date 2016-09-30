@@ -159,6 +159,12 @@ public class Presentation {
         return slideHandlers;
     }
 
+    public InputStream getFigure(String figurePath) throws IOException {
+        String path = "/presentations/" + name + "/figures/" + figurePath;
+
+        return getClass().getResourceAsStream(path);
+    }
+
     public boolean hasSideBar() {
         return sideBar.isAvailable();
     }

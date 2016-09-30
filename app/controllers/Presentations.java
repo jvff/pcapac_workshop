@@ -1,5 +1,9 @@
 package controllers;
 
+import java.io.InputStream;
+import java.io.IOException;
+
+import play.Logger;
 import play.mvc.Controller;
 import play.mvc.Result;
 import play.mvc.WebSocket;
@@ -57,6 +61,37 @@ public class Presentations extends Controller {
             return new SlideHandler[0];
         else
             return presentation.getSlideHandlers();
+    }
+
+    public static Result figure(String presentation, String figurePath) {
+        InputStream figure = getFigure(presentation, figurePath);
+
+        if (figure != null)
+            return ok(figure);
+        else
+            return notFound();
+    }
+
+    private static InputStream getFigure(String presentationName,
+            String figurePath) {
+        Presentation presentation = presentations.get(presentationName);
+
+        if (presentation == null)
+            return null;
+        else
+            return tryToGetFigureFrom(presentation, figurePath);
+    }
+
+    private static InputStream tryToGetFigureFrom(Presentation presentation,
+            String figurePath) {
+        try {
+            return presentation.getFigure(figurePath);
+        } catch (IOException cause) {
+            Logger.warn("Failed to get figure " + figurePath + " for "
+                    + "presentation " + presentation.getName());
+
+            return null;
+        }
     }
 
     public static WebSocket<JsonNode> synchronizationSocket(
