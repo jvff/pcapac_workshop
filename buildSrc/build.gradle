@@ -1,0 +1,15 @@
+plugins {
+    id 'groovy'
+}
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    compile gradleApi()
+    compile localGroovy()
+
+    compile 'org.json:json:20160810'
+    compile 'org.yaml:snakeyaml:1.17'
+}
