@@ -66,7 +66,7 @@ public class JsonFiguresInYamlLanguageTransform
                     PlayApplicationBinarySpec binary) {
                 def outputSourceSet = getOutputSourceSet(sourceSet, binary)
 
-                return outputSourceSet.source.srcDirs[0]
+                return new File(outputSourceSet.source.srcDirs[0], "figures")
             }
 
             private JvmResourceSet getOutputSourceSet(
