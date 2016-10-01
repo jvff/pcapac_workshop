@@ -34,7 +34,7 @@ public class Presentation {
     }
 
     private void loadPresentation() throws IOException {
-        String path = "/presentations/" + name + ".yml";
+        String path = "/presentations/" + name + "/slides.yml";
         InputStream stream = getClass().getResourceAsStream(path);
 
         Logger.debug("Loading presentation: " + path);

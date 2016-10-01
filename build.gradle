@@ -38,6 +38,7 @@ dependencies {
 
 model {
     presentations {
+        intro_to_git(PresentationSpec)
         intro_to_opencl(PresentationSpec)
     }
 }
