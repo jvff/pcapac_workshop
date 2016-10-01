@@ -94,21 +94,29 @@ parse_point_label_plugin_options = (options, chart_data) ->
 
 parse_axis = (requested_options) ->
     options = {}
+    custom_options =
+        interpolation: default_interpolation
+        unit: ''
 
     for option,value of requested_options
         if option is 'type'
             options.type = parse_axis_type(value)
         else if option is 'format'
-            options.labelInterpolationFnc = parse_axis_format(value)
+            custom_options.interpolation = parse_axis_format(value)
+        else if option is 'unit'
+            custom_options.unit = value
         else
             options[option] = value
+
+    options.labelInterpolationFnc = (value) ->
+        custom_options.interpolation(value) + custom_options.unit
 
     return options
 
 parse_axis_type = (requested_type) ->
     if requested_type is 'Chartist.AutoScaleAxis'
         return Chartist.AutoScaleAxis
-    if requested_type is 'Chartist.FixedScaleAxis'
+    else if requested_type is 'Chartist.FixedScaleAxis'
         return Chartist.FixedScaleAxis
     else
         return null
@@ -116,10 +124,13 @@ parse_axis_type = (requested_type) ->
 parse_axis_format = (requested_format) ->
     if requested_format is 'with_order_suffixes'
         return order_suffixes_interpolation
-    else if requested_format is 'meter_scale'
-        return meter_scale_interpolation
+    else if requested_format is 'with_si_suffixes'
+        return si_suffixes_interpolation
     else
         return default_interpolation
+
+parse_axis_unit = (unit, chart_options) ->
+    return (value) -> chart_options.interpolation_function(value) + unit
 
 order_suffixes_interpolation = (value) ->
     if value < 1000
@@ -131,20 +142,22 @@ order_suffixes_interpolation = (value) ->
     else
         return (value/1000000000) + 'B'
 
-meter_scale_interpolation = (value) ->
+si_suffixes_interpolation = (value) ->
     if value < 1e-6
-        return (value*1000000000) + 'nm'
+        return (value*1000000000) + 'n'
     else if value < 1e-3
-        return (value*1000000) + 'µm'
+        return (value*1000000) + 'µ'
     else if value < 1
-        return (value*1000) + 'mm'
+        return (value*1000) + 'm'
     else if value < 1000
         return value + 'm'
     else if value < 1000000
-        return (value/1000) + 'Km'
+        return (value/1000) + 'K'
     else if value < 1000000000
-        return (value/1000000) + 'Mm'
+        return (value/1000000) + 'M'
     else
-        return (value/1000000000) + 'Gm'
+        return (value/1000000000) + 'G'
+
+default_interpolation = (value) -> value
 
 draw_charts()
