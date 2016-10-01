@@ -116,6 +116,8 @@ parse_axis_type = (requested_type) ->
 parse_axis_format = (requested_format) ->
     if requested_format is 'with_order_suffixes'
         return order_suffixes_interpolation
+    else if requested_format is 'meter_scale'
+        return meter_scale_interpolation
     else
         return default_interpolation
 
@@ -128,5 +130,21 @@ order_suffixes_interpolation = (value) ->
         return (value/1000000) + 'M'
     else
         return (value/1000000000) + 'B'
+
+meter_scale_interpolation = (value) ->
+    if value < 1e-6
+        return (value*1000000000) + 'nm'
+    else if value < 1e-3
+        return (value*1000000) + 'µm'
+    else if value < 1
+        return (value*1000) + 'mm'
+    else if value < 1000
+        return value + 'm'
+    else if value < 1000000
+        return (value/1000) + 'Km'
+    else if value < 1000000000
+        return (value/1000000) + 'Mm'
+    else
+        return (value/1000000000) + 'Gm'
 
 draw_charts()
