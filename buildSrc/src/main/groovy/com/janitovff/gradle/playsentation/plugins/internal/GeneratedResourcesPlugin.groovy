@@ -1,17 +1,11 @@
 package com.janitovff.gradle.playsentation.plugins.internal
 
-import org.gradle.api.internal.file.SourceDirectorySetFactory
-import org.gradle.language.base.internal.registry.LanguageTransformContainer
-import org.gradle.language.base.sources.BaseLanguageSourceSet
-import org.gradle.language.jvm.internal.DefaultJvmResourceLanguageSourceSet
 import org.gradle.language.jvm.JvmResourceSet
 import org.gradle.model.Each
 import org.gradle.model.ModelMap
 import org.gradle.model.Mutate
 import org.gradle.model.Path
 import org.gradle.model.RuleSource
-import org.gradle.platform.base.ComponentType
-import org.gradle.platform.base.TypeBuilder
 import org.gradle.play.PlayApplicationBinarySpec
 import org.gradle.play.PlayApplicationSpec
 
