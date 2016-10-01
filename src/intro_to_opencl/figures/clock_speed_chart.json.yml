@@ -1,0 +1,60 @@
+type: line
+data:
+    - 1971:
+        - 740000
+        - Intel 4004
+    - 1972:
+        - 800000
+        - Intel 8008
+    - 1974:
+        - 3125000
+        - Intel 8080
+    - 1978:
+        - 5000000
+        - Intel 8086
+    - 1982:
+        - 12500000
+        - Intel 80286
+    - 1986:
+        - 33000000
+        - Intel 80386
+    - 1989:
+        - 50000000
+        - Intel 80486
+    - 1993:
+        - 66000000
+        - Intel Pentium
+    - 1995:
+        - 200000000
+        - Intel Pentium Pro
+    - 2000:
+        - 3800000000
+        - Intel Pentium 4
+    - 2006:
+        - 2930000000
+        - Intel Core
+    - 2008:
+        - 3330000000
+        - Intel Core i7
+    - 2016:
+        - 4000000000
+        - Intel Core i7
+options:
+    full_height: true
+    axisX:
+        type: Chartist.FixedScaleAxis
+        low: 1970
+        high: 2025
+        divisor: 11
+    axisY:
+        type: Chartist.AutoScaleAxis
+        onlyInteger: false
+        scale: log10
+        format: with_si_suffixes
+        unit: Hz
+    plugins:
+        ctPointLabels:
+            textAnchor: left
+            labelOffset:
+                x: 20
+                y: 0
