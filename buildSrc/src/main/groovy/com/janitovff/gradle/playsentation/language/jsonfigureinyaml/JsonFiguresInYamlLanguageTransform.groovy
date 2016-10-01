@@ -1,4 +1,4 @@
-package com.janitovff.gradle.playsentation.plugins.internal
+package com.janitovff.gradle.playsentation.language.jsonfigureinyaml
 
 import org.gradle.api.DefaultTask
 import org.gradle.api.Task
@@ -10,10 +10,9 @@ import org.gradle.language.jvm.JvmResourceSet
 import org.gradle.platform.base.BinarySpec
 import org.gradle.play.PlayApplicationBinarySpec
 
-import com.janitovff.gradle.playsentation.language.jsonfigureinyaml.JsonAsYamlFigureSet
 import com.janitovff.gradle.playsentation.tasks.YamlToJson
 
-public class JsonFiguresInYaml
+public class JsonFiguresInYamlLanguageTransform
         implements LanguageTransform<JsonAsYamlFigureSet, JvmResourceSet> {
     @Override
     public String getLanguageName() {

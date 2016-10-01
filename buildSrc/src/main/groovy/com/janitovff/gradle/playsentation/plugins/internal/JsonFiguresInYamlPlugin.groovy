@@ -9,6 +9,7 @@ import org.gradle.platform.base.TypeBuilder
 import org.gradle.play.PlayApplicationSpec
 
 import com.janitovff.gradle.playsentation.language.jsonfigureinyaml.JsonAsYamlFigureSet
+import com.janitovff.gradle.playsentation.language.jsonfigureinyaml.JsonFiguresInYamlLanguageTransform
 import com.janitovff.gradle.playsentation.model.PresentationSpecContainer
 
 public class JsonFiguresInYamlPlugin extends RuleSource {
@@ -32,6 +33,6 @@ public class JsonFiguresInYamlPlugin extends RuleSource {
 
     @Mutate
     void registerLanguageTransform(LanguageTransformContainer languages) {
-        languages.add(new JsonFiguresInYaml())
+        languages.add(new JsonFiguresInYamlLanguageTransform())
     }
 }
