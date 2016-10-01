@@ -45,7 +45,7 @@ options:
         type: Chartist.FixedScaleAxis
         low: 1970
         high: 2025
-        divisor: 10
+        divisor: 11
     axisY:
         type: Chartist.AutoScaleAxis
         onlyInteger: false
