@@ -32,7 +32,7 @@ public class GeneratedResourcesPlugin extends RuleSource {
     private File getGeneratedResourcesDir(PlayApplicationSpec component,
             PresentationSpec presentation, File buildDir) {
         def relativeDirectoryPath =
-                "$component.name/presentations/$presentation.name"
+                "$component.name/resources/presentations/$presentation.name"
 
         return new File(buildDir, relativeDirectoryPath)
     }
