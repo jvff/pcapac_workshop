@@ -10,12 +10,14 @@ import org.gradle.platform.base.TypeBuilder
 import com.janitovff.gradle.playsentation.model.PresentationSpec
 import com.janitovff.gradle.playsentation.model.PresentationSpecContainer
 import com.janitovff.gradle.playsentation.plugins.internal.GeneratedResourcesPlugin
+import com.janitovff.gradle.playsentation.plugins.internal.GeneratedTwirlPlugin
 import com.janitovff.gradle.playsentation.plugins.internal.JsonFiguresInYamlPlugin
 import com.janitovff.gradle.playsentation.plugins.internal.ResourcesPlugin
 
 public class PlaysentationPlugin implements Plugin<Project> {
     @Override
     public void apply(Project project) {
+        project.pluginManager.apply GeneratedTwirlPlugin
         project.pluginManager.apply GeneratedResourcesPlugin
         project.pluginManager.apply ResourcesPlugin
         project.pluginManager.apply JsonFiguresInYamlPlugin
