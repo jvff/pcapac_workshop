@@ -11,5 +11,6 @@ dependencies {
     compile localGroovy()
 
     compile 'org.json:json:20160810'
+    compile 'org.pegdown:pegdown:1.6.0'
     compile 'org.yaml:snakeyaml:1.17'
 }
