@@ -1,0 +1,37 @@
+type: line
+data:
+    - 2000:
+        - 1
+        - Intel Pentium 4
+    - 2006:
+        - 2
+        - Intel Core Duo
+    - 2008:
+        - 4
+        - Intel Core 2 Quad
+    - 2010:
+        - 6
+        - Intel Core i7
+    - 2014:
+        - 8
+        - Intel Core i7
+    - 2016:
+        - 10
+        - Intel Core i7
+options:
+    full_height: true
+    axisX:
+        type: Chartist.FixedScaleAxis
+        low: 2000
+        high: 2020
+        divisor: 4
+    axisY:
+        type: Chartist.AutoScaleAxis
+        onlyInteger: false
+        scale: linear
+    plugins:
+        ctPointLabels:
+            textAnchor: left
+            labelOffset:
+                x: 20
+                y: 0
