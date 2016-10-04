@@ -6,6 +6,7 @@ Introduction to OpenCL:
     - clock_speed
     - core_count
     - simpler_cores
+    - gpu_rasterization
     - pixel_shader_count
     - introduction
     - thanks
