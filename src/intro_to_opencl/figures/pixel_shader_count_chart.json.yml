@@ -1,0 +1,40 @@
+type: line
+data:
+    - 2005:
+        - 20
+        - GeForce 7800 GT
+    - 2006:
+        - 128
+        - GeForce 8800 GTX
+    - 2008:
+        - 240
+        - GeForce GTX 280
+    - 2010:
+        - 480
+        - GeForce GTX 480
+    - 2012:
+        - 1526
+        - GeForce GTX 680
+    - 2015:
+        - 3072
+        - GeForce GTX Titan X
+    - 2016:
+        - 3584
+        - GeForce TITAN X
+options:
+    full_height: true
+    axisX:
+        type: Chartist.FixedScaleAxis
+        low: 2005
+        high: 2020
+        divisor: 3
+    axisY:
+        type: Chartist.AutoScaleAxis
+        onlyInteger: false
+        scale: linear
+    plugins:
+        ctPointLabels:
+            textAnchor: left
+            labelOffset:
+                x: 20
+                y: 0
