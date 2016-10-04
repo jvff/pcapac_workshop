@@ -66,6 +66,8 @@ public class Presentations extends Controller {
     public static Result figure(String presentation, String figurePath) {
         InputStream figure = getFigure(presentation, figurePath);
 
+        setContentTypeForPath(figurePath);
+
         if (figure != null)
             return ok(figure);
         else
@@ -92,6 +94,39 @@ public class Presentations extends Controller {
 
             return null;
         }
+    }
+
+    private static void setContentTypeForPath(String path) {
+        String extension = getExtensionOf(path);
+        String contentType = getContentTypeFor(extension);
+
+        response().setContentType(contentType);
+    }
+
+    private static String getExtensionOf(String path) {
+        int lastDot = path.lastIndexOf('.');
+
+        if (lastDot < 0)
+            return "";
+        else
+            return path.substring(lastDot + 1).toLowerCase();
+    }
+
+    private static String getContentTypeFor(String extension) {
+        if (extension.equals("svg"))
+            return "image/svg+xml";
+        else if (isImageExtension(extension))
+            return "image/" + extension;
+        else
+            return "application/octet-stream";
+    }
+
+    private static boolean isImageExtension(String extension) {
+        return extension.equals("png")
+            || extension.equals("bmp")
+            || extension.equals("gif")
+            || extension.equals("jpg")
+            || extension.equals("jpeg");
     }
 
     public static WebSocket<JsonNode> synchronizationSocket(
