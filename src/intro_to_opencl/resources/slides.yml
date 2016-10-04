@@ -5,6 +5,7 @@ Introduction to OpenCL:
     - smallest_feature_size
     - clock_speed
     - core_count
+    - simpler_cores
     - pixel_shader_count
     - introduction
     - thanks
