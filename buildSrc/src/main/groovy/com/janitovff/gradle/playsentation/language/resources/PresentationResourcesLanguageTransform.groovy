@@ -64,8 +64,9 @@ public class PresentationResourcesLanguageTransform
             private File getOutputDirectory(PresentationResourceSet sourceSet,
                     PlayApplicationBinarySpec binary) {
                 def outputSourceSet = getOutputSourceSet(sourceSet, binary)
+                def outputPath = sourceSet.outputPath ?: '.'
 
-                return outputSourceSet.source.srcDirs[0]
+                return new File(outputSourceSet.source.srcDirs[0], outputPath)
             }
 
             private JvmResourceSet getOutputSourceSet(

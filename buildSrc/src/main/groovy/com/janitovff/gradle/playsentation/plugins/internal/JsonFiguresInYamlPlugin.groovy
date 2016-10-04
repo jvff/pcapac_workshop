@@ -22,7 +22,7 @@ public class JsonFiguresInYamlPlugin extends RuleSource {
     void addJsonFiguresSpecifiedInYaml(@Each PlayApplicationSpec component,
             PresentationSpecContainer presentations) {
         presentations.each { presentation ->
-            component.sources.create("${presentation.name}Figures",
+            component.sources.create("${presentation.name}JsonFiguresInYaml",
                     JsonAsYamlFigureSet) { figures ->
                 figures.presentation = presentation
                 figures.source.srcDir "src/$presentation.name/figures"

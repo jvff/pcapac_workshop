@@ -6,4 +6,6 @@ import com.janitovff.gradle.playsentation.language.PresentationSourceSet
 
 @Managed
 public interface PresentationResourceSet extends PresentationSourceSet {
+    String getOutputPath()
+    void setOutputPath(String outputPath)
 }
