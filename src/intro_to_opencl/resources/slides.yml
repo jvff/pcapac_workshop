@@ -1,6 +1,7 @@
 Introduction to OpenCL:
     - title
     - agenda
+    - introduction
     - moores_law
     - smallest_feature_size
     - clock_speed
@@ -11,5 +12,4 @@ Introduction to OpenCL:
     - the_future_is_parallel
     - the_limits_of_parallelism
     - amdahls_law
-    - introduction
     - thanks
