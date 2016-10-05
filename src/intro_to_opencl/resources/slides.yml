@@ -13,4 +13,5 @@ Introduction to OpenCL:
     - the_limits_of_parallelism
     - amdahls_law
     - flynns_taxonomy
+    - concurrent_programming
     - thanks
