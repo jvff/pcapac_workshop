@@ -9,5 +9,6 @@ Introduction to OpenCL:
     - gpu_rasterization
     - pixel_shader_count
     - the_future_is_parallel
+    - the_limits_of_parallelism
     - introduction
     - thanks

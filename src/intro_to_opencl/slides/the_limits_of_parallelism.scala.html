@@ -1,0 +1,50 @@
+<h1>The Limits of Parallelism</h1>
+
+<center>
+    <table style="width: 400px; border-spacing: 0px; text-align: center" data-step="0..">
+        <tr>
+            <td colspan="3">Task execution time</td>
+        </tr>
+        <tr style="height: 0.15em">
+            <td colspan="3">
+                <svg xmlns="http://www.w3.org/2000/svg" width="400" viewbox="0 -2 205 4">
+                    <defs>
+                        <marker id='head' orient='auto'
+                                markerWidth='2' markerHeight='4'
+                                refX='0.1' refY='2'>
+                            <path d='M0,0 V4 L2,2 Z' fill='black'/>
+                        </marker>
+                    </defs>
+                    <path marker-end='url(#head)' stroke-width='1'
+                            fill='none' stroke='black'
+                            d='M0,0 L200,0' />
+                </svg>
+            </td>
+        </tr>
+        <tr style="height: 0.5em">
+            <td colspan="3"></td>
+        </tr>
+        <tr style="height: 2em">
+            <td style="width: 150px; border: 3px solid red">Sequential</td>
+            <td style="width: 150px; border: 3px solid blue" colspan="2">Parallel</td>
+        </tr>
+        <tr style="height: 2em">
+            <td colspan="4"></td>
+        </tr>
+        <tr style="height: 2em" data-step="1..">
+            <td style="width: 150px; border: 3px solid red">Sequential</td>
+            <td style="width: 1px; border: 3px solid blue"></td>
+            <td style="width: 149px"></td>
+        </tr>
+        <tr style="height: 0.5em">
+            <td colspan="3"></td>
+        </tr>
+        <tr style="height: 0.25em" data-step="2..">
+            <td style="border-left: 1px solid black; border-right: 1px solid black"></td>
+            <td colspan="2"></td>
+        </tr>
+        <tr data-step="2..">
+            <td style="border-top: 1px solid black">Minimum execution time</td>
+        </tr>
+    </table>
+</center>
