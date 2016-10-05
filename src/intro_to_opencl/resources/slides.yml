@@ -10,5 +10,6 @@ Introduction to OpenCL:
     - pixel_shader_count
     - the_future_is_parallel
     - the_limits_of_parallelism
+    - amdahls_law
     - introduction
     - thanks
