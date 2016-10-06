@@ -64,6 +64,18 @@ To create a presentation, the following steps must be performed:
   specified in the slides.yml file
     1. Slides can be Twirl templates (\*.scala.html) or Markdown files (\*.md)
 
+Building and Running
+--------------------
+
+To build and/or run the application, you need to have Java JDK installed. To
+build, run the command:
+
+    ./gradlew playBinary
+
+To start the server, run the command:
+
+    ./gradlew runPlayBinary
+
 License
 -------
 
