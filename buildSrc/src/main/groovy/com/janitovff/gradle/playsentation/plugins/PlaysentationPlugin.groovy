@@ -10,10 +10,12 @@ import org.gradle.platform.base.TypeBuilder
 import com.janitovff.gradle.playsentation.model.PresentationSpec
 import com.janitovff.gradle.playsentation.model.PresentationSpecContainer
 import com.janitovff.gradle.playsentation.plugins.internal.FiguresPlugin
+import com.janitovff.gradle.playsentation.plugins.internal.GeneratedCoffeeScriptPlugin
 import com.janitovff.gradle.playsentation.plugins.internal.GeneratedResourcesPlugin
 import com.janitovff.gradle.playsentation.plugins.internal.GeneratedTwirlPlugin
 import com.janitovff.gradle.playsentation.plugins.internal.JsonFiguresInYamlPlugin
 import com.janitovff.gradle.playsentation.plugins.internal.MarkdownSlidesPlugin
+import com.janitovff.gradle.playsentation.plugins.internal.PresentationCoffeeScriptsPlugin
 import com.janitovff.gradle.playsentation.plugins.internal.ResourcesPlugin
 import com.janitovff.gradle.playsentation.plugins.internal.TwirlSidebarPlugin
 import com.janitovff.gradle.playsentation.plugins.internal.TwirlSlidesPlugin
@@ -21,12 +23,14 @@ import com.janitovff.gradle.playsentation.plugins.internal.TwirlSlidesPlugin
 public class PlaysentationPlugin implements Plugin<Project> {
     @Override
     public void apply(Project project) {
+        project.pluginManager.apply GeneratedCoffeeScriptPlugin
         project.pluginManager.apply GeneratedTwirlPlugin
         project.pluginManager.apply GeneratedResourcesPlugin
         project.pluginManager.apply ResourcesPlugin
         project.pluginManager.apply FiguresPlugin
         project.pluginManager.apply JsonFiguresInYamlPlugin
         project.pluginManager.apply MarkdownSlidesPlugin
+        project.pluginManager.apply PresentationCoffeeScriptsPlugin
         project.pluginManager.apply TwirlSidebarPlugin
         project.pluginManager.apply TwirlSlidesPlugin
     }
