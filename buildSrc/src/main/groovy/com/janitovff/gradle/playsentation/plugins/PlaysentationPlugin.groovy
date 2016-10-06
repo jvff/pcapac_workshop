@@ -15,6 +15,7 @@ import com.janitovff.gradle.playsentation.plugins.internal.GeneratedTwirlPlugin
 import com.janitovff.gradle.playsentation.plugins.internal.JsonFiguresInYamlPlugin
 import com.janitovff.gradle.playsentation.plugins.internal.MarkdownSlidesPlugin
 import com.janitovff.gradle.playsentation.plugins.internal.ResourcesPlugin
+import com.janitovff.gradle.playsentation.plugins.internal.TwirlSidebarPlugin
 import com.janitovff.gradle.playsentation.plugins.internal.TwirlSlidesPlugin
 
 public class PlaysentationPlugin implements Plugin<Project> {
@@ -26,6 +27,7 @@ public class PlaysentationPlugin implements Plugin<Project> {
         project.pluginManager.apply FiguresPlugin
         project.pluginManager.apply JsonFiguresInYamlPlugin
         project.pluginManager.apply MarkdownSlidesPlugin
+        project.pluginManager.apply TwirlSidebarPlugin
         project.pluginManager.apply TwirlSlidesPlugin
     }
 
