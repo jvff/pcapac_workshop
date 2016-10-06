@@ -1,4 +1,4 @@
-package com.janitovff.gradle.playsentation.language.twirlslides
+package com.janitovff.gradle.playsentation.language.twirl
 
 import org.gradle.api.DefaultTask
 import org.gradle.api.Task
@@ -13,16 +13,17 @@ import org.gradle.play.PlayApplicationBinarySpec
 
 import com.janitovff.gradle.playsentation.model.PresentationSpec
 
-public class TwirlSlidesLanguageTransform
-        implements LanguageTransform<TwirlSlidesSourceSet, TwirlSourceSet> {
+public class TwirlLanguageTransform
+        implements LanguageTransform<PresentationTwirlSourceSet,
+                TwirlSourceSet> {
     @Override
     public String getLanguageName() {
-        return "Presentation twirl slides"
+        return "Presentation twirl content"
     }
 
     @Override
-    public Class<TwirlSlidesSourceSet> getSourceSetType() {
-        return TwirlSlidesSourceSet
+    public Class<PresentationTwirlSourceSet> getSourceSetType() {
+        return PresentationTwirlSourceSet
     }
 
     @Override
@@ -40,7 +41,7 @@ public class TwirlSlidesLanguageTransform
         return new SourceTransformTaskConfig() {
             @Override
             public String getTaskPrefix() {
-                return "compilePresentationTwirlSlides"
+                return "compilePresentationTwirl"
             }
 
             @Override
@@ -53,7 +54,7 @@ public class TwirlSlidesLanguageTransform
                     LanguageSourceSet languageSourceSet,
                     ServiceRegistry serviceRegistry) {
                 def binary = (PlayApplicationBinarySpec) binarySpec
-                def sourceSet = (TwirlSlidesSourceSet) languageSourceSet
+                def sourceSet = (PresentationTwirlSourceSet) languageSourceSet
                 def copyTask = (Copy) task
                 def outputDirectory = getOutputDirectory(sourceSet, binary)
 
@@ -63,10 +64,11 @@ public class TwirlSlidesLanguageTransform
                 binarySpec.assets.builtBy copyTask
             }
 
-            private File getOutputDirectory(TwirlSlidesSourceSet sourceSet,
+            private File getOutputDirectory(
+                    PresentationTwirlSourceSet sourceSet,
                     PlayApplicationBinarySpec binary) {
                 def presentation = sourceSet.presentation
-                def subDirectory = "views/$presentation.name/slides"
+                def subDirectory = sourceSet.outputPath
                 def outputSourceSet = getOutputSourceSet(presentation, binary)
 
                 return new File(outputSourceSet.source.srcDirs[0], subDirectory)
