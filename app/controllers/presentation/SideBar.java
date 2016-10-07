@@ -53,7 +53,6 @@ public class SideBar {
         Set<Class<?> > classes = reflections.getSubTypesOf(Object.class);
 
         Logger.debug("Searching for classes in package: " + packageName);
-        Logger.debug("Expected: " + views.html.intro_to_git.sidebar.terminal.class);
         Logger.debug("Found " + classes.size() + " classes");
 
         return classes.toArray(new Class<?>[classes.size()]);
