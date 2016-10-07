@@ -15,11 +15,11 @@ public class PresentationCoffeeScriptsPlugin extends RuleSource {
             PresentationSpecContainer presentations) {
         presentations.each { presentation ->
             component.sources.create("${presentation.name}CoffeeScript",
-                    PresentationCoffeeScriptSourceSet) { sidebar ->
-                sidebar.presentation = presentation
-                sidebar.outputPath = "javascripts/$presentation.name"
-                sidebar.source.srcDir "src/$presentation.name/coffeescript"
-                sidebar.source.include "**/*.coffee"
+                    PresentationCoffeeScriptSourceSet) { sourceSet ->
+                sourceSet.presentation = presentation
+                sourceSet.outputPath = "javascripts/$presentation.name"
+                sourceSet.source.srcDir "src/$presentation.name/coffeescript"
+                sourceSet.source.include "**/*.coffee"
             }
         }
     }
