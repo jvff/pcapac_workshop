@@ -17,6 +17,7 @@ public class PresentationCoffeeScriptsPlugin extends RuleSource {
             component.sources.create("${presentation.name}CoffeeScript",
                     PresentationCoffeeScriptSourceSet) { sidebar ->
                 sidebar.presentation = presentation
+                sidebar.outputPath = "javascripts/$presentation.name"
                 sidebar.source.srcDir "src/$presentation.name/coffeescript"
                 sidebar.source.include "**/*.coffee"
             }

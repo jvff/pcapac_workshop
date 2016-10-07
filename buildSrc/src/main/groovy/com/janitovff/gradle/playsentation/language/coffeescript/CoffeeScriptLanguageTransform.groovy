@@ -70,8 +70,9 @@ public class CoffeeScriptLanguageTransform
                     PlayApplicationBinarySpec binary) {
                 def presentation = sourceSet.presentation
                 def outputSourceSet = getOutputSourceSet(presentation, binary)
+                def subDirectory = sourceSet.outputPath
 
-                return outputSourceSet.source.srcDirs[0]
+                return new File(outputSourceSet.source.srcDirs[0], subDirectory)
             }
 
             private CoffeeScriptSourceSet getOutputSourceSet(
