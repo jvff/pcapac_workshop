@@ -57,3 +57,6 @@ connect_to_terminal()
 
 window.addEventListener('resize', resize_terminal)
 window.sidebar_listener.add_listener(resize_terminal)
+
+window.terminal =
+    resize_terminal: resize_terminal

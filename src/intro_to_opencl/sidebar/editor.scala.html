@@ -1,16 +1,25 @@
-<div id="editor" style="height: 100%">#include &lt;stdio.h&gt;
+<div style="position: relative; height: 100%">
+    <div style="height: 2em">
+        <nav>
+            <ul data-step="0">
+                <li id="program_tab" class="selected">C program</li>
+                <li id="kernel_tab">OpenCL kernel</li>
+                <li id="terminal_tab">Terminal</li>
+            </ul>
+        </nav>
+    </div>
 
-int main(int argc, char* argv[]) {
-    printf("Let's start coding with OpenCL!");
+    <div id="editor-container" style="position: absolute; top: 2em; left: 0; right: 0; bottom: 0">
+    </div>
 
-    return 0;
-}</div>
+    <div id="terminal-container" style="display: hidden; position: absolute; top: 2em; left: 0; right: 0; bottom: 0">
+    </div>
+</div>
 
 <script src="https://cdn.jsdelivr.net/ace/1.2.4/min/ace.js" type="text/javascript" charset="utf-8">
 </script>
 
-<script type="text/javascript">
-    var editor = ace.edit("editor");
-    editor.setTheme("ace/theme/monokai");
-    editor.getSession().setMode("ace/mode/c_cpp");
+<script src="@routes.Assets.at("javascripts/intro_to_opencl/sidebar.js")" type="text/javascript">
+</script>
+<script src="@routes.Assets.at("javascripts/terminal.js")" type="text/javascript">
 </script>
