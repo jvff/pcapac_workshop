@@ -1,5 +1,6 @@
 package com.janitovff.gradle.playsentation.plugins.internal
 
+import org.gradle.api.internal.file.SourceDirectorySetFactory
 import org.gradle.language.base.internal.registry.LanguageTransformContainer
 import org.gradle.language.coffeescript.CoffeeScriptSourceSet
 import org.gradle.model.Each
@@ -7,6 +8,7 @@ import org.gradle.model.Mutate
 import org.gradle.model.Path
 import org.gradle.model.RuleSource
 import org.gradle.play.PlayApplicationSpec
+import org.gradle.play.PlayApplicationBinarySpec
 
 import com.janitovff.gradle.playsentation.language.coffeescript.CoffeeScriptLanguageTransform
 import com.janitovff.gradle.playsentation.model.PresentationSpec
@@ -36,6 +38,17 @@ public class GeneratedCoffeeScriptPlugin extends RuleSource {
                 "$component.name/coffeescript/presentations/$presentation.name"
 
         return new File(buildDir, relativeDirectoryPath)
+    }
+
+    @Mutate
+    void addSourceSetsToBinary(@Each PlayApplicationBinarySpec binary,
+            SourceDirectorySetFactory sourceDirectorySetFactory) {
+        binary.inputs.withType(CoffeeScriptSourceSet) { sourceSet ->
+            if (sourceSet.name.endsWith("GeneratedCoffeeScript")) {
+                binary.addGeneratedJavaScript(sourceSet,
+                        sourceDirectorySetFactory)
+            }
+        }
     }
 
     @Mutate
