@@ -36,21 +36,10 @@ public class TerminalActor extends UntypedActor {
     private static final char CMD_KEY = 'k';
     private static final char CMD_RESIZE = 'r';
 
-    public static class ResizeMessage {
-        private final short columns;
-        private final short rows;
+    private static abstract class Message {
+        public abstract void writeTo(Writer out) throws IOException;
 
-        public ResizeMessage(short columns, short rows) {
-            this.columns = columns;
-            this.rows = rows;
-        }
-
-        public void writeTo(Writer out) throws IOException {
-            writeInt(columns, out);
-            writeInt(rows, out);
-        }
-
-        private void writeInt(int value, Writer out) throws IOException {
+        protected void writeInt(int value, Writer out) throws IOException {
             writeAlgorisms(value, out);
             out.write(';');
         }
@@ -77,6 +66,22 @@ public class TerminalActor extends UntypedActor {
                 out.write('+');
             else if (algorism == 63)
                 out.write('/');
+        }
+    }
+
+    public static class ResizeMessage extends Message {
+        private final short columns;
+        private final short rows;
+
+        public ResizeMessage(short columns, short rows) {
+            this.columns = columns;
+            this.rows = rows;
+        }
+
+        @Override
+        public void writeTo(Writer out) throws IOException {
+            writeInt(columns, out);
+            writeInt(rows, out);
         }
     }
 
