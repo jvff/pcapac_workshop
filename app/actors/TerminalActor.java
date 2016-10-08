@@ -4,7 +4,9 @@ import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.io.IOException;
 import java.io.OutputStream;
-import java.io.PrintWriter;
+import java.io.OutputStreamWriter;
+import java.io.Reader;
+import java.io.Writer;
 import java.net.Socket;
 
 import akka.actor.ActorRef;
@@ -25,6 +27,8 @@ import com.github.dockerjava.core.DockerClientConfig;
 import actors.TerminalManagerActor;
 import actors.TerminalManagerActor.NewTerminalMessage;
 
+import static java.nio.charset.StandardCharsets.UTF_8;
+
 import static com.github.dockerjava.core.RemoteApiVersion.VERSION_1_23;
 
 public class TerminalActor extends UntypedActor {
@@ -41,12 +45,12 @@ public class TerminalActor extends UntypedActor {
             this.rows = rows;
         }
 
-        public void writeTo(PrintWriter out) {
+        public void writeTo(Writer out) throws IOException {
             writeShort(columns, out);
             writeShort(rows, out);
         }
 
-        private void writeShort(short value, PrintWriter out) {
+        private void writeShort(short value, Writer out) throws IOException {
             out.write((value >> 8) & 0xFF);
             out.write(value & 0xFF);
         }
@@ -64,8 +68,8 @@ public class TerminalActor extends UntypedActor {
 
     private String containerAddress;
     private Socket containerSocket;
-    private PrintWriter containerWriter;
-    private InputStreamReader containerReader;
+    private Writer containerWriter;
+    private Reader containerReader;
 
     private Thread listenerThread = new Thread(new Runnable() {
         @Override
@@ -87,6 +91,14 @@ public class TerminalActor extends UntypedActor {
 
     @Override
     public void onReceive(Object message) {
+        try {
+            unsafelyHandleMessage(message);
+        } catch (IOException exception) {
+            Logger.error("Failed to handle message: " + message);
+        }
+    }
+
+    private void unsafelyHandleMessage(Object message) throws IOException {
         if (message instanceof String)
             sendDataToContainer((String)message);
         else if (message instanceof ResizeMessage)
@@ -147,8 +159,8 @@ public class TerminalActor extends UntypedActor {
             InputStream socketInput = containerSocket.getInputStream();
             OutputStream socketOut = containerSocket.getOutputStream();
 
-            containerReader = new InputStreamReader(socketInput);
-            containerWriter = new PrintWriter(socketOut);
+            containerReader = new InputStreamReader(socketInput, UTF_8);
+            containerWriter = new OutputStreamWriter(socketOut, UTF_8);
         } catch (Exception cause) {
             Logger.error("Failed to connect to container at " + containerAddress
                     + ":" + CONTAINER_PORT, cause);
@@ -173,7 +185,7 @@ public class TerminalActor extends UntypedActor {
         out.tell(message, self());
     }
 
-    private void sendDataToContainer(String dataMessage) {
+    private void sendDataToContainer(String dataMessage) throws IOException {
         for (byte data : dataMessage.getBytes()) {
             containerWriter.write(CMD_KEY);
             containerWriter.write(data);
@@ -181,7 +193,8 @@ public class TerminalActor extends UntypedActor {
         }
     }
 
-    private void resizeContainerTerminal(ResizeMessage message) {
+    private void resizeContainerTerminal(ResizeMessage message)
+            throws IOException {
         containerWriter.write(CMD_RESIZE);
 
         message.writeTo(containerWriter);
