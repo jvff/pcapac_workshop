@@ -32,22 +32,17 @@ public class TerminalManagerActor extends UntypedActor {
         }
     }
 
-    public static class ResizeTerminalMessage extends TerminalMessage {
-        private final short columns;
-        private final short rows;
+    public static class SendTerminalMessage extends TerminalMessage {
+        private final Object message;
 
-        public ResizeTerminalMessage(String terminalId, short columns,
-                short rows) {
+        public SendTerminalMessage(String terminalId, Object message) {
             super(terminalId);
 
-            this.columns = columns;
-            this.rows = rows;
+            this.message = message;
         }
 
         public void forwardTo(ActorRef terminalHandler, ActorRef sender) {
-            ResizeMessage resizeMessage = new ResizeMessage(columns, rows) ;
-
-            terminalHandler.tell(resizeMessage, sender);
+            terminalHandler.tell(message, sender);
         }
     }
 
@@ -65,8 +60,8 @@ public class TerminalManagerActor extends UntypedActor {
     public void onReceive(Object message) {
         if (message instanceof NewTerminalMessage)
             handleNewTerminal((NewTerminalMessage)message);
-        else if (message instanceof ResizeTerminalMessage)
-            handleResizeTerminal((ResizeTerminalMessage)message);
+        else if (message instanceof SendTerminalMessage)
+            handleMessageToTerminal((SendTerminalMessage)message);
     }
 
     private void handleNewTerminal(NewTerminalMessage message) {
@@ -75,7 +70,7 @@ public class TerminalManagerActor extends UntypedActor {
         terminals.put(terminalId, sender());
     }
 
-    private void handleResizeTerminal(ResizeTerminalMessage message) {
+    private void handleMessageToTerminal(SendTerminalMessage message) {
         String terminalId = message.getTerminalId();
         ActorRef terminalHandler = terminals.get(terminalId);
 

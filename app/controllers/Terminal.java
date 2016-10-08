@@ -19,7 +19,8 @@ import actors.TerminalManagerActor;
 
 import static java.util.UUID.randomUUID;
 
-import static actors.TerminalManagerActor.ResizeTerminalMessage;
+import static actors.TerminalActor.ResizeMessage;
+import static actors.TerminalManagerActor.SendTerminalMessage;
 
 public class Terminal extends Controller {
     public static Result token() {
@@ -63,17 +64,23 @@ public class Terminal extends Controller {
 
     private static void resizeTerminal(String terminalId, short columns,
             short rows) {
-        ActorSystem system = Akka.system();
-        ActorRef terminalManager = system.actorFor(TerminalManagerActor.URL);
-        ResizeTerminalMessage message = new ResizeTerminalMessage(terminalId,
-                columns, rows);
+        ResizeMessage message = new ResizeMessage(columns, rows);
 
-        Logger.debug("resizeTerminal - terminal ID: " + terminalId);
-
-        terminalManager.tell(message, null);
+        forwardMessage(terminalId, message);
     }
 
     public static WebSocket<String> socket(String terminalId) {
         return WebSocket.withActor(TerminalActor.propsFor(terminalId));
+    }
+
+    private static void forwardMessage(String terminalId, Object message) {
+        ActorSystem system = Akka.system();
+        ActorRef terminalManager = system.actorFor(TerminalManagerActor.URL);
+        SendTerminalMessage forwardRequest = new SendTerminalMessage(terminalId,
+                message);
+
+        Logger.debug("forwardMessage - terminal ID: " + terminalId);
+
+        terminalManager.tell(forwardRequest, null);
     }
 }
