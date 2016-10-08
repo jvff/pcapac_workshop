@@ -60,4 +60,5 @@ window.addEventListener('resize', resize_terminal)
 window.sidebar_listener.add_listener(resize_terminal)
 
 window.terminal =
+    get_terminal_id: -> terminal_id
     resize_terminal: resize_terminal

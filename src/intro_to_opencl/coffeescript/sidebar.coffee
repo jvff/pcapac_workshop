@@ -1,3 +1,5 @@
+use_secure_protocol = document.location.protocol is 'https:'
+
 editor = ace.edit('editor-container')
 
 editor.setTheme('ace/theme/monokai')
@@ -39,10 +41,20 @@ kernel_code = """
 save_program_code = ->
     program_code = editor.getValue()
     program_cursor = editor.getCursorPosition()
+    save_file('program.c', program_code)
 
 save_kernel_code = ->
     kernel_code = editor.getValue()
     kernel_cursor = editor.getCursorPosition()
+    save_file('kernel.cl', kernel_code)
+
+save_file = (path, contents) ->
+    req = new XMLHttpRequest()
+    terminal_id = window.terminal.get_terminal_id()
+    url = jsRoutes.controllers.Terminal.upload(terminal_id, path)
+
+    req.open 'POST', url.absoluteURL(use_secure_protocol)
+    req.send contents
 
 set_code = (code, cursor) ->
     editor.setValue(code)
@@ -79,6 +91,7 @@ show_editor = (new_code, cursor_position, new_code_saver) ->
     editor_container.style.display = 'block'
 
 hide_editor = ->
+    save_code()
     editor_container.style.display = 'none'
 
 program_tab.addEventListener('click', change_to_program_tab)

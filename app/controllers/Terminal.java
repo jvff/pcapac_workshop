@@ -20,6 +20,7 @@ import actors.TerminalManagerActor;
 import static java.util.UUID.randomUUID;
 
 import static actors.TerminalActor.ResizeMessage;
+import static actors.TerminalActor.UploadFileMessage;
 import static actors.TerminalManagerActor.SendTerminalMessage;
 
 public class Terminal extends Controller {
@@ -71,6 +72,21 @@ public class Terminal extends Controller {
 
     public static WebSocket<String> socket(String terminalId) {
         return WebSocket.withActor(TerminalActor.propsFor(terminalId));
+    }
+
+    public static Result upload(String terminalId, String path) {
+        String fileContents = request().body().asText();
+
+        uploadFile(terminalId, path, fileContents);
+
+        return ok();
+    }
+
+    private static void uploadFile(String terminalId, String path,
+            String contents) {
+        UploadFileMessage message = new UploadFileMessage(path, contents);
+
+        forwardMessage(terminalId, message);
     }
 
     private static void forwardMessage(String terminalId, Object message) {

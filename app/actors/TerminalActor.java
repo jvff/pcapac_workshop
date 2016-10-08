@@ -35,6 +35,7 @@ public class TerminalActor extends UntypedActor {
     private static final int CONTAINER_PORT = 15100;
     private static final char CMD_KEY = 'k';
     private static final char CMD_RESIZE = 'r';
+    private static final char CMD_UPLOAD = 'u';
 
     private static abstract class Message {
         public abstract void writeTo(Writer out) throws IOException;
@@ -85,6 +86,27 @@ public class TerminalActor extends UntypedActor {
         }
     }
 
+    public static class UploadFileMessage extends Message {
+        private final String path;
+        private final String contents;
+
+        public UploadFileMessage(String path, String contents) {
+            this.path = path;
+            this.contents = contents;
+        }
+
+        @Override
+        public void writeTo(Writer out) throws IOException {
+            writeString(path, out);
+            writeString(contents, out);
+        }
+
+        public void writeString(String string, Writer out) throws IOException {
+            writeInt(string.length(), out);
+            out.write(string);
+        }
+    }
+
     public static Props props(ActorRef out, String sessionId) {
         return Props.create(TerminalActor.class, out, sessionId);
     }
@@ -132,6 +154,8 @@ public class TerminalActor extends UntypedActor {
             sendDataToContainer((String)message);
         else if (message instanceof ResizeMessage)
             resizeContainerTerminal((ResizeMessage)message);
+        else if (message instanceof UploadFileMessage)
+            uploadFileToContainer((UploadFileMessage)message);
     }
 
     private void startContainer() {
@@ -223,6 +247,13 @@ public class TerminalActor extends UntypedActor {
     private void resizeContainerTerminal(ResizeMessage message)
             throws IOException {
         containerWriter.write(CMD_RESIZE);
+
+        message.writeTo(containerWriter);
+    }
+
+    private void uploadFileToContainer(UploadFileMessage message)
+            throws IOException {
+        containerWriter.write(CMD_UPLOAD);
 
         message.writeTo(containerWriter);
     }
