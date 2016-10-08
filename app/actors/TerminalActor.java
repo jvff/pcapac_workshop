@@ -33,8 +33,8 @@ import static com.github.dockerjava.core.RemoteApiVersion.VERSION_1_23;
 
 public class TerminalActor extends UntypedActor {
     private static final int CONTAINER_PORT = 15100;
-    private static final int CMD_KEY = 1;
-    private static final int CMD_RESIZE = 2;
+    private static final char CMD_KEY = 'k';
+    private static final char CMD_RESIZE = 'r';
 
     public static class ResizeMessage {
         private final short columns;
@@ -46,13 +46,37 @@ public class TerminalActor extends UntypedActor {
         }
 
         public void writeTo(Writer out) throws IOException {
-            writeShort(columns, out);
-            writeShort(rows, out);
+            writeInt(columns, out);
+            writeInt(rows, out);
         }
 
-        private void writeShort(short value, Writer out) throws IOException {
-            out.write((value >> 8) & 0xFF);
-            out.write(value & 0xFF);
+        private void writeInt(int value, Writer out) throws IOException {
+            writeAlgorisms(value, out);
+            out.write(';');
+        }
+
+        private void writeAlgorisms(int value, Writer out) throws IOException {
+            while (value > 0) {
+                int algorism = value % 64;
+
+                writeAlgorism(algorism, out);
+
+                value /= 64;
+            }
+        }
+
+        private void writeAlgorism(int algorism, Writer out)
+                throws IOException {
+            if (algorism < 26)
+                out.write(algorism + 'A');
+            else if (algorism < 52)
+                out.write(algorism - 26 + 'a');
+            else if (algorism < 62)
+                out.write(algorism - 52 + '0');
+            else if (algorism == 62)
+                out.write('+');
+            else if (algorism == 63)
+                out.write('/');
         }
     }
 
@@ -186,11 +210,9 @@ public class TerminalActor extends UntypedActor {
     }
 
     private void sendDataToContainer(String dataMessage) throws IOException {
-        for (byte data : dataMessage.getBytes()) {
-            containerWriter.write(CMD_KEY);
-            containerWriter.write(data);
-            containerWriter.flush();
-        }
+        containerWriter.write(CMD_KEY);
+        containerWriter.write(dataMessage);
+        containerWriter.flush();
     }
 
     private void resizeContainerTerminal(ResizeMessage message)
