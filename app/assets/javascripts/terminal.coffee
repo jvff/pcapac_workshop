@@ -1,4 +1,5 @@
 terminal_id = null
+use_secure_protocol = document.location.protocol is 'https:'
 
 set_terminal_id = (id) ->
     terminal_id = id
@@ -18,13 +19,13 @@ connect_to_terminal = ->
                 open_terminal_connection()
                 resize_terminal()
 
-    req.open 'GET', url.absoluteURL(true)
+    req.open 'GET', url.absoluteURL(use_secure_protocol)
     req.send()
 
 open_terminal_connection = ->
     terminalUrl = jsRoutes.controllers.Terminal.socket(terminal_id)
 
-    socket = new WebSocket(terminalUrl.webSocketURL(true))
+    socket = new WebSocket(terminalUrl.webSocketURL(use_secure_protocol))
     socket.addEventListener 'open', ->
         terminal.attach(socket)
 
@@ -39,7 +40,7 @@ notify_terminal_resize = (size) ->
     req = new XMLHttpRequest()
     url = jsRoutes.controllers.Terminal.resize(terminal_id)
 
-    req.open 'POST', url.absoluteURL(true)
+    req.open 'POST', url.absoluteURL(use_secure_protocol)
     req.setRequestHeader "Content-Type", "application/x-www-form-urlencoded"
     req.send("columns=#{size.cols}&rows=#{size.rows}")
 

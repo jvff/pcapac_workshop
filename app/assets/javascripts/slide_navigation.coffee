@@ -1,3 +1,5 @@
+use_secure_protocol = document.location.protocol is 'https:'
+
 in_sync = false
 
 download_slide = (number, action) ->
@@ -12,7 +14,7 @@ download_slide = (number, action) ->
 
     presentation = window.presentation_route
     url = jsRoutes.controllers.Presentations.slide(presentation, number)
-    req.open 'GET', url.absoluteURL(true), false
+    req.open 'GET', url.absoluteURL(use_secure_protocol), false
     req.send()
 
 run_slide_scripts = (continuation) ->
@@ -112,7 +114,7 @@ previous_slide = (continuation) ->
 connect_to_sync_server = ->
     syncId = window.presentation_route
     syncUrl = jsRoutes.controllers.Presentations.synchronizationSocket(syncId)
-    syncSocket = new WebSocket(syncUrl.webSocketURL(true))
+    syncSocket = new WebSocket(syncUrl.webSocketURL(use_secure_protocol))
     syncSocket.onmessage = (event) ->
         if in_sync
             syncData = JSON.parse(event.data)
