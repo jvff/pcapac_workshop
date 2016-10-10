@@ -19,4 +19,5 @@ Introduction to OpenCL:
     - compile_and_run
     - listing_devices
     - device_information
+    - using_one_platform
     - thanks

@@ -1,0 +1,62 @@
+<h1>Using One Platform</h1>
+
+<pre class="prettyprint lang-c linenums:26" data-step="0">// ...
+
+int main(int argc, char* argv[]) {
+    cl_platform_id platforms[10];
+    int numPlatforms;
+
+    clGetPlatformIDs(10, platforms, &amp;numPlatforms);
+
+    for (int platformIndex = 0; platformIndex &lt; numPlatforms; ++platformIndex) {
+        char* platformName;
+        char* platformVendor;
+
+        clGetPlatformInfo(platforms[platformIndex],
+                CL_PLATFORM_NAME,
+                sizeof(platformName),
+                &amp;platformName,
+                NULL);
+
+        clGetPlatformInfo(platforms[platformIndex],
+                CL_PLATFORM_VENDOR,
+                sizeof(platformVendor),
+                &amp;platformVendor,
+                NULL);
+
+        printf("Platform: %s\n", platformName);
+        printf("Vendor: %s\n", platformVendor);
+    }
+
+    return 0;
+}</pre>
+
+<pre class="prettyprint lang-c linenums:26" data-step="1">// ...
+
+int main(int argc, char* argv[]) {
+    cl_platform_id platforms[10];
+    int numPlatforms;
+
+    clGetPlatformIDs(10, platforms, &amp;numPlatforms);
+
+    // Remove loop
+
+    return 0;
+}</pre>
+
+<pre class="prettyprint lang-c linenums:26" data-step="2">// ...
+
+int main(int argc, char* argv[]) {
+    cl_platform_id platforms[10];
+    int numPlatforms;
+
+    clGetPlatformIDs(10, platforms, &amp;numPlatforms);
+
+    cl_platform_id platform = platforms[0];   // Use first available platform
+
+    return 0;
+}</pre>
+
+<script type="text/javascript">
+    PR.prettyPrint();
+</script>
