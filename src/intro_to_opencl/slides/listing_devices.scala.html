@@ -1,0 +1,409 @@
+<h1>Listing Devices</h1>
+
+<pre class="prettyprint lang-c linenums" data-step="0">#include &lt;stdio.h&gt;
+
+#include &lt;CL/cl.h&gt;
+
+int main(int argc, char* argv[]) {
+    cl_platform_id platforms[10];
+    int numPlatforms;
+
+    clGetPlatformIDs(10, platforms, &amp;numPlatforms);
+
+    for (int platformIndex = 0; platformIndex &lt; numPlatforms; ++platformIndex) {
+        char* platformName;
+        char* platformVendor;
+
+        clGetPlatformInfo(platforms[platformIndex],
+                CL_PLATFORM_NAME,
+                sizeof(platformName),
+                &amp;platformName,
+                NULL);
+
+        clGetPlatformInfo(platforms[platformIndex],
+                CL_PLATFORM_VENDOR,
+                sizeof(platformVendor),
+                &amp;platformVendor,
+                NULL);
+
+        printf("Platform: %s\n", platformName);
+        printf("Vendor: %s\n", platformVendor);
+    }
+
+    return 0;
+}</pre>
+
+<pre class="prettyprint lang-c linenums" data-step="1">#include &lt;stdio.h&gt;
+
+#include &lt;CL/cl.h&gt;
+
+int main(int argc, char* argv[]) {
+    cl_platform_id platforms[10];
+    int numPlatforms;
+
+    clGetPlatformIDs(10, platforms, &amp;numPlatforms);
+
+    for (int platformIndex = 0; platformIndex &lt; numPlatforms; ++platformIndex) {
+        char* platformName;
+        char* platformVendor;
+
+        clGetPlatformInfo(platforms[platformIndex],
+                CL_PLATFORM_NAME,
+                sizeof(platformName),
+                &amp;platformName,
+                NULL);
+
+        clGetPlatformInfo(platforms[platformIndex],
+                CL_PLATFORM_VENDOR,
+                sizeof(platformVendor),
+                &amp;platformVendor,
+                NULL);
+
+        printf("Platform: %s\n", platformName);
+        printf("Vendor: %s\n", platformVendor);
+
+        listDevices(platforms[platform_index]); // Call a custom function
+    }
+
+    return 0;
+}</pre>
+
+<pre class="prettyprint lang-c linenums" data-step="2">#include &lt;stdio.h&gt;
+
+#include &lt;CL/cl.h&gt;
+
+int main(int argc, char* argv[]) {
+    // ...</pre><!-- } -->
+
+<pre class="prettyprint lang-c linenums" data-step="3">#include &lt;stdio.h&gt;
+
+#include &lt;CL/cl.h&gt;
+
+void listDevices(cl_platform_id platform) {
+    // Create the custom function to list devices
+}
+
+int main(int argc, char* argv[]) {
+    // ...</pre><!-- } -->
+
+<pre class="prettyprint lang-c linenums" data-step="4">#include &lt;stdio.h&gt;
+
+#include &lt;CL/cl.h&gt;
+
+void listDevices(cl_platform_id platform) {
+    cl_device_id devices[10];   // Buffer for platform devices
+    int numDevices;             // Variable to store number of returned devices
+}
+
+int main(int argc, char* argv[]) {
+    // ...</pre><!-- } -->
+
+<pre class="prettyprint lang-c linenums" data-step="5">#include &lt;stdio.h&gt;
+
+#include &lt;CL/cl.h&gt;
+
+void listDevices(cl_platform_id platform) {
+    cl_device_id devices[10];
+    int numDevices;
+
+    clGetDeviceIDs(/**/);               // Get registered devices
+}
+
+int main(int argc, char* argv[]) {
+    // ...</pre><!-- } -->
+
+<pre class="prettyprint lang-c linenums" data-step="6">#include &lt;stdio.h&gt;
+
+#include &lt;CL/cl.h&gt;
+
+void listDevices(cl_platform_id platform) {
+    cl_device_id devices[10];
+    int numDevices;
+
+    clGetDeviceIDs(platform, /**/);     // Platform to get devices
+}
+
+int main(int argc, char* argv[]) {
+    // ...</pre><!-- } -->
+
+<pre class="prettyprint lang-c linenums" data-step="7">#include &lt;stdio.h&gt;
+
+#include &lt;CL/cl.h&gt;
+
+void listDevices(cl_platform_id platform) {
+    cl_device_id devices[10];
+    int numDevices;
+
+    clGetDeviceIDs(platform,
+            CL_DEVICE_TYPE_ALL, /**/);  // Device type to search for
+}
+
+int main(int argc, char* argv[]) {
+    // ...</pre><!-- } -->
+
+<pre class="prettyprint lang-c linenums" data-step="8">#include &lt;stdio.h&gt;
+
+#include &lt;CL/cl.h&gt;
+
+void listDevices(cl_platform_id platform) {
+    cl_device_id devices[10];
+    int numDevices;
+
+    clGetDeviceIDs(platform,
+            CL_DEVICE_TYPE_ALL,
+            10, /**/);                  // Maximum number of devices to return
+}
+
+int main(int argc, char* argv[]) {
+    // ...</pre><!-- } -->
+
+<pre class="prettyprint lang-c linenums" data-step="9">#include &lt;stdio.h&gt;
+
+#include &lt;CL/cl.h&gt;
+
+void listDevices(cl_platform_id platform) {
+    cl_device_id devices[10];
+    int numDevices;
+
+    clGetDeviceIDs(platform,
+            CL_DEVICE_TYPE_ALL,
+            10,
+            devices, /**/);             // Array to store the devices found
+}
+
+int main(int argc, char* argv[]) {
+    // ...</pre><!-- } -->
+
+<pre class="prettyprint lang-c linenums" data-step="10">#include &lt;stdio.h&gt;
+
+#include &lt;CL/cl.h&gt;
+
+void listDevices(cl_platform_id platform) {
+    cl_device_id devices[10];
+    int numDevices;
+
+    clGetDeviceIDs(platform,
+            CL_DEVICE_TYPE_ALL,
+            10,
+            devices,
+            &amp;numDevices);               // Array to store the devices found
+}
+
+int main(int argc, char* argv[]) {
+    // ...</pre><!-- } -->
+
+<pre class="prettyprint lang-c linenums" data-step="11">#include &lt;stdio.h&gt;
+
+#include &lt;CL/cl.h&gt;
+
+void listDevices(cl_platform_id platform) {
+    cl_device_id devices[10];
+    int numDevices;
+
+    clGetDeviceIDs(platform,
+            CL_DEVICE_TYPE_ALL,
+            10,
+            devices,
+            &amp;numDevices);
+
+    for (int deviceIndex = 0; deviceIndex &lt; numDevices; ++deviceIndex) {
+        // Loop for every device of the platform
+    }
+}
+
+int main(int argc, char* argv[]) {
+    // ...</pre><!-- } -->
+
+<pre class="prettyprint lang-c linenums" data-step="12">#include &lt;stdio.h&gt;
+
+#include &lt;CL/cl.h&gt;
+
+void listDevices(cl_platform_id platform) {
+    cl_device_id devices[10];
+    int numDevices;
+
+    clGetDeviceIDs(platform,
+            CL_DEVICE_TYPE_ALL,
+            10,
+            devices,
+            &amp;numDevices);
+
+    for (int deviceIndex = 0; deviceIndex &lt; numDevices; ++deviceIndex) {
+        char* deviceName;       // Variable to reference the device name string
+
+        printf("    Device: %s\n", deviceName);   // Print device name
+    }
+}
+
+int main(int argc, char* argv[]) {
+    // ...</pre><!-- } -->
+
+<pre class="prettyprint lang-c linenums" data-step="13">#include &lt;stdio.h&gt;
+
+#include &lt;CL/cl.h&gt;
+
+void listDevices(cl_platform_id platform) {
+    cl_device_id devices[10];
+    int numDevices;
+
+    clGetDeviceIDs(platform,
+            CL_DEVICE_TYPE_ALL,
+            10,
+            devices,
+            &amp;numDevices);
+
+    for (int deviceIndex = 0; deviceIndex &lt; numDevices; ++deviceIndex) {
+        char* deviceName;
+
+        clGetDeviceInfo(/**/);                       // Request device name
+
+        printf("    Device: %s\n", deviceName);
+    }
+}
+
+int main(int argc, char* argv[]) {
+    // ...</pre><!-- } -->
+
+<pre class="prettyprint lang-c linenums" data-step="14">#include &lt;stdio.h&gt;
+
+#include &lt;CL/cl.h&gt;
+
+void listDevices(cl_platform_id platform) {
+    cl_device_id devices[10];
+    int numDevices;
+
+    clGetDeviceIDs(platform,
+            CL_DEVICE_TYPE_ALL,
+            10,
+            devices,
+            &amp;numDevices);
+
+    for (int deviceIndex = 0; deviceIndex &lt; numDevices; ++deviceIndex) {
+        char* deviceName;
+
+        clGetDeviceInfo(devices[deviceIndex], /**/); // Device
+
+        printf("    Device: %s\n", deviceName);
+    }
+}
+
+int main(int argc, char* argv[]) {
+    // ...</pre><!-- } -->
+
+<pre class="prettyprint lang-c linenums" data-step="15">#include &lt;stdio.h&gt;
+
+#include &lt;CL/cl.h&gt;
+
+void listDevices(cl_platform_id platform) {
+    cl_device_id devices[10];
+    int numDevices;
+
+    clGetDeviceIDs(platform,
+            CL_DEVICE_TYPE_ALL,
+            10,
+            devices,
+            &amp;numDevices);
+
+    for (int deviceIndex = 0; deviceIndex &lt; numDevices; ++deviceIndex) {
+        char* deviceName;
+
+        clGetDeviceInfo(devices[deviceIndex],
+                CL_DEVICE_NAME, /**/);               // Request type
+
+        printf("    Device: %s\n", deviceName);
+    }
+}
+
+int main(int argc, char* argv[]) {
+    // ...</pre><!-- } -->
+
+<pre class="prettyprint lang-c linenums" data-step="16">#include &lt;stdio.h&gt;
+
+#include &lt;CL/cl.h&gt;
+
+void listDevices(cl_platform_id platform) {
+    cl_device_id devices[10];
+    int numDevices;
+
+    clGetDeviceIDs(platform,
+            CL_DEVICE_TYPE_ALL,
+            10,
+            devices,
+            &amp;numDevices);
+
+    for (int deviceIndex = 0; deviceIndex &lt; numDevices; ++deviceIndex) {
+        char* deviceName;
+
+        clGetDeviceInfo(devices[deviceIndex],
+                CL_DEVICE_NAME,
+                sizeof(deviceName), /**/);           // Size of return variable
+
+        printf("    Device: %s\n", deviceName);
+    }
+}
+
+int main(int argc, char* argv[]) {
+    // ...</pre><!-- } -->
+
+<pre class="prettyprint lang-c linenums" data-step="17">#include &lt;stdio.h&gt;
+
+#include &lt;CL/cl.h&gt;
+
+void listDevices(cl_platform_id platform) {
+    cl_device_id devices[10];
+    int numDevices;
+
+    clGetDeviceIDs(platform,
+            CL_DEVICE_TYPE_ALL,
+            10,
+            devices,
+            &amp;numDevices);
+
+    for (int deviceIndex = 0; deviceIndex &lt; numDevices; ++deviceIndex) {
+        char* deviceName;
+
+        clGetDeviceInfo(devices[deviceIndex],
+                CL_DEVICE_NAME,
+                sizeof(deviceName),
+                &amp;deviceName, /**/);                  // Where to store value
+
+        printf("    Device: %s\n", deviceName);
+    }
+}
+
+int main(int argc, char* argv[]) {
+    // ...</pre><!-- } -->
+
+<pre class="prettyprint lang-c linenums" data-step="18">#include &lt;stdio.h&gt;
+
+#include &lt;CL/cl.h&gt;
+
+void listDevices(cl_platform_id platform) {
+    cl_device_id devices[10];
+    int numDevices;
+
+    clGetDeviceIDs(platform,
+            CL_DEVICE_TYPE_ALL,
+            10,
+            devices,
+            &amp;numDevices);
+
+    for (int deviceIndex = 0; deviceIndex &lt; numDevices; ++deviceIndex) {
+        char* deviceName;
+
+        clGetDeviceInfo(devices[deviceIndex],
+                CL_DEVICE_NAME,
+                sizeof(deviceName),
+                &amp;deviceName,
+                NULL);                                   // Returned value size
+
+        printf("    Device: %s\n", deviceName);
+    }
+}
+
+int main(int argc, char* argv[]) {
+    // ...</pre><!-- } -->
+
+<script type="text/javascript">
+    PR.prettyPrint();
+</script>
