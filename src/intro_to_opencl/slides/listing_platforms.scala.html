@@ -1,0 +1,451 @@
+<h1>Listing Platforms</h1>
+
+<pre class="prettyprint lang-c linenums" data-step="0">#include &lt;stdio.h&gt;
+
+int main(int argc, char* argv[]) {
+    printf("Let's start coding with OpenCL!");
+
+    return 0;
+}</pre>
+
+<pre class="prettyprint lang-c linenums" data-step="1">#include &lt;stdio.h&gt;
+
+int main(int argc, char* argv[]) {
+
+    return 0;
+}</pre>
+
+<pre class="prettyprint lang-c linenums" data-step="2">#include &lt;stdio.h&gt;
+
+#include &lt;CL/cl.h&gt; // Include OpenCL library header
+
+int main(int argc, char* argv[]) {
+
+    return 0;
+}</pre>
+
+<pre class="prettyprint lang-c linenums" data-step="3">#include &lt;stdio.h&gt;
+
+#include &lt;CL/cl.h&gt;
+
+int main(int argc, char* argv[]) {
+    cl_platform_id platforms[10]; // Buffer for registered platforms (max 10)
+    int numPlatforms;             // Variable to store number of found platforms
+
+    clGetPlatformIDs(/**/);       // Get platform IDs
+
+    return 0;
+}</pre>
+
+<pre class="prettyprint lang-c linenums" data-step="4">#include &lt;stdio.h&gt;
+
+#include &lt;CL/cl.h&gt;
+
+int main(int argc, char* argv[]) {
+    cl_platform_id platforms[10];
+    int numPlatforms;
+
+    clGetPlatformIDs(10, /**/);                     // Max platforms to return
+
+    return 0;
+}</pre>
+
+<pre class="prettyprint lang-c linenums" data-step="5">#include &lt;stdio.h&gt;
+
+#include &lt;CL/cl.h&gt;
+
+int main(int argc, char* argv[]) {
+    cl_platform_id platforms[10];
+    int numPlatforms;
+
+    clGetPlatformIDs(10, platforms, /**/);          // Var to store the platforms
+
+    return 0;
+}</pre>
+
+<pre class="prettyprint lang-c linenums" data-step="6">#include &lt;stdio.h&gt;
+
+#include &lt;CL/cl.h&gt;
+
+int main(int argc, char* argv[]) {
+    cl_platform_id platforms[10];
+    int numPlatforms;
+
+    clGetPlatformIDs(10, platforms, &amp;numPlatforms); // No. of returned platforms
+
+    return 0;
+}</pre>
+
+<pre class="prettyprint lang-c linenums" data-step="7">#include &lt;stdio.h&gt;
+
+#include &lt;CL/cl.h&gt;
+
+int main(int argc, char* argv[]) {
+    cl_platform_id platforms[10];
+    int numPlatforms;
+
+    clGetPlatformIDs(10, platforms, &amp;numPlatforms);
+
+    for (int platformIndex = 0; platformIndex &lt; numPlatforms; ++platformIndex) {
+        // Loop for every platform
+    }
+
+    return 0;
+}</pre>
+
+<pre class="prettyprint lang-c linenums" data-step="8">#include &lt;stdio.h&gt;
+
+#include &lt;CL/cl.h&gt;
+
+int main(int argc, char* argv[]) {
+    cl_platform_id platforms[10];
+    int numPlatforms;
+
+    clGetPlatformIDs(10, platforms, &amp;numPlatforms);
+
+    for (int platformIndex = 0; platformIndex &lt; numPlatforms; ++platformIndex) {
+        char* platformName;             // Pointer to receive platform name
+        char* platformVendor;           // Pointer to receive platform vendor
+
+        printf("Platform: %s\n", platformName); // Print platform name
+        printf("Vendor: %s\n", platformVendor); // Print platform vendor
+    }
+
+    return 0;
+}</pre>
+
+<pre class="prettyprint lang-c linenums" data-step="9">#include &lt;stdio.h&gt;
+
+#include &lt;CL/cl.h&gt;
+
+int main(int argc, char* argv[]) {
+    cl_platform_id platforms[10];
+    int numPlatforms;
+
+    clGetPlatformIDs(10, platforms, &amp;numPlatforms);
+
+    for (int platformIndex = 0; platformIndex &lt; numPlatforms; ++platformIndex) {
+        char* platformName;
+        char* platformVendor;
+
+        clGetPlatformInfo(/**/);        // Request platform name
+
+        printf("Platform: %s\n", platformName);
+        printf("Vendor: %s\n", platformVendor);
+    }
+
+    return 0;
+}</pre>
+
+<pre class="prettyprint lang-c linenums" data-step="10">#include &lt;stdio.h&gt;
+
+#include &lt;CL/cl.h&gt;
+
+int main(int argc, char* argv[]) {
+    cl_platform_id platforms[10];
+    int numPlatforms;
+
+    clGetPlatformIDs(10, platforms, &amp;numPlatforms);
+
+    for (int platformIndex = 0; platformIndex &lt; numPlatforms; ++platformIndex) {
+        char* platformName;
+        char* platformVendor;
+
+        clGetPlatformInfo(platforms[platformIndex], /**/); // Current platform
+
+        printf("Platform: %s\n", platformName);
+        printf("Vendor: %s\n", platformVendor);
+    }
+
+    return 0;
+}</pre>
+
+<pre class="prettyprint lang-c linenums" data-step="11">#include &lt;stdio.h&gt;
+
+#include &lt;CL/cl.h&gt;
+
+int main(int argc, char* argv[]) {
+    cl_platform_id platforms[10];
+    int numPlatforms;
+
+    clGetPlatformIDs(10, platforms, &amp;numPlatforms);
+
+    for (int platformIndex = 0; platformIndex &lt; numPlatforms; ++platformIndex) {
+        char* platformName;
+        char* platformVendor;
+
+        clGetPlatformInfo(platforms[platformIndex],
+                CL_PLATFORM_NAME, /**/);            // Request type
+
+        printf("Platform: %s\n", platformName);
+        printf("Vendor: %s\n", platformVendor);
+    }
+
+    return 0;
+}</pre>
+
+<pre class="prettyprint lang-c linenums" data-step="12">#include &lt;stdio.h&gt;
+
+#include &lt;CL/cl.h&gt;
+
+int main(int argc, char* argv[]) {
+    cl_platform_id platforms[10];
+    int numPlatforms;
+
+    clGetPlatformIDs(10, platforms, &amp;numPlatforms);
+
+    for (int platformIndex = 0; platformIndex &lt; numPlatforms; ++platformIndex) {
+        char* platformName;
+        char* platformVendor;
+
+        clGetPlatformInfo(platforms[platformIndex],
+                CL_PLATFORM_NAME,
+                sizeof(platformName), /**/);        // Size of return variable
+
+        printf("Platform: %s\n", platformName);
+        printf("Vendor: %s\n", platformVendor);
+    }
+
+    return 0;
+}</pre>
+
+<pre class="prettyprint lang-c linenums" data-step="13">#include &lt;stdio.h&gt;
+
+#include &lt;CL/cl.h&gt;
+
+int main(int argc, char* argv[]) {
+    cl_platform_id platforms[10];
+    int numPlatforms;
+
+    clGetPlatformIDs(10, platforms, &amp;numPlatforms);
+
+    for (int platformIndex = 0; platformIndex &lt; numPlatforms; ++platformIndex) {
+        char* platformName;
+        char* platformVendor;
+
+        clGetPlatformInfo(platforms[platformIndex],
+                CL_PLATFORM_NAME,
+                sizeof(platformName),
+                &amp;platformName, /**/);     // Where to store the return value
+
+        printf("Platform: %s\n", platformName);
+        printf("Vendor: %s\n", platformVendor);
+    }
+
+    return 0;
+}</pre>
+
+<pre class="prettyprint lang-c linenums" data-step="14">#include &lt;stdio.h&gt;
+
+#include &lt;CL/cl.h&gt;
+
+int main(int argc, char* argv[]) {
+    cl_platform_id platforms[10];
+    int numPlatforms;
+
+    clGetPlatformIDs(10, platforms, &amp;numPlatforms);
+
+    for (int platformIndex = 0; platformIndex &lt; numPlatforms; ++platformIndex) {
+        char* platformName;
+        char* platformVendor;
+
+        clGetPlatformInfo(platforms[platformIndex],
+                CL_PLATFORM_NAME,
+                sizeof(platformName),
+                &amp;platformName,
+                NULL);                        // Returned value size
+
+        printf("Platform: %s\n", platformName);
+        printf("Vendor: %s\n", platformVendor);
+    }
+
+    return 0;
+}</pre>
+
+<pre class="prettyprint lang-c linenums" data-step="15">#include &lt;stdio.h&gt;
+
+#include &lt;CL/cl.h&gt;
+
+int main(int argc, char* argv[]) {
+    cl_platform_id platforms[10];
+    int numPlatforms;
+
+    clGetPlatformIDs(10, platforms, &amp;numPlatforms);
+
+    for (int platformIndex = 0; platformIndex &lt; numPlatforms; ++platformIndex) {
+        char* platformName;
+        char* platformVendor;
+
+        clGetPlatformInfo(platforms[platformIndex],
+                CL_PLATFORM_NAME,
+                sizeof(platformName),
+                &amp;platformName,
+                NULL);
+
+        clGetPlatformInfo(/**/);        // Request platform vendor
+
+        printf("Platform: %s\n", platformName);
+        printf("Vendor: %s\n", platformVendor);
+    }
+
+    return 0;
+}</pre>
+
+<pre class="prettyprint lang-c linenums" data-step="16">#include &lt;stdio.h&gt;
+
+#include &lt;CL/cl.h&gt;
+
+int main(int argc, char* argv[]) {
+    cl_platform_id platforms[10];
+    int numPlatforms;
+
+    clGetPlatformIDs(10, platforms, &amp;numPlatforms);
+
+    for (int platformIndex = 0; platformIndex &lt; numPlatforms; ++platformIndex) {
+        char* platformName;
+        char* platformVendor;
+
+        clGetPlatformInfo(platforms[platformIndex],
+                CL_PLATFORM_NAME,
+                sizeof(platformName),
+                &amp;platformName,
+                NULL);
+
+        clGetPlatformInfo(platforms[platformIndex], /**/); // Current platform
+
+        printf("Platform: %s\n", platformName);
+        printf("Vendor: %s\n", platformVendor);
+    }
+
+    return 0;
+}</pre>
+
+<pre class="prettyprint lang-c linenums" data-step="17">#include &lt;stdio.h&gt;
+
+#include &lt;CL/cl.h&gt;
+
+int main(int argc, char* argv[]) {
+    cl_platform_id platforms[10];
+    int numPlatforms;
+
+    clGetPlatformIDs(10, platforms, &amp;numPlatforms);
+
+    for (int platformIndex = 0; platformIndex &lt; numPlatforms; ++platformIndex) {
+        char* platformName;
+        char* platformVendor;
+
+        clGetPlatformInfo(platforms[platformIndex],
+                CL_PLATFORM_NAME,
+                sizeof(platformName),
+                &amp;platformName,
+                NULL);
+
+        clGetPlatformInfo(platforms[platformIndex],
+                CL_PLATFORM_VENDOR, /**/);          // Request type
+
+        printf("Platform: %s\n", platformName);
+        printf("Vendor: %s\n", platformVendor);
+    }
+
+    return 0;
+}</pre>
+
+<pre class="prettyprint lang-c linenums" data-step="18">#include &lt;stdio.h&gt;
+
+#include &lt;CL/cl.h&gt;
+
+int main(int argc, char* argv[]) {
+    cl_platform_id platforms[10];
+    int numPlatforms;
+
+    clGetPlatformIDs(10, platforms, &amp;numPlatforms);
+
+    for (int platformIndex = 0; platformIndex &lt; numPlatforms; ++platformIndex) {
+        char* platformName;
+        char* platformVendor;
+
+        clGetPlatformInfo(platforms[platformIndex],
+                CL_PLATFORM_NAME,
+                sizeof(platformName),
+                &amp;platformName,
+                NULL);
+
+        clGetPlatformInfo(platforms[platformIndex],
+                CL_PLATFORM_VENDOR,
+                sizeof(platformVendor), /**/);      // Size of return variable
+
+        printf("Platform: %s\n", platformName);
+        printf("Vendor: %s\n", platformVendor);
+    }
+
+    return 0;
+}</pre>
+
+<pre class="prettyprint lang-c linenums" data-step="19">#include &lt;stdio.h&gt;
+
+#include &lt;CL/cl.h&gt;
+
+int main(int argc, char* argv[]) {
+    cl_platform_id platforms[10];
+    int numPlatforms;
+
+    clGetPlatformIDs(10, platforms, &amp;numPlatforms);
+
+    for (int platformIndex = 0; platformIndex &lt; numPlatforms; ++platformIndex) {
+        char* platformName;
+        char* platformVendor;
+
+        clGetPlatformInfo(platforms[platformIndex],
+                CL_PLATFORM_NAME,
+                sizeof(platformName),
+                &amp;platformName,
+                NULL);
+
+        clGetPlatformInfo(platforms[platformIndex],
+                CL_PLATFORM_VENDOR,
+                sizeof(platformVendor),
+                &amp;platformVendor, /**/);   // Where to store the return value
+
+        printf("Platform: %s\n", platformName);
+        printf("Vendor: %s\n", platformVendor);
+    }
+
+    return 0;
+}</pre>
+
+<pre class="prettyprint lang-c linenums" data-step="20">#include &lt;stdio.h&gt;
+
+#include &lt;CL/cl.h&gt;
+
+int main(int argc, char* argv[]) {
+    cl_platform_id platforms[10];
+    int numPlatforms;
+
+    clGetPlatformIDs(10, platforms, &amp;numPlatforms);
+
+    for (int platformIndex = 0; platformIndex &lt; numPlatforms; ++platformIndex) {
+        char* platformName;
+        char* platformVendor;
+
+        clGetPlatformInfo(platforms[platformIndex],
+                CL_PLATFORM_NAME,
+                sizeof(platformName),
+                &amp;platformName,
+                NULL);
+
+        clGetPlatformInfo(platforms[platformIndex],
+                CL_PLATFORM_VENDOR,
+                sizeof(platformVendor),
+                &amp;platformVendor,
+                NULL);                        // Returned value size
+
+        printf("Platform: %s\n", platformName);
+        printf("Vendor: %s\n", platformVendor);
+    }
+
+    return 0;
+}</pre>
+
+<script type="text/javascript">
+    PR.prettyPrint();
+</script>
