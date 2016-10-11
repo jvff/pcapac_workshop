@@ -21,4 +21,5 @@ Introduction to OpenCL:
     - device_information
     - using_one_platform
     - using_one_gpu
+    - compute_kernels
     - thanks
