@@ -23,4 +23,5 @@ Introduction to OpenCL:
     - using_one_gpu
     - compute_kernels
     - opencl_c
+    - device_memory
     - thanks
