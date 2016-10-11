@@ -1,0 +1,419 @@
+<h1>Using One GPU</h1>
+
+<pre class="prettyprint lang-c linenums" data-step="0">#include &lt;stdio.h&gt;
+
+#include &lt;CL/cl.h&gt;
+
+void listDevices(cl_platform_id platform) {
+    cl_device_id devices[10];
+    int numDevices;
+
+    clGetDeviceIDs(platform,
+            CL_DEVICE_TYPE_ALL,
+            10,
+            devices,
+            &amp;numDevices);
+
+    for (int deviceIndex = 0; deviceIndex &lt; numDevices; ++deviceIndex) {
+        char* deviceName;
+
+        clGetDeviceInfo(devices[deviceIndex],
+                CL_DEVICE_NAME,
+                sizeof(deviceName),
+                &amp;deviceName,
+                NULL);
+
+        printf("    Device: %s\n", deviceName);
+    }
+}
+
+int main(int argc, char* argv[]) {
+    // ...</pre><!-- } -->
+
+<pre class="prettyprint lang-c linenums" data-step="1">#include &lt;stdio.h&gt;
+
+#include &lt;CL/cl.h&gt;
+
+void listDevices(cl_platform_id platform) {
+    cl_device_id devices[10];
+    int numDevices;
+
+    clGetDeviceIDs(platform,
+            CL_DEVICE_TYPE_ALL,
+            10,
+            devices,
+            &amp;numDevices);
+
+    // Remove for loop
+}
+
+int main(int argc, char* argv[]) {
+    // ...</pre><!-- } -->
+
+<pre class="prettyprint lang-c linenums" data-step="2">#include &lt;stdio.h&gt;
+
+#include &lt;CL/cl.h&gt;
+
+void listDevices(cl_platform_id platform) {
+    cl_device_id devices[10];
+    int numDevices;
+
+    clGetDeviceIDs(platform,
+            CL_DEVICE_TYPE_ALL,
+            10,
+            devices,
+            &amp;numDevices);
+}
+
+int main(int argc, char* argv[]) {
+    // ...</pre><!-- } -->
+
+<pre class="prettyprint lang-c linenums" data-step="3">#include &lt;stdio.h&gt;
+
+#include &lt;CL/cl.h&gt;
+
+void listDevices(cl_platform_id platform) {
+    cl_device_id devices[10];
+    int numDevices;
+
+    clGetDeviceIDs(platform,
+            CL_DEVICE_TYPE_ALL,
+            10,
+            devices,
+            &amp;numDevices);
+}
+
+int main(int argc, char* argv[]) {
+    cl_platform_id platforms[10];
+    int numPlatforms;
+
+    clGetPlatformIDs(10, platforms, &amp;numPlatforms);
+
+    cl_platform_id platform = platforms[0];
+
+    return 0;
+}</pre>
+
+<pre class="prettyprint lang-c linenums" data-step="4">#include &lt;stdio.h&gt;
+
+#include &lt;CL/cl.h&gt;
+
+void listDevices(cl_platform_id platform) {
+    // Cut code
+}
+
+int main(int argc, char* argv[]) {
+    cl_platform_id platforms[10];
+    int numPlatforms;
+
+    clGetPlatformIDs(10, platforms, &amp;numPlatforms);
+
+    cl_platform_id platform = platforms[0];
+
+    return 0;
+}</pre>
+
+<pre class="prettyprint lang-c linenums" data-step="5">#include &lt;stdio.h&gt;
+
+#include &lt;CL/cl.h&gt;
+
+void listDevices(cl_platform_id platform) {
+}
+
+int main(int argc, char* argv[]) {
+    cl_platform_id platforms[10];
+    int numPlatforms;
+
+    clGetPlatformIDs(10, platforms, &amp;numPlatforms);
+
+    cl_platform_id platform = platforms[0];
+
+    cl_device_id devices[10];          // Paste code
+    int numDevices;                    // "
+                                       // "
+    clGetDeviceIDs(platform,           // "
+            CL_DEVICE_TYPE_ALL,        // "
+            10,                        // "
+            devices,                   // "
+            &amp;numDevices);              // "
+
+    return 0;
+}</pre>
+
+<pre class="prettyprint lang-c linenums" data-step="6">#include &lt;stdio.h&gt;
+
+#include &lt;CL/cl.h&gt;
+
+// Remove function
+
+int main(int argc, char* argv[]) {
+    cl_platform_id platforms[10];
+    int numPlatforms;
+
+    clGetPlatformIDs(10, platforms, &amp;numPlatforms);
+
+    cl_platform_id platform = platforms[0];
+
+    cl_device_id devices[10];
+    int numDevices;
+
+    clGetDeviceIDs(platform,
+            CL_DEVICE_TYPE_ALL,
+            10,
+            devices,
+            &amp;numDevices);
+
+    return 0;
+}</pre>
+
+<pre class="prettyprint lang-c linenums" data-step="7">#include &lt;stdio.h&gt;
+
+#include &lt;CL/cl.h&gt;
+
+int main(int argc, char* argv[]) {
+    cl_platform_id platforms[10];
+    int numPlatforms;
+
+    clGetPlatformIDs(10, platforms, &amp;numPlatforms);
+
+    cl_platform_id platform = platforms[0];
+
+    cl_device_id devices[10];
+    int numDevices;
+
+    clGetDeviceIDs(platform,
+            CL_DEVICE_TYPE_ALL,
+            10,
+            devices,
+            &amp;numDevices);
+
+    return 0;
+}</pre>
+
+<pre class="prettyprint lang-c linenums" data-step="8">#include &lt;stdio.h&gt;
+
+#include &lt;CL/cl.h&gt;
+
+int main(int argc, char* argv[]) {
+    cl_platform_id platforms[10];
+    int numPlatforms;
+
+    clGetPlatformIDs(10, platforms, &amp;numPlatforms);
+
+    cl_platform_id platform = platforms[0];
+
+    cl_device_id devices[10];
+    int numDevices;
+
+    clGetDeviceIDs(platform,
+            CL_DEVICE_TYPE_GPU,       // Change requested type
+            10,
+            devices,
+            &amp;numDevices);
+
+    return 0;
+}</pre>
+
+<pre class="prettyprint lang-c linenums" data-step="9">#include &lt;stdio.h&gt;
+
+#include &lt;CL/cl.h&gt;
+
+int main(int argc, char* argv[]) {
+    cl_platform_id platforms[10];
+    int numPlatforms;
+
+    clGetPlatformIDs(10, platforms, &amp;numPlatforms);
+
+    cl_platform_id platform = platforms[0];
+
+    cl_device_id devices[10];
+    int numDevices;
+
+    clGetDeviceIDs(platform,
+            CL_DEVICE_TYPE_GPU,
+            10,
+            devices,
+            &amp;numDevices);
+
+    cl_context context = clCreateContext(/**/);             // Create a context
+
+    return 0;
+}</pre>
+
+<pre class="prettyprint lang-c linenums" data-step="10">#include &lt;stdio.h&gt;
+
+#include &lt;CL/cl.h&gt;
+
+int main(int argc, char* argv[]) {
+    cl_platform_id platforms[10];
+    int numPlatforms;
+
+    clGetPlatformIDs(10, platforms, &amp;numPlatforms);
+
+    cl_platform_id platform = platforms[0];
+
+    cl_device_id devices[10];
+    int numDevices;
+
+    clGetDeviceIDs(platform,
+            CL_DEVICE_TYPE_GPU,
+            10,
+            devices,
+            &amp;numDevices);
+
+    cl_context context = clCreateContext(NULL, /**/);       // Properties
+                                                            // (allows selecting
+                                                            // platform)
+
+    return 0;
+}</pre>
+
+<pre class="prettyprint lang-c linenums" data-step="11">#include &lt;stdio.h&gt;
+
+#include &lt;CL/cl.h&gt;
+
+int main(int argc, char* argv[]) {
+    cl_platform_id platforms[10];
+    int numPlatforms;
+
+    clGetPlatformIDs(10, platforms, &amp;numPlatforms);
+
+    cl_platform_id platform = platforms[0];
+
+    cl_device_id devices[10];
+    int numDevices;
+
+    clGetDeviceIDs(platform,
+            CL_DEVICE_TYPE_GPU,
+            10,
+            devices,
+            &amp;numDevices);
+
+    cl_context context = clCreateContext(NULL,
+            1, /**/);                                       // No. of devices
+
+
+    return 0;
+}</pre>
+
+<pre class="prettyprint lang-c linenums" data-step="12">#include &lt;stdio.h&gt;
+
+#include &lt;CL/cl.h&gt;
+
+int main(int argc, char* argv[]) {
+    cl_platform_id platforms[10];
+    int numPlatforms;
+
+    clGetPlatformIDs(10, platforms, &amp;numPlatforms);
+
+    cl_platform_id platform = platforms[0];
+
+    cl_device_id devices[10];
+    int numDevices;
+
+    clGetDeviceIDs(platform,
+            CL_DEVICE_TYPE_GPU,
+            10,
+            devices,
+            &amp;numDevices);
+
+    cl_context context = clCreateContext(NULL,
+            1,
+            devices, /**/);                                 // List of devices
+
+    return 0;
+}</pre>
+
+<pre class="prettyprint lang-c linenums" data-step="13">#include &lt;stdio.h&gt;
+
+#include &lt;CL/cl.h&gt;
+
+int main(int argc, char* argv[]) {
+    cl_platform_id platforms[10];
+    int numPlatforms;
+
+    clGetPlatformIDs(10, platforms, &amp;numPlatforms);
+
+    cl_platform_id platform = platforms[0];
+
+    cl_device_id devices[10];
+    int numDevices;
+
+    clGetDeviceIDs(platform,
+            CL_DEVICE_TYPE_GPU,
+            10,
+            devices,
+            &amp;numDevices);
+
+    cl_context context = clCreateContext(NULL,
+            1,
+            devices,
+            NULL, /**/);                                    // Callback
+
+    return 0;
+}</pre>
+
+<pre class="prettyprint lang-c linenums" data-step="14">#include &lt;stdio.h&gt;
+
+#include &lt;CL/cl.h&gt;
+
+int main(int argc, char* argv[]) {
+    cl_platform_id platforms[10];
+    int numPlatforms;
+
+    clGetPlatformIDs(10, platforms, &amp;numPlatforms);
+
+    cl_platform_id platform = platforms[0];
+
+    cl_device_id devices[10];
+    int numDevices;
+
+    clGetDeviceIDs(platform,
+            CL_DEVICE_TYPE_GPU,
+            10,
+            devices,
+            &amp;numDevices);
+
+    cl_context context = clCreateContext(NULL,
+            1,
+            devices,
+            NULL,
+            NULL, /**/);                                    // Callback param.
+
+    return 0;
+}</pre>
+
+<pre class="prettyprint lang-c linenums" data-step="15">#include &lt;stdio.h&gt;
+
+#include &lt;CL/cl.h&gt;
+
+int main(int argc, char* argv[]) {
+    cl_platform_id platforms[10];
+    int numPlatforms;
+
+    clGetPlatformIDs(10, platforms, &amp;numPlatforms);
+
+    cl_platform_id platform = platforms[0];
+
+    cl_device_id devices[10];
+    int numDevices;
+
+    clGetDeviceIDs(platform,
+            CL_DEVICE_TYPE_GPU,
+            10,
+            devices,
+            &amp;numDevices);
+
+    cl_context context = clCreateContext(NULL,
+            1,
+            devices,
+            NULL,
+            NULL,
+            NULL);                                          // Return code ptr.
+
+    return 0;
+}</pre>
+
+<script type="text/javascript">
+    PR.prettyPrint();
+</script>

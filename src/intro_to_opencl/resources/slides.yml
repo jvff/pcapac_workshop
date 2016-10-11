@@ -20,4 +20,5 @@ Introduction to OpenCL:
     - listing_devices
     - device_information
     - using_one_platform
+    - using_one_gpu
     - thanks
