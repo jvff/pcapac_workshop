@@ -22,4 +22,5 @@ Introduction to OpenCL:
     - using_one_platform
     - using_one_gpu
     - compute_kernels
+    - opencl_c
     - thanks
