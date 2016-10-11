@@ -24,4 +24,5 @@ Introduction to OpenCL:
     - compute_kernels
     - opencl_c
     - device_memory
+    - allocating_memory
     - thanks

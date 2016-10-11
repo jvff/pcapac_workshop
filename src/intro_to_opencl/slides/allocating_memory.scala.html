@@ -1,0 +1,151 @@
+<h1>Allocating memory</h1>
+
+<pre class="prettyprint lang-c linenums" data-step="0">#include &lt;stdio.h&gt;
+
+#include &lt;CL/cl.h&gt;
+
+int main(int argc, char* argv[]) {
+    cl_platform_id platforms[10];
+    int numPlatforms;
+
+    clGetPlatformIDs(10, platforms, &amp;numPlatforms);
+
+    cl_platform_id platform = platforms[0];
+
+    cl_device_id devices[10];
+    int numDevices;
+
+    clGetDeviceIDs(platform,
+            CL_DEVICE_TYPE_GPU,
+            10,
+            devices,
+            &amp;numDevices);
+
+    cl_context context = clCreateContext(NULL,
+            1,
+            devices,
+            NULL,
+            NULL,
+            NULL);
+
+    return 0;
+}</pre>
+
+<!-- { -->
+<pre class="prettyprint lang-c linenums:20" data-step="1">    // ...
+
+    cl_context context = clCreateContext(NULL,
+            1,
+            devices,
+            NULL,
+            NULL,
+            NULL);
+
+    return 0;
+}</pre>
+
+<!-- { -->
+<pre class="prettyprint lang-c linenums:20" data-step="2">    // ...
+
+    cl_context context = clCreateContext(NULL,
+            1,
+            devices,
+            NULL,
+            NULL,
+            NULL);
+
+    cl_mem buffer = clCreateBuffer(/**/);          // Create a device memory
+                                                   // reference
+
+    return 0;
+}</pre>
+
+<!-- { -->
+<pre class="prettyprint lang-c linenums:20" data-step="3">    // ...
+
+    cl_context context = clCreateContext(NULL,
+            1,
+            devices,
+            NULL,
+            NULL,
+            NULL);
+
+    cl_mem buffer = clCreateBuffer(context, /**/); // The context to use
+
+
+    return 0;
+}</pre>
+
+<!-- { -->
+<pre class="prettyprint lang-c linenums:20" data-step="4">    // ...
+
+    cl_context context = clCreateContext(NULL,
+            1,
+            devices,
+            NULL,
+            NULL,
+            NULL);
+
+    cl_mem buffer = clCreateBuffer(context,
+            CL_MEM_WRITE_ONLY, /**/);              // Flags
+
+    return 0;
+}</pre>
+
+<!-- { -->
+<pre class="prettyprint lang-c linenums:20" data-step="5">    // ...
+
+    cl_context context = clCreateContext(NULL,
+            1,
+            devices,
+            NULL,
+            NULL,
+            NULL);
+
+    cl_mem buffer = clCreateBuffer(context,
+            CL_MEM_WRITE_ONLY,
+            100, /**/);                            // Size
+
+    return 0;
+}</pre>
+
+<!-- { -->
+<pre class="prettyprint lang-c linenums:20" data-step="6">    // ...
+
+    cl_context context = clCreateContext(NULL,
+            1,
+            devices,
+            NULL,
+            NULL,
+            NULL);
+
+    cl_mem buffer = clCreateBuffer(context,
+            CL_MEM_WRITE_ONLY,
+            100,
+            NULL, /**/);                           // Host memory pointer
+
+    return 0;
+}</pre>
+
+<!-- { -->
+<pre class="prettyprint lang-c linenums:20" data-step="7">    // ...
+
+    cl_context context = clCreateContext(NULL,
+            1,
+            devices,
+            NULL,
+            NULL,
+            NULL);
+
+    cl_mem buffer = clCreateBuffer(context,
+            CL_MEM_WRITE_ONLY,
+            100,
+            NULL,
+            NULL);                                 // Address for error code
+
+    return 0;
+}</pre>
+
+<script type="text/javascript">
+    PR.prettyPrint();
+</script>
