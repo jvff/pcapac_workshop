@@ -1,0 +1,570 @@
+<h1>Compiling the Kernel</h1>
+
+<pre class="prettyprint lang-c linenums" data-step="0">#include &lt;stdio.h&gt;
+#include &lt;stdlib.h&gt;
+
+#include &lt;CL/cl.h&gt;
+
+const char* load_from_file(const char* file_name) {
+    FILE* file = fopen(file_name, "r");
+
+    fseek(file, 0, SEEK_END);
+    long file_size = ftell(file);
+    rewind(file);
+
+    char* file_contents = malloc(file_size + 1);
+    fread(file_contents, file_size, 1, file);
+    file_contents[file_size] = '\0';
+
+    return file_contents;
+}
+
+int main(int argc, char* argv[]) {
+    // ...</pre>
+<!-- } -->
+
+<pre class="prettyprint lang-c linenums" data-step="1">#include &lt;stdio.h&gt;
+#include &lt;stdlib.h&gt;
+#include &lt;string.h&gt;                       // To use strlen later on
+
+#include &lt;CL/cl.h&gt;
+
+const char* load_from_file(const char* file_name) {
+    FILE* file = fopen(file_name, "r");
+
+    fseek(file, 0, SEEK_END);
+    long file_size = ftell(file);
+    rewind(file);
+
+    char* file_contents = malloc(file_size + 1);
+    fread(file_contents, file_size, 1, file);
+    file_contents[file_size] = '\0';
+
+    return file_contents;
+}
+
+int main(int argc, char* argv[]) {
+    // ...</pre>
+<!-- } -->
+
+<pre class="prettyprint lang-c linenums:19" data-step="2">// ...
+
+int main(int argc, char* argv[]) {
+    cl_platform_id platforms[10];
+    int numPlatforms;
+
+    clGetPlatformIDs(10, platforms, &amp;numPlatforms);
+
+    cl_platform_id platform = platforms[0];
+
+    cl_device_id devices[10];
+    int numDevices;
+
+    clGetDeviceIDs(platform,
+            CL_DEVICE_TYPE_GPU,
+            10,
+            devices,
+            &amp;numDevices);
+
+    cl_context context = clCreateContext(NULL,
+            1,
+            devices,
+            NULL,
+            NULL,
+            NULL);
+
+    const char* source_code = load_from_file("kernel.cl");
+
+    free(source_code);
+
+    return 0;
+}</pre>
+
+<!-- { -->
+<pre class="prettyprint lang-c linenums:36" data-step="3">    // ...
+
+    cl_context context = clCreateContext(NULL,
+            1,
+            devices,
+            NULL,
+            NULL,
+            NULL);
+
+    const char* source_code = load_from_file("kernel.cl");
+
+    free(source_code);
+
+    return 0;
+}</pre>
+
+<!-- { -->
+<pre class="prettyprint lang-c linenums:36" data-step="4">    // ...
+
+    cl_context context = clCreateContext(NULL,
+            1,
+            devices,
+            NULL,
+            NULL,
+            NULL);
+
+    const char* source_code = load_from_file("kernel.cl");
+    const size_t source_code_length = strlen(source_code);   // Calculate source
+                                                             // string length
+
+    free(source_code);
+
+    return 0;
+}</pre>
+
+<!-- { -->
+<pre class="prettyprint lang-c linenums:36" data-step="5">    // ...
+
+    cl_context context = clCreateContext(NULL,
+            1,
+            devices,
+            NULL,
+            NULL,
+            NULL);
+
+    const char* source_code = load_from_file("kernel.cl");
+    const size_t source_code_length = strlen(source_code);
+    cl_program program = clCreateProgramWithSource(/**/);    // Create a program
+                                                             // representation
+
+    free(source_code);
+
+    return 0;
+}</pre>
+
+<!-- { -->
+<pre class="prettyprint lang-c linenums:36" data-step="6">    // ...
+
+    cl_context context = clCreateContext(NULL,
+            1,
+            devices,
+            NULL,
+            NULL,
+            NULL);
+
+    const char* source_code = load_from_file("kernel.cl");
+    const size_t source_code_length = strlen(source_code);
+    cl_program program = clCreateProgramWithSource(context, /**/); // Context
+
+
+    free(source_code);
+
+    return 0;
+}</pre>
+
+<!-- { -->
+<pre class="prettyprint lang-c linenums:36" data-step="7">    // ...
+
+    cl_context context = clCreateContext(NULL,
+            1,
+            devices,
+            NULL,
+            NULL,
+            NULL);
+
+    const char* source_code = load_from_file("kernel.cl");
+    const size_t source_code_length = strlen(source_code);
+    cl_program program = clCreateProgramWithSource(context,
+            1, /**/);                           // Number of strings to use
+
+    free(source_code);
+
+    return 0;
+}</pre>
+
+<!-- { -->
+<pre class="prettyprint lang-c linenums:36" data-step="8">    // ...
+
+    cl_context context = clCreateContext(NULL,
+            1,
+            devices,
+            NULL,
+            NULL,
+            NULL);
+
+    const char* source_code = load_from_file("kernel.cl");
+    const size_t source_code_length = strlen(source_code);
+    cl_program program = clCreateProgramWithSource(context,
+            1,
+            &amp;source_code, /**/);                // Address to string array
+
+    free(source_code);
+
+    return 0;
+}</pre>
+
+<!-- { -->
+<pre class="prettyprint lang-c linenums:36" data-step="9">    // ...
+
+    cl_context context = clCreateContext(NULL,
+            1,
+            devices,
+            NULL,
+            NULL,
+            NULL);
+
+    const char* source_code = load_from_file("kernel.cl");
+    const size_t source_code_length = strlen(source_code);
+    cl_program program = clCreateProgramWithSource(context,
+            1,
+            &amp;source_code,
+            &amp;source_code_length, /**/);         // Address to string array
+
+    free(source_code);
+
+    return 0;
+}</pre>
+
+<!-- { -->
+<pre class="prettyprint lang-c linenums:36" data-step="10">    // ...
+
+    cl_context context = clCreateContext(NULL,
+            1,
+            devices,
+            NULL,
+            NULL,
+            NULL);
+
+    const char* source_code = load_from_file("kernel.cl");
+    const size_t source_code_length = strlen(source_code);
+    cl_program program = clCreateProgramWithSource(context,
+            1,
+            &amp;source_code,
+            &amp;source_code_length,
+            NULL);                                  // Address to store error
+
+    free(source_code);
+
+    return 0;
+}</pre>
+
+<!-- { -->
+<pre class="prettyprint lang-c linenums:36" data-step="11">    // ...
+
+    cl_context context = clCreateContext(NULL,
+            1,
+            devices,
+            NULL,
+            NULL,
+            NULL);
+
+    const char* source_code = load_from_file("kernel.cl");
+    const size_t source_code_length = strlen(source_code);
+    cl_program program = clCreateProgramWithSource(context,
+            1,
+            &amp;source_code,
+            &amp;source_code_length,
+            NULL);
+
+    clBuildProgram(/**/);                           // Compile the program
+
+    free(source_code);
+
+    return 0;
+}</pre>
+
+<!-- { -->
+<pre class="prettyprint lang-c linenums:36" data-step="12">    // ...
+
+    cl_context context = clCreateContext(NULL,
+            1,
+            devices,
+            NULL,
+            NULL,
+            NULL);
+
+    const char* source_code = load_from_file("kernel.cl");
+    const size_t source_code_length = strlen(source_code);
+    cl_program program = clCreateProgramWithSource(context,
+            1,
+            &amp;source_code,
+            &amp;source_code_length,
+            NULL);
+
+    clBuildProgram(program, /**/);                  // Which program
+
+    free(source_code);
+
+    return 0;
+}</pre>
+
+<!-- { -->
+<pre class="prettyprint lang-c linenums:36" data-step="13">    // ...
+
+    cl_context context = clCreateContext(NULL,
+            1,
+            devices,
+            NULL,
+            NULL,
+            NULL);
+
+    const char* source_code = load_from_file("kernel.cl");
+    const size_t source_code_length = strlen(source_code);
+    cl_program program = clCreateProgramWithSource(context,
+            1,
+            &amp;source_code,
+            &amp;source_code_length,
+            NULL);
+
+    clBuildProgram(program,
+            0, /**/);                               // Size of device array
+
+    free(source_code);
+
+    return 0;
+}</pre>
+
+<!-- { -->
+<pre class="prettyprint lang-c linenums:36" data-step="14">    // ...
+
+    cl_context context = clCreateContext(NULL,
+            1,
+            devices,
+            NULL,
+            NULL,
+            NULL);
+
+    const char* source_code = load_from_file("kernel.cl");
+    const size_t source_code_length = strlen(source_code);
+    cl_program program = clCreateProgramWithSource(context,
+            1,
+            &amp;source_code,
+            &amp;source_code_length,
+            NULL);
+
+    clBuildProgram(program,
+            0,
+            NULL, /**/);                            // Device array
+                                                    // (default is all devices
+                                                    // of the context)
+
+    free(source_code);
+
+    return 0;
+}</pre>
+
+<!-- { -->
+<pre class="prettyprint lang-c linenums:36" data-step="15">    // ...
+
+    cl_context context = clCreateContext(NULL,
+            1,
+            devices,
+            NULL,
+            NULL,
+            NULL);
+
+    const char* source_code = load_from_file("kernel.cl");
+    const size_t source_code_length = strlen(source_code);
+    cl_program program = clCreateProgramWithSource(context,
+            1,
+            &amp;source_code,
+            &amp;source_code_length,
+            NULL);
+
+    clBuildProgram(program,
+            0,
+            NULL,
+            NULL, /**/);                            // Build options string
+
+
+    free(source_code);
+
+    return 0;
+}</pre>
+
+<!-- { -->
+<pre class="prettyprint lang-c linenums:36" data-step="16">    // ...
+
+    cl_context context = clCreateContext(NULL,
+            1,
+            devices,
+            NULL,
+            NULL,
+            NULL);
+
+    const char* source_code = load_from_file("kernel.cl");
+    const size_t source_code_length = strlen(source_code);
+    cl_program program = clCreateProgramWithSource(context,
+            1,
+            &amp;source_code,
+            &amp;source_code_length,
+            NULL);
+
+    clBuildProgram(program,
+            0,
+            NULL,
+            NULL,
+            NULL, /**/);                            // Callback
+
+    free(source_code);
+
+    return 0;
+}</pre>
+
+<!-- { -->
+<pre class="prettyprint lang-c linenums:36" data-step="17">    // ...
+
+    cl_context context = clCreateContext(NULL,
+            1,
+            devices,
+            NULL,
+            NULL,
+            NULL);
+
+    const char* source_code = load_from_file("kernel.cl");
+    const size_t source_code_length = strlen(source_code);
+    cl_program program = clCreateProgramWithSource(context,
+            1,
+            &amp;source_code,
+            &amp;source_code_length,
+            NULL);
+
+    clBuildProgram(program,
+            0,
+            NULL,
+            NULL,
+            NULL,
+            NULL);                                  // Callback parameter
+
+    free(source_code);
+
+    return 0;
+}</pre>
+
+<!-- { -->
+<pre class="prettyprint lang-c linenums:36" data-step="18">    // ...
+
+    cl_context context = clCreateContext(NULL,
+            1,
+            devices,
+            NULL,
+            NULL,
+            NULL);
+
+    const char* source_code = load_from_file("kernel.cl");
+    const size_t source_code_length = strlen(source_code);
+    cl_program program = clCreateProgramWithSource(context,
+            1,
+            &amp;source_code,
+            &amp;source_code_length,
+            NULL);
+
+    clBuildProgram(program,
+            0,
+            NULL,
+            NULL,
+            NULL,
+            NULL);
+
+    cl_kernel kernel = clCreateKernel(/**/);        // Obtain kernel reference
+
+    free(source_code);
+
+    return 0;
+}</pre>
+
+<!-- { -->
+<pre class="prettyprint lang-c linenums:36" data-step="19">    // ...
+
+    cl_context context = clCreateContext(NULL,
+            1,
+            devices,
+            NULL,
+            NULL,
+            NULL);
+
+    const char* source_code = load_from_file("kernel.cl");
+    const size_t source_code_length = strlen(source_code);
+    cl_program program = clCreateProgramWithSource(context,
+            1,
+            &amp;source_code,
+            &amp;source_code_length,
+            NULL);
+
+    clBuildProgram(program,
+            0,
+            NULL,
+            NULL,
+            NULL,
+            NULL);
+
+    cl_kernel kernel = clCreateKernel(program, /**/); // Source program
+
+    free(source_code);
+
+    return 0;
+}</pre>
+
+<!-- { -->
+<pre class="prettyprint lang-c linenums:36" data-step="20">    // ...
+
+    cl_context context = clCreateContext(NULL,
+            1,
+            devices,
+            NULL,
+            NULL,
+            NULL);
+
+    const char* source_code = load_from_file("kernel.cl");
+    const size_t source_code_length = strlen(source_code);
+    cl_program program = clCreateProgramWithSource(context,
+            1,
+            &amp;source_code,
+            &amp;source_code_length,
+            NULL);
+
+    clBuildProgram(program,
+            0,
+            NULL,
+            NULL,
+            NULL,
+            NULL);
+
+    cl_kernel kernel = clCreateKernel(program, "matrixMultiplication", /**/);
+                                                    // Kernel name
+
+    free(source_code);
+
+    return 0;
+}</pre>
+
+<!-- { -->
+<pre class="prettyprint lang-c linenums:36" data-step="21">    // ...
+
+    cl_context context = clCreateContext(NULL,
+            1,
+            devices,
+            NULL,
+            NULL,
+            NULL);
+
+    const char* source_code = load_from_file("kernel.cl");
+    const size_t source_code_length = strlen(source_code);
+    cl_program program = clCreateProgramWithSource(context,
+            1,
+            &amp;source_code,
+            &amp;source_code_length,
+            NULL);
+
+    clBuildProgram(program,
+            0,
+            NULL,
+            NULL,
+            NULL,
+            NULL);
+
+    cl_kernel kernel = clCreateKernel(program, "matrixMultiplication", NULL);
+                                                    // Address to store error
+
+    free(source_code);
+
+    return 0;
+}</pre>
+
+<script type="text/javascript">
+    PR.prettyPrint();
+</script>
