@@ -27,14 +27,14 @@
         __global const float* A,
         __global const float* B,
         __global float* C,
-        uint Acols, /**/) {                    // Number of columns in matrix A
+        uint Bcols, /**/) {                    // Number of columns in matrix B
 }</pre>
 
 <pre class="prettyprint lang-c linenums" data-step="7">__kernel void matrixMultiplication(
         __global const float* A,
         __global const float* B,
         __global float* C,
-        uint Acols,
+        uint Bcols,
         uint N) {                              // Number of elements to multiply
 }</pre>
 
@@ -42,7 +42,7 @@
         __global const float* A,
         __global const float* B,
         __global float* C,
-        uint Acols,
+        uint Bcols,
         uint N) {
     int i;                                     // = ?
     int j;                                     // = ?
@@ -52,7 +52,7 @@
         __global const float* A,
         __global const float* B,
         __global float* C,
-        uint Acols,
+        uint Bcols,
         uint N) {
     int i = get_global_id(0);                  // Thread specific ID
     int j;                                     // = ?
@@ -62,7 +62,7 @@
         __global const float* A,
         __global const float* B,
         __global float* C,
-        uint Acols,
+        uint Bcols,
         uint N) {
     int i = get_global_id(0);                  // X-dimension
     int j = get_global_id(1);                  // Y-dimension
@@ -72,7 +72,7 @@
         __global const float* A,
         __global const float* B,
         __global float* C,
-        uint Acols,
+        uint Bcols,
         uint N) {
     int i = get_global_id(0);
     int j = get_global_id(1);
@@ -84,7 +84,7 @@
         __global const float* A,
         __global const float* B,
         __global float* C,
-        uint Acols,
+        uint Bcols,
         uint N) {
     int i = get_global_id(0);
     int j = get_global_id(1);
@@ -99,7 +99,7 @@
         __global const float* A,
         __global const float* B,
         __global float* C,
-        uint Acols,
+        uint Bcols,
         uint N) {
     int i = get_global_id(0);
     int j = get_global_id(1);
@@ -107,14 +107,14 @@
     float result = 0.f;
 
     for (uint k = 0; k &lt; N; ++k)
-        result += a[i*Acols + k] * b[k*N + j]; // Calculate one multiplication
+        result += a[i*N + k] * b[k*Bcols + j]; // Calculate one multiplication
 }</pre>
 
 <pre class="prettyprint lang-c linenums" data-step="14">__kernel void matrixMultiplication(
         __global const float* A,
         __global const float* B,
         __global float* C,
-        uint Acols,
+        uint Bcols,
         uint N) {
     int i = get_global_id(0);
     int j = get_global_id(1);
@@ -122,7 +122,7 @@
     float result = 0.f;
 
     for (uint k = 0; k &lt; N; ++k)
-        result += a[i*Acols + k] * b[k*N + j];
+        result += a[i*N + k] * b[k*Bcols + j];
 
     C[i*N + j] = result;                       // Store result
 }</pre>

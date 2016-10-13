@@ -7,7 +7,7 @@ Simple Matrix Multiplication Kernel
     - Matrix \\( \mathbf{B} \\)
     - Output Matrix \\( \mathbf{C} \\)
     - Output element row \\(i\\) and column \\(j\\)
-    - Number of columns \\(A_{cols}\\) in matrix \\( \mathbf{A} \\)
+    - Number of columns \\(B_{cols}\\) in matrix \\( \mathbf{B} \\)
     - Number of elements to multiply \\( N \\)
 - Algorithm:
     - \\( c_{i,j} \leftarrow 0 \\)
