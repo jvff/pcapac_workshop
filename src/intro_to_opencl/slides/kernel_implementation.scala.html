@@ -1,0 +1,132 @@
+<h1>Kernel Implementation</h1>
+
+<pre class="prettyprint lang-c linenums" data-step="0">// Compute kernel</pre>
+
+<pre class="prettyprint lang-c linenums" data-step="1"></pre>
+
+<pre class="prettyprint lang-c linenums" data-step="2">__kernel void matrixMultiplication(/**/) {
+    // Create initial kernel function
+}</pre>
+
+<pre class="prettyprint lang-c linenums" data-step="3">__kernel void matrixMultiplication(
+        __global const float* A, /**/) {       // Input matrix A
+}</pre>
+
+<pre class="prettyprint lang-c linenums" data-step="4">__kernel void matrixMultiplication(
+        __global const float* A,
+        __global const float* B, /**/) {       // Input matrix B
+}</pre>
+
+<pre class="prettyprint lang-c linenums" data-step="5">__kernel void matrixMultiplication(
+        __global const float* A,
+        __global const float* B,
+        __global float* C, /**/) {             // Output matrix C
+}</pre>
+
+<pre class="prettyprint lang-c linenums" data-step="6">__kernel void matrixMultiplication(
+        __global const float* A,
+        __global const float* B,
+        __global float* C,
+        uint Acols, /**/) {                    // Number of columns in matrix A
+}</pre>
+
+<pre class="prettyprint lang-c linenums" data-step="7">__kernel void matrixMultiplication(
+        __global const float* A,
+        __global const float* B,
+        __global float* C,
+        uint Acols,
+        uint N) {                              // Number of elements to multiply
+}</pre>
+
+<pre class="prettyprint lang-c linenums" data-step="8">__kernel void matrixMultiplication(
+        __global const float* A,
+        __global const float* B,
+        __global float* C,
+        uint Acols,
+        uint N) {
+    int i;                                     // = ?
+    int j;                                     // = ?
+}</pre>
+
+<pre class="prettyprint lang-c linenums" data-step="9">__kernel void matrixMultiplication(
+        __global const float* A,
+        __global const float* B,
+        __global float* C,
+        uint Acols,
+        uint N) {
+    int i = get_global_id(0);                  // Thread specific ID
+    int j;                                     // = ?
+}</pre>
+
+<pre class="prettyprint lang-c linenums" data-step="10">__kernel void matrixMultiplication(
+        __global const float* A,
+        __global const float* B,
+        __global float* C,
+        uint Acols,
+        uint N) {
+    int i = get_global_id(0);                  // X-dimension
+    int j = get_global_id(1);                  // Y-dimension
+}</pre>
+
+<pre class="prettyprint lang-c linenums" data-step="11">__kernel void matrixMultiplication(
+        __global const float* A,
+        __global const float* B,
+        __global float* C,
+        uint Acols,
+        uint N) {
+    int i = get_global_id(0);
+    int j = get_global_id(1);
+
+    float result = 0.f;                        // Accumulator for output element
+}</pre>
+
+<pre class="prettyprint lang-c linenums" data-step="12">__kernel void matrixMultiplication(
+        __global const float* A,
+        __global const float* B,
+        __global float* C,
+        uint Acols,
+        uint N) {
+    int i = get_global_id(0);
+    int j = get_global_id(1);
+
+    float result = 0.f;
+
+    for (uint k = 0; k &lt; N; ++k)
+        // Loop for every element to multiply
+}</pre>
+
+<pre class="prettyprint lang-c linenums" data-step="13">__kernel void matrixMultiplication(
+        __global const float* A,
+        __global const float* B,
+        __global float* C,
+        uint Acols,
+        uint N) {
+    int i = get_global_id(0);
+    int j = get_global_id(1);
+
+    float result = 0.f;
+
+    for (uint k = 0; k &lt; N; ++k)
+        result += a[i*Acols + k] * b[k*N + j]; // Calculate one multiplication
+}</pre>
+
+<pre class="prettyprint lang-c linenums" data-step="14">__kernel void matrixMultiplication(
+        __global const float* A,
+        __global const float* B,
+        __global float* C,
+        uint Acols,
+        uint N) {
+    int i = get_global_id(0);
+    int j = get_global_id(1);
+
+    float result = 0.f;
+
+    for (uint k = 0; k &lt; N; ++k)
+        result += a[i*Acols + k] * b[k*N + j];
+
+    C[i*N + j] = result;                       // Store result
+}</pre>
+
+<script type="text/javascript">
+    PR.prettyPrint();
+</script>
