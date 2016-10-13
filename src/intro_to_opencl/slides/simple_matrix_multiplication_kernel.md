@@ -5,7 +5,9 @@ Simple Matrix Multiplication Kernel
 - Inputs:
     - Matrix \\( \mathbf{A} \\)
     - Matrix \\( \mathbf{B} \\)
+    - Output Matrix \\( \mathbf{C} \\)
     - Output element row \\(i\\) and column \\(j\\)
+    - Number of columns \\(A_{cols}\\) in matrix \\( \mathbf{A} \\)
     - Number of elements to multiply \\( N \\)
 - Algorithm:
     - \\( c_{i,j} \leftarrow 0 \\)
