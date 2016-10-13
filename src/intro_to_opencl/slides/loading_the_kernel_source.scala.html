@@ -229,6 +229,26 @@ int main(int argc, char* argv[]) {
 <!-- } -->
 
 <pre class="prettyprint lang-c linenums" data-step="11">#include &lt;stdio.h&gt;
+#include &lt;stdlib.h&gt;                                   // To use malloc and free
+
+#include &lt;CL/cl.h&gt;
+
+const char* load_from_file(const char* file_name) {
+    FILE* file = fopen(file_name, "r");
+
+    fseek(file, 0, SEEK_END);
+    long file_size = ftell(file);
+    rewind(file);
+
+    char* file_contents = malloc(file_size + 1);
+}
+
+int main(int argc, char* argv[]) {
+    // ...</pre>
+<!-- } -->
+
+<pre class="prettyprint lang-c linenums" data-step="12">#include &lt;stdio.h&gt;
+#include &lt;stdlib.h&gt;
 
 #include &lt;CL/cl.h&gt;
 
@@ -247,7 +267,8 @@ int main(int argc, char* argv[]) {
     // ...</pre>
 <!-- } -->
 
-<pre class="prettyprint lang-c linenums" data-step="12">#include &lt;stdio.h&gt;
+<pre class="prettyprint lang-c linenums" data-step="13">#include &lt;stdio.h&gt;
+#include &lt;stdlib.h&gt;
 
 #include &lt;CL/cl.h&gt;
 
@@ -267,7 +288,8 @@ int main(int argc, char* argv[]) {
     // ...</pre>
 <!-- } -->
 
-<pre class="prettyprint lang-c linenums" data-step="13">#include &lt;stdio.h&gt;
+<pre class="prettyprint lang-c linenums" data-step="14">#include &lt;stdio.h&gt;
+#include &lt;stdlib.h&gt;
 
 #include &lt;CL/cl.h&gt;
 
