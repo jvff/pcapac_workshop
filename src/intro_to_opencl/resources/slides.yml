@@ -23,6 +23,7 @@ Introduction to OpenCL:
     - using_one_gpu
     - compute_kernels
     - opencl_c
+    - matrix_multiplication
     - device_memory
     - allocating_memory
     - thanks
