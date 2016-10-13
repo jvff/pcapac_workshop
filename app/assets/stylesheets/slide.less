@@ -129,21 +129,15 @@
 }
 
 [data-step-status='hidden'] {
-    visibility: hidden
-}
-
-text [data-step-status='hidden'] {
     display: none
 }
 
-td [data-step-status='hidden'] {
-    display: none
+li[data-step-status='hidden'] {
+    visibility: hidden;
+    display: block;
 }
 
-img[data-step-status='hidden'] {
-    display: none
-}
-
-pre[data-step-status='hidden'] {
-    display: none
+td[data-step-status='hidden'] {
+    visibility: hidden;
+    display: table-cell;
 }
