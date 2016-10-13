@@ -1,0 +1,182 @@
+<h1>Test Parameters</h1>
+
+<!-- { -->
+<pre class="prettyprint lang-c linenums:36" data-step="0">    // ...
+
+    cl_context context = clCreateContext(NULL,
+            1,
+            devices,
+            NULL,
+            NULL,
+            NULL);
+
+    const char* source_code = load_from_file("kernel.cl");
+    const size_t source_code_length = strlen(source_code);
+    cl_program program = clCreateProgramWithSource(context,
+            1,
+            &amp;source_code,
+            &amp;source_code_length,
+            NULL);
+
+    clBuildProgram(program,
+            0,
+            NULL,
+            NULL,
+            NULL,
+            NULL);
+
+    cl_kernel kernel = clCreateKernel(program, "matrixMultiplication", NULL);
+
+    free(source_code);
+
+    return 0;
+}</pre>
+
+<!-- { -->
+<pre class="prettyprint lang-c linenums:58" data-step="1">    // ...
+
+    cl_kernel kernel = clCreateKernel(program, "matrixMultiplication", NULL);
+
+    free(source_code);
+
+    return 0;
+}</pre>
+
+<!-- { -->
+<pre class="prettyprint lang-c linenums:58" data-step="2">    // ...
+
+    cl_kernel kernel = clCreateKernel(program, "matrixMultiplication", NULL);
+
+    int rowsA = 4;              // Number of rows in matrix A
+    int colsA = 3;
+
+    free(source_code);
+
+    return 0;
+}</pre>
+
+<!-- { -->
+<pre class="prettyprint lang-c linenums:58" data-step="3">    // ...
+
+    cl_kernel kernel = clCreateKernel(program, "matrixMultiplication", NULL);
+
+    int rowsA = 4;
+    int colsA = 3;              // Number of columns in matrix A
+
+    free(source_code);
+
+    return 0;
+}</pre>
+
+<!-- { -->
+<pre class="prettyprint lang-c linenums:58" data-step="4">    // ...
+
+    cl_kernel kernel = clCreateKernel(program, "matrixMultiplication", NULL);
+
+    int rowsA = 4;
+    int colsA = 3;
+    int rowsB = 3;              // Number of rows in matrix B
+
+    free(source_code);
+
+    return 0;
+}</pre>
+
+<!-- { -->
+<pre class="prettyprint lang-c linenums:58" data-step="5">    // ...
+
+    cl_kernel kernel = clCreateKernel(program, "matrixMultiplication", NULL);
+
+    int rowsA = 4;
+    int colsA = 3;
+    int rowsB = 3;
+    int colsB = 5;              // Number of columns in matrix B
+
+    free(source_code);
+
+    return 0;
+}</pre>
+
+<!-- { -->
+<pre class="prettyprint lang-c linenums:58" data-step="6">    // ...
+
+    cl_kernel kernel = clCreateKernel(program, "matrixMultiplication", NULL);
+
+    int rowsA = 4;
+    int colsA = 3;
+    int rowsB = 3;
+    int colsB = 5;
+
+    float matrixA[] = {         // Declare matrix A
+        1.f,  -1.f,  0.f,
+        5.f,  10.f,  20.f,
+        0.1f,  0.f,  3.f,
+        0.5f, -0.1f, 100.f
+    };
+
+    free(source_code);
+
+    return 0;
+}</pre>
+
+<!-- { -->
+<pre class="prettyprint lang-c linenums:58" data-step="7">    // ...
+
+    cl_kernel kernel = clCreateKernel(program, "matrixMultiplication", NULL);
+
+    int rowsA = 4;
+    int colsA = 3;
+    int rowsB = 3;
+    int colsB = 5;
+
+    float matrixA[] = {
+        1.f,  -1.f,  0.f,
+        5.f,  10.f,  20.f,
+        0.1f,  0.f,  3.f,
+        0.5f, -0.1f, 100.f
+    };
+
+    float matrixB[] = {         // Declare matrix B
+        0.02f, 0.f,  50.f,  1.3f, 1.5f,
+        1.f,   1.f,  2.f,   2.1f, 0.f,
+        0.5f, -0.1f, 100.f, 0.9f, 1.1f
+    };
+
+    free(source_code);
+
+    return 0;
+}</pre>
+
+<!-- { -->
+<pre class="prettyprint lang-c linenums:58" data-step="8">    // ...
+
+    cl_kernel kernel = clCreateKernel(program, "matrixMultiplication", NULL);
+
+    int rowsA = 4;
+    int colsA = 3;
+    int rowsB = 3;
+    int colsB = 5;
+
+    float matrixA[] = {
+        1.f,  -1.f,  0.f,
+        5.f,  10.f,  20.f,
+        0.1f,  0.f,  3.f,
+        0.5f, -0.1f, 100.f
+    };
+
+    float matrixB[] = {
+        0.02f, 0.f,  50.f,  1.3f, 1.5f,
+        1.f,   1.f,  2.f,   2.1f, 0.f,
+        0.5f, -0.1f, 100.f, 0.9f, 1.1f
+    };
+
+    float matrixC[4*5];         // Declare result matrix C
+
+    free(source_code);
+
+    return 0;
+}</pre>
+
+<script type="text/javascript">
+    PR.prettyPrint();
+</script>

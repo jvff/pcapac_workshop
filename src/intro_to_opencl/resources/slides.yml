@@ -28,6 +28,7 @@ Introduction to OpenCL:
     - kernel_implementation
     - loading_the_kernel_source
     - compiling_the_kernel
+    - test_parameters
     - device_memory
     - allocating_memory
     - thanks
