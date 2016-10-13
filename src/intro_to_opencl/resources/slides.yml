@@ -24,6 +24,7 @@ Introduction to OpenCL:
     - compute_kernels
     - opencl_c
     - matrix_multiplication
+    - simple_matrix_multiplication_kernel
     - device_memory
     - allocating_memory
     - thanks
