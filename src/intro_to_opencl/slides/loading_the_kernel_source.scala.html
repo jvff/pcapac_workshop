@@ -1,0 +1,294 @@
+<h1>Loading the Kernel Source</h1>
+
+<pre class="prettyprint lang-c linenums" data-step="0">#include &lt;stdio.h&gt;
+
+#include &lt;CL/cl.h&gt;
+
+int main(int argc, char* argv[]) {
+    cl_platform_id platforms[10];
+    int numPlatforms;
+
+    clGetPlatformIDs(10, platforms, &amp;numPlatforms);
+
+    cl_platform_id platform = platforms[0];
+
+    cl_device_id devices[10];
+    int numDevices;
+
+    clGetDeviceIDs(platform,
+            CL_DEVICE_TYPE_GPU,
+            10,
+            devices,
+            &amp;numDevices);
+
+    cl_context context = clCreateContext(NULL,
+            1,
+            devices,
+            NULL,
+            NULL,
+            NULL);
+
+    return 0;
+}</pre>
+
+<pre class="prettyprint lang-c linenums" data-step="1">#include &lt;stdio.h&gt;
+
+#include &lt;CL/cl.h&gt;
+
+int main(int argc, char* argv[]) {
+    cl_platform_id platforms[10];
+    int numPlatforms;
+
+    clGetPlatformIDs(10, platforms, &amp;numPlatforms);
+
+    cl_platform_id platform = platforms[0];
+
+    cl_device_id devices[10];
+    int numDevices;
+
+    clGetDeviceIDs(platform,
+            CL_DEVICE_TYPE_GPU,
+            10,
+            devices,
+            &amp;numDevices);
+
+    cl_context context = clCreateContext(NULL,
+            1,
+            devices,
+            NULL,
+            NULL,
+            NULL);
+
+    const char* source_code = load_from_file(/**/); // We'll create a custom
+                                                    // function
+
+    return 0;
+}</pre>
+
+<pre class="prettyprint lang-c linenums" data-step="2">#include &lt;stdio.h&gt;
+
+#include &lt;CL/cl.h&gt;
+
+int main(int argc, char* argv[]) {
+    cl_platform_id platforms[10];
+    int numPlatforms;
+
+    clGetPlatformIDs(10, platforms, &amp;numPlatforms);
+
+    cl_platform_id platform = platforms[0];
+
+    cl_device_id devices[10];
+    int numDevices;
+
+    clGetDeviceIDs(platform,
+            CL_DEVICE_TYPE_GPU,
+            10,
+            devices,
+            &amp;numDevices);
+
+    cl_context context = clCreateContext(NULL,
+            1,
+            devices,
+            NULL,
+            NULL,
+            NULL);
+
+    const char* source_code = load_from_file("kernel.cl"); // Specify file name
+
+    return 0;
+}</pre>
+
+<pre class="prettyprint lang-c linenums" data-step="3">#include &lt;stdio.h&gt;
+
+#include &lt;CL/cl.h&gt;
+
+int main(int argc, char* argv[]) {
+    cl_platform_id platforms[10];
+    int numPlatforms;
+
+    clGetPlatformIDs(10, platforms, &amp;numPlatforms);
+
+    cl_platform_id platform = platforms[0];
+
+    cl_device_id devices[10];
+    int numDevices;
+
+    clGetDeviceIDs(platform,
+            CL_DEVICE_TYPE_GPU,
+            10,
+            devices,
+            &amp;numDevices);
+
+    cl_context context = clCreateContext(NULL,
+            1,
+            devices,
+            NULL,
+            NULL,
+            NULL);
+
+    const char* source_code = load_from_file("kernel.cl");
+
+    free(source_code);                  // Free the string after using it
+
+    return 0;
+}</pre>
+
+<pre class="prettyprint lang-c linenums" data-step="4">#include &lt;stdio.h&gt;
+
+#include &lt;CL/cl.h&gt;
+
+int main(int argc, char* argv[]) {
+    // ...</pre>
+<!-- } -->
+
+<pre class="prettyprint lang-c linenums" data-step="5">#include &lt;stdio.h&gt;
+
+#include &lt;CL/cl.h&gt;
+
+const char* load_from_file(const char* file_name) {
+    // Create function skeleton
+}
+
+int main(int argc, char* argv[]) {
+    // ...</pre>
+<!-- } -->
+
+<pre class="prettyprint lang-c linenums" data-step="6">#include &lt;stdio.h&gt;
+
+#include &lt;CL/cl.h&gt;
+
+const char* load_from_file(const char* file_name) {
+    FILE* file = fopen(file_name, "r");             // Open file
+}
+
+int main(int argc, char* argv[]) {
+    // ...</pre>
+<!-- } -->
+
+<pre class="prettyprint lang-c linenums" data-step="7">#include &lt;stdio.h&gt;
+
+#include &lt;CL/cl.h&gt;
+
+const char* load_from_file(const char* file_name) {
+    FILE* file = fopen(file_name, "r");
+
+    fseek(file, 0, SEEK_END);                       // Go to end of file
+}
+
+int main(int argc, char* argv[]) {
+    // ...</pre>
+<!-- } -->
+
+<pre class="prettyprint lang-c linenums" data-step="8">#include &lt;stdio.h&gt;
+
+#include &lt;CL/cl.h&gt;
+
+const char* load_from_file(const char* file_name) {
+    FILE* file = fopen(file_name, "r");
+
+    fseek(file, 0, SEEK_END);
+    long file_size = ftell(file);                   // Get current position
+}
+
+int main(int argc, char* argv[]) {
+    // ...</pre>
+<!-- } -->
+
+<pre class="prettyprint lang-c linenums" data-step="9">#include &lt;stdio.h&gt;
+
+#include &lt;CL/cl.h&gt;
+
+const char* load_from_file(const char* file_name) {
+    FILE* file = fopen(file_name, "r");
+
+    fseek(file, 0, SEEK_END);
+    long file_size = ftell(file);
+    rewind(file);                                   // Go back to start of file
+}
+
+int main(int argc, char* argv[]) {
+    // ...</pre>
+<!-- } -->
+
+<pre class="prettyprint lang-c linenums" data-step="10">#include &lt;stdio.h&gt;
+
+#include &lt;CL/cl.h&gt;
+
+const char* load_from_file(const char* file_name) {
+    FILE* file = fopen(file_name, "r");
+
+    fseek(file, 0, SEEK_END);
+    long file_size = ftell(file);
+    rewind(file);
+
+    char* file_contents = malloc(file_size + 1);    // Allocate string
+}
+
+int main(int argc, char* argv[]) {
+    // ...</pre>
+<!-- } -->
+
+<pre class="prettyprint lang-c linenums" data-step="11">#include &lt;stdio.h&gt;
+
+#include &lt;CL/cl.h&gt;
+
+const char* load_from_file(const char* file_name) {
+    FILE* file = fopen(file_name, "r");
+
+    fseek(file, 0, SEEK_END);
+    long file_size = ftell(file);
+    rewind(file);
+
+    char* file_contents = malloc(file_size + 1);
+    fread(file_contents, file_size, 1, file);       // Read file contents
+}
+
+int main(int argc, char* argv[]) {
+    // ...</pre>
+<!-- } -->
+
+<pre class="prettyprint lang-c linenums" data-step="12">#include &lt;stdio.h&gt;
+
+#include &lt;CL/cl.h&gt;
+
+const char* load_from_file(const char* file_name) {
+    FILE* file = fopen(file_name, "r");
+
+    fseek(file, 0, SEEK_END);
+    long file_size = ftell(file);
+    rewind(file);
+
+    char* file_contents = malloc(file_size + 1);
+    fread(file_contents, file_size, 1, file);
+    file_contents[file_size] = '\0';                // Zero-terminate the string
+}
+
+int main(int argc, char* argv[]) {
+    // ...</pre>
+<!-- } -->
+
+<pre class="prettyprint lang-c linenums" data-step="13">#include &lt;stdio.h&gt;
+
+#include &lt;CL/cl.h&gt;
+
+const char* load_from_file(const char* file_name) {
+    FILE* file = fopen(file_name, "r");
+
+    fseek(file, 0, SEEK_END);
+    long file_size = ftell(file);
+    rewind(file);
+
+    char* file_contents = malloc(file_size + 1);
+    fread(file_contents, file_size, 1, file);
+    file_contents[file_size] = '\0';
+
+    return file_contents;                           // Return file contents
+}
+
+int main(int argc, char* argv[]) {
+    // ...</pre>
+<!-- } -->
+
+<script type="text/javascript">
+    PR.prettyPrint();
+</script>
