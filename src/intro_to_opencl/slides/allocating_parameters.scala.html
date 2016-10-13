@@ -1,0 +1,337 @@
+<h1>Allocating Parameters</h1>
+
+<!-- { -->
+<pre class="prettyprint lang-c linenums:80" data-step="0">    // ...
+
+    free(source_code);
+
+    return 0;
+}</pre>
+
+<!-- { -->
+<pre class="prettyprint lang-c linenums:80" data-step="1">    // ...
+
+    cl_mem matrixAOnGpu = clCreateBuffer(/**/);    // Create a device memory
+                                                   // reference
+
+    free(source_code);
+
+    return 0;
+}</pre>
+
+<!-- { -->
+<pre class="prettyprint lang-c linenums:80" data-step="2">    // ...
+
+    cl_mem matrixAOnGpu = clCreateBuffer(context, /**/); // The context to use
+
+
+    free(source_code);
+
+    return 0;
+}</pre>
+
+<!-- { -->
+<pre class="prettyprint lang-c linenums:80" data-step="3">    // ...
+
+    cl_mem matrixAOnGpu = clCreateBuffer(context,
+            CL_MEM_READ_ONLY, /**/);               // Flags
+
+    free(source_code);
+
+    return 0;
+}</pre>
+
+<!-- { -->
+<pre class="prettyprint lang-c linenums:80" data-step="4">    // ...
+
+    cl_mem matrixAOnGpu = clCreateBuffer(context,
+            CL_MEM_READ_ONLY,
+            sizeof(float) * rowsA * colsA, /**/);  // Size
+
+    free(source_code);
+
+    return 0;
+}</pre>
+
+<!-- { -->
+<pre class="prettyprint lang-c linenums:80" data-step="5">    // ...
+
+    cl_mem matrixAOnGpu = clCreateBuffer(context,
+            CL_MEM_READ_ONLY,
+            sizeof(float) * rowsA * colsA,
+            NULL, /**/);                           // Host memory pointer
+
+    free(source_code);
+
+    return 0;
+}</pre>
+
+<!-- { -->
+<pre class="prettyprint lang-c linenums:80" data-step="6">    // ...
+
+    cl_mem matrixAOnGpu = clCreateBuffer(context,
+            CL_MEM_READ_ONLY,
+            sizeof(float) * rowsA * colsA,
+            NULL,
+            NULL);                                 // Address for error code
+
+    free(source_code);
+
+    return 0;
+}</pre>
+
+<!-- { -->
+<pre class="prettyprint lang-c linenums:80" data-step="7">    // ...
+
+    cl_mem matrixAOnGpu = clCreateBuffer(context,
+            CL_MEM_READ_ONLY,
+            sizeof(float) * rowsA * colsA,
+            NULL,
+            NULL);
+
+    cl_mem matrixBOnGpu = clCreateBuffer(/**/);    // Create a device memory
+                                                   // reference
+
+    free(source_code);
+
+    return 0;
+}</pre>
+
+<!-- { -->
+<pre class="prettyprint lang-c linenums:80" data-step="8">    // ...
+
+    cl_mem matrixAOnGpu = clCreateBuffer(context,
+            CL_MEM_READ_ONLY,
+            sizeof(float) * rowsA * colsA,
+            NULL,
+            NULL);
+
+    cl_mem matrixBOnGpu = clCreateBuffer(context, /**/); // The context to use
+
+
+    free(source_code);
+
+    return 0;
+}</pre>
+
+<!-- { -->
+<pre class="prettyprint lang-c linenums:80" data-step="9">    // ...
+
+    cl_mem matrixAOnGpu = clCreateBuffer(context,
+            CL_MEM_READ_ONLY,
+            sizeof(float) * rowsA * colsA,
+            NULL,
+            NULL);
+
+    cl_mem matrixBOnGpu = clCreateBuffer(context,
+            CL_MEM_READ_ONLY, /**/);               // Flags
+
+    free(source_code);
+
+    return 0;
+}</pre>
+
+<!-- { -->
+<pre class="prettyprint lang-c linenums:80" data-step="10">    // ...
+
+    cl_mem matrixAOnGpu = clCreateBuffer(context,
+            CL_MEM_READ_ONLY,
+            sizeof(float) * rowsA * colsA,
+            NULL,
+            NULL);
+
+    cl_mem matrixBOnGpu = clCreateBuffer(context,
+            CL_MEM_READ_ONLY,
+            sizeof(float) * rowsB * colsB, /**/);  // Size
+
+    free(source_code);
+
+    return 0;
+}</pre>
+
+<!-- { -->
+<pre class="prettyprint lang-c linenums:80" data-step="11">    // ...
+
+    cl_mem matrixAOnGpu = clCreateBuffer(context,
+            CL_MEM_READ_ONLY,
+            sizeof(float) * rowsA * colsA,
+            NULL,
+            NULL);
+
+    cl_mem matrixBOnGpu = clCreateBuffer(context,
+            CL_MEM_READ_ONLY,
+            sizeof(float) * rowsB * colsB,
+            NULL, /**/);                           // Host memory pointer
+
+    free(source_code);
+
+    return 0;
+}</pre>
+
+<!-- { -->
+<pre class="prettyprint lang-c linenums:80" data-step="12">    // ...
+
+    cl_mem matrixAOnGpu = clCreateBuffer(context,
+            CL_MEM_READ_ONLY,
+            sizeof(float) * rowsA * colsA,
+            NULL,
+            NULL);
+
+    cl_mem matrixBOnGpu = clCreateBuffer(context,
+            CL_MEM_READ_ONLY,
+            sizeof(float) * rowsB * colsB,
+            NULL,
+            NULL);                                 // Address for error code
+
+    free(source_code);
+
+    return 0;
+}</pre>
+
+<!-- { -->
+<pre class="prettyprint lang-c linenums:80" data-step="13">    // ...
+
+    cl_mem matrixAOnGpu = clCreateBuffer(context,
+            CL_MEM_READ_ONLY,
+            sizeof(float) * rowsA * colsA,
+            NULL,
+            NULL);
+
+    cl_mem matrixBOnGpu = clCreateBuffer(context,
+            CL_MEM_READ_ONLY,
+            sizeof(float) * rowsB * colsB,
+            NULL,
+            NULL);
+
+    cl_mem matrixCOnGpu = clCreateBuffer(/**/);    // Create a device memory
+                                                   // reference
+
+    free(source_code);
+
+    return 0;
+}</pre>
+
+<!-- { -->
+<pre class="prettyprint lang-c linenums:80" data-step="14">    // ...
+
+    cl_mem matrixAOnGpu = clCreateBuffer(context,
+            CL_MEM_READ_ONLY,
+            sizeof(float) * rowsA * colsA,
+            NULL,
+            NULL);
+
+    cl_mem matrixBOnGpu = clCreateBuffer(context,
+            CL_MEM_READ_ONLY,
+            sizeof(float) * rowsB * colsB,
+            NULL,
+            NULL);
+
+    cl_mem matrixCOnGpu = clCreateBuffer(context, /**/); // The context to use
+
+
+    free(source_code);
+
+    return 0;
+}</pre>
+
+<!-- { -->
+<pre class="prettyprint lang-c linenums:80" data-step="15">    // ...
+
+    cl_mem matrixAOnGpu = clCreateBuffer(context,
+            CL_MEM_READ_ONLY,
+            sizeof(float) * rowsA * colsA,
+            NULL,
+            NULL);
+
+    cl_mem matrixBOnGpu = clCreateBuffer(context,
+            CL_MEM_READ_ONLY,
+            sizeof(float) * rowsB * colsB,
+            NULL,
+            NULL);
+
+    cl_mem matrixCOnGpu = clCreateBuffer(context,
+            CL_MEM_WRITE_ONLY, /**/);               // Flags
+
+    free(source_code);
+
+    return 0;
+}</pre>
+
+<!-- { -->
+<pre class="prettyprint lang-c linenums:80" data-step="16">    // ...
+
+    cl_mem matrixAOnGpu = clCreateBuffer(context,
+            CL_MEM_READ_ONLY,
+            sizeof(float) * rowsA * colsA,
+            NULL,
+            NULL);
+
+    cl_mem matrixBOnGpu = clCreateBuffer(context,
+            CL_MEM_READ_ONLY,
+            sizeof(float) * rowsB * colsB,
+            NULL,
+            NULL);
+
+    cl_mem matrixCOnGpu = clCreateBuffer(context,
+            CL_MEM_WRITE_ONLY,
+            sizeof(float) * rowsA * colsB, /**/);  // Size
+
+    free(source_code);
+
+    return 0;
+}</pre>
+
+<!-- { -->
+<pre class="prettyprint lang-c linenums:80" data-step="17">    // ...
+
+    cl_mem matrixAOnGpu = clCreateBuffer(context,
+            CL_MEM_READ_ONLY,
+            sizeof(float) * rowsA * colsA,
+            NULL,
+            NULL);
+
+    cl_mem matrixBOnGpu = clCreateBuffer(context,
+            CL_MEM_READ_ONLY,
+            sizeof(float) * rowsB * colsB,
+            NULL,
+            NULL);
+
+    cl_mem matrixCOnGpu = clCreateBuffer(context,
+            CL_MEM_WRITE_ONLY,
+            sizeof(float) * rowsA * colsB,
+            NULL, /**/);                           // Host memory pointer
+
+    free(source_code);
+
+    return 0;
+}</pre>
+
+<!-- { -->
+<pre class="prettyprint lang-c linenums:80" data-step="18">    // ...
+
+    cl_mem matrixAOnGpu = clCreateBuffer(context,
+            CL_MEM_READ_ONLY,
+            sizeof(float) * rowsA * colsA,
+            NULL,
+            NULL);
+
+    cl_mem matrixBOnGpu = clCreateBuffer(context,
+            CL_MEM_READ_ONLY,
+            sizeof(float) * rowsB * colsB,
+            NULL,
+            NULL);
+
+    cl_mem matrixCOnGpu = clCreateBuffer(context,
+            CL_MEM_WRITE_ONLY,
+            sizeof(float) * rowsA * colsB,
+            NULL,
+            NULL);                                 // Address for error code
+
+    free(source_code);
+
+    return 0;
+}</pre>
+
+<script type="text/javascript">
+    PR.prettyPrint();
+</script>
