@@ -1,0 +1,557 @@
+<h1>Sending data to the GPU</h1>
+
+<!-- { -->
+<pre class="prettyprint lang-c linenums:98" data-step="0">    // ...
+
+    clSetKernelArg(kernel, 0, sizeof(matrixAOnGpu), (void*)&amp;matrixAOnGpu);
+    clSetKernelArg(kernel, 1, sizeof(matrixBOnGpu), (void*)&amp;matrixBOnGpu);
+    clSetKernelArg(kernel, 2, sizeof(matrixCOnGpu), (void*)&amp;matrixCOnGpu);
+    clSetKernelArg(kernel, 3, sizeof(colsB), (void*)&amp;colsB);
+    clSetKernelArg(kernel, 4, sizeof(colsA), (void*)&amp;colsA);
+
+    free(source_code);
+
+    return 0;
+}</pre>
+
+<!-- { -->
+<pre class="prettyprint lang-c linenums:104" data-step="1">    // ...
+
+    free(source_code);
+
+    return 0;
+}</pre>
+
+<!-- { -->
+<pre class="prettyprint lang-c linenums:104" data-step="2">    // ...
+
+    cl_command_queue commandQueue = clCreateCommandQueue(/**/);
+                                                    // Create a command queue
+
+    free(source_code);
+
+    return 0;
+}</pre>
+
+<!-- { -->
+<pre class="prettyprint lang-c linenums:104" data-step="3">    // ...
+
+    cl_command_queue commandQueue = clCreateCommandQueue(context, /**/);
+                                                    // Context to use
+
+    free(source_code);
+
+    return 0;
+}</pre>
+
+<!-- { -->
+<pre class="prettyprint lang-c linenums:104" data-step="4">    // ...
+
+    cl_command_queue commandQueue = clCreateCommandQueue(context,
+            device, /**/);                          // Device to send commands
+
+    free(source_code);
+
+    return 0;
+}</pre>
+
+<!-- { -->
+<pre class="prettyprint lang-c linenums:104" data-step="5">    // ...
+
+    cl_command_queue commandQueue = clCreateCommandQueue(context,
+            device,
+            0, /**/);                               // Properties
+
+    free(source_code);
+
+    return 0;
+}</pre>
+
+<!-- { -->
+<pre class="prettyprint lang-c linenums:104" data-step="6">    // ...
+
+    cl_command_queue commandQueue = clCreateCommandQueue(context,
+            device,
+            0,
+            NULL);                                  // Address to store error
+
+    free(source_code);
+
+    return 0;
+}</pre>
+
+<!-- { -->
+<pre class="prettyprint lang-c linenums:104" data-step="7">    // ...
+
+    cl_command_queue commandQueue = clCreateCommandQueue(context,
+            device,
+            0,
+            NULL);
+
+    clEnqueueWriteBuffer(/**/);                     // Queue sending data to GPU
+
+    free(source_code);
+
+    return 0;
+}</pre>
+
+<!-- { -->
+<pre class="prettyprint lang-c linenums:104" data-step="8">    // ...
+
+    cl_command_queue commandQueue = clCreateCommandQueue(context,
+            device,
+            0,
+            NULL);
+
+    clEnqueueWriteBuffer(commandQueue, /**/);       // Which command queue
+
+    free(source_code);
+
+    return 0;
+}</pre>
+
+<!-- { -->
+<pre class="prettyprint lang-c linenums:104" data-step="9">    // ...
+
+    cl_command_queue commandQueue = clCreateCommandQueue(context,
+            device,
+            0,
+            NULL);
+
+    clEnqueueWriteBuffer(commandQueue,
+            matrixAOnGpu, /**/);       // Which command queue
+
+    free(source_code);
+
+    return 0;
+}</pre>
+
+<!-- { -->
+<pre class="prettyprint lang-c linenums:104" data-step="10">    // ...
+
+    cl_command_queue commandQueue = clCreateCommandQueue(context,
+            device,
+            0,
+            NULL);
+
+    clEnqueueWriteBuffer(commandQueue,
+            matrixAOnGpu,
+            CL_FALSE, /**/);           // Blocking write
+
+    free(source_code);
+
+    return 0;
+}</pre>
+
+<!-- { -->
+<pre class="prettyprint lang-c linenums:104" data-step="11">    // ...
+
+    cl_command_queue commandQueue = clCreateCommandQueue(context,
+            device,
+            0,
+            NULL);
+
+    clEnqueueWriteBuffer(commandQueue,
+            matrixAOnGpu,
+            CL_FALSE,
+            0, /**/);                  // Offset to write to
+
+    free(source_code);
+
+    return 0;
+}</pre>
+
+<!-- { -->
+<pre class="prettyprint lang-c linenums:104" data-step="12">    // ...
+
+    cl_command_queue commandQueue = clCreateCommandQueue(context,
+            device,
+            0,
+            NULL);
+
+    clEnqueueWriteBuffer(commandQueue,
+            matrixAOnGpu,
+            CL_FALSE,
+            0,
+            sizeof(matrixA), /**/);    // Size of data to send
+
+    free(source_code);
+
+    return 0;
+}</pre>
+
+<!-- { -->
+<pre class="prettyprint lang-c linenums:104" data-step="13">    // ...
+
+    cl_command_queue commandQueue = clCreateCommandQueue(context,
+            device,
+            0,
+            NULL);
+
+    clEnqueueWriteBuffer(commandQueue,
+            matrixAOnGpu,
+            CL_FALSE,
+            0,
+            sizeof(matrixA),
+            matrixA, /**/);            // Address of data to send
+
+    free(source_code);
+
+    return 0;
+}</pre>
+
+<!-- { -->
+<pre class="prettyprint lang-c linenums:104" data-step="14">    // ...
+
+    cl_command_queue commandQueue = clCreateCommandQueue(context,
+            device,
+            0,
+            NULL);
+
+    clEnqueueWriteBuffer(commandQueue,
+            matrixAOnGpu,
+            CL_FALSE,
+            0,
+            sizeof(matrixA),
+            matrixA,
+            0, /**/);                  // Number of synchronization events
+
+    free(source_code);
+
+    return 0;
+}</pre>
+
+<!-- { -->
+<pre class="prettyprint lang-c linenums:104" data-step="15">    // ...
+
+    cl_command_queue commandQueue = clCreateCommandQueue(context,
+            device,
+            0,
+            NULL);
+
+    clEnqueueWriteBuffer(commandQueue,
+            matrixAOnGpu,
+            CL_FALSE,
+            0,
+            sizeof(matrixA),
+            matrixA,
+            0,
+            NULL, /**/);               // List of synchronization events
+
+    free(source_code);
+
+    return 0;
+}</pre>
+
+<!-- { -->
+<pre class="prettyprint lang-c linenums:104" data-step="16">    // ...
+
+    cl_command_queue commandQueue = clCreateCommandQueue(context,
+            device,
+            0,
+            NULL);
+
+    clEnqueueWriteBuffer(commandQueue,
+            matrixAOnGpu,
+            CL_FALSE,
+            0,
+            sizeof(matrixA),
+            matrixA,
+            0,
+            NULL,
+            NULL);                     // Where to store the respective event
+
+    free(source_code);
+
+    return 0;
+}</pre>
+
+<!-- { -->
+<pre class="prettyprint lang-c linenums:104" data-step="17">    // ...
+
+    cl_command_queue commandQueue = clCreateCommandQueue(context,
+            device,
+            0,
+            NULL);
+
+    clEnqueueWriteBuffer(commandQueue,
+            matrixAOnGpu,
+            CL_FALSE,
+            0,
+            sizeof(matrixA),
+            matrixA,
+            0,
+            NULL,
+            NULL);
+
+    clEnqueueWriteBuffer(/**/);                     // Queue sending data to GPU
+
+    free(source_code);
+
+    return 0;
+}</pre>
+
+<!-- { -->
+<pre class="prettyprint lang-c linenums:104" data-step="18">    // ...
+
+    cl_command_queue commandQueue = clCreateCommandQueue(context,
+            device,
+            0,
+            NULL);
+
+    clEnqueueWriteBuffer(commandQueue,
+            matrixAOnGpu,
+            CL_FALSE,
+            0,
+            sizeof(matrixA),
+            matrixA,
+            0,
+            NULL,
+            NULL);
+
+    clEnqueueWriteBuffer(commandQueue, /**/);       // Which command queue
+
+    free(source_code);
+
+    return 0;
+}</pre>
+
+<!-- { -->
+<pre class="prettyprint lang-c linenums:104" data-step="19">    // ...
+
+    cl_command_queue commandQueue = clCreateCommandQueue(context,
+            device,
+            0,
+            NULL);
+
+    clEnqueueWriteBuffer(commandQueue,
+            matrixAOnGpu,
+            CL_FALSE,
+            0,
+            sizeof(matrixA),
+            matrixA,
+            0,
+            NULL,
+            NULL);
+
+    clEnqueueWriteBuffer(commandQueue,
+            matrixBOnGpu, /**/);       // Which command queue
+
+    free(source_code);
+
+    return 0;
+}</pre>
+
+<!-- { -->
+<pre class="prettyprint lang-c linenums:104" data-step="20">    // ...
+
+    cl_command_queue commandQueue = clCreateCommandQueue(context,
+            device,
+            0,
+            NULL);
+
+    clEnqueueWriteBuffer(commandQueue,
+            matrixAOnGpu,
+            CL_FALSE,
+            0,
+            sizeof(matrixA),
+            matrixA,
+            0,
+            NULL,
+            NULL);
+
+    clEnqueueWriteBuffer(commandQueue,
+            matrixBOnGpu,
+            CL_FALSE, /**/);           // Blocking write
+
+    free(source_code);
+
+    return 0;
+}</pre>
+
+<!-- { -->
+<pre class="prettyprint lang-c linenums:104" data-step="21">    // ...
+
+    cl_command_queue commandQueue = clCreateCommandQueue(context,
+            device,
+            0,
+            NULL);
+
+    clEnqueueWriteBuffer(commandQueue,
+            matrixAOnGpu,
+            CL_FALSE,
+            0,
+            sizeof(matrixA),
+            matrixA,
+            0,
+            NULL,
+            NULL);
+
+    clEnqueueWriteBuffer(commandQueue,
+            matrixBOnGpu,
+            CL_FALSE,
+            0, /**/);                  // Offset to write to
+
+    free(source_code);
+
+    return 0;
+}</pre>
+
+<!-- { -->
+<pre class="prettyprint lang-c linenums:104" data-step="22">    // ...
+
+    cl_command_queue commandQueue = clCreateCommandQueue(context,
+            device,
+            0,
+            NULL);
+
+    clEnqueueWriteBuffer(commandQueue,
+            matrixAOnGpu,
+            CL_FALSE,
+            0,
+            sizeof(matrixA),
+            matrixA,
+            0,
+            NULL,
+            NULL);
+
+    clEnqueueWriteBuffer(commandQueue,
+            matrixBOnGpu,
+            CL_FALSE,
+            0,
+            sizeof(matrixB), /**/);    // Size of data to send
+
+    free(source_code);
+
+    return 0;
+}</pre>
+
+<!-- { -->
+<pre class="prettyprint lang-c linenums:104" data-step="23">    // ...
+
+    cl_command_queue commandQueue = clCreateCommandQueue(context,
+            device,
+            0,
+            NULL);
+
+    clEnqueueWriteBuffer(commandQueue,
+            matrixAOnGpu,
+            CL_FALSE,
+            0,
+            sizeof(matrixA),
+            matrixA,
+            0,
+            NULL,
+            NULL);
+
+    clEnqueueWriteBuffer(commandQueue,
+            matrixBOnGpu,
+            CL_FALSE,
+            0,
+            sizeof(matrixB),
+            matrixB, /**/);            // Address of data to send
+
+    free(source_code);
+
+    return 0;
+}</pre>
+
+<!-- { -->
+<pre class="prettyprint lang-c linenums:104" data-step="24">    // ...
+
+    cl_command_queue commandQueue = clCreateCommandQueue(context,
+            device,
+            0,
+            NULL);
+
+    clEnqueueWriteBuffer(commandQueue,
+            matrixAOnGpu,
+            CL_FALSE,
+            0,
+            sizeof(matrixA),
+            matrixA,
+            0,
+            NULL,
+            NULL);
+
+    clEnqueueWriteBuffer(commandQueue,
+            matrixBOnGpu,
+            CL_FALSE,
+            0,
+            sizeof(matrixB),
+            matrixB,
+            0, /**/);                  // Number of synchronization events
+
+    free(source_code);
+
+    return 0;
+}</pre>
+
+<!-- { -->
+<pre class="prettyprint lang-c linenums:104" data-step="25">    // ...
+
+    cl_command_queue commandQueue = clCreateCommandQueue(context,
+            device,
+            0,
+            NULL);
+
+    clEnqueueWriteBuffer(commandQueue,
+            matrixAOnGpu,
+            CL_FALSE,
+            0,
+            sizeof(matrixA),
+            matrixA,
+            0,
+            NULL,
+            NULL);
+
+    clEnqueueWriteBuffer(commandQueue,
+            matrixBOnGpu,
+            CL_FALSE,
+            0,
+            sizeof(matrixB),
+            matrixB,
+            0,
+            NULL, /**/);               // List of synchronization events
+
+    free(source_code);
+
+    return 0;
+}</pre>
+
+<!-- { -->
+<pre class="prettyprint lang-c linenums:104" data-step="26">    // ...
+
+    cl_command_queue commandQueue = clCreateCommandQueue(context,
+            device,
+            0,
+            NULL);
+
+    clEnqueueWriteBuffer(commandQueue,
+            matrixAOnGpu,
+            CL_FALSE,
+            0,
+            sizeof(matrixA),
+            matrixA,
+            0,
+            NULL,
+            NULL);
+
+    clEnqueueWriteBuffer(commandQueue,
+            matrixBOnGpu,
+            CL_FALSE,
+            0,
+            sizeof(matrixB),
+            matrixB,
+            0,
+            NULL,
+            NULL);                     // Where to store the respective event
+
+    free(source_code);
+
+    return 0;
+}</pre>
+
+<script type="text/javascript">
+    PR.prettyPrint();
+</script>
