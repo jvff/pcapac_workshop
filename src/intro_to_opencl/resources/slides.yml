@@ -26,6 +26,7 @@ Introduction to OpenCL:
     - matrix_multiplication
     - simple_matrix_multiplication_kernel
     - kernel_implementation
+    - loading_kernels
     - loading_the_kernel_source
     - compiling_the_kernel
     - test_parameters
