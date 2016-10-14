@@ -35,6 +35,7 @@ Introduction to OpenCL:
     - binding_parameters
     - sending_commands_to_the_gpu
     - sending_data_to_the_gpu
+    - executing_the_kernel
     - device_memory
     - allocating_memory
     - thanks

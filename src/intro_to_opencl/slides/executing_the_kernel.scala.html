@@ -1,0 +1,179 @@
+<h1>Executing the Kernel</h1>
+
+<!-- { -->
+<pre class="prettyprint lang-c linenums:129" data-step="0">    // ...
+
+    free(source_code);
+
+    return 0;
+}</pre>
+
+<!-- { -->
+<pre class="prettyprint lang-c linenums:129" data-step="1">    // ...
+
+    size_t globalWorkSize = rowsA * colsB;         // Number of kernel instances
+
+    free(source_code);
+
+    return 0;
+}</pre>
+
+<!-- { -->
+<pre class="prettyprint lang-c linenums:129" data-step="2">    // ...
+
+    size_t globalWorkSize = rowsA * colsB;
+
+    clEnqueueNDRangeKernel(/**/);                  // Enqueue kernel to execute
+
+    free(source_code);
+
+    return 0;
+}</pre>
+
+<!-- { -->
+<pre class="prettyprint lang-c linenums:129" data-step="3">    // ...
+
+    size_t globalWorkSize = rowsA * colsB;
+
+    clEnqueueNDRangeKernel(commandQueue, /**/);    // Command queue to use
+
+    free(source_code);
+
+    return 0;
+}</pre>
+
+<!-- { -->
+<pre class="prettyprint lang-c linenums:129" data-step="4">    // ...
+
+    size_t globalWorkSize = rowsA * colsB;
+
+    clEnqueueNDRangeKernel(commandQueue,
+            kernel, /**/);                         // Kernel to execute
+
+    free(source_code);
+
+    return 0;
+}</pre>
+
+<!-- { -->
+<pre class="prettyprint lang-c linenums:129" data-step="5">    // ...
+
+    size_t globalWorkSize = rowsA * colsB;
+
+    clEnqueueNDRangeKernel(commandQueue,
+            kernel,
+            1, /**/);                              // Work dimensions (1,2,3)
+
+    free(source_code);
+
+    return 0;
+}</pre>
+
+<!-- { -->
+<pre class="prettyprint lang-c linenums:129" data-step="6">    // ...
+
+    size_t globalWorkSize = rowsA * colsB;
+
+    clEnqueueNDRangeKernel(commandQueue,
+            kernel,
+            1,
+            NULL, /**/);                           // Global work ID offset
+
+    free(source_code);
+
+    return 0;
+}</pre>
+
+<!-- { -->
+<pre class="prettyprint lang-c linenums:129" data-step="7">    // ...
+
+    size_t globalWorkSize = rowsA * colsB;
+
+    clEnqueueNDRangeKernel(commandQueue,
+            kernel,
+            1,
+            NULL,
+            &amp;globalWorkSize, /**/);                // Number of kernel instances
+
+    free(source_code);
+
+    return 0;
+}</pre>
+
+<!-- { -->
+<pre class="prettyprint lang-c linenums:129" data-step="8">    // ...
+
+    size_t globalWorkSize = rowsA * colsB;
+
+    clEnqueueNDRangeKernel(commandQueue,
+            kernel,
+            1,
+            NULL,
+            &amp;globalWorkSize,
+            NULL, /**/);                           // Instances per group
+
+    free(source_code);
+
+    return 0;
+}</pre>
+
+<!-- { -->
+<pre class="prettyprint lang-c linenums:129" data-step="9">    // ...
+
+    size_t globalWorkSize = rowsA * colsB;
+
+    clEnqueueNDRangeKernel(commandQueue,
+            kernel,
+            1,
+            NULL,
+            &amp;globalWorkSize,
+            NULL,
+            0, /**/);                              // Number of events
+
+    free(source_code);
+
+    return 0;
+}</pre>
+
+<!-- { -->
+<pre class="prettyprint lang-c linenums:129" data-step="10">    // ...
+
+    size_t globalWorkSize = rowsA * colsB;
+
+    clEnqueueNDRangeKernel(commandQueue,
+            kernel,
+            1,
+            NULL,
+            &amp;globalWorkSize,
+            NULL,
+            0,
+            NULL, /**/);                           // List of events
+
+    free(source_code);
+
+    return 0;
+}</pre>
+
+<!-- { -->
+<pre class="prettyprint lang-c linenums:129" data-step="11">    // ...
+
+    size_t globalWorkSize = rowsA * colsB;
+
+    clEnqueueNDRangeKernel(commandQueue,
+            kernel,
+            1,
+            NULL,
+            &amp;globalWorkSize,
+            NULL,
+            0,
+            NULL,
+            NULL);                                 // Address to store event
+
+    free(source_code);
+
+    return 0;
+}</pre>
+
+<script type="text/javascript">
+    PR.prettyPrint();
+</script>
