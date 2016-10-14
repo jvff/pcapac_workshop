@@ -39,6 +39,7 @@ Introduction to OpenCL:
     - retrieving_data_from_the_gpu
     - printing_the_result
     - compile_and_run_the_final_result
+    - conclusions
     - device_memory
     - allocating_memory
     - thanks
