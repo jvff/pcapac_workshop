@@ -1,3 +1,5 @@
 Effective OpenCL:
     - title
+    - device_memory
+    - allocating_memory
     - thanks
