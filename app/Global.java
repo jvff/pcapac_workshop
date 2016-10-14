@@ -22,6 +22,7 @@ public class Global extends GlobalSettings {
 
         registerPresentation(system, "intro_to_git");
         registerPresentation(system, "intro_to_opencl");
+        registerPresentation(system, "effective_opencl");
     }
 
     private void createTerminalManager(ActorSystem system) {
