@@ -33,6 +33,7 @@ Introduction to OpenCL:
     - host_device_memory
     - allocating_parameters
     - binding_parameters
+    - sending_commands_to_the_gpu
     - device_memory
     - allocating_memory
     - thanks
