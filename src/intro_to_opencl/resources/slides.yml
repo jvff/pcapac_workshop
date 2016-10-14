@@ -29,6 +29,7 @@ Introduction to OpenCL:
     - loading_the_kernel_source
     - compiling_the_kernel
     - test_parameters
+    - host_device_memory
     - allocating_parameters
     - binding_parameters
     - device_memory
