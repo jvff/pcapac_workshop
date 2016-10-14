@@ -36,6 +36,7 @@ Introduction to OpenCL:
     - sending_commands_to_the_gpu
     - sending_data_to_the_gpu
     - executing_the_kernel
+    - retrieving_data_from_the_gpu
     - device_memory
     - allocating_memory
     - thanks

@@ -1,0 +1,149 @@
+<h1>Retrieving Data from the GPU</h1>
+
+<!-- { -->
+<pre class="prettyprint lang-c linenums:141" data-step="0">    // ...
+
+    free(source_code);
+
+    return 0;
+}</pre>
+
+<!-- { -->
+<pre class="prettyprint lang-c linenums:141" data-step="1">    // ...
+
+    clEnqueueReadBuffer(/**/);                      // Queue sending data to GPU
+
+    free(source_code);
+
+    return 0;
+}</pre>
+
+<!-- { -->
+<pre class="prettyprint lang-c linenums:141" data-step="2">    // ...
+
+    clEnqueueReadBuffer(commandQueue, /**/);        // Which command queue
+
+    free(source_code);
+
+    return 0;
+}</pre>
+
+<!-- { -->
+<pre class="prettyprint lang-c linenums:141" data-step="3">    // ...
+
+    clEnqueueReadBuffer(commandQueue,
+            matrixCOnGpu, /**/);       // GPU memory address to read from
+
+    free(source_code);
+
+    return 0;
+}</pre>
+
+<!-- { -->
+<pre class="prettyprint lang-c linenums:141" data-step="4">    // ...
+
+    clEnqueueReadBuffer(commandQueue,
+            matrixCOnGpu,
+            CL_TRUE, /**/);            // Blocking write
+
+    free(source_code);
+
+    return 0;
+}</pre>
+
+<!-- { -->
+<pre class="prettyprint lang-c linenums:141" data-step="5">    // ...
+
+    clEnqueueReadBuffer(commandQueue,
+            matrixCOnGpu,
+            CL_TRUE,
+            0, /**/);                  // Offset to read from
+
+    free(source_code);
+
+    return 0;
+}</pre>
+
+<!-- { -->
+<pre class="prettyprint lang-c linenums:141" data-step="6">    // ...
+
+    clEnqueueReadBuffer(commandQueue,
+            matrixCOnGpu,
+            CL_TRUE,
+            0,
+            sizeof(matrixC), /**/);    // Size of data to receive
+
+    free(source_code);
+
+    return 0;
+}</pre>
+
+<!-- { -->
+<pre class="prettyprint lang-c linenums:141" data-step="7">    // ...
+
+    clEnqueueReadBuffer(commandQueue,
+            matrixCOnGpu,
+            CL_TRUE,
+            0,
+            sizeof(matrixC),
+            matrixC, /**/);            // Address to store data
+
+    free(source_code);
+
+    return 0;
+}</pre>
+
+<!-- { -->
+<pre class="prettyprint lang-c linenums:141" data-step="8">    // ...
+
+    clEnqueueReadBuffer(commandQueue,
+            matrixCOnGpu,
+            CL_TRUE,
+            0,
+            sizeof(matrixC),
+            matrixC,
+            0, /**/);                  // Number of synchronization events
+
+    free(source_code);
+
+    return 0;
+}</pre>
+
+<!-- { -->
+<pre class="prettyprint lang-c linenums:141" data-step="9">    // ...
+
+    clEnqueueReadBuffer(commandQueue,
+            matrixCOnGpu,
+            CL_TRUE,
+            0,
+            sizeof(matrixC),
+            matrixC,
+            0,
+            NULL, /**/);               // List of synchronization events
+
+    free(source_code);
+
+    return 0;
+}</pre>
+
+<!-- { -->
+<pre class="prettyprint lang-c linenums:141" data-step="10">    // ...
+
+    clEnqueueReadBuffer(commandQueue,
+            matrixCOnGpu,
+            CL_TRUE,
+            0,
+            sizeof(matrixC),
+            matrixC,
+            0,
+            NULL,
+            NULL);                     // Where to store the respective event
+
+    free(source_code);
+
+    return 0;
+}</pre>
+
+<script type="text/javascript">
+    PR.prettyPrint();
+</script>
