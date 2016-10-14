@@ -30,6 +30,7 @@ Introduction to OpenCL:
     - compiling_the_kernel
     - test_parameters
     - allocating_parameters
+    - binding_parameters
     - device_memory
     - allocating_memory
     - thanks
