@@ -119,7 +119,7 @@
             NULL);
 
     clEnqueueWriteBuffer(commandQueue,
-            matrixAOnGpu, /**/);       // Which command queue
+            matrixAOnGpu, /**/);       // GPU address to write to
 
     free(source_code);
 
@@ -335,7 +335,7 @@
             NULL);
 
     clEnqueueWriteBuffer(commandQueue,
-            matrixBOnGpu, /**/);       // Which command queue
+            matrixBOnGpu, /**/);       // GPU address to write to
 
     free(source_code);
 
