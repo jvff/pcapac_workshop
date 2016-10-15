@@ -1,6 +1,7 @@
 Effective OpenCL:
     - title
     - agenda
+    - introduction
     - device_memory
     - allocating_memory
     - thanks
