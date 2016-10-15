@@ -1,0 +1,20 @@
+<h1>Using Local Buffers</h1>
+
+<pre class="prettyprint lang-c linenums" data-step="0">__kernel void computeKernel(/**/) {
+    // ...
+}
+</pre>
+
+<pre class="prettyprint lang-c linenums" data-step="1">__kernel void computeKernel(/**/ float* buffer) {
+    // ...
+}
+</pre>
+
+<pre class="prettyprint lang-c linenums" data-step="2">__kernel void computeKernel(__local float* buffer) {
+    // ...
+}
+</pre>
+
+<script type="text/javascript">
+    PR.prettyPrint();
+</script>
