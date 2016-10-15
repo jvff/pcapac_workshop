@@ -1,0 +1,26 @@
+<h1>Allocating Local Buffers in a Kernel</h1>
+
+<pre class="prettyprint lang-c linenums" data-step="0">__kernel void computeKernel() {
+    /**/
+
+    // ...
+}
+</pre>
+
+<pre class="prettyprint lang-c linenums" data-step="1">__kernel void computeKernel() {
+    /**/ float buffer[100];
+
+    // ...
+}
+</pre>
+
+<pre class="prettyprint lang-c linenums" data-step="2">__kernel void computeKernel() {
+    __local float buffer[100];
+
+    // ...
+}
+</pre>
+
+<script type="text/javascript">
+    PR.prettyPrint();
+</script>

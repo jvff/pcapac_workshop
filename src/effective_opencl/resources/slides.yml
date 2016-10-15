@@ -7,4 +7,5 @@ Effective OpenCL:
     - using_global_buffers
     - allocating_local_buffers
     - using_local_buffers
+    - allocating_local_buffers_in_a_kernel
     - thanks
