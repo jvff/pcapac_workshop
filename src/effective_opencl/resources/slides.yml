@@ -3,5 +3,5 @@ Effective OpenCL:
     - agenda
     - introduction
     - device_memory
-    - allocating_memory
+    - allocating_global_buffers
     - thanks
