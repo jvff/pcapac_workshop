@@ -1,0 +1,20 @@
+<h1>Using Global Buffers</h1>
+
+<pre class="prettyprint lang-c linenums" data-step="0">__kernel void computateKernel(/**/) {
+    // ...
+}
+</pre>
+
+<pre class="prettyprint lang-c linenums" data-step="1">__kernel void computateKernel(/**/ float* buffer) {
+    // ...
+}
+</pre>
+
+<pre class="prettyprint lang-c linenums" data-step="2">__kernel void computateKernel(__global float* buffer) {
+    // ...
+}
+</pre>
+
+<script type="text/javascript">
+    PR.prettyPrint();
+</script>

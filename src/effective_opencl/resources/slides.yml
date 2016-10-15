@@ -4,4 +4,5 @@ Effective OpenCL:
     - introduction
     - device_memory
     - allocating_global_buffers
+    - using_global_buffers
     - thanks
