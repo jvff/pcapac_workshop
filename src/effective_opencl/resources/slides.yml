@@ -9,4 +9,5 @@ Effective OpenCL:
     - using_local_buffers
     - allocating_local_buffers_in_a_kernel
     - private_memory
+    - memory_usage_guidelines
     - thanks
