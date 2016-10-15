@@ -1,0 +1,48 @@
+<h1>Allocating Local Buffers</h1>
+
+<pre class="prettyprint lang-c linenums" data-step="0">    // ...
+
+    clSetKernelArg(/**/);                       // Set kernel argument to use
+                                                // local buffer
+
+    // ...
+</pre>
+
+<pre class="prettyprint lang-c linenums" data-step="1">    // ...
+
+    clSetKernelArg(kernel, /**/);               // Kernel
+
+
+    // ...
+</pre>
+
+<pre class="prettyprint lang-c linenums" data-step="2">    // ...
+
+    clSetKernelArg(kernel,
+            parameterIndex, /**/);              // Parameter index
+
+    // ...
+</pre>
+
+<pre class="prettyprint lang-c linenums" data-step="3">    // ...
+
+    clSetKernelArg(kernel,
+            parameterIndex,
+            localBufferSize, /**/);             // Size of local memory buffer
+
+    // ...
+</pre>
+
+<pre class="prettyprint lang-c linenums" data-step="4">    // ...
+
+    clSetKernelArg(kernel,
+            parameterIndex,
+            localBufferSize,
+            NULL);                              // No global memory address
+
+    // ...
+</pre>
+
+<script type="text/javascript">
+    PR.prettyPrint();
+</script>
