@@ -14,5 +14,6 @@ Effective OpenCL:
     - image_2d_dimensions
     - image_pixel_format
     - grayscale_filter_example
+    - grayscale_filter_algorithm
     - allocating_image_buffers
     - thanks
