@@ -12,5 +12,6 @@ Effective OpenCL:
     - memory_usage_guidelines
     - using_images
     - image_2d_dimensions
+    - image_pixel_format
     - allocating_image_buffers
     - thanks
