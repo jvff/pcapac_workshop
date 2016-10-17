@@ -11,5 +11,6 @@ Effective OpenCL:
     - private_memory
     - memory_usage_guidelines
     - using_images
+    - image_2d_dimensions
     - allocating_image_buffers
     - thanks
