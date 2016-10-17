@@ -1,0 +1,265 @@
+<h1>Allocating Image Buffers</h1>
+
+<pre class="prettyprint lang-c linenums" data-step="0">    // ...
+
+    cl_context context = clCreateContext(NULL,
+            numDevices,
+            devices,
+            NULL,
+            NULL,
+            NULL);
+
+    // ...
+</pre>
+
+<pre class="prettyprint lang-c linenums" data-step="1">    // ...
+
+    cl_context context = clCreateContext(NULL,
+            numDevices,
+            devices,
+            NULL,
+            NULL,
+            NULL);
+
+    cl_image_format imageFormat;                   // Image format config. var.
+
+    // ...
+</pre>
+
+<pre class="prettyprint lang-c linenums" data-step="2">    // ...
+
+    cl_context context = clCreateContext(NULL,
+            numDevices,
+            devices,
+            NULL,
+            NULL,
+            NULL);
+
+    cl_image_format imageFormat;
+
+    imageFormat.image_channel_order = CL_RGBA;              // Pixel channels
+
+    // ...
+</pre>
+
+<pre class="prettyprint lang-c linenums" data-step="3">    // ...
+
+    cl_context context = clCreateContext(NULL,
+            numDevices,
+            devices,
+            NULL,
+            NULL,
+            NULL);
+
+    cl_image_format imageFormat;
+
+    imageFormat.image_channel_order = CL_RGBA;
+    imageFormat.image_channel_data_type = CL_UNSIGNED_INT8; // Channel type
+
+    // ...
+</pre>
+
+<pre class="prettyprint lang-c linenums" data-step="4">    // ...
+
+    cl_context context = clCreateContext(NULL,
+            numDevices,
+            devices,
+            NULL,
+            NULL,
+            NULL);
+
+    cl_image_format imageFormat;
+
+    imageFormat.image_channel_order = CL_RGBA;
+    imageFormat.image_channel_data_type = CL_UNSIGNED_INT8;
+
+    cl_mem buffer = clCreateImage2D(/**/);         // Create a device memory
+                                                   // reference
+
+    // ...
+</pre>
+
+<pre class="prettyprint lang-c linenums" data-step="5">    // ...
+
+    cl_context context = clCreateContext(NULL,
+            numDevices,
+            devices,
+            NULL,
+            NULL,
+            NULL);
+
+    cl_image_format imageFormat;
+
+    imageFormat.image_channel_order = CL_RGBA;
+    imageFormat.image_channel_data_type = CL_UNSIGNED_INT8;
+
+    cl_mem buffer = clCreateImage2D(context, /**/);// The context to use
+
+
+    // ...
+</pre>
+
+<pre class="prettyprint lang-c linenums" data-step="6">    // ...
+
+    cl_context context = clCreateContext(NULL,
+            numDevices,
+            devices,
+            NULL,
+            NULL,
+            NULL);
+
+    cl_image_format imageFormat;
+
+    imageFormat.image_channel_order = CL_RGBA;
+    imageFormat.image_channel_data_type = CL_UNSIGNED_INT8;
+
+    cl_mem buffer = clCreateImage2D(context,
+            CL_MEM_WRITE_ONLY, /**/);              // Flags (same as buffers)
+
+    // ...
+</pre>
+
+<pre class="prettyprint lang-c linenums" data-step="7">    // ...
+
+    cl_context context = clCreateContext(NULL,
+            numDevices,
+            devices,
+            NULL,
+            NULL,
+            NULL);
+
+    cl_image_format imageFormat;
+
+    imageFormat.image_channel_order = CL_RGBA;
+    imageFormat.image_channel_data_type = CL_UNSIGNED_INT8;
+
+    cl_mem buffer = clCreateImage2D(context,
+            CL_MEM_WRITE_ONLY,
+            &amp;imageFormat, /**/);                   // Size
+
+    // ...
+</pre>
+
+<pre class="prettyprint lang-c linenums" data-step="8">    // ...
+
+    cl_context context = clCreateContext(NULL,
+            numDevices,
+            devices,
+            NULL,
+            NULL,
+            NULL);
+
+    cl_image_format imageFormat;
+
+    imageFormat.image_channel_order = CL_RGBA;
+    imageFormat.image_channel_data_type = CL_UNSIGNED_INT8;
+
+    cl_mem buffer = clCreateImage2D(context,
+            CL_MEM_WRITE_ONLY,
+            &amp;imageFormat,
+            512, /**/);                            // Image width
+
+    // ...
+</pre>
+
+<pre class="prettyprint lang-c linenums" data-step="9">    // ...
+
+    cl_context context = clCreateContext(NULL,
+            numDevices,
+            devices,
+            NULL,
+            NULL,
+            NULL);
+
+    cl_image_format imageFormat;
+
+    imageFormat.image_channel_order = CL_RGBA;
+    imageFormat.image_channel_data_type = CL_UNSIGNED_INT8;
+
+    cl_mem buffer = clCreateImage2D(context,
+            CL_MEM_WRITE_ONLY,
+            &amp;imageFormat,
+            512,
+            512, /**/);                            // Image height
+
+    // ...
+</pre>
+
+<pre class="prettyprint lang-c linenums" data-step="10">    // ...
+
+    cl_context context = clCreateContext(NULL,
+            numDevices,
+            devices,
+            NULL,
+            NULL,
+            NULL);
+
+    cl_image_format imageFormat;
+
+    imageFormat.image_channel_order = CL_RGBA;
+    imageFormat.image_channel_data_type = CL_UNSIGNED_INT8;
+
+    cl_mem buffer = clCreateImage2D(context,
+            CL_MEM_WRITE_ONLY,
+            &amp;imageFormat,
+            512,
+            512,
+            0, /**/);                              // Image pitch
+
+    // ...
+</pre>
+
+<pre class="prettyprint lang-c linenums" data-step="11">    // ...
+
+    cl_context context = clCreateContext(NULL,
+            numDevices,
+            devices,
+            NULL,
+            NULL,
+            NULL);
+
+    cl_image_format imageFormat;
+
+    imageFormat.image_channel_order = CL_RGBA;
+    imageFormat.image_channel_data_type = CL_UNSIGNED_INT8;
+
+    cl_mem buffer = clCreateImage2D(context,
+            CL_MEM_WRITE_ONLY,
+            &amp;imageFormat,
+            512,
+            512,
+            0,
+            NULL, /**/);                           // Host memory pointer
+
+    // ...
+</pre>
+
+<pre class="prettyprint lang-c linenums" data-step="12">    // ...
+
+    cl_context context = clCreateContext(NULL,
+            numDevices,
+            devices,
+            NULL,
+            NULL,
+            NULL);
+
+    cl_image_format imageFormat;
+
+    imageFormat.image_channel_order = CL_RGBA;
+    imageFormat.image_channel_data_type = CL_UNSIGNED_INT8;
+
+    cl_mem buffer = clCreateImage2D(context,
+            CL_MEM_WRITE_ONLY,
+            &amp;imageFormat,
+            512,
+            512,
+            0,
+            NULL,
+            NULL);                                 // Address for error code
+
+    // ...
+</pre>
+
+<script type="text/javascript">
+    PR.prettyPrint();
+</script>
