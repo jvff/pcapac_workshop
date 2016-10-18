@@ -1,0 +1,198 @@
+<h1>Loading the Source Image</h1>
+
+<pre class="prettyprint lang-c linenums" data-step="0">#include &lt;stdio.h&gt;
+#include &lt;stdlib.h&gt;
+#include &lt;string.h&gt;
+
+#include &lt;CL/cl.h&gt;
+
+const char* load_from_file(const char* file_name) {
+    // ...
+</pre><!-- } -->
+
+<pre class="prettyprint lang-c linenums" data-step="1">#include &lt;stdio.h&gt;
+#include &lt;stdlib.h&gt;
+#include &lt;string.h&gt;
+
+#include &lt;CL/cl.h&gt;
+
+#define STB_IMAGE_IMPLEMENTATION            // Enable STB Image library
+
+const char* load_from_file(const char* file_name) {
+    // ...
+</pre><!-- } -->
+
+<pre class="prettyprint lang-c linenums" data-step="2">#include &lt;stdio.h&gt;
+#include &lt;stdlib.h&gt;
+#include &lt;string.h&gt;
+
+#include &lt;CL/cl.h&gt;
+
+#define STB_IMAGE_IMPLEMENTATION
+#define STBI_ONLY_PNG                       // Use only PNG images
+
+const char* load_from_file(const char* file_name) {
+    // ...
+</pre><!-- } -->
+
+<pre class="prettyprint lang-c linenums" data-step="3">#include &lt;stdio.h&gt;
+#include &lt;stdlib.h&gt;
+#include &lt;string.h&gt;
+
+#include &lt;CL/cl.h&gt;
+
+#define STB_IMAGE_IMPLEMENTATION
+#define STBI_ONLY_PNG
+#include &lt;stb_image.h&gt;                      // Include the library
+
+const char* load_from_file(const char* file_name) {
+    // ...
+</pre><!-- } -->
+
+<!-- { -->
+<pre class="prettyprint lang-c linenums:43" data-step="4">    // ...
+
+    clBuildProgram(program, 0, NULL, NULL, NULL, NULL);
+
+    free(source_code);
+
+    return 0;
+}
+</pre>
+
+<!-- { -->
+<pre class="prettyprint lang-c linenums:43" data-step="5">    // ...
+
+    clBuildProgram(program, 0, NULL, NULL, NULL, NULL);
+
+    int width, height;                      // Source image dimensions
+
+    free(source_code);
+
+    return 0;
+}
+</pre>
+
+<!-- { -->
+<pre class="prettyprint lang-c linenums:43" data-step="6">    // ...
+
+    clBuildProgram(program, 0, NULL, NULL, NULL, NULL);
+
+    int width, height;
+    int channels;                           // Number of detected channels
+
+    free(source_code);
+
+    return 0;
+}
+</pre>
+
+<!-- { -->
+<pre class="prettyprint lang-c linenums:43" data-step="7">    // ...
+
+    clBuildProgram(program, 0, NULL, NULL, NULL, NULL);
+
+    int width, height;
+    int channels;
+
+    unsigned char* sourceImageData = stbi_load(/**/);       // Load image data
+
+    free(source_code);
+
+    return 0;
+}
+</pre>
+
+<!-- { -->
+<pre class="prettyprint lang-c linenums:43" data-step="8">    // ...
+
+    clBuildProgram(program, 0, NULL, NULL, NULL, NULL);
+
+    int width, height;
+    int channels;
+
+    unsigned char* sourceImageData = stbi_load("lena.png", /**/);  // File name
+
+    free(source_code);
+
+    return 0;
+}
+</pre>
+
+<!-- { -->
+<pre class="prettyprint lang-c linenums:43" data-step="9">    // ...
+
+    clBuildProgram(program, 0, NULL, NULL, NULL, NULL);
+
+    int width, height;
+    int channels;
+
+    unsigned char* sourceImageData = stbi_load("lena.png",
+            &amp;width, &amp;height, /**/);         // Read dimensions
+
+    free(source_code);
+
+    return 0;
+}
+</pre>
+
+<!-- { -->
+<pre class="prettyprint lang-c linenums:43" data-step="10">    // ...
+
+    clBuildProgram(program, 0, NULL, NULL, NULL, NULL);
+
+    int width, height;
+    int channels;
+
+    unsigned char* sourceImageData = stbi_load("lena.png",
+            &amp;width, &amp;height,
+            &amp;channels, /**/);               // Read number of channels
+
+    free(source_code);
+
+    return 0;
+}
+</pre>
+
+<!-- { -->
+<pre class="prettyprint lang-c linenums:43" data-step="11">    // ...
+
+    clBuildProgram(program, 0, NULL, NULL, NULL, NULL);
+
+    int width, height;
+    int channels;
+
+    unsigned char* sourceImageData = stbi_load("lena.png",
+            &amp;width, &amp;height,
+            &amp;channels,
+            4);                             // Requested number of channels
+
+    free(source_code);
+
+    return 0;
+}
+</pre>
+
+<!-- { -->
+<pre class="prettyprint lang-c linenums:43" data-step="12">    // ...
+
+    clBuildProgram(program, 0, NULL, NULL, NULL, NULL);
+
+    int width, height;
+    int channels;
+
+    unsigned char* sourceImageData = stbi_load("lena.png",
+            &amp;width, &amp;height,
+            &amp;channels,
+            4);
+
+    stbi_image_free(sourceImageData);       // Free image data in the end
+    free(source_code);
+
+    return 0;
+}
+</pre>
+
+<script type="text/javascript">
+    PR.prettyPrint();
+</script>

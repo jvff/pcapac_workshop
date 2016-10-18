@@ -15,5 +15,6 @@ Effective OpenCL:
     - image_pixel_format
     - grayscale_filter_example
     - grayscale_filter_algorithm
+    - loading_source_image
     - allocating_image_buffers
     - thanks
