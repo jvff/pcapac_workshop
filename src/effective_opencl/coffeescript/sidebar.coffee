@@ -66,6 +66,9 @@ program_code = """
 
         clBuildProgram(program, 0, NULL, NULL, NULL, NULL);
 
+        clReleaseProgram(program);
+        clReleaseContext(context);
+
         free(source_code);
 
         return 0;

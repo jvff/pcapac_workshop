@@ -49,31 +49,28 @@ const char* load_from_file(const char* file_name) {
     // ...
 </pre><!-- } -->
 
-<!-- { -->
 <pre class="prettyprint lang-c linenums:43" data-step="4">    // ...
 
     clBuildProgram(program, 0, NULL, NULL, NULL, NULL);
 
-    free(source_code);
+    clReleaseProgram(program);
+    clReleaseContext(context);
 
-    return 0;
-}
+    // ...
 </pre>
 
-<!-- { -->
 <pre class="prettyprint lang-c linenums:43" data-step="5">    // ...
 
     clBuildProgram(program, 0, NULL, NULL, NULL, NULL);
 
     int width, height;                      // Source image dimensions
 
-    free(source_code);
+    clReleaseProgram(program);
+    clReleaseContext(context);
 
-    return 0;
-}
+    // ...
 </pre>
 
-<!-- { -->
 <pre class="prettyprint lang-c linenums:43" data-step="6">    // ...
 
     clBuildProgram(program, 0, NULL, NULL, NULL, NULL);
@@ -81,13 +78,12 @@ const char* load_from_file(const char* file_name) {
     int width, height;
     int channels;                           // Number of detected channels
 
-    free(source_code);
+    clReleaseProgram(program);
+    clReleaseContext(context);
 
-    return 0;
-}
+    // ...
 </pre>
 
-<!-- { -->
 <pre class="prettyprint lang-c linenums:43" data-step="7">    // ...
 
     clBuildProgram(program, 0, NULL, NULL, NULL, NULL);
@@ -97,13 +93,12 @@ const char* load_from_file(const char* file_name) {
 
     unsigned char* sourceImageData = stbi_load(/**/);       // Load image data
 
-    free(source_code);
+    clReleaseProgram(program);
+    clReleaseContext(context);
 
-    return 0;
-}
+    // ...
 </pre>
 
-<!-- { -->
 <pre class="prettyprint lang-c linenums:43" data-step="8">    // ...
 
     clBuildProgram(program, 0, NULL, NULL, NULL, NULL);
@@ -113,13 +108,12 @@ const char* load_from_file(const char* file_name) {
 
     unsigned char* sourceImageData = stbi_load("lena.png", /**/);  // File name
 
-    free(source_code);
+    clReleaseProgram(program);
+    clReleaseContext(context);
 
-    return 0;
-}
+    // ...
 </pre>
 
-<!-- { -->
 <pre class="prettyprint lang-c linenums:43" data-step="9">    // ...
 
     clBuildProgram(program, 0, NULL, NULL, NULL, NULL);
@@ -130,13 +124,12 @@ const char* load_from_file(const char* file_name) {
     unsigned char* sourceImageData = stbi_load("lena.png",
             &amp;width, &amp;height, /**/);         // Read dimensions
 
-    free(source_code);
+    clReleaseProgram(program);
+    clReleaseContext(context);
 
-    return 0;
-}
+    // ...
 </pre>
 
-<!-- { -->
 <pre class="prettyprint lang-c linenums:43" data-step="10">    // ...
 
     clBuildProgram(program, 0, NULL, NULL, NULL, NULL);
@@ -148,13 +141,12 @@ const char* load_from_file(const char* file_name) {
             &amp;width, &amp;height,
             &amp;channels, /**/);               // Read number of channels
 
-    free(source_code);
+    clReleaseProgram(program);
+    clReleaseContext(context);
 
-    return 0;
-}
+    // ...
 </pre>
 
-<!-- { -->
 <pre class="prettyprint lang-c linenums:43" data-step="11">    // ...
 
     clBuildProgram(program, 0, NULL, NULL, NULL, NULL);
@@ -167,13 +159,12 @@ const char* load_from_file(const char* file_name) {
             &amp;channels,
             4);                             // Requested number of channels
 
-    free(source_code);
+    clReleaseProgram(program);
+    clReleaseContext(context);
 
-    return 0;
-}
+    // ...
 </pre>
 
-<!-- { -->
 <pre class="prettyprint lang-c linenums:43" data-step="12">    // ...
 
     clBuildProgram(program, 0, NULL, NULL, NULL, NULL);
@@ -187,10 +178,11 @@ const char* load_from_file(const char* file_name) {
             4);
 
     stbi_image_free(sourceImageData);       // Free image data in the end
-    free(source_code);
 
-    return 0;
-}
+    clReleaseProgram(program);
+    clReleaseContext(context);
+
+    // ...
 </pre>
 
 <script type="text/javascript">
