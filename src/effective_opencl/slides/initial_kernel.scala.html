@@ -1,0 +1,228 @@
+<h1>Initial Kernel</h1>
+
+<pre class="prettyprint lang-c linenums" data-step="0">// Compute kernel</pre>
+
+<pre class="prettyprint lang-c linenums" data-step="1"></pre>
+
+<pre class="prettyprint lang-c linenums" data-step="2">__kernel void grayscaleFilter(/**/) {
+    // Create initial kernel function
+}</pre>
+
+<pre class="prettyprint lang-c linenums" data-step="3">__kernel void grayscaleFilter(
+        __read_only image2d_t sourceImage, /**/) { // Input image
+}</pre>
+
+<pre class="prettyprint lang-c linenums" data-step="4">__kernel void grayscaleFilter(
+        __read_only image2d_t sourceImage,
+        __write_only image2d_t destImage) {        // Output image
+}</pre>
+
+<pre class="prettyprint lang-c linenums" data-step="5">__kernel void grayscaleFilter(
+        __read_only image2d_t sourceImage,
+        __write_only image2d_t destImage) {
+    int2 coordinate = /**/;                        // Variable for pixel coord.
+}</pre>
+
+<pre class="prettyprint lang-c linenums" data-step="6">__kernel void grayscaleFilter(
+        __read_only image2d_t sourceImage,
+        __write_only image2d_t destImage) {
+    int2 coordinate = (int2)(get_global_id(0), get_global_id(1));
+                                                   // Based on the work item ID
+}</pre>
+
+<pre class="prettyprint lang-c linenums" data-step="7">__kernel void grayscaleFilter(
+        __read_only image2d_t sourceImage,
+        __write_only image2d_t destImage) {
+    int2 coordinate = (int2)(get_global_id(0), get_global_id(1));
+
+    const sampler_t sampler = /**/;                // Pixel sampler parameters
+}</pre>
+
+<pre class="prettyprint lang-c linenums" data-step="8">__kernel void grayscaleFilter(
+        __read_only image2d_t sourceImage,
+        __write_only image2d_t destImage) {
+    int2 coordinate = (int2)(get_global_id(0), get_global_id(1));
+
+    const sampler_t sampler = CLK_NORMALIZED_COORDS_TRUE | /**/;
+                                                   // Use normalized coords.
+}</pre>
+
+<pre class="prettyprint lang-c linenums" data-step="9">__kernel void grayscaleFilter(
+        __read_only image2d_t sourceImage,
+        __write_only image2d_t destImage) {
+    int2 coordinate = (int2)(get_global_id(0), get_global_id(1));
+
+    const sampler_t sampler = CLK_NORMALIZED_COORDS_TRUE
+            | CLK_ADDRESS_NONE | /**/;             // No coords. outside image
+}</pre>
+
+<pre class="prettyprint lang-c linenums" data-step="10">__kernel void grayscaleFilter(
+        __read_only image2d_t sourceImage,
+        __write_only image2d_t destImage) {
+    int2 coordinate = (int2)(get_global_id(0), get_global_id(1));
+
+    const sampler_t sampler = CLK_NORMALIZED_COORDS_TRUE
+            | CLK_ADDRESS_NONE
+            | CLK_FILTER_NEAREST;                  // No interpolation
+}</pre>
+
+<pre class="prettyprint lang-c linenums" data-step="11">__kernel void grayscaleFilter(
+        __read_only image2d_t sourceImage,
+        __write_only image2d_t destImage) {
+    int2 coordinate = (int2)(get_global_id(0), get_global_id(1));
+
+    const sampler_t sampler = CLK_NORMALIZED_COORDS_TRUE
+            | CLK_ADDRESS_NONE
+            | CLK_FILTER_NEAREST;
+
+    float4 colorPixel = read_imagef(/**/);         // Read color pixel value
+}</pre>
+
+<pre class="prettyprint lang-c linenums" data-step="12">__kernel void grayscaleFilter(
+        __read_only image2d_t sourceImage,
+        __write_only image2d_t destImage) {
+    int2 coordinate = (int2)(get_global_id(0), get_global_id(1));
+
+    const sampler_t sampler = CLK_NORMALIZED_COORDS_TRUE
+            | CLK_ADDRESS_NONE
+            | CLK_FILTER_NEAREST;
+
+    float4 colorPixel = read_imagef(sourceImage, /**/);
+                                                   // Image to read from
+}</pre>
+
+<pre class="prettyprint lang-c linenums" data-step="13">__kernel void grayscaleFilter(
+        __read_only image2d_t sourceImage,
+        __write_only image2d_t destImage) {
+    int2 coordinate = (int2)(get_global_id(0), get_global_id(1));
+
+    const sampler_t sampler = CLK_NORMALIZED_COORDS_TRUE
+            | CLK_ADDRESS_NONE
+            | CLK_FILTER_NEAREST;
+
+    float4 colorPixel = read_imagef(sourceImage, sampler, /**/);
+                                                   // Sampler to use
+}</pre>
+
+<pre class="prettyprint lang-c linenums" data-step="14">__kernel void grayscaleFilter(
+        __read_only image2d_t sourceImage,
+        __write_only image2d_t destImage) {
+    int2 coordinate = (int2)(get_global_id(0), get_global_id(1));
+
+    const sampler_t sampler = CLK_NORMALIZED_COORDS_TRUE
+            | CLK_ADDRESS_NONE
+            | CLK_FILTER_NEAREST;
+
+    float4 colorPixel = read_imagef(sourceImage, sampler, coordinate);
+                                                   // Coordinate to read from
+}</pre>
+
+<pre class="prettyprint lang-c linenums" data-step="15">__kernel void grayscaleFilter(
+        __read_only image2d_t sourceImage,
+        __write_only image2d_t destImage) {
+    int2 coordinate = (int2)(get_global_id(0), get_global_id(1));
+
+    const sampler_t sampler = CLK_NORMALIZED_COORDS_TRUE
+            | CLK_ADDRESS_NONE
+            | CLK_FILTER_NEAREST;
+
+    float4 colorPixel = read_imagef(sourceImage, sampler, coordinate);
+
+    float4 grayscalePixel = (float4)();            // Grayscale pixel value
+}</pre>
+
+<pre class="prettyprint lang-c linenums" data-step="16">__kernel void grayscaleFilter(
+        __read_only image2d_t sourceImage,
+        __write_only image2d_t destImage) {
+    int2 coordinate = (int2)(get_global_id(0), get_global_id(1));
+
+    const sampler_t sampler = CLK_NORMALIZED_COORDS_TRUE
+            | CLK_ADDRESS_NONE
+            | CLK_FILTER_NEAREST;
+
+    float4 colorPixel = read_imagef(sourceImage, sampler, coordinate);
+
+    float4 grayscalePixel = (float4)(colorPixel.x, /**/); // Copy red channel
+}</pre>
+
+<pre class="prettyprint lang-c linenums" data-step="17">__kernel void grayscaleFilter(
+        __read_only image2d_t sourceImage,
+        __write_only image2d_t destImage) {
+    int2 coordinate = (int2)(get_global_id(0), get_global_id(1));
+
+    const sampler_t sampler = CLK_NORMALIZED_COORDS_TRUE
+            | CLK_ADDRESS_NONE
+            | CLK_FILTER_NEAREST;
+
+    float4 colorPixel = read_imagef(sourceImage, sampler, coordinate);
+
+    float4 grayscalePixel = (float4)(colorPixel.x, 0, 0, 0); // Ignore channels
+}</pre>
+
+<pre class="prettyprint lang-c linenums" data-step="18">__kernel void grayscaleFilter(
+        __read_only image2d_t sourceImage,
+        __write_only image2d_t destImage) {
+    int2 coordinate = (int2)(get_global_id(0), get_global_id(1));
+
+    const sampler_t sampler = CLK_NORMALIZED_COORDS_TRUE
+            | CLK_ADDRESS_NONE
+            | CLK_FILTER_NEAREST;
+
+    float4 colorPixel = read_imagef(sourceImage, sampler, coordinate);
+
+    float4 grayscalePixel = (float4)(colorPixel.x, 0, 0, 0);
+
+    write_imagef(/**/);                            // Write resulting pixel
+}</pre>
+
+<pre class="prettyprint lang-c linenums" data-step="19">__kernel void grayscaleFilter(
+        __read_only image2d_t sourceImage,
+        __write_only image2d_t destImage) {
+    int2 coordinate = (int2)(get_global_id(0), get_global_id(1));
+
+    const sampler_t sampler = CLK_NORMALIZED_COORDS_TRUE
+            | CLK_ADDRESS_NONE
+            | CLK_FILTER_NEAREST;
+
+    float4 colorPixel = read_imagef(sourceImage, sampler, coordinate);
+
+    float4 grayscalePixel = (float4)(colorPixel.x, 0, 0, 0);
+
+    write_imagef(destImage, /**/);                 // Image to write to
+}</pre>
+
+<pre class="prettyprint lang-c linenums" data-step="20">__kernel void grayscaleFilter(
+        __read_only image2d_t sourceImage,
+        __write_only image2d_t destImage) {
+    int2 coordinate = (int2)(get_global_id(0), get_global_id(1));
+
+    const sampler_t sampler = CLK_NORMALIZED_COORDS_TRUE
+            | CLK_ADDRESS_NONE
+            | CLK_FILTER_NEAREST;
+
+    float4 colorPixel = read_imagef(sourceImage, sampler, coordinate);
+
+    float4 grayscalePixel = (float4)(colorPixel.x, 0, 0, 0);
+
+    write_imagef(destImage, coordinate, /**/);     // Pixel coordinate
+}</pre>
+
+<pre class="prettyprint lang-c linenums" data-step="21">__kernel void grayscaleFilter(
+        __read_only image2d_t sourceImage,
+        __write_only image2d_t destImage) {
+    int2 coordinate = (int2)(get_global_id(0), get_global_id(1));
+
+    const sampler_t sampler = CLK_NORMALIZED_COORDS_TRUE
+            | CLK_ADDRESS_NONE
+            | CLK_FILTER_NEAREST;
+
+    float4 colorPixel = read_imagef(sourceImage, sampler, coordinate);
+
+    float4 grayscalePixel = (float4)(colorPixel.x, 0, 0, 0);
+
+    write_imagef(destImage, coordinate, grayscalePixel); // Pixel value
+}</pre>
+
+<script type="text/javascript">
+    PR.prettyPrint();
+</script>
