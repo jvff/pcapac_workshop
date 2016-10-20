@@ -1,0 +1,324 @@
+<h1>Retrieving the Resulting Image</h1>
+
+<pre class="prettyprint lang-c linenums:105" data-step="0">    // ...
+
+    stbi_image_free(sourceImageData);
+
+    // ...
+</pre>
+
+<pre class="prettyprint lang-c linenums:105" data-step="1">    // ...
+
+    unsigned char* destImageData = /**/;        // Buffer to store image
+
+    stbi_image_free(sourceImageData);
+
+    // ...
+</pre>
+
+<pre class="prettyprint lang-c linenums:105" data-step="2">    // ...
+
+    unsigned char* destImageData = malloc(width * height);
+                                                // Allocate buffer, with one
+                                                // byte per pixel
+
+    stbi_image_free(sourceImageData);
+
+    // ...
+</pre>
+
+<pre class="prettyprint lang-c linenums:105" data-step="3">    // ...
+
+    unsigned char* destImageData = malloc(width * height);
+
+
+
+    stbi_image_free(sourceImageData);
+    free(destImageData);                        // Free image buffer
+
+    // ...
+</pre>
+
+<pre class="prettyprint lang-c linenums:105" data-step="4">    // ...
+
+    unsigned char* destImageData = malloc(width * height);
+
+    size_t destImageOffset[] = /**/;            // Offset to start copying from
+
+    stbi_image_free(sourceImageData);
+    free(destImageData);
+
+    // ...
+</pre>
+
+<pre class="prettyprint lang-c linenums:105" data-step="5">    // ...
+
+    unsigned char* destImageData = malloc(width * height);
+
+    size_t destImageOffset[] = { 0, 0, 0 };     // Starting coordinate
+
+    stbi_image_free(sourceImageData);
+    free(destImageData);
+
+    // ...
+</pre>
+
+<pre class="prettyprint lang-c linenums:105" data-step="6">    // ...
+
+    unsigned char* destImageData = malloc(width * height);
+
+    size_t destImageOffset[] = { 0, 0, 0 };
+    size_t destImageRegion[] = /**/;            // Pixels to copy
+
+    stbi_image_free(sourceImageData);
+    free(destImageData);
+
+    // ...
+</pre>
+
+<pre class="prettyprint lang-c linenums:105" data-step="7">    // ...
+
+    unsigned char* destImageData = malloc(width * height);
+
+    size_t destImageOffset[] = { 0, 0, 0 };
+    size_t destImageRegion[] = { width, height, 1 }; // Copy all pixels
+
+    stbi_image_free(sourceImageData);
+    free(destImageData);
+
+    // ...
+</pre>
+
+<pre class="prettyprint lang-c linenums:105" data-step="8">    // ...
+
+    unsigned char* destImageData = malloc(width * height);
+
+    size_t destImageOffset[] = { 0, 0, 0 };
+    size_t destImageRegion[] = { width, height, 1 };
+
+    clEnqueueReadImage(/**/);                   // Retrieve image from GPU
+
+    stbi_image_free(sourceImageData);
+    free(destImageData);
+
+    // ...
+</pre>
+
+<pre class="prettyprint lang-c linenums:105" data-step="9">    // ...
+
+    unsigned char* destImageData = malloc(width * height);
+
+    size_t destImageOffset[] = { 0, 0, 0 };
+    size_t destImageRegion[] = { width, height, 1 };
+
+    clEnqueueReadImage(commandQueue, /**/);     // Command queue to use
+
+    stbi_image_free(sourceImageData);
+    free(destImageData);
+
+    // ...
+</pre>
+
+<pre class="prettyprint lang-c linenums:105" data-step="10">    // ...
+
+    unsigned char* destImageData = malloc(width * height);
+
+    size_t destImageOffset[] = { 0, 0, 0 };
+    size_t destImageRegion[] = { width, height, 1 };
+
+    clEnqueueReadImage(commandQueue,
+            destImageBuffer, /**/);             // Buffer to read from
+
+    stbi_image_free(sourceImageData);
+    free(destImageData);
+
+    // ...
+</pre>
+
+<pre class="prettyprint lang-c linenums:105" data-step="11">    // ...
+
+    unsigned char* destImageData = malloc(width * height);
+
+    size_t destImageOffset[] = { 0, 0, 0 };
+    size_t destImageRegion[] = { width, height, 1 };
+
+    clEnqueueReadImage(commandQueue,
+            destImageBuffer,
+            CL_TRUE, /**/);                    // Blocking transfer
+
+    stbi_image_free(sourceImageData);
+    free(destImageData);
+
+    // ...
+</pre>
+
+<pre class="prettyprint lang-c linenums:105" data-step="12">    // ...
+
+    unsigned char* destImageData = malloc(width * height);
+
+    size_t destImageOffset[] = { 0, 0, 0 };
+    size_t destImageRegion[] = { width, height, 1 };
+
+    clEnqueueReadImage(commandQueue,
+            destImageBuffer,
+            CL_TRUE,
+            destImageOffset, /**/);             // Offset to copy pixels from
+
+    stbi_image_free(sourceImageData);
+    free(destImageData);
+
+    // ...
+</pre>
+
+<pre class="prettyprint lang-c linenums:105" data-step="13">    // ...
+
+    unsigned char* destImageData = malloc(width * height);
+
+    size_t destImageOffset[] = { 0, 0, 0 };
+    size_t destImageRegion[] = { width, height, 1 };
+
+    clEnqueueReadImage(commandQueue,
+            destImageBuffer,
+            CL_TRUE,
+            destImageOffset,
+            destImageRegion, /**/);             // Amount of pixels to copy
+
+    stbi_image_free(sourceImageData);
+    free(destImageData);
+
+    // ...
+</pre>
+
+<pre class="prettyprint lang-c linenums:105" data-step="14">    // ...
+
+    unsigned char* destImageData = malloc(width * height);
+
+    size_t destImageOffset[] = { 0, 0, 0 };
+    size_t destImageRegion[] = { width, height, 1 };
+
+    clEnqueueReadImage(commandQueue,
+            destImageBuffer,
+            CL_TRUE,
+            destImageOffset,
+            destImageRegion,
+            0, /**/);                           // Scan-line pitch
+
+    stbi_image_free(sourceImageData);
+    free(destImageData);
+
+    // ...
+</pre>
+
+<pre class="prettyprint lang-c linenums:105" data-step="15">    // ...
+
+    unsigned char* destImageData = malloc(width * height);
+
+    size_t destImageOffset[] = { 0, 0, 0 };
+    size_t destImageRegion[] = { width, height, 1 };
+
+    clEnqueueReadImage(commandQueue,
+            destImageBuffer,
+            CL_TRUE,
+            destImageOffset,
+            destImageRegion,
+            0, 0, /**/);                        // 3D pitch
+
+    stbi_image_free(sourceImageData);
+    free(destImageData);
+
+    // ...
+</pre>
+
+<pre class="prettyprint lang-c linenums:105" data-step="16">    // ...
+
+    unsigned char* destImageData = malloc(width * height);
+
+    size_t destImageOffset[] = { 0, 0, 0 };
+    size_t destImageRegion[] = { width, height, 1 };
+
+    clEnqueueReadImage(commandQueue,
+            destImageBuffer,
+            CL_TRUE,
+            destImageOffset,
+            destImageRegion,
+            0, 0,
+            destImageData, /**/);               // Address to store pixel data
+
+    stbi_image_free(sourceImageData);
+    free(destImageData);
+
+    // ...
+</pre>
+
+<pre class="prettyprint lang-c linenums:105" data-step="17">    // ...
+
+    unsigned char* destImageData = malloc(width * height);
+
+    size_t destImageOffset[] = { 0, 0, 0 };
+    size_t destImageRegion[] = { width, height, 1 };
+
+    clEnqueueReadImage(commandQueue,
+            destImageBuffer,
+            CL_TRUE,
+            destImageOffset,
+            destImageRegion,
+            0, 0,
+            destImageData,
+            0, /**/);                           // Number of events to wait
+
+    stbi_image_free(sourceImageData);
+    free(destImageData);
+
+    // ...
+</pre>
+
+<pre class="prettyprint lang-c linenums:105" data-step="18">    // ...
+
+    unsigned char* destImageData = malloc(width * height);
+
+    size_t destImageOffset[] = { 0, 0, 0 };
+    size_t destImageRegion[] = { width, height, 1 };
+
+    clEnqueueReadImage(commandQueue,
+            destImageBuffer,
+            CL_TRUE,
+            destImageOffset,
+            destImageRegion,
+            0, 0,
+            destImageData,
+            0,
+            NULL, /**/);                        // List of events
+
+    stbi_image_free(sourceImageData);
+    free(destImageData);
+
+    // ...
+</pre>
+
+<pre class="prettyprint lang-c linenums:105" data-step="19">    // ...
+
+    unsigned char* destImageData = malloc(width * height);
+
+    size_t destImageOffset[] = { 0, 0, 0 };
+    size_t destImageRegion[] = { width, height, 1 };
+
+    clEnqueueReadImage(commandQueue,
+            destImageBuffer,
+            CL_TRUE,
+            destImageOffset,
+            destImageRegion,
+            0, 0,
+            destImageData,
+            0,
+            NULL,
+            NULL);                              // Address to store event
+
+    stbi_image_free(sourceImageData);
+    free(destImageData);
+
+    // ...
+</pre>
+
+<script type="text/javascript">
+    PR.prettyPrint();
+</script>
