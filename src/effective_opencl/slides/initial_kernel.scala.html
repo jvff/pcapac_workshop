@@ -43,8 +43,8 @@
         __write_only image2d_t destImage) {
     int2 coordinate = (int2)(get_global_id(0), get_global_id(1));
 
-    const sampler_t sampler = CLK_NORMALIZED_COORDS_TRUE | /**/;
-                                                   // Use normalized coords.
+    const sampler_t sampler = CLK_NORMALIZED_COORDS_FALSE | /**/;
+                                                   // Direct integer coords.
 }</pre>
 
 <pre class="prettyprint lang-c linenums" data-step="9">__kernel void grayscaleFilter(
@@ -52,8 +52,8 @@
         __write_only image2d_t destImage) {
     int2 coordinate = (int2)(get_global_id(0), get_global_id(1));
 
-    const sampler_t sampler = CLK_NORMALIZED_COORDS_TRUE
-            | CLK_ADDRESS_NONE | /**/;             // No coords. outside image
+    const sampler_t sampler = CLK_NORMALIZED_COORDS_FALSE
+            | CLK_ADDRESS_CLAMP_TO_EDGE | /**/;    // Extend edges
 }</pre>
 
 <pre class="prettyprint lang-c linenums" data-step="10">__kernel void grayscaleFilter(
@@ -61,8 +61,8 @@
         __write_only image2d_t destImage) {
     int2 coordinate = (int2)(get_global_id(0), get_global_id(1));
 
-    const sampler_t sampler = CLK_NORMALIZED_COORDS_TRUE
-            | CLK_ADDRESS_NONE
+    const sampler_t sampler = CLK_NORMALIZED_COORDS_FALSE
+            | CLK_ADDRESS_CLAMP_TO_EDGE
             | CLK_FILTER_NEAREST;                  // No interpolation
 }</pre>
 
@@ -71,8 +71,8 @@
         __write_only image2d_t destImage) {
     int2 coordinate = (int2)(get_global_id(0), get_global_id(1));
 
-    const sampler_t sampler = CLK_NORMALIZED_COORDS_TRUE
-            | CLK_ADDRESS_NONE
+    const sampler_t sampler = CLK_NORMALIZED_COORDS_FALSE
+            | CLK_ADDRESS_CLAMP_TO_EDGE
             | CLK_FILTER_NEAREST;
 
     float4 colorPixel = read_imagef(/**/);         // Read color pixel value
@@ -83,8 +83,8 @@
         __write_only image2d_t destImage) {
     int2 coordinate = (int2)(get_global_id(0), get_global_id(1));
 
-    const sampler_t sampler = CLK_NORMALIZED_COORDS_TRUE
-            | CLK_ADDRESS_NONE
+    const sampler_t sampler = CLK_NORMALIZED_COORDS_FALSE
+            | CLK_ADDRESS_CLAMP_TO_EDGE
             | CLK_FILTER_NEAREST;
 
     float4 colorPixel = read_imagef(sourceImage, /**/);
@@ -96,8 +96,8 @@
         __write_only image2d_t destImage) {
     int2 coordinate = (int2)(get_global_id(0), get_global_id(1));
 
-    const sampler_t sampler = CLK_NORMALIZED_COORDS_TRUE
-            | CLK_ADDRESS_NONE
+    const sampler_t sampler = CLK_NORMALIZED_COORDS_FALSE
+            | CLK_ADDRESS_CLAMP_TO_EDGE
             | CLK_FILTER_NEAREST;
 
     float4 colorPixel = read_imagef(sourceImage, sampler, /**/);
@@ -109,8 +109,8 @@
         __write_only image2d_t destImage) {
     int2 coordinate = (int2)(get_global_id(0), get_global_id(1));
 
-    const sampler_t sampler = CLK_NORMALIZED_COORDS_TRUE
-            | CLK_ADDRESS_NONE
+    const sampler_t sampler = CLK_NORMALIZED_COORDS_FALSE
+            | CLK_ADDRESS_CLAMP_TO_EDGE
             | CLK_FILTER_NEAREST;
 
     float4 colorPixel = read_imagef(sourceImage, sampler, coordinate);
@@ -122,8 +122,8 @@
         __write_only image2d_t destImage) {
     int2 coordinate = (int2)(get_global_id(0), get_global_id(1));
 
-    const sampler_t sampler = CLK_NORMALIZED_COORDS_TRUE
-            | CLK_ADDRESS_NONE
+    const sampler_t sampler = CLK_NORMALIZED_COORDS_FALSE
+            | CLK_ADDRESS_CLAMP_TO_EDGE
             | CLK_FILTER_NEAREST;
 
     float4 colorPixel = read_imagef(sourceImage, sampler, coordinate);
@@ -136,8 +136,8 @@
         __write_only image2d_t destImage) {
     int2 coordinate = (int2)(get_global_id(0), get_global_id(1));
 
-    const sampler_t sampler = CLK_NORMALIZED_COORDS_TRUE
-            | CLK_ADDRESS_NONE
+    const sampler_t sampler = CLK_NORMALIZED_COORDS_FALSE
+            | CLK_ADDRESS_CLAMP_TO_EDGE
             | CLK_FILTER_NEAREST;
 
     float4 colorPixel = read_imagef(sourceImage, sampler, coordinate);
@@ -150,8 +150,8 @@
         __write_only image2d_t destImage) {
     int2 coordinate = (int2)(get_global_id(0), get_global_id(1));
 
-    const sampler_t sampler = CLK_NORMALIZED_COORDS_TRUE
-            | CLK_ADDRESS_NONE
+    const sampler_t sampler = CLK_NORMALIZED_COORDS_FALSE
+            | CLK_ADDRESS_CLAMP_TO_EDGE
             | CLK_FILTER_NEAREST;
 
     float4 colorPixel = read_imagef(sourceImage, sampler, coordinate);
@@ -164,8 +164,8 @@
         __write_only image2d_t destImage) {
     int2 coordinate = (int2)(get_global_id(0), get_global_id(1));
 
-    const sampler_t sampler = CLK_NORMALIZED_COORDS_TRUE
-            | CLK_ADDRESS_NONE
+    const sampler_t sampler = CLK_NORMALIZED_COORDS_FALSE
+            | CLK_ADDRESS_CLAMP_TO_EDGE
             | CLK_FILTER_NEAREST;
 
     float4 colorPixel = read_imagef(sourceImage, sampler, coordinate);
@@ -180,8 +180,8 @@
         __write_only image2d_t destImage) {
     int2 coordinate = (int2)(get_global_id(0), get_global_id(1));
 
-    const sampler_t sampler = CLK_NORMALIZED_COORDS_TRUE
-            | CLK_ADDRESS_NONE
+    const sampler_t sampler = CLK_NORMALIZED_COORDS_FALSE
+            | CLK_ADDRESS_CLAMP_TO_EDGE
             | CLK_FILTER_NEAREST;
 
     float4 colorPixel = read_imagef(sourceImage, sampler, coordinate);
@@ -196,8 +196,8 @@
         __write_only image2d_t destImage) {
     int2 coordinate = (int2)(get_global_id(0), get_global_id(1));
 
-    const sampler_t sampler = CLK_NORMALIZED_COORDS_TRUE
-            | CLK_ADDRESS_NONE
+    const sampler_t sampler = CLK_NORMALIZED_COORDS_FALSE
+            | CLK_ADDRESS_CLAMP_TO_EDGE
             | CLK_FILTER_NEAREST;
 
     float4 colorPixel = read_imagef(sourceImage, sampler, coordinate);
@@ -212,8 +212,8 @@
         __write_only image2d_t destImage) {
     int2 coordinate = (int2)(get_global_id(0), get_global_id(1));
 
-    const sampler_t sampler = CLK_NORMALIZED_COORDS_TRUE
-            | CLK_ADDRESS_NONE
+    const sampler_t sampler = CLK_NORMALIZED_COORDS_FALSE
+            | CLK_ADDRESS_CLAMP_TO_EDGE
             | CLK_FILTER_NEAREST;
 
     float4 colorPixel = read_imagef(sourceImage, sampler, coordinate);
