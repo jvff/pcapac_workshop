@@ -4,7 +4,7 @@ Device Memory
 <div>
     @figure(figure: String, step: String) = {
         <img style="width: 350px" data-step="@step"
-                src="@routes.Presentations.figure("intro_to_opencl", figure)">
+                src="@routes.Presentations.figure("effective_opencl", figure)">
     }
 
     <div style="margin-left: 100px">
