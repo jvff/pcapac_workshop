@@ -18,5 +18,6 @@ Effective OpenCL:
     - grayscale_filter_algorithm
     - loading_source_image
     - allocating_image_buffers
+    - image_samplers
     - initial_kernel
     - thanks
