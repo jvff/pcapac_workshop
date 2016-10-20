@@ -1,0 +1,130 @@
+<h1>Storing the Resulting Image</h1>
+
+<pre class="prettyprint lang-c linenums" data-step="0">#include &lt;stdio.h&gt;
+#include &lt;stdlib.h&gt;
+#include &lt;string.h&gt;
+
+#include &lt;CL/cl.h&gt;
+
+#define STB_IMAGE_IMPLEMENTATION
+#define STBI_ONLY_PNG
+#include &lt;stb_image.h&gt;
+
+const char* load_from_file(const char* file_name) {
+    // ...
+</pre><!-- } -->
+
+<pre class="prettyprint lang-c linenums" data-step="1">#include &lt;stdio.h&gt;
+#include &lt;stdlib.h&gt;
+#include &lt;string.h&gt;
+
+#include &lt;CL/cl.h&gt;
+
+#define STB_IMAGE_IMPLEMENTATION
+#define STBI_ONLY_PNG
+#include &lt;stb_image.h&gt;
+
+#define STB_IMAGE_WRITE_IMPLEMENTATION          // Enable stb_image_write lib.
+
+const char* load_from_file(const char* file_name) {
+    // ...
+</pre><!-- } -->
+
+<pre class="prettyprint lang-c linenums" data-step="2">#include &lt;stdio.h&gt;
+#include &lt;stdlib.h&gt;
+#include &lt;string.h&gt;
+
+#include &lt;CL/cl.h&gt;
+
+#define STB_IMAGE_IMPLEMENTATION
+#define STBI_ONLY_PNG
+#include &lt;stb_image.h&gt;
+
+#define STB_IMAGE_WRITE_IMPLEMENTATION
+#include &lt;stb_image_write.h&gt;              // Include the library
+
+const char* load_from_file(const char* file_name) {
+    // ...
+</pre><!-- } -->
+
+<pre class="prettyprint lang-c linenums:124" data-step="3">    // ...
+
+    stbi_image_free(sourceImageData);
+    free(destImageData);
+
+    // ...
+</pre>
+
+<pre class="prettyprint lang-c linenums:124" data-step="4">    // ...
+
+    stbi_write_png(/**/);                       // Store as PNG image
+
+    stbi_image_free(sourceImageData);
+    free(destImageData);
+
+    // ...
+</pre>
+
+<pre class="prettyprint lang-c linenums:124" data-step="5">    // ...
+
+    stbi_write_png("lena_gray.png", /**/);      // Image file name
+
+    stbi_image_free(sourceImageData);
+    free(destImageData);
+
+    // ...
+</pre>
+
+<pre class="prettyprint lang-c linenums:124" data-step="6">    // ...
+
+    stbi_write_png("lena_gray.png",
+            width, height, /**/);               // Image dimensions
+
+    stbi_image_free(sourceImageData);
+    free(destImageData);
+
+    // ...
+</pre>
+
+<pre class="prettyprint lang-c linenums:124" data-step="7">    // ...
+
+    stbi_write_png("lena_gray.png",
+            width, height,
+            1, /**/);                           // Number of channels
+
+    stbi_image_free(sourceImageData);
+    free(destImageData);
+
+    // ...
+</pre>
+
+<pre class="prettyprint lang-c linenums:124" data-step="8">    // ...
+
+    stbi_write_png("lena_gray.png",
+            width, height,
+            1,
+            destImageData, /**/);               // Pixel data
+
+    stbi_image_free(sourceImageData);
+    free(destImageData);
+
+    // ...
+</pre>
+
+<pre class="prettyprint lang-c linenums:124" data-step="9">    // ...
+
+    stbi_write_png("lena_gray.png",
+            width, height,
+            1,
+            destImageData,
+            width);                             // Image scan-line pitch
+
+    stbi_image_free(sourceImageData);
+    free(destImageData);
+
+    // ...
+</pre>
+
+<script type="text/javascript">
+    PR.prettyPrint();
+</script>

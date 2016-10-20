@@ -23,4 +23,5 @@ Effective OpenCL:
     - initial_kernel
     - executing_the_kernel
     - retrieving_the_resulting_image
+    - storing_the_resulting_image
     - thanks
