@@ -1,0 +1,244 @@
+<h1>Sending the Source Image</h1>
+
+<pre class="prettyprint lang-c linenums:78" data-step="0">    // ...
+
+    stbi_image_free(sourceImageData);
+
+    // ...
+</pre>
+
+<pre class="prettyprint lang-c linenums:78" data-step="1">    // ...
+
+    size_t sourceImageOffset[] = /**/;          // Offset to start copying from
+
+    stbi_image_free(sourceImageData);
+
+    // ...
+</pre>
+
+<pre class="prettyprint lang-c linenums:78" data-step="2">    // ...
+
+    size_t sourceImageOffset[] = { 0, 0, 0 };   // Starting coordinate
+
+    stbi_image_free(sourceImageData);
+
+    // ...
+</pre>
+
+<pre class="prettyprint lang-c linenums:78" data-step="3">    // ...
+
+    size_t sourceImageOffset[] = { 0, 0, 0 };
+    size_t sourceImageRegion[] = /**/;          // Pixels to copy
+
+    stbi_image_free(sourceImageData);
+
+    // ...
+</pre>
+
+<pre class="prettyprint lang-c linenums:78" data-step="4">    // ...
+
+    size_t sourceImageOffset[] = { 0, 0, 0 };
+    size_t sourceImageRegion[] = { width, height, 1 }; // Copy all pixels
+
+    stbi_image_free(sourceImageData);
+
+    // ...
+</pre>
+
+<pre class="prettyprint lang-c linenums:78" data-step="5">    // ...
+
+    size_t sourceImageOffset[] = { 0, 0, 0 };
+    size_t sourceImageRegion[] = { width, height, 1 };
+
+    clEnqueueWriteImage(/**/);                  // Send source image to GPU
+
+    stbi_image_free(sourceImageData);
+
+    // ...
+</pre>
+
+<pre class="prettyprint lang-c linenums:78" data-step="6">    // ...
+
+    size_t sourceImageOffset[] = { 0, 0, 0 };
+    size_t sourceImageRegion[] = { width, height, 1 };
+
+    clEnqueueWriteImage(commandQueue, /**/);    // Command queue to use
+
+    stbi_image_free(sourceImageData);
+
+    // ...
+</pre>
+
+<pre class="prettyprint lang-c linenums:78" data-step="7">    // ...
+
+    size_t sourceImageOffset[] = { 0, 0, 0 };
+    size_t sourceImageRegion[] = { width, height, 1 };
+
+    clEnqueueWriteImage(commandQueue,
+            sourceImageBuffer, /**/);           // Buffer to store
+
+    stbi_image_free(sourceImageData);
+
+    // ...
+</pre>
+
+<pre class="prettyprint lang-c linenums:78" data-step="8">    // ...
+
+    size_t sourceImageOffset[] = { 0, 0, 0 };
+    size_t sourceImageRegion[] = { width, height, 1 };
+
+    clEnqueueWriteImage(commandQueue,
+            sourceImageBuffer,
+            CL_FALSE, /**/);                    // Non-blocking transfer
+
+    stbi_image_free(sourceImageData);
+
+    // ...
+</pre>
+
+<pre class="prettyprint lang-c linenums:78" data-step="9">    // ...
+
+    size_t sourceImageOffset[] = { 0, 0, 0 };
+    size_t sourceImageRegion[] = { width, height, 1 };
+
+    clEnqueueWriteImage(commandQueue,
+            sourceImageBuffer,
+            CL_FALSE,
+            sourceImageOffset, /**/);           // Offset to copy pixels from
+
+    stbi_image_free(sourceImageData);
+
+    // ...
+</pre>
+
+<pre class="prettyprint lang-c linenums:78" data-step="10">    // ...
+
+    size_t sourceImageOffset[] = { 0, 0, 0 };
+    size_t sourceImageRegion[] = { width, height, 1 };
+
+    clEnqueueWriteImage(commandQueue,
+            sourceImageBuffer,
+            CL_FALSE,
+            sourceImageOffset,
+            sourceImageRegion, /**/);           // Amount of pixels to copy
+
+    stbi_image_free(sourceImageData);
+
+    // ...
+</pre>
+
+<pre class="prettyprint lang-c linenums:78" data-step="11">    // ...
+
+    size_t sourceImageOffset[] = { 0, 0, 0 };
+    size_t sourceImageRegion[] = { width, height, 1 };
+
+    clEnqueueWriteImage(commandQueue,
+            sourceImageBuffer,
+            CL_FALSE,
+            sourceImageOffset,
+            sourceImageRegion,
+            0, /**/);                           // Scan-line pitch
+
+    stbi_image_free(sourceImageData);
+
+    // ...
+</pre>
+
+<pre class="prettyprint lang-c linenums:78" data-step="12">    // ...
+
+    size_t sourceImageOffset[] = { 0, 0, 0 };
+    size_t sourceImageRegion[] = { width, height, 1 };
+
+    clEnqueueWriteImage(commandQueue,
+            sourceImageBuffer,
+            CL_FALSE,
+            sourceImageOffset,
+            sourceImageRegion,
+            0, 0, /**/);                        // 3D pitch
+
+    stbi_image_free(sourceImageData);
+
+    // ...
+</pre>
+
+<pre class="prettyprint lang-c linenums:78" data-step="13">    // ...
+
+    size_t sourceImageOffset[] = { 0, 0, 0 };
+    size_t sourceImageRegion[] = { width, height, 1 };
+
+    clEnqueueWriteImage(commandQueue,
+            sourceImageBuffer,
+            CL_FALSE,
+            sourceImageOffset,
+            sourceImageRegion,
+            0, 0,
+            sourceImageData, /**/);             // Image pixel data
+
+    stbi_image_free(sourceImageData);
+
+    // ...
+</pre>
+
+<pre class="prettyprint lang-c linenums:78" data-step="14">    // ...
+
+    size_t sourceImageOffset[] = { 0, 0, 0 };
+    size_t sourceImageRegion[] = { width, height, 1 };
+
+    clEnqueueWriteImage(commandQueue,
+            sourceImageBuffer,
+            CL_FALSE,
+            sourceImageOffset,
+            sourceImageRegion,
+            0, 0,
+            sourceImageData,
+            0, /**/);                           // Number of events to wait
+
+    stbi_image_free(sourceImageData);
+
+    // ...
+</pre>
+
+<pre class="prettyprint lang-c linenums:78" data-step="15">    // ...
+
+    size_t sourceImageOffset[] = { 0, 0, 0 };
+    size_t sourceImageRegion[] = { width, height, 1 };
+
+    clEnqueueWriteImage(commandQueue,
+            sourceImageBuffer,
+            CL_FALSE,
+            sourceImageOffset,
+            sourceImageRegion,
+            0, 0,
+            sourceImageData,
+            0,
+            NULL, /**/);                        // List of events
+
+    stbi_image_free(sourceImageData);
+
+    // ...
+</pre>
+
+<pre class="prettyprint lang-c linenums:78" data-step="16">    // ...
+
+    size_t sourceImageOffset[] = { 0, 0, 0 };
+    size_t sourceImageRegion[] = { width, height, 1 };
+
+    clEnqueueWriteImage(commandQueue,
+            sourceImageBuffer,
+            CL_FALSE,
+            sourceImageOffset,
+            sourceImageRegion,
+            0, 0,
+            sourceImageData,
+            0,
+            NULL,
+            NULL);                              // Address to store event
+
+    stbi_image_free(sourceImageData);
+
+    // ...
+</pre>
+
+<script type="text/javascript">
+    PR.prettyPrint();
+</script>
