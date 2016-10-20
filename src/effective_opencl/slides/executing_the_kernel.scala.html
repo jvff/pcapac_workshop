@@ -1,0 +1,262 @@
+<h1>Executing the Kernel</h1>
+
+<pre class="prettyprint lang-c linenums:92" data-step="0">    // ...
+
+    stbi_image_free(sourceImageData);
+
+    // ...
+</pre>
+
+<pre class="prettyprint lang-c linenums:92" data-step="1">    // ...
+
+    cl_kernel kernel = clCreateKernel(/**/);            // Create kernel
+
+    stbi_image_free(sourceImageData);
+
+    // ...
+</pre>
+
+<pre class="prettyprint lang-c linenums:92" data-step="2">    // ...
+
+    cl_kernel kernel = clCreateKernel(program, /**/);
+                                                // Source program
+
+    stbi_image_free(sourceImageData);
+
+    // ...
+</pre>
+
+<pre class="prettyprint lang-c linenums:92" data-step="3">    // ...
+
+    cl_kernel kernel = clCreateKernel(program, "grayscaleFilter," /**/);
+                                                // Kernel name
+
+    stbi_image_free(sourceImageData);
+
+    // ...
+</pre>
+
+<pre class="prettyprint lang-c linenums:92" data-step="4">    // ...
+
+    cl_kernel kernel = clCreateKernel(program, "grayscaleFilter," NULL);
+                                                // Address to store error code
+
+    stbi_image_free(sourceImageData);
+
+    // ...
+</pre>
+
+<pre class="prettyprint lang-c linenums:92" data-step="5">    // ...
+
+    cl_kernel kernel = clCreateKernel(program, "grayscaleFilter," NULL);
+
+    stbi_image_free(sourceImageData);
+
+    clReleaseKernel(kernel);                    // Release kernel in the end
+
+    // ...
+</pre>
+
+<pre class="prettyprint lang-c linenums:92" data-step="6">    // ...
+
+    cl_kernel kernel = clCreateKernel(program, "grayscaleFilter," NULL);
+    size_t globalWorkSize[] = /**/;             // Configure kernel instances
+
+    stbi_image_free(sourceImageData);
+
+    clReleaseKernel(kernel);
+
+    // ...
+</pre>
+
+<pre class="prettyprint lang-c linenums:92" data-step="7">    // ...
+
+    cl_kernel kernel = clCreateKernel(program, "grayscaleFilter," NULL);
+    size_t globalWorkSize[] = { width, height }; // One instance per pixel
+
+    stbi_image_free(sourceImageData);
+
+    clReleaseKernel(kernel);
+
+    // ...
+</pre>
+
+<pre class="prettyprint lang-c linenums:92" data-step="8">    // ...
+
+    cl_kernel kernel = clCreateKernel(program, "grayscaleFilter," NULL);
+    size_t globalWorkSize[] = { width, height };
+
+    clEnqueueNDRangeKernel(/**/);               // Enqueue a kernel
+
+    stbi_image_free(sourceImageData);
+
+    clReleaseKernel(kernel);
+
+    // ...
+</pre>
+
+<pre class="prettyprint lang-c linenums:92" data-step="9">    // ...
+
+    cl_kernel kernel = clCreateKernel(program, "grayscaleFilter," NULL);
+    size_t globalWorkSize[] = { width, height };
+
+    clEnqueueNDRangeKernel(commandQueue, /**/); // Command queue to use
+
+    stbi_image_free(sourceImageData);
+
+    clReleaseKernel(kernel);
+
+    // ...
+</pre>
+
+<pre class="prettyprint lang-c linenums:92" data-step="10">    // ...
+
+    cl_kernel kernel = clCreateKernel(program, "grayscaleFilter," NULL);
+    size_t globalWorkSize[] = { width, height };
+
+    clEnqueueNDRangeKernel(commandQueue,
+            kernel, /**/);                         // Kernel to execute
+
+    stbi_image_free(sourceImageData);
+
+    clReleaseKernel(kernel);
+
+    // ...
+</pre>
+
+<pre class="prettyprint lang-c linenums:92" data-step="11">    // ...
+
+    cl_kernel kernel = clCreateKernel(program, "grayscaleFilter," NULL);
+    size_t globalWorkSize[] = { width, height };
+
+    clEnqueueNDRangeKernel(commandQueue,
+            kernel,
+            2, /**/);                              // Work dimensions (1,2,3)
+
+    stbi_image_free(sourceImageData);
+
+    clReleaseKernel(kernel);
+
+    // ...
+</pre>
+
+<pre class="prettyprint lang-c linenums:92" data-step="12">    // ...
+
+    cl_kernel kernel = clCreateKernel(program, "grayscaleFilter," NULL);
+    size_t globalWorkSize[] = { width, height };
+
+    clEnqueueNDRangeKernel(commandQueue,
+            kernel,
+            2,
+            NULL, /**/);                           // Global work ID offset
+
+    stbi_image_free(sourceImageData);
+
+    clReleaseKernel(kernel);
+
+    // ...
+</pre>
+
+<pre class="prettyprint lang-c linenums:92" data-step="13">    // ...
+
+    cl_kernel kernel = clCreateKernel(program, "grayscaleFilter," NULL);
+    size_t globalWorkSize[] = { width, height };
+
+    clEnqueueNDRangeKernel(commandQueue,
+            kernel,
+            2,
+            NULL,
+            globalWorkSize, /**/);                // Number of kernel instances
+
+    stbi_image_free(sourceImageData);
+
+    clReleaseKernel(kernel);
+
+    // ...
+</pre>
+
+<pre class="prettyprint lang-c linenums:92" data-step="14">    // ...
+
+    cl_kernel kernel = clCreateKernel(program, "grayscaleFilter," NULL);
+    size_t globalWorkSize[] = { width, height };
+
+    clEnqueueNDRangeKernel(commandQueue,
+            kernel,
+            2,
+            NULL,
+            globalWorkSize,
+            NULL, /**/);                           // Instances per group
+
+    stbi_image_free(sourceImageData);
+
+    clReleaseKernel(kernel);
+
+    // ...
+</pre>
+
+<pre class="prettyprint lang-c linenums:92" data-step="15">    // ...
+
+    cl_kernel kernel = clCreateKernel(program, "grayscaleFilter," NULL);
+    size_t globalWorkSize[] = { width, height };
+
+    clEnqueueNDRangeKernel(commandQueue,
+            kernel,
+            2,
+            NULL,
+            globalWorkSize,
+            NULL,
+            0, /**/);                              // Number of events
+
+    stbi_image_free(sourceImageData);
+
+    clReleaseKernel(kernel);
+
+    // ...
+</pre>
+
+<pre class="prettyprint lang-c linenums:92" data-step="16">    // ...
+
+    cl_kernel kernel = clCreateKernel(program, "grayscaleFilter," NULL);
+    size_t globalWorkSize[] = { width, height };
+
+    clEnqueueNDRangeKernel(commandQueue,
+            kernel,
+            2,
+            NULL,
+            globalWorkSize,
+            NULL,
+            0,
+            NULL, /**/);                           // List of events
+
+    stbi_image_free(sourceImageData);
+
+    clReleaseKernel(kernel);
+
+    // ...
+</pre>
+
+<pre class="prettyprint lang-c linenums:92" data-step="17">    // ...
+
+    cl_kernel kernel = clCreateKernel(program, "grayscaleFilter," NULL);
+    size_t globalWorkSize[] = { width, height };
+
+    clEnqueueNDRangeKernel(commandQueue,
+            kernel,
+            2,
+            NULL,
+            globalWorkSize,
+            NULL,
+            0,
+            NULL,
+            NULL);                                 // Address to store event
+
+    stbi_image_free(sourceImageData);
+
+    clReleaseKernel(kernel);
+
+    // ...
+</pre>
+
+<script type="text/javascript">
+    PR.prettyPrint();
+</script>
