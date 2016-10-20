@@ -13,6 +13,7 @@ Effective OpenCL:
     - using_images
     - image_2d_dimensions
     - image_pixel_format
+    - pixel_channel_types
     - grayscale_filter_example
     - grayscale_filter_algorithm
     - loading_source_image
