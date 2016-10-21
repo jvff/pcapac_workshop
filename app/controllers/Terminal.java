@@ -17,10 +17,10 @@ import play.mvc.WebSocket;
 import actors.terminal.ResizeTerminalMessage;
 import actors.terminal.TerminalActor;
 import actors.terminal.TerminalManagerActor;
+import actors.terminal.UploadFileMessage;
 
 import static java.util.UUID.randomUUID;
 
-import static actors.terminal.TerminalActor.UploadFileMessage;
 import static actors.terminal.TerminalManagerActor.SendTerminalMessage;
 
 public class Terminal extends Controller {

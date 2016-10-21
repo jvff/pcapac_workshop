@@ -36,27 +36,6 @@ public class TerminalActor extends UntypedActor {
     private static final char CMD_RESIZE = 'r';
     private static final char CMD_UPLOAD = 'u';
 
-    public static class UploadFileMessage extends TerminalMessage {
-        private final String path;
-        private final String contents;
-
-        public UploadFileMessage(String path, String contents) {
-            this.path = path;
-            this.contents = contents;
-        }
-
-        @Override
-        public void writeTo(Writer out) throws IOException {
-            writeString(path, out);
-            writeString(contents, out);
-        }
-
-        public void writeString(String string, Writer out) throws IOException {
-            writeInt(string.length(), out);
-            out.write(string);
-        }
-    }
-
     public static Props props(ActorRef out, String sessionId) {
         return Props.create(TerminalActor.class, out, sessionId);
     }
