@@ -1,4 +1,4 @@
-package actors;
+package actors.terminal;
 
 import java.io.InputStream;
 import java.io.InputStreamReader;
@@ -24,8 +24,7 @@ import com.github.dockerjava.core.DefaultDockerClientConfig;
 import com.github.dockerjava.core.DockerClientBuilder;
 import com.github.dockerjava.core.DockerClientConfig;
 
-import actors.TerminalManagerActor;
-import actors.TerminalManagerActor.NewTerminalMessage;
+import actors.terminal.TerminalManagerActor.NewTerminalMessage;
 
 import static java.nio.charset.StandardCharsets.UTF_8;
 

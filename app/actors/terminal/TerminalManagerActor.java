@@ -1,4 +1,4 @@
-package actors;
+package actors.terminal;
 
 import java.util.HashMap;
 
@@ -7,8 +7,6 @@ import akka.actor.Props;
 import akka.actor.UntypedActor;
 
 import play.Logger;
-
-import actors.TerminalActor.ResizeMessage;
 
 public class TerminalManagerActor extends UntypedActor {
     public final static String NAME = "terminal_manager";

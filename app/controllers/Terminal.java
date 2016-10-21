@@ -14,14 +14,14 @@ import play.mvc.Controller;
 import play.mvc.Result;
 import play.mvc.WebSocket;
 
-import actors.TerminalActor;
-import actors.TerminalManagerActor;
+import actors.terminal.TerminalActor;
+import actors.terminal.TerminalManagerActor;
 
 import static java.util.UUID.randomUUID;
 
-import static actors.TerminalActor.ResizeMessage;
-import static actors.TerminalActor.UploadFileMessage;
-import static actors.TerminalManagerActor.SendTerminalMessage;
+import static actors.terminal.TerminalActor.ResizeMessage;
+import static actors.terminal.TerminalActor.UploadFileMessage;
+import static actors.terminal.TerminalManagerActor.SendTerminalMessage;
 
 public class Terminal extends Controller {
     public static Result token() {

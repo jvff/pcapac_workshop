@@ -8,7 +8,7 @@ import securesocial.core.RuntimeEnvironment;
 
 import actors.PresentationManagerActor;
 import actors.SynchronizationActor;
-import actors.TerminalManagerActor;
+import actors.terminal.TerminalManagerActor;
 
 public class Global extends GlobalSettings {
     private RuntimeEnvironment environment = new services.Environment();
