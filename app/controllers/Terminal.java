@@ -14,12 +14,12 @@ import play.mvc.Controller;
 import play.mvc.Result;
 import play.mvc.WebSocket;
 
+import actors.terminal.ResizeTerminalMessage;
 import actors.terminal.TerminalActor;
 import actors.terminal.TerminalManagerActor;
 
 import static java.util.UUID.randomUUID;
 
-import static actors.terminal.TerminalActor.ResizeMessage;
 import static actors.terminal.TerminalActor.UploadFileMessage;
 import static actors.terminal.TerminalManagerActor.SendTerminalMessage;
 
@@ -65,7 +65,8 @@ public class Terminal extends Controller {
 
     private static void resizeTerminal(String terminalId, short columns,
             short rows) {
-        ResizeMessage message = new ResizeMessage(columns, rows);
+        ResizeTerminalMessage message =
+                new ResizeTerminalMessage(columns, rows);
 
         forwardMessage(terminalId, message);
     }

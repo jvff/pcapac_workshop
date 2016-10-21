@@ -36,22 +36,6 @@ public class TerminalActor extends UntypedActor {
     private static final char CMD_RESIZE = 'r';
     private static final char CMD_UPLOAD = 'u';
 
-    public static class ResizeMessage extends TerminalMessage {
-        private final short columns;
-        private final short rows;
-
-        public ResizeMessage(short columns, short rows) {
-            this.columns = columns;
-            this.rows = rows;
-        }
-
-        @Override
-        public void writeTo(Writer out) throws IOException {
-            writeInt(columns, out);
-            writeInt(rows, out);
-        }
-    }
-
     public static class UploadFileMessage extends TerminalMessage {
         private final String path;
         private final String contents;
@@ -118,8 +102,8 @@ public class TerminalActor extends UntypedActor {
     private void unsafelyHandleMessage(Object message) throws IOException {
         if (message instanceof String)
             sendDataToContainer((String)message);
-        else if (message instanceof ResizeMessage)
-            resizeContainerTerminal((ResizeMessage)message);
+        else if (message instanceof ResizeTerminalMessage)
+            resizeContainerTerminal((ResizeTerminalMessage)message);
         else if (message instanceof UploadFileMessage)
             uploadFileToContainer((UploadFileMessage)message);
     }
@@ -210,7 +194,7 @@ public class TerminalActor extends UntypedActor {
         containerWriter.flush();
     }
 
-    private void resizeContainerTerminal(ResizeMessage message)
+    private void resizeContainerTerminal(ResizeTerminalMessage message)
             throws IOException {
         containerWriter.write(CMD_RESIZE);
 

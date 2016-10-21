@@ -3,7 +3,7 @@ package actors.terminal;
 import java.io.IOException;
 import java.io.Writer;
 
-public static abstract class TerminalMessage {
+public abstract class TerminalMessage {
     public abstract void writeTo(Writer out) throws IOException;
 
     protected void writeInt(int value, Writer out) throws IOException {
