@@ -25,4 +25,5 @@ Effective OpenCL:
     - retrieving_the_resulting_image
     - storing_the_resulting_image
     - executing_the_first_version
+    - luminance_filter_kernel
     - thanks

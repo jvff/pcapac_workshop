@@ -1,0 +1,149 @@
+<h1>Luminance Filter</h1>
+
+<pre class="prettyprint lang-c linenums" data-step="0">__kernel void grayscaleFilter(
+        __read_only image2d_t sourceImage,
+        __write_only image2d_t destImage) {
+    int2 coordinate = (int2)(get_global_id(0), get_global_id(1));
+
+    const sampler_t sampler = CLK_NORMALIZED_COORDS_FALSE
+            | CLK_ADDRESS_CLAMP_TO_EDGE
+            | CLK_FILTER_NEAREST;
+
+    float4 colorPixel = read_imagef(sourceImage, sampler, coordinate);
+
+    float4 grayscalePixel = (float4)(colorPixel.x, 0, 0, 0);
+
+    write_imagef(destImage, coordinate, grayscalePixel);
+}</pre>
+
+<pre class="prettyprint lang-c linenums" data-step="1">__kernel void grayscaleFilter(
+        __read_only image2d_t sourceImage,
+        __write_only image2d_t destImage) {
+    int2 coordinate = (int2)(get_global_id(0), get_global_id(1));
+
+    const sampler_t sampler = CLK_NORMALIZED_COORDS_FALSE
+            | CLK_ADDRESS_CLAMP_TO_EDGE
+            | CLK_FILTER_NEAREST;
+
+    float4 colorPixel = read_imagef(sourceImage, sampler, coordinate);
+    float grayscaleValue = /**/;                        // Calculate gray value
+
+    float4 grayscalePixel = (float4)(colorPixel.x, 0, 0, 0);
+
+    write_imagef(destImage, coordinate, grayscalePixel);
+}</pre>
+
+<pre class="prettyprint lang-c linenums" data-step="2">__kernel void grayscaleFilter(
+        __read_only image2d_t sourceImage,
+        __write_only image2d_t destImage) {
+    int2 coordinate = (int2)(get_global_id(0), get_global_id(1));
+
+    const sampler_t sampler = CLK_NORMALIZED_COORDS_FALSE
+            | CLK_ADDRESS_CLAMP_TO_EDGE
+            | CLK_FILTER_NEAREST;
+
+    float4 colorPixel = read_imagef(sourceImage, sampler, coordinate);
+    float grayscaleValue = colorPixel.x;                // Initial attempt
+
+    float4 grayscalePixel = (float4)(colorPixel.x, 0, 0, 0);
+
+    write_imagef(destImage, coordinate, grayscalePixel);
+}</pre>
+
+<pre class="prettyprint lang-c linenums" data-step="3">__kernel void grayscaleFilter(
+        __read_only image2d_t sourceImage,
+        __write_only image2d_t destImage) {
+    int2 coordinate = (int2)(get_global_id(0), get_global_id(1));
+
+    const sampler_t sampler = CLK_NORMALIZED_COORDS_FALSE
+            | CLK_ADDRESS_CLAMP_TO_EDGE
+            | CLK_FILTER_NEAREST;
+
+    float4 colorPixel = read_imagef(sourceImage, sampler, coordinate);
+    float grayscaleValue = colorPixel.x;
+
+    float4 grayscalePixel = (float4)(grayscaleValue, 0, 0, 0); // Update value
+
+    write_imagef(destImage, coordinate, grayscalePixel);
+}</pre>
+
+<pre class="prettyprint lang-c linenums" data-step="4">__kernel void grayscaleFilter(
+        __read_only image2d_t sourceImage,
+        __write_only image2d_t destImage) {
+    int2 coordinate = (int2)(get_global_id(0), get_global_id(1));
+
+    const sampler_t sampler = CLK_NORMALIZED_COORDS_FALSE
+            | CLK_ADDRESS_CLAMP_TO_EDGE
+            | CLK_FILTER_NEAREST;
+
+    float4 colorPixel = read_imagef(sourceImage, sampler, coordinate);
+    float grayscaleValue = 0.f;                         // Start with zero value
+
+    float4 grayscalePixel = (float4)(grayscaleValue, 0, 0, 0);
+
+    write_imagef(destImage, coordinate, grayscalePixel);
+}</pre>
+
+<pre class="prettyprint lang-c linenums" data-step="5">__kernel void grayscaleFilter(
+        __read_only image2d_t sourceImage,
+        __write_only image2d_t destImage) {
+    int2 coordinate = (int2)(get_global_id(0), get_global_id(1));
+
+    const sampler_t sampler = CLK_NORMALIZED_COORDS_FALSE
+            | CLK_ADDRESS_CLAMP_TO_EDGE
+            | CLK_FILTER_NEAREST;
+
+    float4 colorPixel = read_imagef(sourceImage, sampler, coordinate);
+    float grayscaleValue = 0.f;
+
+    grayscaleValue += colorPixel.x * 0.2126;            // Red component
+
+    float4 grayscalePixel = (float4)(grayscaleValue, 0, 0, 0);
+
+    write_imagef(destImage, coordinate, grayscalePixel);
+}</pre>
+
+<pre class="prettyprint lang-c linenums" data-step="6">__kernel void grayscaleFilter(
+        __read_only image2d_t sourceImage,
+        __write_only image2d_t destImage) {
+    int2 coordinate = (int2)(get_global_id(0), get_global_id(1));
+
+    const sampler_t sampler = CLK_NORMALIZED_COORDS_FALSE
+            | CLK_ADDRESS_CLAMP_TO_EDGE
+            | CLK_FILTER_NEAREST;
+
+    float4 colorPixel = read_imagef(sourceImage, sampler, coordinate);
+    float grayscaleValue = 0.f;
+
+    grayscaleValue += colorPixel.x * 0.2126;
+    grayscaleValue += colorPixel.y * 0.7152;            // Green component
+
+    float4 grayscalePixel = (float4)(grayscaleValue, 0, 0, 0);
+
+    write_imagef(destImage, coordinate, grayscalePixel);
+}</pre>
+
+<pre class="prettyprint lang-c linenums" data-step="7">__kernel void grayscaleFilter(
+        __read_only image2d_t sourceImage,
+        __write_only image2d_t destImage) {
+    int2 coordinate = (int2)(get_global_id(0), get_global_id(1));
+
+    const sampler_t sampler = CLK_NORMALIZED_COORDS_FALSE
+            | CLK_ADDRESS_CLAMP_TO_EDGE
+            | CLK_FILTER_NEAREST;
+
+    float4 colorPixel = read_imagef(sourceImage, sampler, coordinate);
+    float grayscaleValue = 0.f;
+
+    grayscaleValue += colorPixel.x * 0.2126;
+    grayscaleValue += colorPixel.y * 0.7152;
+    grayscaleValue += colorPixel.z * 0.0722;            // Blue component
+
+    float4 grayscalePixel = (float4)(grayscaleValue, 0, 0, 0);
+
+    write_imagef(destImage, coordinate, grayscalePixel);
+}</pre>
+
+<script type="text/javascript">
+    PR.prettyPrint();
+</script>
