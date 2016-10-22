@@ -32,4 +32,5 @@ Effective OpenCL:
     - other_math_functions
     - conways_game_of_life
     - get_cell_value_function
+    - count_neighbors_function
     - thanks

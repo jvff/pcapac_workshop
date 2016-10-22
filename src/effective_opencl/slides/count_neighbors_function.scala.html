@@ -1,0 +1,279 @@
+<h1>Count Cell Neighbors Function</h1>
+
+<pre class="prettyprint lang-c linenums" data-step="0">float get_cell(__read_only image2d_t grid, int x, int y) {
+    const sampler_t sampler = CLK_NORMALIZED_COORDS_FALSE
+            | CLK_ADDRESS_REPEAT
+            | CLK_FILTER_NEAREST;
+
+    int2 coordinate = (int2)(x, y);
+
+    float4 cellPixel = read_imagef(grid, sampler, coordinate);
+    float cellValue = cellPixel.x;
+
+    return cellValue;
+}
+
+__kernel void grayscaleFilter(
+        __read_only image2d_t sourceImage,
+        __write_only image2d_t destImage) {
+    // ...
+</pre> <!-- } -->
+
+<!-- { -->
+<pre class="prettyprint lang-c linenums:11" data-step="1">    // ...
+}
+
+__kernel void grayscaleFilter(
+        __read_only image2d_t sourceImage,
+        __write_only image2d_t destImage) {
+    // ...
+</pre> <!-- } -->
+
+<!-- { -->
+<pre class="prettyprint lang-c linenums:11" data-step="2">    // ...
+}
+
+float count_neighbors(/**/) {
+    // Create function to count the number of active neighbors of a cell
+}
+
+__kernel void grayscaleFilter(
+        __read_only image2d_t sourceImage,
+        __write_only image2d_t destImage) {
+    // ...
+</pre> <!-- } -->
+
+<!-- { -->
+<pre class="prettyprint lang-c linenums:11" data-step="3">    // ...
+}
+
+float count_neighbors(__read_only image2d_t grid, /**/) {
+                                                // Grid image
+}
+
+__kernel void grayscaleFilter(
+        __read_only image2d_t sourceImage,
+        __write_only image2d_t destImage) {
+    // ...
+</pre> <!-- } -->
+
+<!-- { -->
+<pre class="prettyprint lang-c linenums:11" data-step="4">    // ...
+}
+
+float count_neighbors(__read_only image2d_t grid, int x, int y) {
+                                                // Cell coordinate
+}
+
+__kernel void grayscaleFilter(
+        __read_only image2d_t sourceImage,
+        __write_only image2d_t destImage) {
+    // ...
+</pre> <!-- } -->
+
+<!-- { -->
+<pre class="prettyprint lang-c linenums:11" data-step="5">    // ...
+}
+
+float count_neighbors(__read_only image2d_t grid, int x, int y) {
+    float neighborCount = 0.f;                  // Create accumulator
+}
+
+__kernel void grayscaleFilter(
+        __read_only image2d_t sourceImage,
+        __write_only image2d_t destImage) {
+    // ...
+</pre> <!-- } -->
+
+<!-- { -->
+<pre class="prettyprint lang-c linenums:11" data-step="6">    // ...
+}
+
+float count_neighbors(__read_only image2d_t grid, int x, int y) {
+    float neighborCount = 0.f;
+
+    neighborCount += get_cell(x - 1, y - 1);    // Adds one if top-left cell is
+                                                // active
+}
+
+__kernel void grayscaleFilter(
+        __read_only image2d_t sourceImage,
+        __write_only image2d_t destImage) {
+    // ...
+</pre> <!-- } -->
+
+<!-- { -->
+<pre class="prettyprint lang-c linenums:11" data-step="7">    // ...
+}
+
+float count_neighbors(__read_only image2d_t grid, int x, int y) {
+    float neighborCount = 0.f;
+
+    neighborCount += get_cell(x - 1, y - 1);
+    neighborCount += get_cell(x - 1, y);        // Adds one if left cell is
+                                                // active
+}
+
+__kernel void grayscaleFilter(
+        __read_only image2d_t sourceImage,
+        __write_only image2d_t destImage) {
+    // ...
+</pre> <!-- } -->
+
+<!-- { -->
+<pre class="prettyprint lang-c linenums:11" data-step="8">    // ...
+}
+
+float count_neighbors(__read_only image2d_t grid, int x, int y) {
+    float neighborCount = 0.f;
+
+    neighborCount += get_cell(x - 1, y - 1);
+    neighborCount += get_cell(x - 1, y);
+    neighborCount += get_cell(x - 1, y + 1);    // Adds one if bottom-left cell
+                                                // is active
+}
+
+__kernel void grayscaleFilter(
+        __read_only image2d_t sourceImage,
+        __write_only image2d_t destImage) {
+    // ...
+</pre> <!-- } -->
+
+<!-- { -->
+<pre class="prettyprint lang-c linenums:11" data-step="9">    // ...
+}
+
+float count_neighbors(__read_only image2d_t grid, int x, int y) {
+    float neighborCount = 0.f;
+
+    neighborCount += get_cell(x - 1, y - 1);
+    neighborCount += get_cell(x - 1, y);
+    neighborCount += get_cell(x - 1, y + 1);
+    neighborCount += get_cell(x, y + 1);        // Adds one if bottom cell is
+                                                // active
+}
+
+__kernel void grayscaleFilter(
+        __read_only image2d_t sourceImage,
+        __write_only image2d_t destImage) {
+    // ...
+</pre> <!-- } -->
+
+<!-- { -->
+<pre class="prettyprint lang-c linenums:11" data-step="10">    // ...
+}
+
+float count_neighbors(__read_only image2d_t grid, int x, int y) {
+    float neighborCount = 0.f;
+
+    neighborCount += get_cell(x - 1, y - 1);
+    neighborCount += get_cell(x - 1, y);
+    neighborCount += get_cell(x - 1, y + 1);
+    neighborCount += get_cell(x, y + 1);
+    neighborCount += get_cell(x + 1, y + 1);    // Adds one if bottom-right cell
+                                                // is active
+}
+
+__kernel void grayscaleFilter(
+        __read_only image2d_t sourceImage,
+        __write_only image2d_t destImage) {
+    // ...
+</pre> <!-- } -->
+
+<!-- { -->
+<pre class="prettyprint lang-c linenums:11" data-step="11">    // ...
+}
+
+float count_neighbors(__read_only image2d_t grid, int x, int y) {
+    float neighborCount = 0.f;
+
+    neighborCount += get_cell(x - 1, y - 1);
+    neighborCount += get_cell(x - 1, y);
+    neighborCount += get_cell(x - 1, y + 1);
+    neighborCount += get_cell(x, y + 1);
+    neighborCount += get_cell(x + 1, y + 1);
+    neighborCount += get_cell(x + 1, y);        // Adds one if right cell is
+                                                // active
+}
+
+__kernel void grayscaleFilter(
+        __read_only image2d_t sourceImage,
+        __write_only image2d_t destImage) {
+    // ...
+</pre> <!-- } -->
+
+<!-- { -->
+<pre class="prettyprint lang-c linenums:11" data-step="12">    // ...
+}
+
+float count_neighbors(__read_only image2d_t grid, int x, int y) {
+    float neighborCount = 0.f;
+
+    neighborCount += get_cell(x - 1, y - 1);
+    neighborCount += get_cell(x - 1, y);
+    neighborCount += get_cell(x - 1, y + 1);
+    neighborCount += get_cell(x, y + 1);
+    neighborCount += get_cell(x + 1, y + 1);
+    neighborCount += get_cell(x + 1, y);
+    neighborCount += get_cell(x + 1, y - 1);    // Adds one if top-right cell is
+                                                // active
+}
+
+__kernel void grayscaleFilter(
+        __read_only image2d_t sourceImage,
+        __write_only image2d_t destImage) {
+    // ...
+</pre> <!-- } -->
+
+<!-- { -->
+<pre class="prettyprint lang-c linenums:11" data-step="13">    // ...
+}
+
+float count_neighbors(__read_only image2d_t grid, int x, int y) {
+    float neighborCount = 0.f;
+
+    neighborCount += get_cell(x - 1, y - 1);
+    neighborCount += get_cell(x - 1, y);
+    neighborCount += get_cell(x - 1, y + 1);
+    neighborCount += get_cell(x, y + 1);
+    neighborCount += get_cell(x + 1, y + 1);
+    neighborCount += get_cell(x + 1, y);
+    neighborCount += get_cell(x + 1, y - 1);
+    neighborCount += get_cell(x, y - 1);        // Adds one if top cell is
+                                                // active
+}
+
+__kernel void grayscaleFilter(
+        __read_only image2d_t sourceImage,
+        __write_only image2d_t destImage) {
+    // ...
+</pre> <!-- } -->
+
+<!-- { -->
+<pre class="prettyprint lang-c linenums:11" data-step="14">    // ...
+}
+
+float count_neighbors(__read_only image2d_t grid, int x, int y) {
+    float neighborCount = 0.f;
+
+    neighborCount += get_cell(x - 1, y - 1);
+    neighborCount += get_cell(x - 1, y);
+    neighborCount += get_cell(x - 1, y + 1);
+    neighborCount += get_cell(x, y + 1);
+    neighborCount += get_cell(x + 1, y + 1);
+    neighborCount += get_cell(x + 1, y);
+    neighborCount += get_cell(x + 1, y - 1);
+    neighborCount += get_cell(x, y - 1);
+
+    return neighborCount;                       // Return the final count
+}
+
+__kernel void grayscaleFilter(
+        __read_only image2d_t sourceImage,
+        __write_only image2d_t destImage) {
+    // ...
+</pre> <!-- } -->
+
+<script type="text/javascript">
+    PR.prettyPrint();
+</script>
