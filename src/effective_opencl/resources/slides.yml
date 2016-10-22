@@ -31,4 +31,5 @@ Effective OpenCL:
     - executing_the_filter
     - other_math_functions
     - conways_game_of_life
+    - get_cell_value_function
     - thanks
