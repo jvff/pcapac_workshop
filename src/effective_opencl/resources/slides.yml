@@ -28,4 +28,5 @@ Effective OpenCL:
     - luminance_filter_kernel
     - executing_the_filter
     - using_vector_functions
+    - executing_the_filter
     - thanks
