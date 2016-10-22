@@ -17,7 +17,8 @@ public class JavaScriptRoutes extends Controller {
                 routes.javascript.Terminal.token(),
                 routes.javascript.Terminal.resize(),
                 routes.javascript.Terminal.socket(),
-                routes.javascript.Terminal.upload());
+                routes.javascript.Terminal.upload(),
+                routes.javascript.Terminal.download());
 
         return ok(router);
     }

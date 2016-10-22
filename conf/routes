@@ -2,6 +2,7 @@ GET         /terminal                       controllers.Terminal.token
 GET         /terminal/connect/:token        controllers.Terminal.socket(token: String)
 POST        /terminal/resize/:token         controllers.Terminal.resize(token: String)
 POST        /terminal/upload/:token/*path   controllers.Terminal.upload(token: String, path: String)
+GET         /terminal/download/:token/*path controllers.Terminal.download(token: String, path: String)
 
 GET         /:presentation/slides/sync      controllers.Presentations.synchronizationSocket(presentation: String)
 GET         /:presentation/slides/:number   controllers.Presentations.slide(presentation: String, number: Integer)

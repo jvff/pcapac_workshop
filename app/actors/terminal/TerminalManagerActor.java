@@ -73,6 +73,6 @@ public class TerminalManagerActor extends UntypedActor {
         ActorRef terminalHandler = terminals.get(terminalId);
 
         if (terminalHandler != null)
-            message.forwardTo(terminalHandler, self());
+            message.forwardTo(terminalHandler, sender());
     }
 }

@@ -1,5 +1,8 @@
 package actors.terminal;
 
+import java.io.Closeable;
+import java.io.File;
+import java.io.FileOutputStream;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.io.IOException;
@@ -8,17 +11,23 @@ import java.io.OutputStreamWriter;
 import java.io.Reader;
 import java.io.Writer;
 import java.net.Socket;
+import java.nio.file.Path;
 import java.util.function.Consumer;
 
 import play.Logger;
 
-import com.github.dockerjava.api.command.CreateContainerResponse;
 import com.github.dockerjava.api.DockerClient;
 import com.github.dockerjava.core.DefaultDockerClientConfig;
 import com.github.dockerjava.core.DockerClientBuilder;
 import com.github.dockerjava.core.DockerClientConfig;
 
+import org.kamranzafar.jtar.TarEntry;
+import org.kamranzafar.jtar.TarInputStream;
+
 import static java.nio.charset.StandardCharsets.UTF_8;
+import static java.nio.file.Files.createTempDirectory;
+
+import static org.apache.commons.io.FileUtils.copyInputStreamToFile;
 
 import static com.github.dockerjava.core.RemoteApiVersion.VERSION_1_23;
 
@@ -126,6 +135,77 @@ public class TerminalContainer {
 
         reader = new InputStreamReader(socketInput, UTF_8);
         writer = new OutputStreamWriter(socketOut, UTF_8);
+    }
+
+    public File getFile(String path) throws IOException {
+        InputStream stream = docker.copyFileFromContainerCmd(id, path).exec();
+        TarInputStream tarStream = new TarInputStream(stream);
+        TarEntry tarEntry = tarStream.getNextEntry();
+
+        Logger.debug("Found entry: " + tarEntry.getSize());
+
+        return copyFromStreamToNewFile(tarStream, path, tarEntry.getSize());
+    }
+
+    private File copyFromStreamToNewFile(InputStream inputStream,
+            String originalFilePath, long size) throws IOException {
+        File destinationFile = createDestinationFile(originalFilePath);
+        FileOutputStream outputStream = new FileOutputStream(destinationFile);
+
+        Logger.debug("Copying between streams to: " + destinationFile);
+
+        copyBetweenStreams(inputStream, outputStream, size);
+
+        return destinationFile;
+    }
+
+    private File createDestinationFile(String sourceFilePath)
+            throws IOException {
+        String fileName = getFileName(sourceFilePath);
+        Path destinationDirectoryPath = createTempDirectory("container-dl-");
+        File destinationDirectory = destinationDirectoryPath.toFile();
+        File destinationFile = new File(destinationDirectory, fileName);
+
+        destinationDirectory.deleteOnExit();
+        destinationFile.deleteOnExit();
+
+        return destinationFile;
+    }
+
+    private String getFileName(String filePath) {
+        int noDirectories = -1;
+        int endOfDirectories = filePath.lastIndexOf('/');
+
+        if (endOfDirectories == noDirectories)
+            return filePath;
+        else
+            return filePath.substring(endOfDirectories + 1);
+    }
+
+    private void copyBetweenStreams(InputStream source, OutputStream sink,
+            long bytes) throws IOException {
+        byte[] buffer = new byte[4096];
+        long remainingBytes = bytes;
+
+        while (remainingBytes > 0) {
+            long bytesToRead = Math.min(buffer.length, remainingBytes);
+            int bytesRead = source.read(buffer, 0, (int)bytesToRead);
+
+            sink.write(buffer, 0, bytesRead);
+
+            remainingBytes -= bytesRead;
+        }
+
+        safelyClose(sink, "sink");
+        safelyClose(source, "source");
+    }
+
+    private void safelyClose(Closeable closeableObject, String name) {
+        try {
+            closeableObject.close();
+        } catch (Exception cause) {
+            Logger.warn("Failed to close " + name, cause);
+        }
     }
 
     public void sendData(char operation, String data) throws IOException {

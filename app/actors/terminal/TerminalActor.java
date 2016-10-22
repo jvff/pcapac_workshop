@@ -1,5 +1,6 @@
 package actors.terminal;
 
+import java.io.File;
 import java.io.IOException;
 
 import akka.actor.ActorRef;
@@ -89,5 +90,23 @@ public class TerminalActor extends UntypedActor {
             container.sendOperation(CMD_RESIZE, (TerminalMessage)message);
         else if (message instanceof UploadFileMessage)
             container.sendOperation(CMD_UPLOAD, (TerminalMessage)message);
+        else if (message instanceof DownloadFileMessage)
+            handleDownloadFileMessage((DownloadFileMessage)message);
+    }
+
+    private void handleDownloadFileMessage(DownloadFileMessage message) {
+        String path = message.getPath();
+
+        try {
+            File file = container.getFile(path);
+            Logger.debug("Got file: " + file);
+
+            sender().tell(file, self());
+        } catch (Exception cause) {
+            String errorMessage =
+                    "Failed to download file from container: " + path;
+
+            Logger.error(errorMessage, cause);
+        }
     }
 }
