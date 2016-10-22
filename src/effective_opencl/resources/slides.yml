@@ -30,4 +30,5 @@ Effective OpenCL:
     - using_vector_functions
     - executing_the_filter
     - other_math_functions
+    - conways_game_of_life
     - thanks
