@@ -1,0 +1,443 @@
+<h1>Single Iteration Kernel</h1>
+
+<!-- { -->
+<pre class="prettyprint lang-c linenums:34" data-step="0">    // ...
+}
+
+void conway_iteration(__read_only image2d_t previous,
+        __write_only image2d_t current,
+        int x, int y) {
+    const float active = 1.f;
+    const float inactive = 0.f;
+
+    float neighbors = count_neighbors(previous, x, y);
+
+    if (get_cell(previous, x, y) == active) {
+        if (neighbors &lt; 2 || neighbors &gt; 3)
+            set_cell(current, x, y, inactive);
+        else
+            set_cell(current, x, y, active);
+    } else {
+        if (neighbors == 3)
+            set_cell(current, x, y, active);
+        else
+            set_cell(current, x, y, inactive);
+    }
+}
+
+__kernel void grayscaleFilter(
+        __read_only image2d_t sourceImage,
+        __write_only image2d_t destImage) {
+    // ...
+</pre> <!-- } -->
+
+<!-- { -->
+<pre class="prettyprint lang-c linenums:34" data-step="1">    // ...
+}
+
+void conway_iteration(__read_only image2d_t previous,
+        __write_only image2d_t current,
+        int x, int y) {
+    const float active = 1.f;
+    const float inactive = 0.f;
+
+    float neighbors = count_neighbors(previous, x, y);
+
+    if (get_cell(previous, x, y) == active) {
+        if (neighbors &lt; 2 || neighbors &gt; 3)
+            set_cell(current, x, y, inactive);
+        else
+            set_cell(current, x, y, active);
+    } else {
+        if (neighbors == 3)
+            set_cell(current, x, y, active);
+        else
+            set_cell(current, x, y, inactive);
+    }
+}
+
+__kernel void conwaysGameOfLife(/**/) {
+    // Create compute kernel for Conway's Game of Life
+}
+
+__kernel void grayscaleFilter(
+        __read_only image2d_t sourceImage,
+        __write_only image2d_t destImage) {
+    // ...
+</pre> <!-- } -->
+
+<!-- { -->
+<pre class="prettyprint lang-c linenums:34" data-step="2">    // ...
+}
+
+void conway_iteration(__read_only image2d_t previous,
+        __write_only image2d_t current,
+        int x, int y) {
+    const float active = 1.f;
+    const float inactive = 0.f;
+
+    float neighbors = count_neighbors(previous, x, y);
+
+    if (get_cell(previous, x, y) == active) {
+        if (neighbors &lt; 2 || neighbors &gt; 3)
+            set_cell(current, x, y, inactive);
+        else
+            set_cell(current, x, y, active);
+    } else {
+        if (neighbors == 3)
+            set_cell(current, x, y, active);
+        else
+            set_cell(current, x, y, inactive);
+    }
+}
+
+__kernel void conwaysGameOfLife(__read_only image2d_t previousGrid, /**/) {
+                                                // Previous grid image
+}
+
+__kernel void grayscaleFilter(
+        __read_only image2d_t sourceImage,
+        __write_only image2d_t destImage) {
+    // ...
+</pre> <!-- } -->
+
+<!-- { -->
+<pre class="prettyprint lang-c linenums:34" data-step="3">    // ...
+}
+
+void conway_iteration(__read_only image2d_t previous,
+        __write_only image2d_t current,
+        int x, int y) {
+    const float active = 1.f;
+    const float inactive = 0.f;
+
+    float neighbors = count_neighbors(previous, x, y);
+
+    if (get_cell(previous, x, y) == active) {
+        if (neighbors &lt; 2 || neighbors &gt; 3)
+            set_cell(current, x, y, inactive);
+        else
+            set_cell(current, x, y, active);
+    } else {
+        if (neighbors == 3)
+            set_cell(current, x, y, active);
+        else
+            set_cell(current, x, y, inactive);
+    }
+}
+
+__kernel void conwaysGameOfLife(__read_only image2d_t previousGrid,
+        __write_only image2d_t nextGrid) {      // Grid image for next iteration
+}
+
+__kernel void grayscaleFilter(
+        __read_only image2d_t sourceImage,
+        __write_only image2d_t destImage) {
+    // ...
+</pre> <!-- } -->
+
+<!-- { -->
+<pre class="prettyprint lang-c linenums:34" data-step="4">    // ...
+}
+
+void conway_iteration(__read_only image2d_t previous,
+        __write_only image2d_t current,
+        int x, int y) {
+    const float active = 1.f;
+    const float inactive = 0.f;
+
+    float neighbors = count_neighbors(previous, x, y);
+
+    if (get_cell(previous, x, y) == active) {
+        if (neighbors &lt; 2 || neighbors &gt; 3)
+            set_cell(current, x, y, inactive);
+        else
+            set_cell(current, x, y, active);
+    } else {
+        if (neighbors == 3)
+            set_cell(current, x, y, active);
+        else
+            set_cell(current, x, y, inactive);
+    }
+}
+
+__kernel void conwaysGameOfLife(__read_only image2d_t previousGrid,
+        __write_only image2d_t nextGrid) {
+    int x = /**/;                               // Cell X coordinate
+}
+
+__kernel void grayscaleFilter(
+        __read_only image2d_t sourceImage,
+        __write_only image2d_t destImage) {
+    // ...
+</pre> <!-- } -->
+
+<!-- { -->
+<pre class="prettyprint lang-c linenums:34" data-step="5">    // ...
+}
+
+void conway_iteration(__read_only image2d_t previous,
+        __write_only image2d_t current,
+        int x, int y) {
+    const float active = 1.f;
+    const float inactive = 0.f;
+
+    float neighbors = count_neighbors(previous, x, y);
+
+    if (get_cell(previous, x, y) == active) {
+        if (neighbors &lt; 2 || neighbors &gt; 3)
+            set_cell(current, x, y, inactive);
+        else
+            set_cell(current, x, y, active);
+    } else {
+        if (neighbors == 3)
+            set_cell(current, x, y, active);
+        else
+            set_cell(current, x, y, inactive);
+    }
+}
+
+__kernel void conwaysGameOfLife(__read_only image2d_t previousGrid,
+        __write_only image2d_t nextGrid) {
+    int x = get_global_id(0);                   // Specific per kernel instance
+}
+
+__kernel void grayscaleFilter(
+        __read_only image2d_t sourceImage,
+        __write_only image2d_t destImage) {
+    // ...
+</pre> <!-- } -->
+
+<!-- { -->
+<pre class="prettyprint lang-c linenums:34" data-step="6">    // ...
+}
+
+void conway_iteration(__read_only image2d_t previous,
+        __write_only image2d_t current,
+        int x, int y) {
+    const float active = 1.f;
+    const float inactive = 0.f;
+
+    float neighbors = count_neighbors(previous, x, y);
+
+    if (get_cell(previous, x, y) == active) {
+        if (neighbors &lt; 2 || neighbors &gt; 3)
+            set_cell(current, x, y, inactive);
+        else
+            set_cell(current, x, y, active);
+    } else {
+        if (neighbors == 3)
+            set_cell(current, x, y, active);
+        else
+            set_cell(current, x, y, inactive);
+    }
+}
+
+__kernel void conwaysGameOfLife(__read_only image2d_t previousGrid,
+        __write_only image2d_t nextGrid) {
+    int x = get_global_id(0);
+    int y = /**/;                               // Cell Y coordinate
+}
+
+__kernel void grayscaleFilter(
+        __read_only image2d_t sourceImage,
+        __write_only image2d_t destImage) {
+    // ...
+</pre> <!-- } -->
+
+<!-- { -->
+<pre class="prettyprint lang-c linenums:34" data-step="7">    // ...
+}
+
+void conway_iteration(__read_only image2d_t previous,
+        __write_only image2d_t current,
+        int x, int y) {
+    const float active = 1.f;
+    const float inactive = 0.f;
+
+    float neighbors = count_neighbors(previous, x, y);
+
+    if (get_cell(previous, x, y) == active) {
+        if (neighbors &lt; 2 || neighbors &gt; 3)
+            set_cell(current, x, y, inactive);
+        else
+            set_cell(current, x, y, active);
+    } else {
+        if (neighbors == 3)
+            set_cell(current, x, y, active);
+        else
+            set_cell(current, x, y, inactive);
+    }
+}
+
+__kernel void conwaysGameOfLife(__read_only image2d_t previousGrid,
+        __write_only image2d_t nextGrid) {
+    int x = get_global_id(0);
+    int y = get_global_id(1);                   // Specific per kernel instance
+}
+
+__kernel void grayscaleFilter(
+        __read_only image2d_t sourceImage,
+        __write_only image2d_t destImage) {
+    // ...
+</pre> <!-- } -->
+
+<!-- { -->
+<pre class="prettyprint lang-c linenums:34" data-step="8">    // ...
+}
+
+void conway_iteration(__read_only image2d_t previous,
+        __write_only image2d_t current,
+        int x, int y) {
+    const float active = 1.f;
+    const float inactive = 0.f;
+
+    float neighbors = count_neighbors(previous, x, y);
+
+    if (get_cell(previous, x, y) == active) {
+        if (neighbors &lt; 2 || neighbors &gt; 3)
+            set_cell(current, x, y, inactive);
+        else
+            set_cell(current, x, y, active);
+    } else {
+        if (neighbors == 3)
+            set_cell(current, x, y, active);
+        else
+            set_cell(current, x, y, inactive);
+    }
+}
+
+__kernel void conwaysGameOfLife(__read_only image2d_t previousGrid,
+        __write_only image2d_t nextGrid) {
+    int x = get_global_id(0);
+    int y = get_global_id(1);
+
+    conway_iteration(/**/);                     // Run one iteration
+}
+
+__kernel void grayscaleFilter(
+        __read_only image2d_t sourceImage,
+        __write_only image2d_t destImage) {
+    // ...
+</pre> <!-- } -->
+
+<!-- { -->
+<pre class="prettyprint lang-c linenums:34" data-step="9">    // ...
+}
+
+void conway_iteration(__read_only image2d_t previous,
+        __write_only image2d_t current,
+        int x, int y) {
+    const float active = 1.f;
+    const float inactive = 0.f;
+
+    float neighbors = count_neighbors(previous, x, y);
+
+    if (get_cell(previous, x, y) == active) {
+        if (neighbors &lt; 2 || neighbors &gt; 3)
+            set_cell(current, x, y, inactive);
+        else
+            set_cell(current, x, y, active);
+    } else {
+        if (neighbors == 3)
+            set_cell(current, x, y, active);
+        else
+            set_cell(current, x, y, inactive);
+    }
+}
+
+__kernel void conwaysGameOfLife(__read_only image2d_t previousGrid,
+        __write_only image2d_t nextGrid) {
+    int x = get_global_id(0);
+    int y = get_global_id(1);
+
+    conway_iteration(previousGrid, /**/);       // Previous grid
+}
+
+__kernel void grayscaleFilter(
+        __read_only image2d_t sourceImage,
+        __write_only image2d_t destImage) {
+    // ...
+</pre> <!-- } -->
+
+<!-- { -->
+<pre class="prettyprint lang-c linenums:34" data-step="10">    // ...
+}
+
+void conway_iteration(__read_only image2d_t previous,
+        __write_only image2d_t current,
+        int x, int y) {
+    const float active = 1.f;
+    const float inactive = 0.f;
+
+    float neighbors = count_neighbors(previous, x, y);
+
+    if (get_cell(previous, x, y) == active) {
+        if (neighbors &lt; 2 || neighbors &gt; 3)
+            set_cell(current, x, y, inactive);
+        else
+            set_cell(current, x, y, active);
+    } else {
+        if (neighbors == 3)
+            set_cell(current, x, y, active);
+        else
+            set_cell(current, x, y, inactive);
+    }
+}
+
+__kernel void conwaysGameOfLife(__read_only image2d_t previousGrid,
+        __write_only image2d_t nextGrid) {
+    int x = get_global_id(0);
+    int y = get_global_id(1);
+
+    conway_iteration(previousGrid, nextGrid, /**/); // Grid for new iteration
+}
+
+__kernel void grayscaleFilter(
+        __read_only image2d_t sourceImage,
+        __write_only image2d_t destImage) {
+    // ...
+</pre> <!-- } -->
+
+<!-- { -->
+<pre class="prettyprint lang-c linenums:34" data-step="11">    // ...
+}
+
+void conway_iteration(__read_only image2d_t previous,
+        __write_only image2d_t current,
+        int x, int y) {
+    const float active = 1.f;
+    const float inactive = 0.f;
+
+    float neighbors = count_neighbors(previous, x, y);
+
+    if (get_cell(previous, x, y) == active) {
+        if (neighbors &lt; 2 || neighbors &gt; 3)
+            set_cell(current, x, y, inactive);
+        else
+            set_cell(current, x, y, active);
+    } else {
+        if (neighbors == 3)
+            set_cell(current, x, y, active);
+        else
+            set_cell(current, x, y, inactive);
+    }
+}
+
+__kernel void conwaysGameOfLife(__read_only image2d_t previousGrid,
+        __write_only image2d_t nextGrid) {
+    int x = get_global_id(0);
+    int y = get_global_id(1);
+
+    conway_iteration(previousGrid, nextGrid, x, y); // Cell coordinate
+}
+
+__kernel void grayscaleFilter(
+        __read_only image2d_t sourceImage,
+        __write_only image2d_t destImage) {
+    // ...
+</pre> <!-- } -->
+
+<script type="text/javascript">
+    PR.prettyPrint();
+</script>

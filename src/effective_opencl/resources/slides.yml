@@ -35,4 +35,5 @@ Effective OpenCL:
     - set_cell_value_function
     - count_neighbors_function
     - conway_iteration_function
+    - single_iteration_kernel
     - thanks
