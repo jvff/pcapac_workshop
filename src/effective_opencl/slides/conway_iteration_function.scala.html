@@ -1,0 +1,403 @@
+<h1>Conway's Game of Life Iteration Function</h1>
+
+<!-- { -->
+<pre class="prettyprint lang-c linenums:19" data-step="0">    // ...
+}
+
+float count_neighbors(__read_only image2d_t grid, int x, int y) {
+    float neighborCount = 0.f;
+
+    neighborCount += get_cell(x - 1, y - 1);
+    neighborCount += get_cell(x - 1, y);
+    neighborCount += get_cell(x - 1, y + 1);
+    neighborCount += get_cell(x, y + 1);
+    neighborCount += get_cell(x + 1, y + 1);
+    neighborCount += get_cell(x + 1, y);
+    neighborCount += get_cell(x + 1, y - 1);
+    neighborCount += get_cell(x, y - 1);
+
+    return neighborCount;
+}
+
+__kernel void grayscaleFilter(
+        __read_only image2d_t sourceImage,
+        __write_only image2d_t destImage) {
+    // ...
+</pre> <!-- } -->
+
+<!-- { -->
+<pre class="prettyprint lang-c linenums:34" data-step="1">    // ...
+}
+
+__kernel void grayscaleFilter(
+        __read_only image2d_t sourceImage,
+        __write_only image2d_t destImage) {
+    // ...
+</pre> <!-- } -->
+
+<!-- { -->
+<pre class="prettyprint lang-c linenums:34" data-step="2">    // ...
+}
+
+void conway_iteration(/**/) {
+    // Create a function for an iteration of Conway's Game of Life
+}
+
+__kernel void grayscaleFilter(
+        __read_only image2d_t sourceImage,
+        __write_only image2d_t destImage) {
+    // ...
+</pre> <!-- } -->
+
+<!-- { -->
+<pre class="prettyprint lang-c linenums:34" data-step="3">    // ...
+}
+
+void conway_iteration(__read_only image2d_t previous, /**/) {   // Previous grid
+
+}
+
+__kernel void grayscaleFilter(
+        __read_only image2d_t sourceImage,
+        __write_only image2d_t destImage) {
+    // ...
+</pre> <!-- } -->
+
+<!-- { -->
+<pre class="prettyprint lang-c linenums:34" data-step="4">    // ...
+}
+
+void conway_iteration(__read_only image2d_t previous,
+        __write_only image2d_t current, /**/) {                 // Current grid
+}
+
+__kernel void grayscaleFilter(
+        __read_only image2d_t sourceImage,
+        __write_only image2d_t destImage) {
+    // ...
+</pre> <!-- } -->
+
+<!-- { -->
+<pre class="prettyprint lang-c linenums:34" data-step="5">    // ...
+}
+
+void conway_iteration(__read_only image2d_t previous,
+        __write_only image2d_t current,
+        int x, int y) {                                         // Cell coord.
+}
+
+__kernel void grayscaleFilter(
+        __read_only image2d_t sourceImage,
+        __write_only image2d_t destImage) {
+    // ...
+</pre> <!-- } -->
+
+<!-- { -->
+<pre class="prettyprint lang-c linenums:34" data-step="6">    // ...
+}
+
+void conway_iteration(__read_only image2d_t previous,
+        __write_only image2d_t current,
+        int x, int y) {
+    const float active = 1.f;                   // Active cell representation
+}
+
+__kernel void grayscaleFilter(
+        __read_only image2d_t sourceImage,
+        __write_only image2d_t destImage) {
+    // ...
+</pre> <!-- } -->
+
+<!-- { -->
+<pre class="prettyprint lang-c linenums:34" data-step="7">    // ...
+}
+
+void conway_iteration(__read_only image2d_t previous,
+        __write_only image2d_t current,
+        int x, int y) {
+    const float active = 1.f;
+    const float inactive = 0.f;                 // Inactive cell representation
+}
+
+__kernel void grayscaleFilter(
+        __read_only image2d_t sourceImage,
+        __write_only image2d_t destImage) {
+    // ...
+</pre> <!-- } -->
+
+<!-- { -->
+<pre class="prettyprint lang-c linenums:34" data-step="8">    // ...
+}
+
+void conway_iteration(__read_only image2d_t previous,
+        __write_only image2d_t current,
+        int x, int y) {
+    const float active = 1.f;
+    const float inactive = 0.f;
+
+    float neighbors = count_neighbors(/**/);    // Count neighbors
+}
+
+__kernel void grayscaleFilter(
+        __read_only image2d_t sourceImage,
+        __write_only image2d_t destImage) {
+    // ...
+</pre> <!-- } -->
+
+<!-- { -->
+<pre class="prettyprint lang-c linenums:34" data-step="9">    // ...
+}
+
+void conway_iteration(__read_only image2d_t previous,
+        __write_only image2d_t current,
+        int x, int y) {
+    const float active = 1.f;
+    const float inactive = 0.f;
+
+    float neighbors = count_neighbors(previous, /**/);
+                                                // Use previous iteration grid
+}
+
+__kernel void grayscaleFilter(
+        __read_only image2d_t sourceImage,
+        __write_only image2d_t destImage) {
+    // ...
+</pre> <!-- } -->
+
+<!-- { -->
+<pre class="prettyprint lang-c linenums:34" data-step="10">    // ...
+}
+
+void conway_iteration(__read_only image2d_t previous,
+        __write_only image2d_t current,
+        int x, int y) {
+    const float active = 1.f;
+    const float inactive = 0.f;
+
+    float neighbors = count_neighbors(previous, x, y);
+                                                // Cell coordinate
+}
+
+__kernel void grayscaleFilter(
+        __read_only image2d_t sourceImage,
+        __write_only image2d_t destImage) {
+    // ...
+</pre> <!-- } -->
+
+<!-- { -->
+<pre class="prettyprint lang-c linenums:34" data-step="11">    // ...
+}
+
+void conway_iteration(__read_only image2d_t previous,
+        __write_only image2d_t current,
+        int x, int y) {
+    const float active = 1.f;
+    const float inactive = 0.f;
+
+    float neighbors = count_neighbors(previous, x, y);
+
+    if (get_cell(previous, x, y) == active) {
+        // Handle active cell cases
+    }
+}
+
+__kernel void grayscaleFilter(
+        __read_only image2d_t sourceImage,
+        __write_only image2d_t destImage) {
+    // ...
+</pre> <!-- } -->
+
+<!-- { -->
+<pre class="prettyprint lang-c linenums:34" data-step="12">    // ...
+}
+
+void conway_iteration(__read_only image2d_t previous,
+        __write_only image2d_t current,
+        int x, int y) {
+    const float active = 1.f;
+    const float inactive = 0.f;
+
+    float neighbors = count_neighbors(previous, x, y);
+
+    if (get_cell(previous, x, y) == active) {
+        // Handle active cell cases
+    } else {
+        // Handle inactive cell cases
+    }
+}
+
+__kernel void grayscaleFilter(
+        __read_only image2d_t sourceImage,
+        __write_only image2d_t destImage) {
+    // ...
+</pre> <!-- } -->
+
+<!-- { -->
+<pre class="prettyprint lang-c linenums:34" data-step="13">    // ...
+}
+
+void conway_iteration(__read_only image2d_t previous,
+        __write_only image2d_t current,
+        int x, int y) {
+    const float active = 1.f;
+    const float inactive = 0.f;
+
+    float neighbors = count_neighbors(previous, x, y);
+
+    if (get_cell(previous, x, y) == active) {
+        if (neighbors &lt; 2)                      // Under-population
+            /**/
+    } else {
+        // Handle inactive cell cases
+    }
+}
+
+__kernel void grayscaleFilter(
+        __read_only image2d_t sourceImage,
+        __write_only image2d_t destImage) {
+    // ...
+</pre> <!-- } -->
+
+<!-- { -->
+<pre class="prettyprint lang-c linenums:34" data-step="14">    // ...
+}
+
+void conway_iteration(__read_only image2d_t previous,
+        __write_only image2d_t current,
+        int x, int y) {
+    const float active = 1.f;
+    const float inactive = 0.f;
+
+    float neighbors = count_neighbors(previous, x, y);
+
+    if (get_cell(previous, x, y) == active) {
+        if (neighbors &lt; 2)
+            set_cell(current, x, y, inactive);  // Deactivate cell
+    } else {
+        // Handle inactive cell cases
+    }
+}
+
+__kernel void grayscaleFilter(
+        __read_only image2d_t sourceImage,
+        __write_only image2d_t destImage) {
+    // ...
+</pre> <!-- } -->
+
+<!-- { -->
+<pre class="prettyprint lang-c linenums:34" data-step="15">    // ...
+}
+
+void conway_iteration(__read_only image2d_t previous,
+        __write_only image2d_t current,
+        int x, int y) {
+    const float active = 1.f;
+    const float inactive = 0.f;
+
+    float neighbors = count_neighbors(previous, x, y);
+
+    if (get_cell(previous, x, y) == active) {
+        if (neighbors &lt; 2 || neighbors &gt; 3)     // Over-population
+            set_cell(current, x, y, inactive);
+    } else {
+        // Handle inactive cell cases
+    }
+}
+
+__kernel void grayscaleFilter(
+        __read_only image2d_t sourceImage,
+        __write_only image2d_t destImage) {
+    // ...
+</pre> <!-- } -->
+
+<!-- { -->
+<pre class="prettyprint lang-c linenums:34" data-step="16">    // ...
+}
+
+void conway_iteration(__read_only image2d_t previous,
+        __write_only image2d_t current,
+        int x, int y) {
+    const float active = 1.f;
+    const float inactive = 0.f;
+
+    float neighbors = count_neighbors(previous, x, y);
+
+    if (get_cell(previous, x, y) == active) {
+        if (neighbors &lt; 2 || neighbors &gt; 3)
+            set_cell(current, x, y, inactive);
+        else
+            set_cell(current, x, y, active);    // Cell survives
+    } else {
+        // Handle inactive cell cases
+    }
+}
+
+__kernel void grayscaleFilter(
+        __read_only image2d_t sourceImage,
+        __write_only image2d_t destImage) {
+    // ...
+</pre> <!-- } -->
+
+<!-- { -->
+<pre class="prettyprint lang-c linenums:34" data-step="17">    // ...
+}
+
+void conway_iteration(__read_only image2d_t previous,
+        __write_only image2d_t current,
+        int x, int y) {
+    const float active = 1.f;
+    const float inactive = 0.f;
+
+    float neighbors = count_neighbors(previous, x, y);
+
+    if (get_cell(previous, x, y) == active) {
+        if (neighbors &lt; 2 || neighbors &gt; 3)
+            set_cell(current, x, y, inactive);
+        else
+            set_cell(current, x, y, active);
+    } else {
+        if (neighbors == 3)
+            set_cell(current, x, y, active);    // Cell is born
+    }
+}
+
+__kernel void grayscaleFilter(
+        __read_only image2d_t sourceImage,
+        __write_only image2d_t destImage) {
+    // ...
+</pre> <!-- } -->
+
+<!-- { -->
+<pre class="prettyprint lang-c linenums:34" data-step="18">    // ...
+}
+
+void conway_iteration(__read_only image2d_t previous,
+        __write_only image2d_t current,
+        int x, int y) {
+    const float active = 1.f;
+    const float inactive = 0.f;
+
+    float neighbors = count_neighbors(previous, x, y);
+
+    if (get_cell(previous, x, y) == active) {
+        if (neighbors &lt; 2 || neighbors &gt; 3)
+            set_cell(current, x, y, inactive);
+        else
+            set_cell(current, x, y, active);
+    } else {
+        if (neighbors == 3)
+            set_cell(current, x, y, active);
+        else
+            set_cell(current, x, y, inactive);  // Cell is left inactive
+    }
+}
+
+__kernel void grayscaleFilter(
+        __read_only image2d_t sourceImage,
+        __write_only image2d_t destImage) {
+    // ...
+</pre> <!-- } -->
+
+<script type="text/javascript">
+    PR.prettyPrint();
+</script>
