@@ -17,6 +17,7 @@ import java.util.function.Consumer;
 import play.Logger;
 
 import com.github.dockerjava.api.DockerClient;
+import com.github.dockerjava.api.model.Device;
 import com.github.dockerjava.core.DefaultDockerClientConfig;
 import com.github.dockerjava.core.DockerClientBuilder;
 import com.github.dockerjava.core.DockerClientConfig;
@@ -62,7 +63,10 @@ public class TerminalContainer {
     }
 
     private void createContainer() {
+        Device gpuDevices = new Device("mrw", "/dev/dri", "/dev/dri");
+
         id = docker.createContainerCmd("janitovff/pcapac_git_shell")
+            .withDevices(gpuDevices)
             .exec()
             .getId();
 
