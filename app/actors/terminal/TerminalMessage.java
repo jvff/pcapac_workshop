@@ -32,6 +32,6 @@ public abstract class TerminalMessage {
         else if (algorism == 62)
             out.write('+');
         else if (algorism == 63)
-            out.write('/');
+            out.write('-');
     }
 }
