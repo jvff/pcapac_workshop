@@ -49,9 +49,10 @@ const char* load_from_file(const char* file_name) {
     // ...
 </pre><!-- } -->
 
-<pre class="prettyprint lang-c linenums:43" data-step="4">    // ...
+<pre class="prettyprint lang-c linenums:45" data-step="4">    // ...
 
-    clBuildProgram(program, 0, NULL, NULL, NULL, NULL);
+    cl_command_queue commandQueue = clCreateCommandQueueWithProperties(context,
+            devices[0], 0, NULL);
 
     clReleaseProgram(program);
     clReleaseContext(context);
@@ -59,9 +60,10 @@ const char* load_from_file(const char* file_name) {
     // ...
 </pre>
 
-<pre class="prettyprint lang-c linenums:43" data-step="5">    // ...
+<pre class="prettyprint lang-c linenums:45" data-step="5">    // ...
 
-    clBuildProgram(program, 0, NULL, NULL, NULL, NULL);
+    cl_command_queue commandQueue = clCreateCommandQueueWithProperties(context,
+            devices[0], 0, NULL);
 
     int width, height;                      // Source image dimensions
 
@@ -71,9 +73,10 @@ const char* load_from_file(const char* file_name) {
     // ...
 </pre>
 
-<pre class="prettyprint lang-c linenums:43" data-step="6">    // ...
+<pre class="prettyprint lang-c linenums:45" data-step="6">    // ...
 
-    clBuildProgram(program, 0, NULL, NULL, NULL, NULL);
+    cl_command_queue commandQueue = clCreateCommandQueueWithProperties(context,
+            devices[0], 0, NULL);
 
     int width, height;
     int channels;                           // Number of detected channels
@@ -84,9 +87,10 @@ const char* load_from_file(const char* file_name) {
     // ...
 </pre>
 
-<pre class="prettyprint lang-c linenums:43" data-step="7">    // ...
+<pre class="prettyprint lang-c linenums:45" data-step="7">    // ...
 
-    clBuildProgram(program, 0, NULL, NULL, NULL, NULL);
+    cl_command_queue commandQueue = clCreateCommandQueueWithProperties(context,
+            devices[0], 0, NULL);
 
     int width, height;
     int channels;
@@ -99,9 +103,10 @@ const char* load_from_file(const char* file_name) {
     // ...
 </pre>
 
-<pre class="prettyprint lang-c linenums:43" data-step="8">    // ...
+<pre class="prettyprint lang-c linenums:45" data-step="8">    // ...
 
-    clBuildProgram(program, 0, NULL, NULL, NULL, NULL);
+    cl_command_queue commandQueue = clCreateCommandQueueWithProperties(context,
+            devices[0], 0, NULL);
 
     int width, height;
     int channels;
@@ -114,9 +119,10 @@ const char* load_from_file(const char* file_name) {
     // ...
 </pre>
 
-<pre class="prettyprint lang-c linenums:43" data-step="9">    // ...
+<pre class="prettyprint lang-c linenums:45" data-step="9">    // ...
 
-    clBuildProgram(program, 0, NULL, NULL, NULL, NULL);
+    cl_command_queue commandQueue = clCreateCommandQueueWithProperties(context,
+            devices[0], 0, NULL);
 
     int width, height;
     int channels;
@@ -130,9 +136,10 @@ const char* load_from_file(const char* file_name) {
     // ...
 </pre>
 
-<pre class="prettyprint lang-c linenums:43" data-step="10">    // ...
+<pre class="prettyprint lang-c linenums:45" data-step="10">    // ...
 
-    clBuildProgram(program, 0, NULL, NULL, NULL, NULL);
+    cl_command_queue commandQueue = clCreateCommandQueueWithProperties(context,
+            devices[0], 0, NULL);
 
     int width, height;
     int channels;
@@ -147,9 +154,10 @@ const char* load_from_file(const char* file_name) {
     // ...
 </pre>
 
-<pre class="prettyprint lang-c linenums:43" data-step="11">    // ...
+<pre class="prettyprint lang-c linenums:45" data-step="11">    // ...
 
-    clBuildProgram(program, 0, NULL, NULL, NULL, NULL);
+    cl_command_queue commandQueue = clCreateCommandQueueWithProperties(context,
+            devices[0], 0, NULL);
 
     int width, height;
     int channels;
@@ -165,9 +173,10 @@ const char* load_from_file(const char* file_name) {
     // ...
 </pre>
 
-<pre class="prettyprint lang-c linenums:43" data-step="12">    // ...
+<pre class="prettyprint lang-c linenums:45" data-step="12">    // ...
 
-    clBuildProgram(program, 0, NULL, NULL, NULL, NULL);
+    cl_command_queue commandQueue = clCreateCommandQueueWithProperties(context,
+            devices[0], 0, NULL);
 
     int width, height;
     int channels;
