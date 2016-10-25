@@ -63,7 +63,7 @@
 <!-- { -->
 <pre class="prettyprint lang-c linenums:98" data-step="7">    // ...
 
-    clSetKernelArg(kernel, 0, sizeof(matrixAOnGpu), (void*)&amp;matrixAOnGpu);
+    clSetKernelArg(kernel, 0, sizeof(matrixAOnGpu), &amp;matrixAOnGpu);
                                                             // Parameter address
 
     free(source_code);
@@ -74,7 +74,7 @@
 <!-- { -->
 <pre class="prettyprint lang-c linenums:98" data-step="8">    // ...
 
-    clSetKernelArg(kernel, 0, sizeof(matrixAOnGpu), (void*)&amp;matrixAOnGpu);
+    clSetKernelArg(kernel, 0, sizeof(matrixAOnGpu), &amp;matrixAOnGpu);
 
 
     free(source_code);
@@ -85,7 +85,7 @@
 <!-- { -->
 <pre class="prettyprint lang-c linenums:98" data-step="9">    // ...
 
-    clSetKernelArg(kernel, 0, sizeof(matrixAOnGpu), (void*)&amp;matrixAOnGpu);
+    clSetKernelArg(kernel, 0, sizeof(matrixAOnGpu), &amp;matrixAOnGpu);
     clSetKernelArg(/**/);                           // Set a kernel argument
 
     free(source_code);
@@ -96,7 +96,7 @@
 <!-- { -->
 <pre class="prettyprint lang-c linenums:98" data-step="10">    // ...
 
-    clSetKernelArg(kernel, 0, sizeof(matrixAOnGpu), (void*)&amp;matrixAOnGpu);
+    clSetKernelArg(kernel, 0, sizeof(matrixAOnGpu), &amp;matrixAOnGpu);
     clSetKernelArg(kernel, /**/);                           // Which kernel
 
     free(source_code);
@@ -107,7 +107,7 @@
 <!-- { -->
 <pre class="prettyprint lang-c linenums:98" data-step="11">    // ...
 
-    clSetKernelArg(kernel, 0, sizeof(matrixAOnGpu), (void*)&amp;matrixAOnGpu);
+    clSetKernelArg(kernel, 0, sizeof(matrixAOnGpu), &amp;matrixAOnGpu);
     clSetKernelArg(kernel, 1, /**/);                        // Parameter index
 
     free(source_code);
@@ -118,7 +118,7 @@
 <!-- { -->
 <pre class="prettyprint lang-c linenums:98" data-step="12">    // ...
 
-    clSetKernelArg(kernel, 0, sizeof(matrixAOnGpu), (void*)&amp;matrixAOnGpu);
+    clSetKernelArg(kernel, 0, sizeof(matrixAOnGpu), &amp;matrixAOnGpu);
     clSetKernelArg(kernel, 1, sizeof(matrixBOnGpu), /**/);  // Parameter size
 
     free(source_code);
@@ -129,8 +129,8 @@
 <!-- { -->
 <pre class="prettyprint lang-c linenums:98" data-step="13">    // ...
 
-    clSetKernelArg(kernel, 0, sizeof(matrixAOnGpu), (void*)&amp;matrixAOnGpu);
-    clSetKernelArg(kernel, 1, sizeof(matrixBOnGpu), (void*)&amp;matrixBOnGpu);
+    clSetKernelArg(kernel, 0, sizeof(matrixAOnGpu), &amp;matrixAOnGpu);
+    clSetKernelArg(kernel, 1, sizeof(matrixBOnGpu), &amp;matrixBOnGpu);
                                                             // Parameter address
 
     free(source_code);
@@ -141,8 +141,8 @@
 <!-- { -->
 <pre class="prettyprint lang-c linenums:98" data-step="14">    // ...
 
-    clSetKernelArg(kernel, 0, sizeof(matrixAOnGpu), (void*)&amp;matrixAOnGpu);
-    clSetKernelArg(kernel, 1, sizeof(matrixBOnGpu), (void*)&amp;matrixBOnGpu);
+    clSetKernelArg(kernel, 0, sizeof(matrixAOnGpu), &amp;matrixAOnGpu);
+    clSetKernelArg(kernel, 1, sizeof(matrixBOnGpu), &amp;matrixBOnGpu);
 
 
     free(source_code);
@@ -153,8 +153,8 @@
 <!-- { -->
 <pre class="prettyprint lang-c linenums:98" data-step="15">    // ...
 
-    clSetKernelArg(kernel, 0, sizeof(matrixAOnGpu), (void*)&amp;matrixAOnGpu);
-    clSetKernelArg(kernel, 1, sizeof(matrixBOnGpu), (void*)&amp;matrixBOnGpu);
+    clSetKernelArg(kernel, 0, sizeof(matrixAOnGpu), &amp;matrixAOnGpu);
+    clSetKernelArg(kernel, 1, sizeof(matrixBOnGpu), &amp;matrixBOnGpu);
     clSetKernelArg(/**/);                           // Set a kernel argument
 
     free(source_code);
@@ -165,8 +165,8 @@
 <!-- { -->
 <pre class="prettyprint lang-c linenums:98" data-step="16">    // ...
 
-    clSetKernelArg(kernel, 0, sizeof(matrixAOnGpu), (void*)&amp;matrixAOnGpu);
-    clSetKernelArg(kernel, 1, sizeof(matrixBOnGpu), (void*)&amp;matrixBOnGpu);
+    clSetKernelArg(kernel, 0, sizeof(matrixAOnGpu), &amp;matrixAOnGpu);
+    clSetKernelArg(kernel, 1, sizeof(matrixBOnGpu), &amp;matrixBOnGpu);
     clSetKernelArg(kernel, /**/);                           // Which kernel
 
     free(source_code);
@@ -177,8 +177,8 @@
 <!-- { -->
 <pre class="prettyprint lang-c linenums:98" data-step="17">    // ...
 
-    clSetKernelArg(kernel, 0, sizeof(matrixAOnGpu), (void*)&amp;matrixAOnGpu);
-    clSetKernelArg(kernel, 1, sizeof(matrixBOnGpu), (void*)&amp;matrixBOnGpu);
+    clSetKernelArg(kernel, 0, sizeof(matrixAOnGpu), &amp;matrixAOnGpu);
+    clSetKernelArg(kernel, 1, sizeof(matrixBOnGpu), &amp;matrixBOnGpu);
     clSetKernelArg(kernel, 2, /**/);                        // Parameter index
 
     free(source_code);
@@ -189,8 +189,8 @@
 <!-- { -->
 <pre class="prettyprint lang-c linenums:98" data-step="18">    // ...
 
-    clSetKernelArg(kernel, 0, sizeof(matrixAOnGpu), (void*)&amp;matrixAOnGpu);
-    clSetKernelArg(kernel, 1, sizeof(matrixBOnGpu), (void*)&amp;matrixBOnGpu);
+    clSetKernelArg(kernel, 0, sizeof(matrixAOnGpu), &amp;matrixAOnGpu);
+    clSetKernelArg(kernel, 1, sizeof(matrixBOnGpu), &amp;matrixBOnGpu);
     clSetKernelArg(kernel, 2, sizeof(matrixCOnGpu), /**/);  // Parameter size
 
     free(source_code);
@@ -201,9 +201,9 @@
 <!-- { -->
 <pre class="prettyprint lang-c linenums:98" data-step="19">    // ...
 
-    clSetKernelArg(kernel, 0, sizeof(matrixAOnGpu), (void*)&amp;matrixAOnGpu);
-    clSetKernelArg(kernel, 1, sizeof(matrixBOnGpu), (void*)&amp;matrixBOnGpu);
-    clSetKernelArg(kernel, 2, sizeof(matrixCOnGpu), (void*)&amp;matrixCOnGpu);
+    clSetKernelArg(kernel, 0, sizeof(matrixAOnGpu), &amp;matrixAOnGpu);
+    clSetKernelArg(kernel, 1, sizeof(matrixBOnGpu), &amp;matrixBOnGpu);
+    clSetKernelArg(kernel, 2, sizeof(matrixCOnGpu), &amp;matrixCOnGpu);
                                                             // Parameter address
 
     free(source_code);
@@ -214,9 +214,9 @@
 <!-- { -->
 <pre class="prettyprint lang-c linenums:98" data-step="20">    // ...
 
-    clSetKernelArg(kernel, 0, sizeof(matrixAOnGpu), (void*)&amp;matrixAOnGpu);
-    clSetKernelArg(kernel, 1, sizeof(matrixBOnGpu), (void*)&amp;matrixBOnGpu);
-    clSetKernelArg(kernel, 2, sizeof(matrixCOnGpu), (void*)&amp;matrixCOnGpu);
+    clSetKernelArg(kernel, 0, sizeof(matrixAOnGpu), &amp;matrixAOnGpu);
+    clSetKernelArg(kernel, 1, sizeof(matrixBOnGpu), &amp;matrixBOnGpu);
+    clSetKernelArg(kernel, 2, sizeof(matrixCOnGpu), &amp;matrixCOnGpu);
 
 
     free(source_code);
@@ -227,9 +227,9 @@
 <!-- { -->
 <pre class="prettyprint lang-c linenums:98" data-step="21">    // ...
 
-    clSetKernelArg(kernel, 0, sizeof(matrixAOnGpu), (void*)&amp;matrixAOnGpu);
-    clSetKernelArg(kernel, 1, sizeof(matrixBOnGpu), (void*)&amp;matrixBOnGpu);
-    clSetKernelArg(kernel, 2, sizeof(matrixCOnGpu), (void*)&amp;matrixCOnGpu);
+    clSetKernelArg(kernel, 0, sizeof(matrixAOnGpu), &amp;matrixAOnGpu);
+    clSetKernelArg(kernel, 1, sizeof(matrixBOnGpu), &amp;matrixBOnGpu);
+    clSetKernelArg(kernel, 2, sizeof(matrixCOnGpu), &amp;matrixCOnGpu);
     clSetKernelArg(/**/);                           // Set a kernel argument
 
     free(source_code);
@@ -240,9 +240,9 @@
 <!-- { -->
 <pre class="prettyprint lang-c linenums:98" data-step="22">    // ...
 
-    clSetKernelArg(kernel, 0, sizeof(matrixAOnGpu), (void*)&amp;matrixAOnGpu);
-    clSetKernelArg(kernel, 1, sizeof(matrixBOnGpu), (void*)&amp;matrixBOnGpu);
-    clSetKernelArg(kernel, 2, sizeof(matrixCOnGpu), (void*)&amp;matrixCOnGpu);
+    clSetKernelArg(kernel, 0, sizeof(matrixAOnGpu), &amp;matrixAOnGpu);
+    clSetKernelArg(kernel, 1, sizeof(matrixBOnGpu), &amp;matrixBOnGpu);
+    clSetKernelArg(kernel, 2, sizeof(matrixCOnGpu), &amp;matrixCOnGpu);
     clSetKernelArg(kernel, /**/);                           // Which kernel
 
     free(source_code);
@@ -253,9 +253,9 @@
 <!-- { -->
 <pre class="prettyprint lang-c linenums:98" data-step="23">    // ...
 
-    clSetKernelArg(kernel, 0, sizeof(matrixAOnGpu), (void*)&amp;matrixAOnGpu);
-    clSetKernelArg(kernel, 1, sizeof(matrixBOnGpu), (void*)&amp;matrixBOnGpu);
-    clSetKernelArg(kernel, 2, sizeof(matrixCOnGpu), (void*)&amp;matrixCOnGpu);
+    clSetKernelArg(kernel, 0, sizeof(matrixAOnGpu), &amp;matrixAOnGpu);
+    clSetKernelArg(kernel, 1, sizeof(matrixBOnGpu), &amp;matrixBOnGpu);
+    clSetKernelArg(kernel, 2, sizeof(matrixCOnGpu), &amp;matrixCOnGpu);
     clSetKernelArg(kernel, 3, /**/);                        // Parameter index
 
     free(source_code);
@@ -266,9 +266,9 @@
 <!-- { -->
 <pre class="prettyprint lang-c linenums:98" data-step="24">    // ...
 
-    clSetKernelArg(kernel, 0, sizeof(matrixAOnGpu), (void*)&amp;matrixAOnGpu);
-    clSetKernelArg(kernel, 1, sizeof(matrixBOnGpu), (void*)&amp;matrixBOnGpu);
-    clSetKernelArg(kernel, 2, sizeof(matrixCOnGpu), (void*)&amp;matrixCOnGpu);
+    clSetKernelArg(kernel, 0, sizeof(matrixAOnGpu), &amp;matrixAOnGpu);
+    clSetKernelArg(kernel, 1, sizeof(matrixBOnGpu), &amp;matrixBOnGpu);
+    clSetKernelArg(kernel, 2, sizeof(matrixCOnGpu), &amp;matrixCOnGpu);
     clSetKernelArg(kernel, 3, sizeof(colsB), /**/);         // Parameter size
 
     free(source_code);
@@ -279,10 +279,10 @@
 <!-- { -->
 <pre class="prettyprint lang-c linenums:98" data-step="25">    // ...
 
-    clSetKernelArg(kernel, 0, sizeof(matrixAOnGpu), (void*)&amp;matrixAOnGpu);
-    clSetKernelArg(kernel, 1, sizeof(matrixBOnGpu), (void*)&amp;matrixBOnGpu);
-    clSetKernelArg(kernel, 2, sizeof(matrixCOnGpu), (void*)&amp;matrixCOnGpu);
-    clSetKernelArg(kernel, 3, sizeof(colsB), (void*)&amp;colsB);// Parameter address
+    clSetKernelArg(kernel, 0, sizeof(matrixAOnGpu), &amp;matrixAOnGpu);
+    clSetKernelArg(kernel, 1, sizeof(matrixBOnGpu), &amp;matrixBOnGpu);
+    clSetKernelArg(kernel, 2, sizeof(matrixCOnGpu), &amp;matrixCOnGpu);
+    clSetKernelArg(kernel, 3, sizeof(colsB), &amp;colsB);// Parameter address
 
     free(source_code);
 
@@ -292,10 +292,10 @@
 <!-- { -->
 <pre class="prettyprint lang-c linenums:98" data-step="26">    // ...
 
-    clSetKernelArg(kernel, 0, sizeof(matrixAOnGpu), (void*)&amp;matrixAOnGpu);
-    clSetKernelArg(kernel, 1, sizeof(matrixBOnGpu), (void*)&amp;matrixBOnGpu);
-    clSetKernelArg(kernel, 2, sizeof(matrixCOnGpu), (void*)&amp;matrixCOnGpu);
-    clSetKernelArg(kernel, 3, sizeof(colsB), (void*)&amp;colsB);
+    clSetKernelArg(kernel, 0, sizeof(matrixAOnGpu), &amp;matrixAOnGpu);
+    clSetKernelArg(kernel, 1, sizeof(matrixBOnGpu), &amp;matrixBOnGpu);
+    clSetKernelArg(kernel, 2, sizeof(matrixCOnGpu), &amp;matrixCOnGpu);
+    clSetKernelArg(kernel, 3, sizeof(colsB), &amp;colsB);
 
 
     free(source_code);
@@ -306,10 +306,10 @@
 <!-- { -->
 <pre class="prettyprint lang-c linenums:98" data-step="27">    // ...
 
-    clSetKernelArg(kernel, 0, sizeof(matrixAOnGpu), (void*)&amp;matrixAOnGpu);
-    clSetKernelArg(kernel, 1, sizeof(matrixBOnGpu), (void*)&amp;matrixBOnGpu);
-    clSetKernelArg(kernel, 2, sizeof(matrixCOnGpu), (void*)&amp;matrixCOnGpu);
-    clSetKernelArg(kernel, 3, sizeof(colsB), (void*)&amp;colsB);
+    clSetKernelArg(kernel, 0, sizeof(matrixAOnGpu), &amp;matrixAOnGpu);
+    clSetKernelArg(kernel, 1, sizeof(matrixBOnGpu), &amp;matrixBOnGpu);
+    clSetKernelArg(kernel, 2, sizeof(matrixCOnGpu), &amp;matrixCOnGpu);
+    clSetKernelArg(kernel, 3, sizeof(colsB), &amp;colsB);
     clSetKernelArg(/**/);                           // Set a kernel argument
 
     free(source_code);
@@ -320,10 +320,10 @@
 <!-- { -->
 <pre class="prettyprint lang-c linenums:98" data-step="28">    // ...
 
-    clSetKernelArg(kernel, 0, sizeof(matrixAOnGpu), (void*)&amp;matrixAOnGpu);
-    clSetKernelArg(kernel, 1, sizeof(matrixBOnGpu), (void*)&amp;matrixBOnGpu);
-    clSetKernelArg(kernel, 2, sizeof(matrixCOnGpu), (void*)&amp;matrixCOnGpu);
-    clSetKernelArg(kernel, 3, sizeof(colsB), (void*)&amp;colsB);
+    clSetKernelArg(kernel, 0, sizeof(matrixAOnGpu), &amp;matrixAOnGpu);
+    clSetKernelArg(kernel, 1, sizeof(matrixBOnGpu), &amp;matrixBOnGpu);
+    clSetKernelArg(kernel, 2, sizeof(matrixCOnGpu), &amp;matrixCOnGpu);
+    clSetKernelArg(kernel, 3, sizeof(colsB), &amp;colsB);
     clSetKernelArg(kernel, /**/);                           // Which kernel
 
     free(source_code);
@@ -334,10 +334,10 @@
 <!-- { -->
 <pre class="prettyprint lang-c linenums:98" data-step="29">    // ...
 
-    clSetKernelArg(kernel, 0, sizeof(matrixAOnGpu), (void*)&amp;matrixAOnGpu);
-    clSetKernelArg(kernel, 1, sizeof(matrixBOnGpu), (void*)&amp;matrixBOnGpu);
-    clSetKernelArg(kernel, 2, sizeof(matrixCOnGpu), (void*)&amp;matrixCOnGpu);
-    clSetKernelArg(kernel, 3, sizeof(colsB), (void*)&amp;colsB);
+    clSetKernelArg(kernel, 0, sizeof(matrixAOnGpu), &amp;matrixAOnGpu);
+    clSetKernelArg(kernel, 1, sizeof(matrixBOnGpu), &amp;matrixBOnGpu);
+    clSetKernelArg(kernel, 2, sizeof(matrixCOnGpu), &amp;matrixCOnGpu);
+    clSetKernelArg(kernel, 3, sizeof(colsB), &amp;colsB);
     clSetKernelArg(kernel, 4, /**/);                        // Parameter index
 
     free(source_code);
@@ -348,10 +348,10 @@
 <!-- { -->
 <pre class="prettyprint lang-c linenums:98" data-step="30">    // ...
 
-    clSetKernelArg(kernel, 0, sizeof(matrixAOnGpu), (void*)&amp;matrixAOnGpu);
-    clSetKernelArg(kernel, 1, sizeof(matrixBOnGpu), (void*)&amp;matrixBOnGpu);
-    clSetKernelArg(kernel, 2, sizeof(matrixCOnGpu), (void*)&amp;matrixCOnGpu);
-    clSetKernelArg(kernel, 3, sizeof(colsB), (void*)&amp;colsB);
+    clSetKernelArg(kernel, 0, sizeof(matrixAOnGpu), &amp;matrixAOnGpu);
+    clSetKernelArg(kernel, 1, sizeof(matrixBOnGpu), &amp;matrixBOnGpu);
+    clSetKernelArg(kernel, 2, sizeof(matrixCOnGpu), &amp;matrixCOnGpu);
+    clSetKernelArg(kernel, 3, sizeof(colsB), &amp;colsB);
     clSetKernelArg(kernel, 4, sizeof(colsA), /**/);         // Parameter size
 
     free(source_code);
@@ -362,11 +362,11 @@
 <!-- { -->
 <pre class="prettyprint lang-c linenums:98" data-step="31">    // ...
 
-    clSetKernelArg(kernel, 0, sizeof(matrixAOnGpu), (void*)&amp;matrixAOnGpu);
-    clSetKernelArg(kernel, 1, sizeof(matrixBOnGpu), (void*)&amp;matrixBOnGpu);
-    clSetKernelArg(kernel, 2, sizeof(matrixCOnGpu), (void*)&amp;matrixCOnGpu);
-    clSetKernelArg(kernel, 3, sizeof(colsB), (void*)&amp;colsB);
-    clSetKernelArg(kernel, 4, sizeof(colsA), (void*)&amp;colsA);// Parameter address
+    clSetKernelArg(kernel, 0, sizeof(matrixAOnGpu), &amp;matrixAOnGpu);
+    clSetKernelArg(kernel, 1, sizeof(matrixBOnGpu), &amp;matrixBOnGpu);
+    clSetKernelArg(kernel, 2, sizeof(matrixCOnGpu), &amp;matrixCOnGpu);
+    clSetKernelArg(kernel, 3, sizeof(colsB), &amp;colsB);
+    clSetKernelArg(kernel, 4, sizeof(colsA), &amp;colsA);// Parameter address
 
     free(source_code);
 
