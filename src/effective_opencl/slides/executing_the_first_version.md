@@ -1,7 +1,8 @@
 Executing the First Version
 ===========================
 
-- `gcc program.c -o program -lOpenCL`
+- `gcc program.c -o program -lOpenCL -lm`
+- `cp /usr/local/share/lena.png .`
 - `./program`
 
 <div>
