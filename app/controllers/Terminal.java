@@ -113,7 +113,7 @@ public class Terminal extends Controller {
     }
 
     public static Result download(String terminalId, String path) {
-        File downloadedFile = downloadFile(terminalId, "/home/gituser/" + path);
+        File downloadedFile = downloadFile(terminalId, "/home/user/" + path);
 
         if (downloadedFile == null)
             return notFound();
