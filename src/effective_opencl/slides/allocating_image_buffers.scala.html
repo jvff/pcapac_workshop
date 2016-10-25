@@ -388,7 +388,7 @@
     sourceImageFormat.image_channel_data_type = CL_UNORM_INT8;
 
     destImageFormat.image_channel_order = CL_R;
-    destImageFormat.image_channel_order = CL_UNORM_INT8; // Pixel channels
+    destImageFormat.image_channel_data_type = CL_UNORM_INT8; // Channel type
 
     cl_mem sourceImageBuffer = clCreateImage(context,
             CL_MEM_READ_ONLY,
