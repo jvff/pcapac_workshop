@@ -226,7 +226,7 @@ int main(int argc, char* argv[]) {
         clGetPlatformInfo(platforms[platformIndex],
                 CL_PLATFORM_NAME,
                 sizeof(platformName),
-                &amp;platformName, /**/);     // Where to store the return value
+                platformName, /**/);      // Where to store the return value
 
         printf("Platform: %s\n", platformName);
         printf("Vendor: %s\n", platformVendor);
@@ -252,7 +252,7 @@ int main(int argc, char* argv[]) {
         clGetPlatformInfo(platforms[platformIndex],
                 CL_PLATFORM_NAME,
                 sizeof(platformName),
-                &amp;platformName,
+                platformName,
                 NULL);                        // Returned value size
 
         printf("Platform: %s\n", platformName);
@@ -279,7 +279,7 @@ int main(int argc, char* argv[]) {
         clGetPlatformInfo(platforms[platformIndex],
                 CL_PLATFORM_NAME,
                 sizeof(platformName),
-                &amp;platformName,
+                platformName,
                 NULL);
 
         clGetPlatformInfo(/**/);        // Request platform vendor
@@ -308,7 +308,7 @@ int main(int argc, char* argv[]) {
         clGetPlatformInfo(platforms[platformIndex],
                 CL_PLATFORM_NAME,
                 sizeof(platformName),
-                &amp;platformName,
+                platformName,
                 NULL);
 
         clGetPlatformInfo(platforms[platformIndex], /**/); // Current platform
@@ -337,7 +337,7 @@ int main(int argc, char* argv[]) {
         clGetPlatformInfo(platforms[platformIndex],
                 CL_PLATFORM_NAME,
                 sizeof(platformName),
-                &amp;platformName,
+                platformName,
                 NULL);
 
         clGetPlatformInfo(platforms[platformIndex],
@@ -367,7 +367,7 @@ int main(int argc, char* argv[]) {
         clGetPlatformInfo(platforms[platformIndex],
                 CL_PLATFORM_NAME,
                 sizeof(platformName),
-                &amp;platformName,
+                platformName,
                 NULL);
 
         clGetPlatformInfo(platforms[platformIndex],
@@ -398,13 +398,13 @@ int main(int argc, char* argv[]) {
         clGetPlatformInfo(platforms[platformIndex],
                 CL_PLATFORM_NAME,
                 sizeof(platformName),
-                &amp;platformName,
+                platformName,
                 NULL);
 
         clGetPlatformInfo(platforms[platformIndex],
                 CL_PLATFORM_VENDOR,
                 sizeof(platformVendor),
-                &amp;platformVendor, /**/);   // Where to store the return value
+                platformVendor, /**/);    // Where to store the return value
 
         printf("Platform: %s\n", platformName);
         printf("Vendor: %s\n", platformVendor);
@@ -430,13 +430,13 @@ int main(int argc, char* argv[]) {
         clGetPlatformInfo(platforms[platformIndex],
                 CL_PLATFORM_NAME,
                 sizeof(platformName),
-                &amp;platformName,
+                platformName,
                 NULL);
 
         clGetPlatformInfo(platforms[platformIndex],
                 CL_PLATFORM_VENDOR,
                 sizeof(platformVendor),
-                &amp;platformVendor,
+                platformVendor,
                 NULL);                        // Returned value size
 
         printf("Platform: %s\n", platformName);
