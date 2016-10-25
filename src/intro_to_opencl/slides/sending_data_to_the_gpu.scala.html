@@ -25,7 +25,7 @@
 <!-- { -->
 <pre class="prettyprint lang-c linenums:104" data-step="2">    // ...
 
-    cl_command_queue commandQueue = clCreateCommandQueue(/**/);
+    cl_command_queue commandQueue = clCreateCommandQueueWithProperties(/**/);
                                                     // Create a command queue
 
     free(source_code);
@@ -36,7 +36,8 @@
 <!-- { -->
 <pre class="prettyprint lang-c linenums:104" data-step="3">    // ...
 
-    cl_command_queue commandQueue = clCreateCommandQueue(context, /**/);
+    cl_command_queue commandQueue = clCreateCommandQueueWithProperties(context,
+            /**/);
                                                     // Context to use
 
     free(source_code);
@@ -47,8 +48,9 @@
 <!-- { -->
 <pre class="prettyprint lang-c linenums:104" data-step="4">    // ...
 
-    cl_command_queue commandQueue = clCreateCommandQueue(context,
+    cl_command_queue commandQueue = clCreateCommandQueueWithProperties(context,
             devices[0], /**/);                      // Device to send commands
+
 
     free(source_code);
 
@@ -58,7 +60,7 @@
 <!-- { -->
 <pre class="prettyprint lang-c linenums:104" data-step="5">    // ...
 
-    cl_command_queue commandQueue = clCreateCommandQueue(context,
+    cl_command_queue commandQueue = clCreateCommandQueueWithProperties(context,
             devices[0],
             0, /**/);                               // Properties
 
@@ -70,7 +72,7 @@
 <!-- { -->
 <pre class="prettyprint lang-c linenums:104" data-step="6">    // ...
 
-    cl_command_queue commandQueue = clCreateCommandQueue(context,
+    cl_command_queue commandQueue = clCreateCommandQueueWithProperties(context,
             devices[0],
             0,
             NULL);                                  // Address to store error
@@ -83,7 +85,7 @@
 <!-- { -->
 <pre class="prettyprint lang-c linenums:104" data-step="7">    // ...
 
-    cl_command_queue commandQueue = clCreateCommandQueue(context,
+    cl_command_queue commandQueue = clCreateCommandQueueWithProperties(context,
             devices[0],
             0,
             NULL);
@@ -98,7 +100,7 @@
 <!-- { -->
 <pre class="prettyprint lang-c linenums:104" data-step="8">    // ...
 
-    cl_command_queue commandQueue = clCreateCommandQueue(context,
+    cl_command_queue commandQueue = clCreateCommandQueueWithProperties(context,
             devices[0],
             0,
             NULL);
@@ -113,7 +115,7 @@
 <!-- { -->
 <pre class="prettyprint lang-c linenums:104" data-step="9">    // ...
 
-    cl_command_queue commandQueue = clCreateCommandQueue(context,
+    cl_command_queue commandQueue = clCreateCommandQueueWithProperties(context,
             devices[0],
             0,
             NULL);
@@ -129,7 +131,7 @@
 <!-- { -->
 <pre class="prettyprint lang-c linenums:104" data-step="10">    // ...
 
-    cl_command_queue commandQueue = clCreateCommandQueue(context,
+    cl_command_queue commandQueue = clCreateCommandQueueWithProperties(context,
             devices[0],
             0,
             NULL);
@@ -146,7 +148,7 @@
 <!-- { -->
 <pre class="prettyprint lang-c linenums:104" data-step="11">    // ...
 
-    cl_command_queue commandQueue = clCreateCommandQueue(context,
+    cl_command_queue commandQueue = clCreateCommandQueueWithProperties(context,
             devices[0],
             0,
             NULL);
@@ -164,7 +166,7 @@
 <!-- { -->
 <pre class="prettyprint lang-c linenums:104" data-step="12">    // ...
 
-    cl_command_queue commandQueue = clCreateCommandQueue(context,
+    cl_command_queue commandQueue = clCreateCommandQueueWithProperties(context,
             devices[0],
             0,
             NULL);
@@ -183,7 +185,7 @@
 <!-- { -->
 <pre class="prettyprint lang-c linenums:104" data-step="13">    // ...
 
-    cl_command_queue commandQueue = clCreateCommandQueue(context,
+    cl_command_queue commandQueue = clCreateCommandQueueWithProperties(context,
             devices[0],
             0,
             NULL);
@@ -203,7 +205,7 @@
 <!-- { -->
 <pre class="prettyprint lang-c linenums:104" data-step="14">    // ...
 
-    cl_command_queue commandQueue = clCreateCommandQueue(context,
+    cl_command_queue commandQueue = clCreateCommandQueueWithProperties(context,
             devices[0],
             0,
             NULL);
@@ -224,7 +226,7 @@
 <!-- { -->
 <pre class="prettyprint lang-c linenums:104" data-step="15">    // ...
 
-    cl_command_queue commandQueue = clCreateCommandQueue(context,
+    cl_command_queue commandQueue = clCreateCommandQueueWithProperties(context,
             devices[0],
             0,
             NULL);
@@ -246,7 +248,7 @@
 <!-- { -->
 <pre class="prettyprint lang-c linenums:104" data-step="16">    // ...
 
-    cl_command_queue commandQueue = clCreateCommandQueue(context,
+    cl_command_queue commandQueue = clCreateCommandQueueWithProperties(context,
             devices[0],
             0,
             NULL);
@@ -269,7 +271,7 @@
 <!-- { -->
 <pre class="prettyprint lang-c linenums:104" data-step="17">    // ...
 
-    cl_command_queue commandQueue = clCreateCommandQueue(context,
+    cl_command_queue commandQueue = clCreateCommandQueueWithProperties(context,
             devices[0],
             0,
             NULL);
@@ -294,7 +296,7 @@
 <!-- { -->
 <pre class="prettyprint lang-c linenums:104" data-step="18">    // ...
 
-    cl_command_queue commandQueue = clCreateCommandQueue(context,
+    cl_command_queue commandQueue = clCreateCommandQueueWithProperties(context,
             devices[0],
             0,
             NULL);
@@ -319,7 +321,7 @@
 <!-- { -->
 <pre class="prettyprint lang-c linenums:104" data-step="19">    // ...
 
-    cl_command_queue commandQueue = clCreateCommandQueue(context,
+    cl_command_queue commandQueue = clCreateCommandQueueWithProperties(context,
             devices[0],
             0,
             NULL);
@@ -345,7 +347,7 @@
 <!-- { -->
 <pre class="prettyprint lang-c linenums:104" data-step="20">    // ...
 
-    cl_command_queue commandQueue = clCreateCommandQueue(context,
+    cl_command_queue commandQueue = clCreateCommandQueueWithProperties(context,
             devices[0],
             0,
             NULL);
@@ -372,7 +374,7 @@
 <!-- { -->
 <pre class="prettyprint lang-c linenums:104" data-step="21">    // ...
 
-    cl_command_queue commandQueue = clCreateCommandQueue(context,
+    cl_command_queue commandQueue = clCreateCommandQueueWithProperties(context,
             devices[0],
             0,
             NULL);
@@ -400,7 +402,7 @@
 <!-- { -->
 <pre class="prettyprint lang-c linenums:104" data-step="22">    // ...
 
-    cl_command_queue commandQueue = clCreateCommandQueue(context,
+    cl_command_queue commandQueue = clCreateCommandQueueWithProperties(context,
             devices[0],
             0,
             NULL);
@@ -429,7 +431,7 @@
 <!-- { -->
 <pre class="prettyprint lang-c linenums:104" data-step="23">    // ...
 
-    cl_command_queue commandQueue = clCreateCommandQueue(context,
+    cl_command_queue commandQueue = clCreateCommandQueueWithProperties(context,
             devices[0],
             0,
             NULL);
@@ -459,7 +461,7 @@
 <!-- { -->
 <pre class="prettyprint lang-c linenums:104" data-step="24">    // ...
 
-    cl_command_queue commandQueue = clCreateCommandQueue(context,
+    cl_command_queue commandQueue = clCreateCommandQueueWithProperties(context,
             devices[0],
             0,
             NULL);
@@ -490,7 +492,7 @@
 <!-- { -->
 <pre class="prettyprint lang-c linenums:104" data-step="25">    // ...
 
-    cl_command_queue commandQueue = clCreateCommandQueue(context,
+    cl_command_queue commandQueue = clCreateCommandQueueWithProperties(context,
             devices[0],
             0,
             NULL);
@@ -522,7 +524,7 @@
 <!-- { -->
 <pre class="prettyprint lang-c linenums:104" data-step="26">    // ...
 
-    cl_command_queue commandQueue = clCreateCommandQueue(context,
+    cl_command_queue commandQueue = clCreateCommandQueueWithProperties(context,
             devices[0],
             0,
             NULL);
