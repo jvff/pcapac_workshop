@@ -7,6 +7,6 @@ Introduction
     - Vendor specific extensions
 - Objectives:
     - Be a second step in using OpenCL
-    - Shine a light on some common pitfalls
+    - Implement an initial image filter
 - Target audience:
     - OpenCL beginners
