@@ -156,7 +156,8 @@
 
     float4 colorPixel = read_imagef(sourceImage, sampler, coordinate);
 
-    float4 grayscalePixel = (float4)(colorPixel.x, 0, 0, 0); // Ignore channels
+    float4 grayscalePixel = (float4)(colorPixel.x, 0, 0, /**/);
+                                                   // Ignore color channels
 }</pre>
 
 <pre class="prettyprint lang-c linenums" data-step="18">__kernel void grayscaleFilter(
@@ -170,9 +171,8 @@
 
     float4 colorPixel = read_imagef(sourceImage, sampler, coordinate);
 
-    float4 grayscalePixel = (float4)(colorPixel.x, 0, 0, 0);
-
-    write_imagef(/**/);                            // Write resulting pixel
+    float4 grayscalePixel = (float4)(colorPixel.x, 0, 0, 1);
+                                                   // Default alpha value
 }</pre>
 
 <pre class="prettyprint lang-c linenums" data-step="19">__kernel void grayscaleFilter(
@@ -186,9 +186,9 @@
 
     float4 colorPixel = read_imagef(sourceImage, sampler, coordinate);
 
-    float4 grayscalePixel = (float4)(colorPixel.x, 0, 0, 0);
+    float4 grayscalePixel = (float4)(colorPixel.x, 0, 0, 1);
 
-    write_imagef(destImage, /**/);                 // Image to write to
+    write_imagef(/**/);                            // Write resulting pixel
 }</pre>
 
 <pre class="prettyprint lang-c linenums" data-step="20">__kernel void grayscaleFilter(
@@ -202,9 +202,9 @@
 
     float4 colorPixel = read_imagef(sourceImage, sampler, coordinate);
 
-    float4 grayscalePixel = (float4)(colorPixel.x, 0, 0, 0);
+    float4 grayscalePixel = (float4)(colorPixel.x, 0, 0, 1);
 
-    write_imagef(destImage, coordinate, /**/);     // Pixel coordinate
+    write_imagef(destImage, /**/);                 // Image to write to
 }</pre>
 
 <pre class="prettyprint lang-c linenums" data-step="21">__kernel void grayscaleFilter(
@@ -218,7 +218,23 @@
 
     float4 colorPixel = read_imagef(sourceImage, sampler, coordinate);
 
-    float4 grayscalePixel = (float4)(colorPixel.x, 0, 0, 0);
+    float4 grayscalePixel = (float4)(colorPixel.x, 0, 0, 1);
+
+    write_imagef(destImage, coordinate, /**/);     // Pixel coordinate
+}</pre>
+
+<pre class="prettyprint lang-c linenums" data-step="22">__kernel void grayscaleFilter(
+        __read_only image2d_t sourceImage,
+        __write_only image2d_t destImage) {
+    int2 coordinate = (int2)(get_global_id(0), get_global_id(1));
+
+    const sampler_t sampler = CLK_NORMALIZED_COORDS_FALSE
+            | CLK_ADDRESS_CLAMP_TO_EDGE
+            | CLK_FILTER_NEAREST;
+
+    float4 colorPixel = read_imagef(sourceImage, sampler, coordinate);
+
+    float4 grayscalePixel = (float4)(colorPixel.x, 0, 0, 1);
 
     write_imagef(destImage, coordinate, grayscalePixel); // Pixel value
 }</pre>
