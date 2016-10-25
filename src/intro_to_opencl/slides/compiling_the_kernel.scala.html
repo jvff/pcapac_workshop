@@ -75,12 +75,13 @@ int main(int argc, char* argv[]) {
 
     const char* source_code = load_from_file("kernel.cl");
 
+    clReleaseContext(context);
+
     free((void*)source_code);
 
     return 0;
 }</pre>
 
-<!-- { -->
 <pre class="prettyprint lang-c linenums:36" data-step="3">    // ...
 
     cl_context context = clCreateContext(NULL,
@@ -92,12 +93,9 @@ int main(int argc, char* argv[]) {
 
     const char* source_code = load_from_file("kernel.cl");
 
-    free((void*)source_code);
+    // ...
+</pre>
 
-    return 0;
-}</pre>
-
-<!-- { -->
 <pre class="prettyprint lang-c linenums:36" data-step="4">    // ...
 
     cl_context context = clCreateContext(NULL,
@@ -111,12 +109,11 @@ int main(int argc, char* argv[]) {
     const size_t source_code_length = strlen(source_code);   // Calculate source
                                                              // string length
 
-    free((void*)source_code);
+    clReleaseContext(context);
 
-    return 0;
-}</pre>
+    // ...
+</pre>
 
-<!-- { -->
 <pre class="prettyprint lang-c linenums:36" data-step="5">    // ...
 
     cl_context context = clCreateContext(NULL,
@@ -131,12 +128,11 @@ int main(int argc, char* argv[]) {
     cl_program program = clCreateProgramWithSource(/**/);    // Create a program
                                                              // representation
 
-    free((void*)source_code);
+    clReleaseContext(context);
 
-    return 0;
-}</pre>
+    // ...
+</pre>
 
-<!-- { -->
 <pre class="prettyprint lang-c linenums:36" data-step="6">    // ...
 
     cl_context context = clCreateContext(NULL,
@@ -151,12 +147,11 @@ int main(int argc, char* argv[]) {
     cl_program program = clCreateProgramWithSource(context, /**/); // Context
 
 
-    free((void*)source_code);
+    clReleaseContext(context);
 
-    return 0;
-}</pre>
+    // ...
+</pre>
 
-<!-- { -->
 <pre class="prettyprint lang-c linenums:36" data-step="7">    // ...
 
     cl_context context = clCreateContext(NULL,
@@ -171,12 +166,11 @@ int main(int argc, char* argv[]) {
     cl_program program = clCreateProgramWithSource(context,
             1, /**/);                           // Number of strings to use
 
-    free((void*)source_code);
+    clReleaseContext(context);
 
-    return 0;
-}</pre>
+    // ...
+</pre>
 
-<!-- { -->
 <pre class="prettyprint lang-c linenums:36" data-step="8">    // ...
 
     cl_context context = clCreateContext(NULL,
@@ -192,12 +186,11 @@ int main(int argc, char* argv[]) {
             1,
             &amp;source_code, /**/);                // Address to string array
 
-    free((void*)source_code);
+    clReleaseContext(context);
 
-    return 0;
-}</pre>
+    // ...
+</pre>
 
-<!-- { -->
 <pre class="prettyprint lang-c linenums:36" data-step="9">    // ...
 
     cl_context context = clCreateContext(NULL,
@@ -215,12 +208,11 @@ int main(int argc, char* argv[]) {
             &amp;source_code_length, /**/);         // Address to string length
                                                     // array
 
-    free((void*)source_code);
+    clReleaseContext(context);
 
-    return 0;
-}</pre>
+    // ...
+</pre>
 
-<!-- { -->
 <pre class="prettyprint lang-c linenums:36" data-step="10">    // ...
 
     cl_context context = clCreateContext(NULL,
@@ -238,13 +230,35 @@ int main(int argc, char* argv[]) {
             &amp;source_code_length,
             NULL);                                  // Address to store error
 
-    free((void*)source_code);
+    clReleaseContext(context);
 
-    return 0;
-}</pre>
+    // ...
+</pre>
 
-<!-- { -->
 <pre class="prettyprint lang-c linenums:36" data-step="11">    // ...
+
+    cl_context context = clCreateContext(NULL,
+            1,
+            devices,
+            NULL,
+            NULL,
+            NULL);
+
+    const char* source_code = load_from_file("kernel.cl");
+    const size_t source_code_length = strlen(source_code);
+    cl_program program = clCreateProgramWithSource(context,
+            1,
+            &amp;source_code,
+            &amp;source_code_length,
+            NULL);
+
+    clReleaseProgram(program);                      // Release program resources
+    clReleaseContext(context);
+
+    // ...
+</pre>
+
+<pre class="prettyprint lang-c linenums:36" data-step="12">    // ...
 
     cl_context context = clCreateContext(NULL,
             1,
@@ -263,13 +277,13 @@ int main(int argc, char* argv[]) {
 
     clBuildProgram(/**/);                           // Compile the program
 
-    free((void*)source_code);
+    clReleaseProgram(program);
+    clReleaseContext(context);
 
-    return 0;
-}</pre>
+    // ...
+</pre>
 
-<!-- { -->
-<pre class="prettyprint lang-c linenums:36" data-step="12">    // ...
+<pre class="prettyprint lang-c linenums:36" data-step="13">    // ...
 
     cl_context context = clCreateContext(NULL,
             1,
@@ -288,13 +302,13 @@ int main(int argc, char* argv[]) {
 
     clBuildProgram(program, /**/);                  // Which program
 
-    free((void*)source_code);
+    clReleaseProgram(program);
+    clReleaseContext(context);
 
-    return 0;
-}</pre>
+    // ...
+</pre>
 
-<!-- { -->
-<pre class="prettyprint lang-c linenums:36" data-step="13">    // ...
+<pre class="prettyprint lang-c linenums:36" data-step="14">    // ...
 
     cl_context context = clCreateContext(NULL,
             1,
@@ -314,13 +328,13 @@ int main(int argc, char* argv[]) {
     clBuildProgram(program,
             0, /**/);                               // Size of device array
 
-    free((void*)source_code);
+    clReleaseProgram(program);
+    clReleaseContext(context);
 
-    return 0;
-}</pre>
+    // ...
+</pre>
 
-<!-- { -->
-<pre class="prettyprint lang-c linenums:36" data-step="14">    // ...
+<pre class="prettyprint lang-c linenums:36" data-step="15">    // ...
 
     cl_context context = clCreateContext(NULL,
             1,
@@ -343,13 +357,13 @@ int main(int argc, char* argv[]) {
                                                     // (default is all devices
                                                     // of the context)
 
-    free((void*)source_code);
+    clReleaseProgram(program);
+    clReleaseContext(context);
 
-    return 0;
-}</pre>
+    // ...
+</pre>
 
-<!-- { -->
-<pre class="prettyprint lang-c linenums:36" data-step="15">    // ...
+<pre class="prettyprint lang-c linenums:36" data-step="16">    // ...
 
     cl_context context = clCreateContext(NULL,
             1,
@@ -372,13 +386,13 @@ int main(int argc, char* argv[]) {
             NULL, /**/);                            // Build options string
 
 
-    free((void*)source_code);
+    clReleaseProgram(program);
+    clReleaseContext(context);
 
-    return 0;
-}</pre>
+    // ...
+</pre>
 
-<!-- { -->
-<pre class="prettyprint lang-c linenums:36" data-step="16">    // ...
+<pre class="prettyprint lang-c linenums:36" data-step="17">    // ...
 
     cl_context context = clCreateContext(NULL,
             1,
@@ -401,13 +415,13 @@ int main(int argc, char* argv[]) {
             NULL,
             NULL, /**/);                            // Callback
 
-    free((void*)source_code);
+    clReleaseProgram(program);
+    clReleaseContext(context);
 
-    return 0;
-}</pre>
+    // ...
+</pre>
 
-<!-- { -->
-<pre class="prettyprint lang-c linenums:36" data-step="17">    // ...
+<pre class="prettyprint lang-c linenums:36" data-step="18">    // ...
 
     cl_context context = clCreateContext(NULL,
             1,
@@ -431,13 +445,13 @@ int main(int argc, char* argv[]) {
             NULL,
             NULL);                                  // Callback parameter
 
-    free((void*)source_code);
+    clReleaseProgram(program);
+    clReleaseContext(context);
 
-    return 0;
-}</pre>
+    // ...
+</pre>
 
-<!-- { -->
-<pre class="prettyprint lang-c linenums:36" data-step="18">    // ...
+<pre class="prettyprint lang-c linenums:36" data-step="19">    // ...
 
     cl_context context = clCreateContext(NULL,
             1,
@@ -463,13 +477,13 @@ int main(int argc, char* argv[]) {
 
     cl_kernel kernel = clCreateKernel(/**/);        // Obtain kernel reference
 
-    free((void*)source_code);
+    clReleaseProgram(program);
+    clReleaseContext(context);
 
-    return 0;
-}</pre>
+    // ...
+</pre>
 
-<!-- { -->
-<pre class="prettyprint lang-c linenums:36" data-step="19">    // ...
+<pre class="prettyprint lang-c linenums:36" data-step="20">    // ...
 
     cl_context context = clCreateContext(NULL,
             1,
@@ -495,13 +509,13 @@ int main(int argc, char* argv[]) {
 
     cl_kernel kernel = clCreateKernel(program, /**/); // Source program
 
-    free((void*)source_code);
+    clReleaseProgram(program);
+    clReleaseContext(context);
 
-    return 0;
-}</pre>
+    // ...
+</pre>
 
-<!-- { -->
-<pre class="prettyprint lang-c linenums:36" data-step="20">    // ...
+<pre class="prettyprint lang-c linenums:36" data-step="21">    // ...
 
     cl_context context = clCreateContext(NULL,
             1,
@@ -528,13 +542,13 @@ int main(int argc, char* argv[]) {
     cl_kernel kernel = clCreateKernel(program, "matrixMultiplication", /**/);
                                                     // Kernel name
 
-    free((void*)source_code);
+    clReleaseProgram(program);
+    clReleaseContext(context);
 
-    return 0;
-}</pre>
+    // ...
+</pre>
 
-<!-- { -->
-<pre class="prettyprint lang-c linenums:36" data-step="21">    // ...
+<pre class="prettyprint lang-c linenums:36" data-step="22">    // ...
 
     cl_context context = clCreateContext(NULL,
             1,
@@ -561,10 +575,45 @@ int main(int argc, char* argv[]) {
     cl_kernel kernel = clCreateKernel(program, "matrixMultiplication", NULL);
                                                     // Address to store error
 
-    free((void*)source_code);
+    clReleaseProgram(program);
+    clReleaseContext(context);
 
-    return 0;
-}</pre>
+    // ...
+</pre>
+
+<pre class="prettyprint lang-c linenums:36" data-step="23">    // ...
+
+    cl_context context = clCreateContext(NULL,
+            1,
+            devices,
+            NULL,
+            NULL,
+            NULL);
+
+    const char* source_code = load_from_file("kernel.cl");
+    const size_t source_code_length = strlen(source_code);
+    cl_program program = clCreateProgramWithSource(context,
+            1,
+            &amp;source_code,
+            &amp;source_code_length,
+            NULL);
+
+    clBuildProgram(program,
+            0,
+            NULL,
+            NULL,
+            NULL,
+            NULL);
+
+    cl_kernel kernel = clCreateKernel(program, "matrixMultiplication", NULL);
+                                                    // Address to store error
+
+    clReleaseKernel(kernel);
+    clReleaseProgram(program);
+    clReleaseContext(context);
+
+    // ...
+</pre>
 
 <script type="text/javascript">
     PR.prettyPrint();

@@ -28,6 +28,8 @@ int main(int argc, char* argv[]) {
             NULL,
             NULL);
 
+    clReleaseContext(context);
+
     return 0;
 }</pre>
 
@@ -62,6 +64,8 @@ int main(int argc, char* argv[]) {
     const char* source_code = load_from_file(/**/); // We'll create a custom
                                                     // function
 
+    clReleaseContext(context);
+
     return 0;
 }</pre>
 
@@ -95,6 +99,8 @@ int main(int argc, char* argv[]) {
 
     const char* source_code = load_from_file("kernel.cl"); // Specify file name
 
+    clReleaseContext(context);
+
     return 0;
 }</pre>
 
@@ -127,6 +133,8 @@ int main(int argc, char* argv[]) {
             NULL);
 
     const char* source_code = load_from_file("kernel.cl");
+
+    clReleaseContext(context);
 
     free((void*)source_code);           // Free the string after using it
 

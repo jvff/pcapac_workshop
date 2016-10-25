@@ -414,6 +414,39 @@ int main(int argc, char* argv[]) {
     return 0;
 }</pre>
 
+<pre class="prettyprint lang-c linenums" data-step="16">#include &lt;stdio.h&gt;
+
+#include &lt;CL/cl.h&gt;
+
+int main(int argc, char* argv[]) {
+    cl_platform_id platforms[10];
+    int numPlatforms;
+
+    clGetPlatformIDs(10, platforms, &amp;numPlatforms);
+
+    cl_platform_id platform = platforms[0];
+
+    cl_device_id devices[10];
+    int numDevices;
+
+    clGetDeviceIDs(platform,
+            CL_DEVICE_TYPE_GPU,
+            10,
+            devices,
+            &amp;numDevices);
+
+    cl_context context = clCreateContext(NULL,
+            1,
+            devices,
+            NULL,
+            NULL,
+            NULL);
+
+    clReleaseContext(context);                              // Release context
+
+    return 0;
+}</pre>
+
 <script type="text/javascript">
     PR.prettyPrint();
 </script>

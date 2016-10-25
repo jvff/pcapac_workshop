@@ -1,48 +1,43 @@
 <h1>Executing the Kernel</h1>
 
-<!-- { -->
 <pre class="prettyprint lang-c linenums:129" data-step="0">    // ...
 
-    free((void*)source_code);
+    clReleaseCommandQueue(commandQueue);
 
-    return 0;
-}</pre>
+    // ...
+</pre>
 
-<!-- { -->
 <pre class="prettyprint lang-c linenums:129" data-step="1">    // ...
 
     size_t globalWorkSize[] = { rowsA, colsB };    // Number of kernel instances
 
-    free((void*)source_code);
+    clReleaseCommandQueue(commandQueue);
 
-    return 0;
-}</pre>
+    // ...
+</pre>
 
-<!-- { -->
 <pre class="prettyprint lang-c linenums:129" data-step="2">    // ...
 
     size_t globalWorkSize[] = { rowsA, colsB };
 
     clEnqueueNDRangeKernel(/**/);                  // Enqueue kernel to execute
 
-    free((void*)source_code);
+    clReleaseCommandQueue(commandQueue);
 
-    return 0;
-}</pre>
+    // ...
+</pre>
 
-<!-- { -->
 <pre class="prettyprint lang-c linenums:129" data-step="3">    // ...
 
     size_t globalWorkSize[] = { rowsA, colsB };
 
     clEnqueueNDRangeKernel(commandQueue, /**/);    // Command queue to use
 
-    free((void*)source_code);
+    clReleaseCommandQueue(commandQueue);
 
-    return 0;
-}</pre>
+    // ...
+</pre>
 
-<!-- { -->
 <pre class="prettyprint lang-c linenums:129" data-step="4">    // ...
 
     size_t globalWorkSize[] = { rowsA, colsB };
@@ -50,12 +45,11 @@
     clEnqueueNDRangeKernel(commandQueue,
             kernel, /**/);                         // Kernel to execute
 
-    free((void*)source_code);
+    clReleaseCommandQueue(commandQueue);
 
-    return 0;
-}</pre>
+    // ...
+</pre>
 
-<!-- { -->
 <pre class="prettyprint lang-c linenums:129" data-step="5">    // ...
 
     size_t globalWorkSize[] = { rowsA, colsB };
@@ -64,12 +58,11 @@
             kernel,
             2, /**/);                              // Work dimensions (1,2,3)
 
-    free((void*)source_code);
+    clReleaseCommandQueue(commandQueue);
 
-    return 0;
-}</pre>
+    // ...
+</pre>
 
-<!-- { -->
 <pre class="prettyprint lang-c linenums:129" data-step="6">    // ...
 
     size_t globalWorkSize[] = { rowsA, colsB };
@@ -79,12 +72,11 @@
             2,
             NULL, /**/);                           // Global work ID offset
 
-    free((void*)source_code);
+    clReleaseCommandQueue(commandQueue);
 
-    return 0;
-}</pre>
+    // ...
+</pre>
 
-<!-- { -->
 <pre class="prettyprint lang-c linenums:129" data-step="7">    // ...
 
     size_t globalWorkSize[] = { rowsA, colsB };
@@ -95,12 +87,11 @@
             NULL,
             globalWorkSize, /**/);                // Number of kernel instances
 
-    free((void*)source_code);
+    clReleaseCommandQueue(commandQueue);
 
-    return 0;
-}</pre>
+    // ...
+</pre>
 
-<!-- { -->
 <pre class="prettyprint lang-c linenums:129" data-step="8">    // ...
 
     size_t globalWorkSize[] = { rowsA, colsB };
@@ -112,12 +103,11 @@
             globalWorkSize,
             NULL, /**/);                           // Instances per group
 
-    free((void*)source_code);
+    clReleaseCommandQueue(commandQueue);
 
-    return 0;
-}</pre>
+    // ...
+</pre>
 
-<!-- { -->
 <pre class="prettyprint lang-c linenums:129" data-step="9">    // ...
 
     size_t globalWorkSize[] = { rowsA, colsB };
@@ -130,12 +120,11 @@
             NULL,
             0, /**/);                              // Number of events
 
-    free((void*)source_code);
+    clReleaseCommandQueue(commandQueue);
 
-    return 0;
-}</pre>
+    // ...
+</pre>
 
-<!-- { -->
 <pre class="prettyprint lang-c linenums:129" data-step="10">    // ...
 
     size_t globalWorkSize[] = { rowsA, colsB };
@@ -149,12 +138,11 @@
             0,
             NULL, /**/);                           // List of events
 
-    free((void*)source_code);
+    clReleaseCommandQueue(commandQueue);
 
-    return 0;
-}</pre>
+    // ...
+</pre>
 
-<!-- { -->
 <pre class="prettyprint lang-c linenums:129" data-step="11">    // ...
 
     size_t globalWorkSize[] = { rowsA, colsB };
@@ -169,10 +157,10 @@
             NULL,
             NULL);                                 // Address to store event
 
-    free((void*)source_code);
+    clReleaseCommandQueue(commandQueue);
 
-    return 0;
-}</pre>
+    // ...
+</pre>
 
 <script type="text/javascript">
     PR.prettyPrint();

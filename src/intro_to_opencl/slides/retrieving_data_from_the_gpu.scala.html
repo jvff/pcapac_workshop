@@ -1,57 +1,51 @@
 <h1>Retrieving Data from the GPU</h1>
 
-<!-- { -->
 <pre class="prettyprint lang-c linenums:141" data-step="0">    // ...
 
-    free((void*)source_code);
+    clReleaseCommandQueue(commandQueue);
 
-    return 0;
-}</pre>
+    // ...
+</pre>
 
-<!-- { -->
 <pre class="prettyprint lang-c linenums:141" data-step="1">    // ...
 
     clEnqueueReadBuffer(/**/);                      // Retrieve data from GPU
 
-    free((void*)source_code);
+    clReleaseCommandQueue(commandQueue);
 
-    return 0;
-}</pre>
+    // ...
+</pre>
 
-<!-- { -->
 <pre class="prettyprint lang-c linenums:141" data-step="2">    // ...
 
     clEnqueueReadBuffer(commandQueue, /**/);        // Which command queue
 
-    free((void*)source_code);
+    clReleaseCommandQueue(commandQueue);
 
-    return 0;
-}</pre>
+    // ...
+</pre>
 
-<!-- { -->
 <pre class="prettyprint lang-c linenums:141" data-step="3">    // ...
 
     clEnqueueReadBuffer(commandQueue,
             matrixCOnGpu, /**/);       // GPU memory address to read from
 
-    free((void*)source_code);
+    clReleaseCommandQueue(commandQueue);
 
-    return 0;
-}</pre>
+    // ...
+</pre>
 
-<!-- { -->
 <pre class="prettyprint lang-c linenums:141" data-step="4">    // ...
 
     clEnqueueReadBuffer(commandQueue,
             matrixCOnGpu,
             CL_TRUE, /**/);            // Blocking write
 
-    free((void*)source_code);
+    clReleaseCommandQueue(commandQueue);
 
-    return 0;
-}</pre>
+    // ...
+</pre>
 
-<!-- { -->
 <pre class="prettyprint lang-c linenums:141" data-step="5">    // ...
 
     clEnqueueReadBuffer(commandQueue,
@@ -59,12 +53,11 @@
             CL_TRUE,
             0, /**/);                  // Offset to read from
 
-    free((void*)source_code);
+    clReleaseCommandQueue(commandQueue);
 
-    return 0;
-}</pre>
+    // ...
+</pre>
 
-<!-- { -->
 <pre class="prettyprint lang-c linenums:141" data-step="6">    // ...
 
     clEnqueueReadBuffer(commandQueue,
@@ -73,12 +66,11 @@
             0,
             sizeof(matrixC), /**/);    // Size of data to receive
 
-    free((void*)source_code);
+    clReleaseCommandQueue(commandQueue);
 
-    return 0;
-}</pre>
+    // ...
+</pre>
 
-<!-- { -->
 <pre class="prettyprint lang-c linenums:141" data-step="7">    // ...
 
     clEnqueueReadBuffer(commandQueue,
@@ -88,12 +80,11 @@
             sizeof(matrixC),
             matrixC, /**/);            // Address to store data
 
-    free((void*)source_code);
+    clReleaseCommandQueue(commandQueue);
 
-    return 0;
-}</pre>
+    // ...
+</pre>
 
-<!-- { -->
 <pre class="prettyprint lang-c linenums:141" data-step="8">    // ...
 
     clEnqueueReadBuffer(commandQueue,
@@ -104,12 +95,11 @@
             matrixC,
             0, /**/);                  // Number of synchronization events
 
-    free((void*)source_code);
+    clReleaseCommandQueue(commandQueue);
 
-    return 0;
-}</pre>
+    // ...
+</pre>
 
-<!-- { -->
 <pre class="prettyprint lang-c linenums:141" data-step="9">    // ...
 
     clEnqueueReadBuffer(commandQueue,
@@ -121,12 +111,11 @@
             0,
             NULL, /**/);               // List of synchronization events
 
-    free((void*)source_code);
+    clReleaseCommandQueue(commandQueue);
 
-    return 0;
-}</pre>
+    // ...
+</pre>
 
-<!-- { -->
 <pre class="prettyprint lang-c linenums:141" data-step="10">    // ...
 
     clEnqueueReadBuffer(commandQueue,
@@ -139,10 +128,10 @@
             NULL,
             NULL);                     // Where to store the respective event
 
-    free((void*)source_code);
+    clReleaseCommandQueue(commandQueue);
 
-    return 0;
-}</pre>
+    // ...
+</pre>
 
 <script type="text/javascript">
     PR.prettyPrint();

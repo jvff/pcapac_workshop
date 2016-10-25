@@ -1,6 +1,5 @@
 <h1>Sending data to the GPU</h1>
 
-<!-- { -->
 <pre class="prettyprint lang-c linenums:98" data-step="0">    // ...
 
     clSetKernelArg(kernel, 0, sizeof(matrixAOnGpu), (void*)&amp;matrixAOnGpu);
@@ -9,67 +8,73 @@
     clSetKernelArg(kernel, 3, sizeof(colsB), (void*)&amp;colsB);
     clSetKernelArg(kernel, 4, sizeof(colsA), (void*)&amp;colsA);
 
-    free((void*)source_code);
+    clReleaseMemObject(matrixAOnGpu);
+    clReleaseMemObject(matrixBOnGpu);
+    clReleaseMemObject(matrixCOnGpu);
 
-    return 0;
-}</pre>
+    // ...
+</pre>
 
-<!-- { -->
 <pre class="prettyprint lang-c linenums:104" data-step="1">    // ...
 
-    free((void*)source_code);
+    clReleaseMemObject(matrixAOnGpu);
+    clReleaseMemObject(matrixBOnGpu);
+    clReleaseMemObject(matrixCOnGpu);
 
-    return 0;
-}</pre>
+    // ...
+</pre>
 
-<!-- { -->
 <pre class="prettyprint lang-c linenums:104" data-step="2">    // ...
 
     cl_command_queue commandQueue = clCreateCommandQueueWithProperties(/**/);
                                                     // Create a command queue
 
-    free((void*)source_code);
+    clReleaseMemObject(matrixAOnGpu);
+    clReleaseMemObject(matrixBOnGpu);
+    clReleaseMemObject(matrixCOnGpu);
 
-    return 0;
-}</pre>
+    // ...
+</pre>
 
-<!-- { -->
 <pre class="prettyprint lang-c linenums:104" data-step="3">    // ...
 
     cl_command_queue commandQueue = clCreateCommandQueueWithProperties(context,
             /**/);
                                                     // Context to use
 
-    free((void*)source_code);
+    clReleaseMemObject(matrixAOnGpu);
+    clReleaseMemObject(matrixBOnGpu);
+    clReleaseMemObject(matrixCOnGpu);
 
-    return 0;
-}</pre>
+    // ...
+</pre>
 
-<!-- { -->
 <pre class="prettyprint lang-c linenums:104" data-step="4">    // ...
 
     cl_command_queue commandQueue = clCreateCommandQueueWithProperties(context,
             devices[0], /**/);                      // Device to send commands
 
 
-    free((void*)source_code);
+    clReleaseMemObject(matrixAOnGpu);
+    clReleaseMemObject(matrixBOnGpu);
+    clReleaseMemObject(matrixCOnGpu);
 
-    return 0;
-}</pre>
+    // ...
+</pre>
 
-<!-- { -->
 <pre class="prettyprint lang-c linenums:104" data-step="5">    // ...
 
     cl_command_queue commandQueue = clCreateCommandQueueWithProperties(context,
             devices[0],
             0, /**/);                               // Properties
 
-    free((void*)source_code);
+    clReleaseMemObject(matrixAOnGpu);
+    clReleaseMemObject(matrixBOnGpu);
+    clReleaseMemObject(matrixCOnGpu);
 
-    return 0;
-}</pre>
+    // ...
+</pre>
 
-<!-- { -->
 <pre class="prettyprint lang-c linenums:104" data-step="6">    // ...
 
     cl_command_queue commandQueue = clCreateCommandQueueWithProperties(context,
@@ -77,12 +82,29 @@
             0,
             NULL);                                  // Address to store error
 
-    free((void*)source_code);
+    clReleaseMemObject(matrixAOnGpu);
+    clReleaseMemObject(matrixBOnGpu);
+    clReleaseMemObject(matrixCOnGpu);
 
-    return 0;
-}</pre>
+    // ...
+</pre>
 
-<!-- { -->
+<pre class="prettyprint lang-c linenums:104" data-step="7">    // ...
+
+    cl_command_queue commandQueue = clCreateCommandQueueWithProperties(context,
+            devices[0],
+            0,
+            NULL);
+
+    clReleaseCommandQueue(commandQueue);            // Release command queue
+
+    clReleaseMemObject(matrixAOnGpu);
+    clReleaseMemObject(matrixBOnGpu);
+    clReleaseMemObject(matrixCOnGpu);
+
+    // ...
+</pre>
+
 <pre class="prettyprint lang-c linenums:104" data-step="7">    // ...
 
     cl_command_queue commandQueue = clCreateCommandQueueWithProperties(context,
@@ -92,12 +114,15 @@
 
     clEnqueueWriteBuffer(/**/);                     // Queue sending data to GPU
 
-    free((void*)source_code);
+    clReleaseCommandQueue(commandQueue);
 
-    return 0;
-}</pre>
+    clReleaseMemObject(matrixAOnGpu);
+    clReleaseMemObject(matrixBOnGpu);
+    clReleaseMemObject(matrixCOnGpu);
 
-<!-- { -->
+    // ...
+</pre>
+
 <pre class="prettyprint lang-c linenums:104" data-step="8">    // ...
 
     cl_command_queue commandQueue = clCreateCommandQueueWithProperties(context,
@@ -107,12 +132,15 @@
 
     clEnqueueWriteBuffer(commandQueue, /**/);       // Which command queue
 
-    free((void*)source_code);
+    clReleaseCommandQueue(commandQueue);
 
-    return 0;
-}</pre>
+    clReleaseMemObject(matrixAOnGpu);
+    clReleaseMemObject(matrixBOnGpu);
+    clReleaseMemObject(matrixCOnGpu);
 
-<!-- { -->
+    // ...
+</pre>
+
 <pre class="prettyprint lang-c linenums:104" data-step="9">    // ...
 
     cl_command_queue commandQueue = clCreateCommandQueueWithProperties(context,
@@ -123,12 +151,15 @@
     clEnqueueWriteBuffer(commandQueue,
             matrixAOnGpu, /**/);       // GPU address to write to
 
-    free((void*)source_code);
+    clReleaseCommandQueue(commandQueue);
 
-    return 0;
-}</pre>
+    clReleaseMemObject(matrixAOnGpu);
+    clReleaseMemObject(matrixBOnGpu);
+    clReleaseMemObject(matrixCOnGpu);
 
-<!-- { -->
+    // ...
+</pre>
+
 <pre class="prettyprint lang-c linenums:104" data-step="10">    // ...
 
     cl_command_queue commandQueue = clCreateCommandQueueWithProperties(context,
@@ -140,12 +171,15 @@
             matrixAOnGpu,
             CL_FALSE, /**/);           // Non-blocking write
 
-    free((void*)source_code);
+    clReleaseCommandQueue(commandQueue);
 
-    return 0;
-}</pre>
+    clReleaseMemObject(matrixAOnGpu);
+    clReleaseMemObject(matrixBOnGpu);
+    clReleaseMemObject(matrixCOnGpu);
 
-<!-- { -->
+    // ...
+</pre>
+
 <pre class="prettyprint lang-c linenums:104" data-step="11">    // ...
 
     cl_command_queue commandQueue = clCreateCommandQueueWithProperties(context,
@@ -158,12 +192,15 @@
             CL_FALSE,
             0, /**/);                  // Offset to write to
 
-    free((void*)source_code);
+    clReleaseCommandQueue(commandQueue);
 
-    return 0;
-}</pre>
+    clReleaseMemObject(matrixAOnGpu);
+    clReleaseMemObject(matrixBOnGpu);
+    clReleaseMemObject(matrixCOnGpu);
 
-<!-- { -->
+    // ...
+</pre>
+
 <pre class="prettyprint lang-c linenums:104" data-step="12">    // ...
 
     cl_command_queue commandQueue = clCreateCommandQueueWithProperties(context,
@@ -177,12 +214,15 @@
             0,
             sizeof(matrixA), /**/);    // Size of data to send
 
-    free((void*)source_code);
+    clReleaseCommandQueue(commandQueue);
 
-    return 0;
-}</pre>
+    clReleaseMemObject(matrixAOnGpu);
+    clReleaseMemObject(matrixBOnGpu);
+    clReleaseMemObject(matrixCOnGpu);
 
-<!-- { -->
+    // ...
+</pre>
+
 <pre class="prettyprint lang-c linenums:104" data-step="13">    // ...
 
     cl_command_queue commandQueue = clCreateCommandQueueWithProperties(context,
@@ -197,12 +237,15 @@
             sizeof(matrixA),
             matrixA, /**/);            // Address of data to send
 
-    free((void*)source_code);
+    clReleaseCommandQueue(commandQueue);
 
-    return 0;
-}</pre>
+    clReleaseMemObject(matrixAOnGpu);
+    clReleaseMemObject(matrixBOnGpu);
+    clReleaseMemObject(matrixCOnGpu);
 
-<!-- { -->
+    // ...
+</pre>
+
 <pre class="prettyprint lang-c linenums:104" data-step="14">    // ...
 
     cl_command_queue commandQueue = clCreateCommandQueueWithProperties(context,
@@ -218,12 +261,15 @@
             matrixA,
             0, /**/);                  // Number of synchronization events
 
-    free((void*)source_code);
+    clReleaseCommandQueue(commandQueue);
 
-    return 0;
-}</pre>
+    clReleaseMemObject(matrixAOnGpu);
+    clReleaseMemObject(matrixBOnGpu);
+    clReleaseMemObject(matrixCOnGpu);
 
-<!-- { -->
+    // ...
+</pre>
+
 <pre class="prettyprint lang-c linenums:104" data-step="15">    // ...
 
     cl_command_queue commandQueue = clCreateCommandQueueWithProperties(context,
@@ -240,12 +286,15 @@
             0,
             NULL, /**/);               // List of synchronization events
 
-    free((void*)source_code);
+    clReleaseCommandQueue(commandQueue);
 
-    return 0;
-}</pre>
+    clReleaseMemObject(matrixAOnGpu);
+    clReleaseMemObject(matrixBOnGpu);
+    clReleaseMemObject(matrixCOnGpu);
 
-<!-- { -->
+    // ...
+</pre>
+
 <pre class="prettyprint lang-c linenums:104" data-step="16">    // ...
 
     cl_command_queue commandQueue = clCreateCommandQueueWithProperties(context,
@@ -263,12 +312,15 @@
             NULL,
             NULL);                     // Where to store the respective event
 
-    free((void*)source_code);
+    clReleaseCommandQueue(commandQueue);
 
-    return 0;
-}</pre>
+    clReleaseMemObject(matrixAOnGpu);
+    clReleaseMemObject(matrixBOnGpu);
+    clReleaseMemObject(matrixCOnGpu);
 
-<!-- { -->
+    // ...
+</pre>
+
 <pre class="prettyprint lang-c linenums:104" data-step="17">    // ...
 
     cl_command_queue commandQueue = clCreateCommandQueueWithProperties(context,
@@ -288,12 +340,15 @@
 
     clEnqueueWriteBuffer(/**/);                     // Queue sending data to GPU
 
-    free((void*)source_code);
+    clReleaseCommandQueue(commandQueue);
 
-    return 0;
-}</pre>
+    clReleaseMemObject(matrixAOnGpu);
+    clReleaseMemObject(matrixBOnGpu);
+    clReleaseMemObject(matrixCOnGpu);
 
-<!-- { -->
+    // ...
+</pre>
+
 <pre class="prettyprint lang-c linenums:104" data-step="18">    // ...
 
     cl_command_queue commandQueue = clCreateCommandQueueWithProperties(context,
@@ -313,12 +368,15 @@
 
     clEnqueueWriteBuffer(commandQueue, /**/);       // Which command queue
 
-    free((void*)source_code);
+    clReleaseCommandQueue(commandQueue);
 
-    return 0;
-}</pre>
+    clReleaseMemObject(matrixAOnGpu);
+    clReleaseMemObject(matrixBOnGpu);
+    clReleaseMemObject(matrixCOnGpu);
 
-<!-- { -->
+    // ...
+</pre>
+
 <pre class="prettyprint lang-c linenums:104" data-step="19">    // ...
 
     cl_command_queue commandQueue = clCreateCommandQueueWithProperties(context,
@@ -339,12 +397,15 @@
     clEnqueueWriteBuffer(commandQueue,
             matrixBOnGpu, /**/);       // GPU address to write to
 
-    free((void*)source_code);
+    clReleaseCommandQueue(commandQueue);
 
-    return 0;
-}</pre>
+    clReleaseMemObject(matrixAOnGpu);
+    clReleaseMemObject(matrixBOnGpu);
+    clReleaseMemObject(matrixCOnGpu);
 
-<!-- { -->
+    // ...
+</pre>
+
 <pre class="prettyprint lang-c linenums:104" data-step="20">    // ...
 
     cl_command_queue commandQueue = clCreateCommandQueueWithProperties(context,
@@ -366,12 +427,15 @@
             matrixBOnGpu,
             CL_FALSE, /**/);           // Non-blocking write
 
-    free((void*)source_code);
+    clReleaseCommandQueue(commandQueue);
 
-    return 0;
-}</pre>
+    clReleaseMemObject(matrixAOnGpu);
+    clReleaseMemObject(matrixBOnGpu);
+    clReleaseMemObject(matrixCOnGpu);
 
-<!-- { -->
+    // ...
+</pre>
+
 <pre class="prettyprint lang-c linenums:104" data-step="21">    // ...
 
     cl_command_queue commandQueue = clCreateCommandQueueWithProperties(context,
@@ -394,12 +458,15 @@
             CL_FALSE,
             0, /**/);                  // Offset to write to
 
-    free((void*)source_code);
+    clReleaseCommandQueue(commandQueue);
 
-    return 0;
-}</pre>
+    clReleaseMemObject(matrixAOnGpu);
+    clReleaseMemObject(matrixBOnGpu);
+    clReleaseMemObject(matrixCOnGpu);
 
-<!-- { -->
+    // ...
+</pre>
+
 <pre class="prettyprint lang-c linenums:104" data-step="22">    // ...
 
     cl_command_queue commandQueue = clCreateCommandQueueWithProperties(context,
@@ -423,12 +490,15 @@
             0,
             sizeof(matrixB), /**/);    // Size of data to send
 
-    free((void*)source_code);
+    clReleaseCommandQueue(commandQueue);
 
-    return 0;
-}</pre>
+    clReleaseMemObject(matrixAOnGpu);
+    clReleaseMemObject(matrixBOnGpu);
+    clReleaseMemObject(matrixCOnGpu);
 
-<!-- { -->
+    // ...
+</pre>
+
 <pre class="prettyprint lang-c linenums:104" data-step="23">    // ...
 
     cl_command_queue commandQueue = clCreateCommandQueueWithProperties(context,
@@ -453,12 +523,15 @@
             sizeof(matrixB),
             matrixB, /**/);            // Address of data to send
 
-    free((void*)source_code);
+    clReleaseCommandQueue(commandQueue);
 
-    return 0;
-}</pre>
+    clReleaseMemObject(matrixAOnGpu);
+    clReleaseMemObject(matrixBOnGpu);
+    clReleaseMemObject(matrixCOnGpu);
 
-<!-- { -->
+    // ...
+</pre>
+
 <pre class="prettyprint lang-c linenums:104" data-step="24">    // ...
 
     cl_command_queue commandQueue = clCreateCommandQueueWithProperties(context,
@@ -484,12 +557,15 @@
             matrixB,
             0, /**/);                  // Number of synchronization events
 
-    free((void*)source_code);
+    clReleaseCommandQueue(commandQueue);
 
-    return 0;
-}</pre>
+    clReleaseMemObject(matrixAOnGpu);
+    clReleaseMemObject(matrixBOnGpu);
+    clReleaseMemObject(matrixCOnGpu);
 
-<!-- { -->
+    // ...
+</pre>
+
 <pre class="prettyprint lang-c linenums:104" data-step="25">    // ...
 
     cl_command_queue commandQueue = clCreateCommandQueueWithProperties(context,
@@ -516,12 +592,15 @@
             0,
             NULL, /**/);               // List of synchronization events
 
-    free((void*)source_code);
+    clReleaseCommandQueue(commandQueue);
 
-    return 0;
-}</pre>
+    clReleaseMemObject(matrixAOnGpu);
+    clReleaseMemObject(matrixBOnGpu);
+    clReleaseMemObject(matrixCOnGpu);
 
-<!-- { -->
+    // ...
+</pre>
+
 <pre class="prettyprint lang-c linenums:104" data-step="26">    // ...
 
     cl_command_queue commandQueue = clCreateCommandQueueWithProperties(context,
@@ -549,10 +628,14 @@
             NULL,
             NULL);                     // Where to store the respective event
 
-    free((void*)source_code);
+    clReleaseCommandQueue(commandQueue);
 
-    return 0;
-}</pre>
+    clReleaseMemObject(matrixAOnGpu);
+    clReleaseMemObject(matrixBOnGpu);
+    clReleaseMemObject(matrixCOnGpu);
+
+    // ...
+</pre>
 
 <script type="text/javascript">
     PR.prettyPrint();
