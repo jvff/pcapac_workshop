@@ -1,7 +1,6 @@
 Executing the Filter
 ====================
 
-- `gcc program.c -o program -lOpenCL`
 - `./program`
 
 <div>
