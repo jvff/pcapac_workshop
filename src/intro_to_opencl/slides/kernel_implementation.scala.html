@@ -107,7 +107,7 @@
     float result = 0.f;
 
     for (uint k = 0; k &lt; N; ++k)
-        result += A[i*N + k] * B[k*Bcols + j]; // Calculate one multiplication
+        result += A[i*Bcols + k] * B[k*Bcols + j]; // Calculate one multiplication
 }</pre>
 
 <pre class="prettyprint lang-c linenums" data-step="14">__kernel void matrixMultiplication(
@@ -122,7 +122,7 @@
     float result = 0.f;
 
     for (uint k = 0; k &lt; N; ++k)
-        result += A[i*N + k] * B[k*Bcols + j];
+        result += A[i*Bcols + k] * B[k*Bcols + j];
 
     C[i*N + j] = result;                       // Store result
 }</pre>
