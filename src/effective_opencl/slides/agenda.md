@@ -3,8 +3,6 @@ Agenda
 
 - Introduction
 - Device Memory Types
+- Memory Usage Guidelines
 - Image Processing with OpenCL
-- Scheduling Memory Transfers
-- Event Synchronization
-- OpenCL C Compiler Flags
 - Conclusion
