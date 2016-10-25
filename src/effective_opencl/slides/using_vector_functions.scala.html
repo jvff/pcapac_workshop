@@ -124,7 +124,7 @@
     float4 colorPixel = read_imagef(sourceImage, sampler, coordinate);
     float4 colorWeights = (float4)(0.2126, 0.7152, 0.0722, 0);
 
-    float grayscaleValue = dot(colorPixel, colorWeights); // Calculate value
+    float grayscaleValue = dot(colorPixel, colorWeights);
 
     // Remove the previous calculation
 
