@@ -3,7 +3,7 @@
 <!-- { -->
 <pre class="prettyprint lang-c linenums:80" data-step="0">    // ...
 
-    free(source_code);
+    free((void*)source_code);
 
     return 0;
 }</pre>
@@ -14,7 +14,7 @@
     cl_mem matrixAOnGpu = clCreateBuffer(/**/);    // Create a device memory
                                                    // reference
 
-    free(source_code);
+    free((void*)source_code);
 
     return 0;
 }</pre>
@@ -25,7 +25,7 @@
     cl_mem matrixAOnGpu = clCreateBuffer(context, /**/); // The context to use
 
 
-    free(source_code);
+    free((void*)source_code);
 
     return 0;
 }</pre>
@@ -36,7 +36,7 @@
     cl_mem matrixAOnGpu = clCreateBuffer(context,
             CL_MEM_READ_ONLY, /**/);               // Flags
 
-    free(source_code);
+    free((void*)source_code);
 
     return 0;
 }</pre>
@@ -48,7 +48,7 @@
             CL_MEM_READ_ONLY,
             sizeof(float) * rowsA * colsA, /**/);  // Size
 
-    free(source_code);
+    free((void*)source_code);
 
     return 0;
 }</pre>
@@ -61,7 +61,7 @@
             sizeof(float) * rowsA * colsA,
             NULL, /**/);                           // Host memory pointer
 
-    free(source_code);
+    free((void*)source_code);
 
     return 0;
 }</pre>
@@ -75,7 +75,7 @@
             NULL,
             NULL);                                 // Address for error code
 
-    free(source_code);
+    free((void*)source_code);
 
     return 0;
 }</pre>
@@ -92,7 +92,7 @@
     cl_mem matrixBOnGpu = clCreateBuffer(/**/);    // Create a device memory
                                                    // reference
 
-    free(source_code);
+    free((void*)source_code);
 
     return 0;
 }</pre>
@@ -109,7 +109,7 @@
     cl_mem matrixBOnGpu = clCreateBuffer(context, /**/); // The context to use
 
 
-    free(source_code);
+    free((void*)source_code);
 
     return 0;
 }</pre>
@@ -126,7 +126,7 @@
     cl_mem matrixBOnGpu = clCreateBuffer(context,
             CL_MEM_READ_ONLY, /**/);               // Flags
 
-    free(source_code);
+    free((void*)source_code);
 
     return 0;
 }</pre>
@@ -144,7 +144,7 @@
             CL_MEM_READ_ONLY,
             sizeof(float) * rowsB * colsB, /**/);  // Size
 
-    free(source_code);
+    free((void*)source_code);
 
     return 0;
 }</pre>
@@ -163,7 +163,7 @@
             sizeof(float) * rowsB * colsB,
             NULL, /**/);                           // Host memory pointer
 
-    free(source_code);
+    free((void*)source_code);
 
     return 0;
 }</pre>
@@ -183,7 +183,7 @@
             NULL,
             NULL);                                 // Address for error code
 
-    free(source_code);
+    free((void*)source_code);
 
     return 0;
 }</pre>
@@ -206,7 +206,7 @@
     cl_mem matrixCOnGpu = clCreateBuffer(/**/);    // Create a device memory
                                                    // reference
 
-    free(source_code);
+    free((void*)source_code);
 
     return 0;
 }</pre>
@@ -229,7 +229,7 @@
     cl_mem matrixCOnGpu = clCreateBuffer(context, /**/); // The context to use
 
 
-    free(source_code);
+    free((void*)source_code);
 
     return 0;
 }</pre>
@@ -252,7 +252,7 @@
     cl_mem matrixCOnGpu = clCreateBuffer(context,
             CL_MEM_WRITE_ONLY, /**/);               // Flags
 
-    free(source_code);
+    free((void*)source_code);
 
     return 0;
 }</pre>
@@ -276,7 +276,7 @@
             CL_MEM_WRITE_ONLY,
             sizeof(float) * rowsA * colsB, /**/);  // Size
 
-    free(source_code);
+    free((void*)source_code);
 
     return 0;
 }</pre>
@@ -301,7 +301,7 @@
             sizeof(float) * rowsA * colsB,
             NULL, /**/);                           // Host memory pointer
 
-    free(source_code);
+    free((void*)source_code);
 
     return 0;
 }</pre>
@@ -327,7 +327,7 @@
             NULL,
             NULL);                                 // Address for error code
 
-    free(source_code);
+    free((void*)source_code);
 
     return 0;
 }</pre>

@@ -15,7 +15,7 @@
 <!-- { -->
 <pre class="prettyprint lang-c linenums:98" data-step="0..2">    // ...
 
-    free(source_code);
+    free((void*)source_code);
 
     return 0;
 }</pre>
@@ -25,7 +25,7 @@
 
     clSetKernelArg(/**/);                           // Set a kernel argument
 
-    free(source_code);
+    free((void*)source_code);
 
     return 0;
 }</pre>
@@ -35,7 +35,7 @@
 
     clSetKernelArg(kernel, /**/);                           // Which kernel
 
-    free(source_code);
+    free((void*)source_code);
 
     return 0;
 }</pre>
@@ -45,7 +45,7 @@
 
     clSetKernelArg(kernel, 0, /**/);                        // Parameter index
 
-    free(source_code);
+    free((void*)source_code);
 
     return 0;
 }</pre>
@@ -55,7 +55,7 @@
 
     clSetKernelArg(kernel, 0, sizeof(matrixAOnGpu), /**/);  // Parameter size
 
-    free(source_code);
+    free((void*)source_code);
 
     return 0;
 }</pre>
@@ -66,7 +66,7 @@
     clSetKernelArg(kernel, 0, sizeof(matrixAOnGpu), &amp;matrixAOnGpu);
                                                             // Parameter address
 
-    free(source_code);
+    free((void*)source_code);
 
     return 0;
 }</pre>
@@ -77,7 +77,7 @@
     clSetKernelArg(kernel, 0, sizeof(matrixAOnGpu), &amp;matrixAOnGpu);
 
 
-    free(source_code);
+    free((void*)source_code);
 
     return 0;
 }</pre>
@@ -88,7 +88,7 @@
     clSetKernelArg(kernel, 0, sizeof(matrixAOnGpu), &amp;matrixAOnGpu);
     clSetKernelArg(/**/);                           // Set a kernel argument
 
-    free(source_code);
+    free((void*)source_code);
 
     return 0;
 }</pre>
@@ -99,7 +99,7 @@
     clSetKernelArg(kernel, 0, sizeof(matrixAOnGpu), &amp;matrixAOnGpu);
     clSetKernelArg(kernel, /**/);                           // Which kernel
 
-    free(source_code);
+    free((void*)source_code);
 
     return 0;
 }</pre>
@@ -110,7 +110,7 @@
     clSetKernelArg(kernel, 0, sizeof(matrixAOnGpu), &amp;matrixAOnGpu);
     clSetKernelArg(kernel, 1, /**/);                        // Parameter index
 
-    free(source_code);
+    free((void*)source_code);
 
     return 0;
 }</pre>
@@ -121,7 +121,7 @@
     clSetKernelArg(kernel, 0, sizeof(matrixAOnGpu), &amp;matrixAOnGpu);
     clSetKernelArg(kernel, 1, sizeof(matrixBOnGpu), /**/);  // Parameter size
 
-    free(source_code);
+    free((void*)source_code);
 
     return 0;
 }</pre>
@@ -133,7 +133,7 @@
     clSetKernelArg(kernel, 1, sizeof(matrixBOnGpu), &amp;matrixBOnGpu);
                                                             // Parameter address
 
-    free(source_code);
+    free((void*)source_code);
 
     return 0;
 }</pre>
@@ -145,7 +145,7 @@
     clSetKernelArg(kernel, 1, sizeof(matrixBOnGpu), &amp;matrixBOnGpu);
 
 
-    free(source_code);
+    free((void*)source_code);
 
     return 0;
 }</pre>
@@ -157,7 +157,7 @@
     clSetKernelArg(kernel, 1, sizeof(matrixBOnGpu), &amp;matrixBOnGpu);
     clSetKernelArg(/**/);                           // Set a kernel argument
 
-    free(source_code);
+    free((void*)source_code);
 
     return 0;
 }</pre>
@@ -169,7 +169,7 @@
     clSetKernelArg(kernel, 1, sizeof(matrixBOnGpu), &amp;matrixBOnGpu);
     clSetKernelArg(kernel, /**/);                           // Which kernel
 
-    free(source_code);
+    free((void*)source_code);
 
     return 0;
 }</pre>
@@ -181,7 +181,7 @@
     clSetKernelArg(kernel, 1, sizeof(matrixBOnGpu), &amp;matrixBOnGpu);
     clSetKernelArg(kernel, 2, /**/);                        // Parameter index
 
-    free(source_code);
+    free((void*)source_code);
 
     return 0;
 }</pre>
@@ -193,7 +193,7 @@
     clSetKernelArg(kernel, 1, sizeof(matrixBOnGpu), &amp;matrixBOnGpu);
     clSetKernelArg(kernel, 2, sizeof(matrixCOnGpu), /**/);  // Parameter size
 
-    free(source_code);
+    free((void*)source_code);
 
     return 0;
 }</pre>
@@ -206,7 +206,7 @@
     clSetKernelArg(kernel, 2, sizeof(matrixCOnGpu), &amp;matrixCOnGpu);
                                                             // Parameter address
 
-    free(source_code);
+    free((void*)source_code);
 
     return 0;
 }</pre>
@@ -219,7 +219,7 @@
     clSetKernelArg(kernel, 2, sizeof(matrixCOnGpu), &amp;matrixCOnGpu);
 
 
-    free(source_code);
+    free((void*)source_code);
 
     return 0;
 }</pre>
@@ -232,7 +232,7 @@
     clSetKernelArg(kernel, 2, sizeof(matrixCOnGpu), &amp;matrixCOnGpu);
     clSetKernelArg(/**/);                           // Set a kernel argument
 
-    free(source_code);
+    free((void*)source_code);
 
     return 0;
 }</pre>
@@ -245,7 +245,7 @@
     clSetKernelArg(kernel, 2, sizeof(matrixCOnGpu), &amp;matrixCOnGpu);
     clSetKernelArg(kernel, /**/);                           // Which kernel
 
-    free(source_code);
+    free((void*)source_code);
 
     return 0;
 }</pre>
@@ -258,7 +258,7 @@
     clSetKernelArg(kernel, 2, sizeof(matrixCOnGpu), &amp;matrixCOnGpu);
     clSetKernelArg(kernel, 3, /**/);                        // Parameter index
 
-    free(source_code);
+    free((void*)source_code);
 
     return 0;
 }</pre>
@@ -271,7 +271,7 @@
     clSetKernelArg(kernel, 2, sizeof(matrixCOnGpu), &amp;matrixCOnGpu);
     clSetKernelArg(kernel, 3, sizeof(colsB), /**/);         // Parameter size
 
-    free(source_code);
+    free((void*)source_code);
 
     return 0;
 }</pre>
@@ -284,7 +284,7 @@
     clSetKernelArg(kernel, 2, sizeof(matrixCOnGpu), &amp;matrixCOnGpu);
     clSetKernelArg(kernel, 3, sizeof(colsB), &amp;colsB);// Parameter address
 
-    free(source_code);
+    free((void*)source_code);
 
     return 0;
 }</pre>
@@ -298,7 +298,7 @@
     clSetKernelArg(kernel, 3, sizeof(colsB), &amp;colsB);
 
 
-    free(source_code);
+    free((void*)source_code);
 
     return 0;
 }</pre>
@@ -312,7 +312,7 @@
     clSetKernelArg(kernel, 3, sizeof(colsB), &amp;colsB);
     clSetKernelArg(/**/);                           // Set a kernel argument
 
-    free(source_code);
+    free((void*)source_code);
 
     return 0;
 }</pre>
@@ -326,7 +326,7 @@
     clSetKernelArg(kernel, 3, sizeof(colsB), &amp;colsB);
     clSetKernelArg(kernel, /**/);                           // Which kernel
 
-    free(source_code);
+    free((void*)source_code);
 
     return 0;
 }</pre>
@@ -340,7 +340,7 @@
     clSetKernelArg(kernel, 3, sizeof(colsB), &amp;colsB);
     clSetKernelArg(kernel, 4, /**/);                        // Parameter index
 
-    free(source_code);
+    free((void*)source_code);
 
     return 0;
 }</pre>
@@ -354,7 +354,7 @@
     clSetKernelArg(kernel, 3, sizeof(colsB), &amp;colsB);
     clSetKernelArg(kernel, 4, sizeof(colsA), /**/);         // Parameter size
 
-    free(source_code);
+    free((void*)source_code);
 
     return 0;
 }</pre>
@@ -368,7 +368,7 @@
     clSetKernelArg(kernel, 3, sizeof(colsB), &amp;colsB);
     clSetKernelArg(kernel, 4, sizeof(colsA), &amp;colsA);// Parameter address
 
-    free(source_code);
+    free((void*)source_code);
 
     return 0;
 }</pre>

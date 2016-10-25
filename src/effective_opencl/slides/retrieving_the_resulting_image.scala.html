@@ -34,7 +34,7 @@
 
 
     stbi_image_free(sourceImageData);
-    free(destImageData);                        // Free image buffer
+    free((void*)destImageData);                 // Free image buffer
 
     // ...
 </pre>
@@ -46,7 +46,7 @@
     size_t destImageOffset[] = /**/;            // Offset to start copying from
 
     stbi_image_free(sourceImageData);
-    free(destImageData);
+    free((void*)destImageData);
 
     // ...
 </pre>
@@ -58,7 +58,7 @@
     size_t destImageOffset[] = { 0, 0, 0 };     // Starting coordinate
 
     stbi_image_free(sourceImageData);
-    free(destImageData);
+    free((void*)destImageData);
 
     // ...
 </pre>
@@ -71,7 +71,7 @@
     size_t destImageRegion[] = /**/;            // Pixels to copy
 
     stbi_image_free(sourceImageData);
-    free(destImageData);
+    free((void*)destImageData);
 
     // ...
 </pre>
@@ -84,7 +84,7 @@
     size_t destImageRegion[] = { width, height, 1 }; // Copy all pixels
 
     stbi_image_free(sourceImageData);
-    free(destImageData);
+    free((void*)destImageData);
 
     // ...
 </pre>
@@ -99,7 +99,7 @@
     clEnqueueReadImage(/**/);                   // Retrieve image from GPU
 
     stbi_image_free(sourceImageData);
-    free(destImageData);
+    free((void*)destImageData);
 
     // ...
 </pre>
@@ -114,7 +114,7 @@
     clEnqueueReadImage(commandQueue, /**/);     // Command queue to use
 
     stbi_image_free(sourceImageData);
-    free(destImageData);
+    free((void*)destImageData);
 
     // ...
 </pre>
@@ -130,7 +130,7 @@
             destImageBuffer, /**/);             // Buffer to read from
 
     stbi_image_free(sourceImageData);
-    free(destImageData);
+    free((void*)destImageData);
 
     // ...
 </pre>
@@ -147,7 +147,7 @@
             CL_TRUE, /**/);                    // Blocking transfer
 
     stbi_image_free(sourceImageData);
-    free(destImageData);
+    free((void*)destImageData);
 
     // ...
 </pre>
@@ -165,7 +165,7 @@
             destImageOffset, /**/);             // Offset to copy pixels from
 
     stbi_image_free(sourceImageData);
-    free(destImageData);
+    free((void*)destImageData);
 
     // ...
 </pre>
@@ -184,7 +184,7 @@
             destImageRegion, /**/);             // Amount of pixels to copy
 
     stbi_image_free(sourceImageData);
-    free(destImageData);
+    free((void*)destImageData);
 
     // ...
 </pre>
@@ -204,7 +204,7 @@
             0, /**/);                           // Scan-line pitch
 
     stbi_image_free(sourceImageData);
-    free(destImageData);
+    free((void*)destImageData);
 
     // ...
 </pre>
@@ -224,7 +224,7 @@
             0, 0, /**/);                        // 3D pitch
 
     stbi_image_free(sourceImageData);
-    free(destImageData);
+    free((void*)destImageData);
 
     // ...
 </pre>
@@ -245,7 +245,7 @@
             destImageData, /**/);               // Address to store pixel data
 
     stbi_image_free(sourceImageData);
-    free(destImageData);
+    free((void*)destImageData);
 
     // ...
 </pre>
@@ -267,7 +267,7 @@
             0, /**/);                           // Number of events to wait
 
     stbi_image_free(sourceImageData);
-    free(destImageData);
+    free((void*)destImageData);
 
     // ...
 </pre>
@@ -290,7 +290,7 @@
             NULL, /**/);                        // List of events
 
     stbi_image_free(sourceImageData);
-    free(destImageData);
+    free((void*)destImageData);
 
     // ...
 </pre>
@@ -314,7 +314,7 @@
             NULL);                              // Address to store event
 
     stbi_image_free(sourceImageData);
-    free(destImageData);
+    free((void*)destImageData);
 
     // ...
 </pre>

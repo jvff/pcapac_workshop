@@ -69,7 +69,7 @@ program_code = """
         clReleaseProgram(program);
         clReleaseContext(context);
 
-        free(source_code);
+        free((void*)source_code);
 
         return 0;
     }

@@ -3,7 +3,7 @@
 <!-- { -->
 <pre class="prettyprint lang-c linenums:141" data-step="0">    // ...
 
-    free(source_code);
+    free((void*)source_code);
 
     return 0;
 }</pre>
@@ -13,7 +13,7 @@
 
     clEnqueueReadBuffer(/**/);                      // Retrieve data from GPU
 
-    free(source_code);
+    free((void*)source_code);
 
     return 0;
 }</pre>
@@ -23,7 +23,7 @@
 
     clEnqueueReadBuffer(commandQueue, /**/);        // Which command queue
 
-    free(source_code);
+    free((void*)source_code);
 
     return 0;
 }</pre>
@@ -34,7 +34,7 @@
     clEnqueueReadBuffer(commandQueue,
             matrixCOnGpu, /**/);       // GPU memory address to read from
 
-    free(source_code);
+    free((void*)source_code);
 
     return 0;
 }</pre>
@@ -46,7 +46,7 @@
             matrixCOnGpu,
             CL_TRUE, /**/);            // Blocking write
 
-    free(source_code);
+    free((void*)source_code);
 
     return 0;
 }</pre>
@@ -59,7 +59,7 @@
             CL_TRUE,
             0, /**/);                  // Offset to read from
 
-    free(source_code);
+    free((void*)source_code);
 
     return 0;
 }</pre>
@@ -73,7 +73,7 @@
             0,
             sizeof(matrixC), /**/);    // Size of data to receive
 
-    free(source_code);
+    free((void*)source_code);
 
     return 0;
 }</pre>
@@ -88,7 +88,7 @@
             sizeof(matrixC),
             matrixC, /**/);            // Address to store data
 
-    free(source_code);
+    free((void*)source_code);
 
     return 0;
 }</pre>
@@ -104,7 +104,7 @@
             matrixC,
             0, /**/);                  // Number of synchronization events
 
-    free(source_code);
+    free((void*)source_code);
 
     return 0;
 }</pre>
@@ -121,7 +121,7 @@
             0,
             NULL, /**/);               // List of synchronization events
 
-    free(source_code);
+    free((void*)source_code);
 
     return 0;
 }</pre>
@@ -139,7 +139,7 @@
             NULL,
             NULL);                     // Where to store the respective event
 
-    free(source_code);
+    free((void*)source_code);
 
     return 0;
 }</pre>

@@ -3,7 +3,7 @@
 <!-- { -->
 <pre class="prettyprint lang-c linenums:129" data-step="0">    // ...
 
-    free(source_code);
+    free((void*)source_code);
 
     return 0;
 }</pre>
@@ -13,7 +13,7 @@
 
     size_t globalWorkSize[] = { rowsA, colsB };    // Number of kernel instances
 
-    free(source_code);
+    free((void*)source_code);
 
     return 0;
 }</pre>
@@ -25,7 +25,7 @@
 
     clEnqueueNDRangeKernel(/**/);                  // Enqueue kernel to execute
 
-    free(source_code);
+    free((void*)source_code);
 
     return 0;
 }</pre>
@@ -37,7 +37,7 @@
 
     clEnqueueNDRangeKernel(commandQueue, /**/);    // Command queue to use
 
-    free(source_code);
+    free((void*)source_code);
 
     return 0;
 }</pre>
@@ -50,7 +50,7 @@
     clEnqueueNDRangeKernel(commandQueue,
             kernel, /**/);                         // Kernel to execute
 
-    free(source_code);
+    free((void*)source_code);
 
     return 0;
 }</pre>
@@ -64,7 +64,7 @@
             kernel,
             2, /**/);                              // Work dimensions (1,2,3)
 
-    free(source_code);
+    free((void*)source_code);
 
     return 0;
 }</pre>
@@ -79,7 +79,7 @@
             2,
             NULL, /**/);                           // Global work ID offset
 
-    free(source_code);
+    free((void*)source_code);
 
     return 0;
 }</pre>
@@ -95,7 +95,7 @@
             NULL,
             globalWorkSize, /**/);                // Number of kernel instances
 
-    free(source_code);
+    free((void*)source_code);
 
     return 0;
 }</pre>
@@ -112,7 +112,7 @@
             globalWorkSize,
             NULL, /**/);                           // Instances per group
 
-    free(source_code);
+    free((void*)source_code);
 
     return 0;
 }</pre>
@@ -130,7 +130,7 @@
             NULL,
             0, /**/);                              // Number of events
 
-    free(source_code);
+    free((void*)source_code);
 
     return 0;
 }</pre>
@@ -149,7 +149,7 @@
             0,
             NULL, /**/);                           // List of events
 
-    free(source_code);
+    free((void*)source_code);
 
     return 0;
 }</pre>
@@ -169,7 +169,7 @@
             NULL,
             NULL);                                 // Address to store event
 
-    free(source_code);
+    free((void*)source_code);
 
     return 0;
 }</pre>

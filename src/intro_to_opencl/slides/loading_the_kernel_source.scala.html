@@ -128,7 +128,7 @@ int main(int argc, char* argv[]) {
 
     const char* source_code = load_from_file("kernel.cl");
 
-    free(source_code);                  // Free the string after using it
+    free((void*)source_code);           // Free the string after using it
 
     return 0;
 }</pre>

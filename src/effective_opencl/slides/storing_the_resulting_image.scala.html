@@ -50,7 +50,7 @@ const char* load_from_file(const char* file_name) {
 <pre class="prettyprint lang-c linenums:137" data-step="3">    // ...
 
     stbi_image_free(sourceImageData);
-    free(destImageData);
+    free((void*)destImageData);
 
     // ...
 </pre>
@@ -60,7 +60,7 @@ const char* load_from_file(const char* file_name) {
     stbi_write_png(/**/);                       // Store as PNG image
 
     stbi_image_free(sourceImageData);
-    free(destImageData);
+    free((void*)destImageData);
 
     // ...
 </pre>
@@ -70,7 +70,7 @@ const char* load_from_file(const char* file_name) {
     stbi_write_png("lena_gray.png", /**/);      // Image file name
 
     stbi_image_free(sourceImageData);
-    free(destImageData);
+    free((void*)destImageData);
 
     // ...
 </pre>
@@ -81,7 +81,7 @@ const char* load_from_file(const char* file_name) {
             width, height, /**/);               // Image dimensions
 
     stbi_image_free(sourceImageData);
-    free(destImageData);
+    free((void*)destImageData);
 
     // ...
 </pre>
@@ -93,7 +93,7 @@ const char* load_from_file(const char* file_name) {
             1, /**/);                           // Number of channels
 
     stbi_image_free(sourceImageData);
-    free(destImageData);
+    free((void*)destImageData);
 
     // ...
 </pre>
@@ -106,7 +106,7 @@ const char* load_from_file(const char* file_name) {
             destImageData, /**/);               // Pixel data
 
     stbi_image_free(sourceImageData);
-    free(destImageData);
+    free((void*)destImageData);
 
     // ...
 </pre>
@@ -120,7 +120,7 @@ const char* load_from_file(const char* file_name) {
             width);                             // Image scan-line pitch
 
     stbi_image_free(sourceImageData);
-    free(destImageData);
+    free((void*)destImageData);
 
     // ...
 </pre>
