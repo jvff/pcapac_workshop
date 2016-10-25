@@ -9,7 +9,7 @@
 
 <pre class="prettyprint lang-c linenums:53" data-step="1">    // ...
 
-    cl_image_format sourceImageFormat;             // Image format config. var.
+    cl_image_desc* imageDescriptor = /**/;         // Create image descriptor
 
     stbi_image_free(sourceImageData);
 
@@ -17,6 +17,91 @@
 </pre>
 
 <pre class="prettyprint lang-c linenums:53" data-step="2">    // ...
+
+    cl_image_desc* imageDescriptor = calloc(sizeof(cl_image_desc), 1);
+                                                  // Allocate filled with zeroes
+
+    stbi_image_free(sourceImageData);
+
+    // ...
+</pre>
+
+<pre class="prettyprint lang-c linenums:53" data-step="3">    // ...
+
+    cl_image_desc* imageDescriptor = calloc(sizeof(cl_image_desc), 1);
+
+    free((void*)imageDescriptor);                  // Release image descriptor
+
+    stbi_image_free(sourceImageData);
+
+    // ...
+</pre>
+
+<pre class="prettyprint lang-c linenums:53" data-step="4">    // ...
+
+    cl_image_desc* imageDescriptor = calloc(sizeof(cl_image_desc), 1);
+
+    imageDescriptor-&gt;image_type = CL_MEM_OBJECT_IMAGE2D;
+                                                   // 2D image
+
+    free((void*)imageDescriptor);
+
+    stbi_image_free(sourceImageData);
+
+    // ...
+</pre>
+
+<pre class="prettyprint lang-c linenums:53" data-step="5">    // ...
+
+    cl_image_desc* imageDescriptor = calloc(sizeof(cl_image_desc), 1);
+
+    imageDescriptor-&gt;image_type = CL_MEM_OBJECT_IMAGE2D;
+    imageDescriptor-&gt;image_width = width;       // Image width
+
+    free((void*)imageDescriptor);
+
+    stbi_image_free(sourceImageData);
+
+    // ...
+</pre>
+
+<pre class="prettyprint lang-c linenums:53" data-step="6">    // ...
+
+    cl_image_desc* imageDescriptor = calloc(sizeof(cl_image_desc), 1);
+
+    imageDescriptor-&gt;image_type = CL_MEM_OBJECT_IMAGE2D;
+    imageDescriptor-&gt;image_width = width;       // Image width
+    imageDescriptor-&gt;image_height = height;     // Image height
+
+    free((void*)imageDescriptor);
+
+    stbi_image_free(sourceImageData);
+
+    // ...
+</pre>
+
+<pre class="prettyprint lang-c linenums:53" data-step="7">    // ...
+
+    cl_image_desc* imageDescriptor = calloc(sizeof(cl_image_desc), 1);
+
+    imageDescriptor-&gt;image_type = CL_MEM_OBJECT_IMAGE2D;
+    imageDescriptor-&gt;image_width = width;       // Image width
+    imageDescriptor-&gt;image_height = height;     // Image height
+
+    cl_image_format sourceImageFormat;             // Image format config. var.
+
+    stbi_image_free(sourceImageData);
+
+    // ...
+</pre>
+
+<pre class="prettyprint lang-c linenums:53" data-step="8">    // ...
+
+    cl_image_desc* imageDescriptor = calloc(sizeof(cl_image_desc), 1);
+
+    imageDescriptor-&gt;image_type = CL_MEM_OBJECT_IMAGE2D;
+    imageDescriptor-&gt;image_width = width;       // Image width
+    imageDescriptor-&gt;image_height = height;     // Image height
 
     cl_image_format sourceImageFormat;
 
@@ -27,7 +112,13 @@
     // ...
 </pre>
 
-<pre class="prettyprint lang-c linenums:53" data-step="3">    // ...
+<pre class="prettyprint lang-c linenums:53" data-step="9">    // ...
+
+    cl_image_desc* imageDescriptor = calloc(sizeof(cl_image_desc), 1);
+
+    imageDescriptor-&gt;image_type = CL_MEM_OBJECT_IMAGE2D;
+    imageDescriptor-&gt;image_width = width;       // Image width
+    imageDescriptor-&gt;image_height = height;     // Image height
 
     cl_image_format sourceImageFormat;
 
@@ -40,115 +131,21 @@
     // ...
 </pre>
 
-<pre class="prettyprint lang-c linenums:53" data-step="4">    // ...
-
-    cl_image_format sourceImageFormat;
-
-    sourceImageFormat.image_channel_order = CL_RGBA;
-    sourceImageFormat.image_channel_data_type = CL_UNORM_INT8;
-
-    cl_mem sourceImageBuffer = clCreateImage2D(/**/);  // Create a device memory
-                                                       // reference
-
-    stbi_image_free(sourceImageData);
-
-    // ...
-</pre>
-
-<pre class="prettyprint lang-c linenums:53" data-step="5">    // ...
-
-    cl_image_format sourceImageFormat;
-
-    sourceImageFormat.image_channel_order = CL_RGBA;
-    sourceImageFormat.image_channel_data_type = CL_UNORM_INT8;
-
-    cl_mem sourceImageBuffer = clCreateImage2D(context, /**/);
-                                                       // The context to use
-
-    stbi_image_free(sourceImageData);
-
-    // ...
-</pre>
-
-<pre class="prettyprint lang-c linenums:53" data-step="6">    // ...
-
-    cl_image_format sourceImageFormat;
-
-    sourceImageFormat.image_channel_order = CL_RGBA;
-    sourceImageFormat.image_channel_data_type = CL_UNORM_INT8;
-
-    cl_mem sourceImageBuffer = clCreateImage2D(context,
-            CL_MEM_READ_ONLY, /**/);               // Flags (same as buffers)
-
-    stbi_image_free(sourceImageData);
-
-    // ...
-</pre>
-
-<pre class="prettyprint lang-c linenums:53" data-step="7">    // ...
-
-    cl_image_format sourceImageFormat;
-
-    sourceImageFormat.image_channel_order = CL_RGBA;
-    sourceImageFormat.image_channel_data_type = CL_UNORM_INT8;
-
-    cl_mem sourceImageBuffer = clCreateImage2D(context,
-            CL_MEM_READ_ONLY,
-            &amp;sourceImageFormat, /**/);            // Image format
-
-    stbi_image_free(sourceImageData);
-
-    // ...
-</pre>
-
-<pre class="prettyprint lang-c linenums:53" data-step="8">    // ...
-
-    cl_image_format sourceImageFormat;
-
-    sourceImageFormat.image_channel_order = CL_RGBA;
-    sourceImageFormat.image_channel_data_type = CL_UNORM_INT8;
-
-    cl_mem sourceImageBuffer = clCreateImage2D(context,
-            CL_MEM_READ_ONLY,
-            &amp;sourceImageFormat,
-            width, height, /**/);                  // Image dimensions
-
-    stbi_image_free(sourceImageData);
-
-    // ...
-</pre>
-
-<pre class="prettyprint lang-c linenums:53" data-step="9">    // ...
-
-    cl_image_format sourceImageFormat;
-
-    sourceImageFormat.image_channel_order = CL_RGBA;
-    sourceImageFormat.image_channel_data_type = CL_UNORM_INT8;
-
-    cl_mem sourceImageBuffer = clCreateImage2D(context,
-            CL_MEM_READ_ONLY,
-            &amp;sourceImageFormat,
-            width, height,
-            0, /**/);                              // Image pitch
-
-    stbi_image_free(sourceImageData);
-
-    // ...
-</pre>
-
 <pre class="prettyprint lang-c linenums:53" data-step="10">    // ...
 
+    cl_image_desc* imageDescriptor = calloc(sizeof(cl_image_desc), 1);
+
+    imageDescriptor-&gt;image_type = CL_MEM_OBJECT_IMAGE2D;
+    imageDescriptor-&gt;image_width = width;       // Image width
+    imageDescriptor-&gt;image_height = height;     // Image height
+
     cl_image_format sourceImageFormat;
 
     sourceImageFormat.image_channel_order = CL_RGBA;
     sourceImageFormat.image_channel_data_type = CL_UNORM_INT8;
 
-    cl_mem sourceImageBuffer = clCreateImage2D(context,
-            CL_MEM_READ_ONLY,
-            &amp;sourceImageFormat,
-            width, height,
-            0,
-            NULL, /**/);                           // Host memory pointer
+    cl_mem sourceImageBuffer = clCreateImage(/**/);  // Create a device memory
+                                                       // reference
 
     stbi_image_free(sourceImageData);
 
@@ -157,18 +154,19 @@
 
 <pre class="prettyprint lang-c linenums:53" data-step="11">    // ...
 
+    cl_image_desc* imageDescriptor = calloc(sizeof(cl_image_desc), 1);
+
+    imageDescriptor-&gt;image_type = CL_MEM_OBJECT_IMAGE2D;
+    imageDescriptor-&gt;image_width = width;       // Image width
+    imageDescriptor-&gt;image_height = height;     // Image height
+
     cl_image_format sourceImageFormat;
 
     sourceImageFormat.image_channel_order = CL_RGBA;
     sourceImageFormat.image_channel_data_type = CL_UNORM_INT8;
 
-    cl_mem sourceImageBuffer = clCreateImage2D(context,
-            CL_MEM_READ_ONLY,
-            &amp;sourceImageFormat,
-            width, height,
-            0,
-            NULL,
-            NULL);                                 // Address for error code
+    cl_mem sourceImageBuffer = clCreateImage(context, /**/);
+                                                       // The context to use
 
     stbi_image_free(sourceImageData);
 
@@ -177,16 +175,136 @@
 
 <pre class="prettyprint lang-c linenums:53" data-step="12">    // ...
 
+    cl_image_desc* imageDescriptor = calloc(sizeof(cl_image_desc), 1);
+
+    imageDescriptor-&gt;image_type = CL_MEM_OBJECT_IMAGE2D;
+    imageDescriptor-&gt;image_width = width;       // Image width
+    imageDescriptor-&gt;image_height = height;     // Image height
+
     cl_image_format sourceImageFormat;
 
     sourceImageFormat.image_channel_order = CL_RGBA;
     sourceImageFormat.image_channel_data_type = CL_UNORM_INT8;
 
-    cl_mem sourceImageBuffer = clCreateImage2D(context,
+    cl_mem sourceImageBuffer = clCreateImage(context,
+            CL_MEM_READ_ONLY, /**/);               // Flags (same as buffers)
+
+    stbi_image_free(sourceImageData);
+
+    // ...
+</pre>
+
+<pre class="prettyprint lang-c linenums:53" data-step="13">    // ...
+
+    cl_image_desc* imageDescriptor = calloc(sizeof(cl_image_desc), 1);
+
+    imageDescriptor-&gt;image_type = CL_MEM_OBJECT_IMAGE2D;
+    imageDescriptor-&gt;image_width = width;       // Image width
+    imageDescriptor-&gt;image_height = height;     // Image height
+
+    cl_image_format sourceImageFormat;
+
+    sourceImageFormat.image_channel_order = CL_RGBA;
+    sourceImageFormat.image_channel_data_type = CL_UNORM_INT8;
+
+    cl_mem sourceImageBuffer = clCreateImage(context,
+            CL_MEM_READ_ONLY,
+            &amp;sourceImageFormat, /**/);            // Image format
+
+    stbi_image_free(sourceImageData);
+
+    // ...
+</pre>
+
+<pre class="prettyprint lang-c linenums:53" data-step="14">    // ...
+
+    cl_image_desc* imageDescriptor = calloc(sizeof(cl_image_desc), 1);
+
+    imageDescriptor-&gt;image_type = CL_MEM_OBJECT_IMAGE2D;
+    imageDescriptor-&gt;image_width = width;       // Image width
+    imageDescriptor-&gt;image_height = height;     // Image height
+
+    cl_image_format sourceImageFormat;
+
+    sourceImageFormat.image_channel_order = CL_RGBA;
+    sourceImageFormat.image_channel_data_type = CL_UNORM_INT8;
+
+    cl_mem sourceImageBuffer = clCreateImage(context,
             CL_MEM_READ_ONLY,
             &amp;sourceImageFormat,
-            width, height,
-            0,
+            imageDescriptor, /**/);                // Image descriptor
+
+    stbi_image_free(sourceImageData);
+
+    // ...
+</pre>
+
+<pre class="prettyprint lang-c linenums:53" data-step="15">    // ...
+
+    cl_image_desc* imageDescriptor = calloc(sizeof(cl_image_desc), 1);
+
+    imageDescriptor-&gt;image_type = CL_MEM_OBJECT_IMAGE2D;
+    imageDescriptor-&gt;image_width = width;       // Image width
+    imageDescriptor-&gt;image_height = height;     // Image height
+
+    cl_image_format sourceImageFormat;
+
+    sourceImageFormat.image_channel_order = CL_RGBA;
+    sourceImageFormat.image_channel_data_type = CL_UNORM_INT8;
+
+    cl_mem sourceImageBuffer = clCreateImage(context,
+            CL_MEM_READ_ONLY,
+            &amp;sourceImageFormat,
+            imageDescriptor,
+            NULL, /**/);                           // Host memory pointer
+
+    stbi_image_free(sourceImageData);
+
+    // ...
+</pre>
+
+<pre class="prettyprint lang-c linenums:53" data-step="16">    // ...
+
+    cl_image_desc* imageDescriptor = calloc(sizeof(cl_image_desc), 1);
+
+    imageDescriptor-&gt;image_type = CL_MEM_OBJECT_IMAGE2D;
+    imageDescriptor-&gt;image_width = width;       // Image width
+    imageDescriptor-&gt;image_height = height;     // Image height
+
+    cl_image_format sourceImageFormat;
+
+    sourceImageFormat.image_channel_order = CL_RGBA;
+    sourceImageFormat.image_channel_data_type = CL_UNORM_INT8;
+
+    cl_mem sourceImageBuffer = clCreateImage(context,
+            CL_MEM_READ_ONLY,
+            &amp;sourceImageFormat,
+            imageDescriptor,
+            NULL,
+            NULL);                                 // Address for error code
+
+    stbi_image_free(sourceImageData);
+
+    // ...
+</pre>
+
+<pre class="prettyprint lang-c linenums:53" data-step="17">    // ...
+
+    cl_image_desc* imageDescriptor = calloc(sizeof(cl_image_desc), 1);
+
+    imageDescriptor-&gt;image_type = CL_MEM_OBJECT_IMAGE2D;
+    imageDescriptor-&gt;image_width = width;       // Image width
+    imageDescriptor-&gt;image_height = height;     // Image height
+
+    cl_image_format sourceImageFormat;
+
+    sourceImageFormat.image_channel_order = CL_RGBA;
+    sourceImageFormat.image_channel_data_type = CL_UNORM_INT8;
+
+    cl_mem sourceImageBuffer = clCreateImage(context,
+            CL_MEM_READ_ONLY,
+            &amp;sourceImageFormat,
+            imageDescriptor,
             NULL,
             NULL);
 
@@ -197,7 +315,13 @@
     // ...
 </pre>
 
-<pre class="prettyprint lang-c linenums:53" data-step="13">    // ...
+<pre class="prettyprint lang-c linenums:53" data-step="18">    // ...
+
+    cl_image_desc* imageDescriptor = calloc(sizeof(cl_image_desc), 1);
+
+    imageDescriptor-&gt;image_type = CL_MEM_OBJECT_IMAGE2D;
+    imageDescriptor-&gt;image_width = width;       // Image width
+    imageDescriptor-&gt;image_height = height;     // Image height
 
     cl_image_format sourceImageFormat;
     cl_image_format destImageFormat;               // Image format config. var.
@@ -205,149 +329,12 @@
     sourceImageFormat.image_channel_order = CL_RGBA;
     sourceImageFormat.image_channel_data_type = CL_UNORM_INT8;
 
-    cl_mem sourceImageBuffer = clCreateImage2D(context,
+    cl_mem sourceImageBuffer = clCreateImage(context,
             CL_MEM_READ_ONLY,
             &amp;sourceImageFormat,
-            width, height,
-            0,
+            imageDescriptor,
             NULL,
             NULL);
-
-    stbi_image_free(sourceImageData);
-
-    clReleaseMemObject(sourceImageBuffer);
-
-    // ...
-</pre>
-
-<pre class="prettyprint lang-c linenums:53" data-step="14">    // ...
-
-    cl_image_format sourceImageFormat;
-    cl_image_format destImageFormat;
-
-    sourceImageFormat.image_channel_order = CL_RGBA;
-    sourceImageFormat.image_channel_data_type = CL_UNORM_INT8;
-
-    destImageFormat.image_channel_order = CL_R;    // Pixel channels
-
-    cl_mem sourceImageBuffer = clCreateImage2D(context,
-            CL_MEM_READ_ONLY,
-            &amp;sourceImageFormat,
-            width, height,
-            0,
-            NULL,
-            NULL);
-
-    stbi_image_free(sourceImageData);
-
-    clReleaseMemObject(sourceImageBuffer);
-
-    // ...
-</pre>
-
-<pre class="prettyprint lang-c linenums:53" data-step="15">    // ...
-
-    cl_image_format sourceImageFormat;
-    cl_image_format destImageFormat;
-
-    sourceImageFormat.image_channel_order = CL_RGBA;
-    sourceImageFormat.image_channel_data_type = CL_UNORM_INT8;
-
-    destImageFormat.image_channel_order = CL_R;
-    destImageFormat.image_channel_order = CL_UNORM_INT8; // Pixel channels
-
-    cl_mem sourceImageBuffer = clCreateImage2D(context,
-            CL_MEM_READ_ONLY,
-            &amp;sourceImageFormat,
-            width, height,
-            0,
-            NULL,
-            NULL);
-
-    stbi_image_free(sourceImageData);
-
-    clReleaseMemObject(sourceImageBuffer);
-
-    // ...
-</pre>
-
-<pre class="prettyprint lang-c linenums:53" data-step="16">    // ...
-
-    cl_image_format sourceImageFormat;
-    cl_image_format destImageFormat;
-
-    sourceImageFormat.image_channel_order = CL_RGBA;
-    sourceImageFormat.image_channel_data_type = CL_UNORM_INT8;
-
-    destImageFormat.image_channel_order = CL_R;
-    destImageFormat.image_channel_order = CL_UNORM_INT8;
-
-    cl_mem sourceImageBuffer = clCreateImage2D(context,
-            CL_MEM_READ_ONLY,
-            &amp;sourceImageFormat,
-            width, height,
-            0,
-            NULL,
-            NULL);
-
-    cl_mem destImageBuffer = clCreateImage2D(/**/); // Create image buffer
-
-    stbi_image_free(sourceImageData);
-
-    clReleaseMemObject(sourceImageBuffer);
-
-    // ...
-</pre>
-
-<pre class="prettyprint lang-c linenums:53" data-step="17">    // ...
-
-    cl_image_format sourceImageFormat;
-    cl_image_format destImageFormat;
-
-    sourceImageFormat.image_channel_order = CL_RGBA;
-    sourceImageFormat.image_channel_data_type = CL_UNORM_INT8;
-
-    destImageFormat.image_channel_order = CL_R;
-    destImageFormat.image_channel_order = CL_UNORM_INT8;
-
-    cl_mem sourceImageBuffer = clCreateImage2D(context,
-            CL_MEM_READ_ONLY,
-            &amp;sourceImageFormat,
-            width, height,
-            0,
-            NULL,
-            NULL);
-
-    cl_mem destImageBuffer = clCreateImage2D(context, /**/); // Context to use
-
-    stbi_image_free(sourceImageData);
-
-    clReleaseMemObject(sourceImageBuffer);
-
-    // ...
-</pre>
-
-<pre class="prettyprint lang-c linenums:53" data-step="18">    // ...
-
-    cl_image_format sourceImageFormat;
-    cl_image_format destImageFormat;
-
-    sourceImageFormat.image_channel_order = CL_RGBA;
-    sourceImageFormat.image_channel_data_type = CL_UNORM_INT8;
-
-    destImageFormat.image_channel_order = CL_R;
-    destImageFormat.image_channel_order = CL_UNORM_INT8;
-
-    cl_mem sourceImageBuffer = clCreateImage2D(context,
-            CL_MEM_READ_ONLY,
-            &amp;sourceImageFormat,
-            width, height,
-            0,
-            NULL,
-            NULL);
-
-    cl_mem destImageBuffer = clCreateImage2D(context,
-            CL_MEM_WRITE_ONLY, /**/);              // Memory flags
 
     stbi_image_free(sourceImageData);
 
@@ -358,26 +345,26 @@
 
 <pre class="prettyprint lang-c linenums:53" data-step="19">    // ...
 
+    cl_image_desc* imageDescriptor = calloc(sizeof(cl_image_desc), 1);
+
+    imageDescriptor-&gt;image_type = CL_MEM_OBJECT_IMAGE2D;
+    imageDescriptor-&gt;image_width = width;       // Image width
+    imageDescriptor-&gt;image_height = height;     // Image height
+
     cl_image_format sourceImageFormat;
     cl_image_format destImageFormat;
 
     sourceImageFormat.image_channel_order = CL_RGBA;
     sourceImageFormat.image_channel_data_type = CL_UNORM_INT8;
 
-    destImageFormat.image_channel_order = CL_R;
-    destImageFormat.image_channel_order = CL_UNORM_INT8;
+    destImageFormat.image_channel_order = CL_R;    // Pixel channels
 
-    cl_mem sourceImageBuffer = clCreateImage2D(context,
+    cl_mem sourceImageBuffer = clCreateImage(context,
             CL_MEM_READ_ONLY,
             &amp;sourceImageFormat,
-            width, height,
-            0,
+            imageDescriptor,
             NULL,
             NULL);
-
-    cl_mem destImageBuffer = clCreateImage2D(context,
-            CL_MEM_WRITE_ONLY,
-            &amp;destImageFormat, /**/);               // Image format
 
     stbi_image_free(sourceImageData);
 
@@ -388,6 +375,12 @@
 
 <pre class="prettyprint lang-c linenums:53" data-step="20">    // ...
 
+    cl_image_desc* imageDescriptor = calloc(sizeof(cl_image_desc), 1);
+
+    imageDescriptor-&gt;image_type = CL_MEM_OBJECT_IMAGE2D;
+    imageDescriptor-&gt;image_width = width;       // Image width
+    imageDescriptor-&gt;image_height = height;     // Image height
+
     cl_image_format sourceImageFormat;
     cl_image_format destImageFormat;
 
@@ -395,20 +388,14 @@
     sourceImageFormat.image_channel_data_type = CL_UNORM_INT8;
 
     destImageFormat.image_channel_order = CL_R;
-    destImageFormat.image_channel_order = CL_UNORM_INT8;
+    destImageFormat.image_channel_order = CL_UNORM_INT8; // Pixel channels
 
-    cl_mem sourceImageBuffer = clCreateImage2D(context,
+    cl_mem sourceImageBuffer = clCreateImage(context,
             CL_MEM_READ_ONLY,
             &amp;sourceImageFormat,
-            width, height,
-            0,
+            imageDescriptor,
             NULL,
             NULL);
-
-    cl_mem destImageBuffer = clCreateImage2D(context,
-            CL_MEM_WRITE_ONLY,
-            &amp;destImageFormat,
-            width, height, /**/);                  // Image dimensions
 
     stbi_image_free(sourceImageData);
 
@@ -419,6 +406,12 @@
 
 <pre class="prettyprint lang-c linenums:53" data-step="21">    // ...
 
+    cl_image_desc* imageDescriptor = calloc(sizeof(cl_image_desc), 1);
+
+    imageDescriptor-&gt;image_type = CL_MEM_OBJECT_IMAGE2D;
+    imageDescriptor-&gt;image_width = width;       // Image width
+    imageDescriptor-&gt;image_height = height;     // Image height
+
     cl_image_format sourceImageFormat;
     cl_image_format destImageFormat;
 
@@ -428,19 +421,14 @@
     destImageFormat.image_channel_order = CL_R;
     destImageFormat.image_channel_order = CL_UNORM_INT8;
 
-    cl_mem sourceImageBuffer = clCreateImage2D(context,
+    cl_mem sourceImageBuffer = clCreateImage(context,
             CL_MEM_READ_ONLY,
             &amp;sourceImageFormat,
-            width, height,
-            0,
+            imageDescriptor,
             NULL,
             NULL);
 
-    cl_mem destImageBuffer = clCreateImage2D(context,
-            CL_MEM_WRITE_ONLY,
-            &amp;destImageFormat,
-            width, height,
-            0, /**/);                              // Image pitch
+    cl_mem destImageBuffer = clCreateImage(/**/); // Create image buffer
 
     stbi_image_free(sourceImageData);
 
@@ -451,6 +439,12 @@
 
 <pre class="prettyprint lang-c linenums:53" data-step="22">    // ...
 
+    cl_image_desc* imageDescriptor = calloc(sizeof(cl_image_desc), 1);
+
+    imageDescriptor-&gt;image_type = CL_MEM_OBJECT_IMAGE2D;
+    imageDescriptor-&gt;image_width = width;       // Image width
+    imageDescriptor-&gt;image_height = height;     // Image height
+
     cl_image_format sourceImageFormat;
     cl_image_format destImageFormat;
 
@@ -460,20 +454,14 @@
     destImageFormat.image_channel_order = CL_R;
     destImageFormat.image_channel_order = CL_UNORM_INT8;
 
-    cl_mem sourceImageBuffer = clCreateImage2D(context,
+    cl_mem sourceImageBuffer = clCreateImage(context,
             CL_MEM_READ_ONLY,
             &amp;sourceImageFormat,
-            width, height,
-            0,
+            imageDescriptor,
             NULL,
             NULL);
 
-    cl_mem destImageBuffer = clCreateImage2D(context,
-            CL_MEM_WRITE_ONLY,
-            &amp;destImageFormat,
-            width, height,
-            0,
-            NULL, /**/);                           // Host memory pointer
+    cl_mem destImageBuffer = clCreateImage(context, /**/); // Context to use
 
     stbi_image_free(sourceImageData);
 
@@ -484,6 +472,12 @@
 
 <pre class="prettyprint lang-c linenums:53" data-step="23">    // ...
 
+    cl_image_desc* imageDescriptor = calloc(sizeof(cl_image_desc), 1);
+
+    imageDescriptor-&gt;image_type = CL_MEM_OBJECT_IMAGE2D;
+    imageDescriptor-&gt;image_width = width;       // Image width
+    imageDescriptor-&gt;image_height = height;     // Image height
+
     cl_image_format sourceImageFormat;
     cl_image_format destImageFormat;
 
@@ -493,21 +487,15 @@
     destImageFormat.image_channel_order = CL_R;
     destImageFormat.image_channel_order = CL_UNORM_INT8;
 
-    cl_mem sourceImageBuffer = clCreateImage2D(context,
+    cl_mem sourceImageBuffer = clCreateImage(context,
             CL_MEM_READ_ONLY,
             &amp;sourceImageFormat,
-            width, height,
-            0,
+            imageDescriptor,
             NULL,
             NULL);
 
-    cl_mem destImageBuffer = clCreateImage2D(context,
-            CL_MEM_WRITE_ONLY,
-            &amp;destImageFormat,
-            width, height,
-            0,
-            NULL,
-            NULL);                                 // Address for error code
+    cl_mem destImageBuffer = clCreateImage(context,
+            CL_MEM_WRITE_ONLY, /**/);              // Memory flags
 
     stbi_image_free(sourceImageData);
 
@@ -518,6 +506,12 @@
 
 <pre class="prettyprint lang-c linenums:53" data-step="24">    // ...
 
+    cl_image_desc* imageDescriptor = calloc(sizeof(cl_image_desc), 1);
+
+    imageDescriptor-&gt;image_type = CL_MEM_OBJECT_IMAGE2D;
+    imageDescriptor-&gt;image_width = width;       // Image width
+    imageDescriptor-&gt;image_height = height;     // Image height
+
     cl_image_format sourceImageFormat;
     cl_image_format destImageFormat;
 
@@ -527,19 +521,163 @@
     destImageFormat.image_channel_order = CL_R;
     destImageFormat.image_channel_order = CL_UNORM_INT8;
 
-    cl_mem sourceImageBuffer = clCreateImage2D(context,
+    cl_mem sourceImageBuffer = clCreateImage(context,
             CL_MEM_READ_ONLY,
             &amp;sourceImageFormat,
-            width, height,
-            0,
+            imageDescriptor,
             NULL,
             NULL);
 
-    cl_mem destImageBuffer = clCreateImage2D(context,
+    cl_mem destImageBuffer = clCreateImage(context,
+            CL_MEM_WRITE_ONLY,
+            &amp;destImageFormat, /**/);               // Image format
+
+    stbi_image_free(sourceImageData);
+
+    clReleaseMemObject(sourceImageBuffer);
+
+    // ...
+</pre>
+
+<pre class="prettyprint lang-c linenums:53" data-step="25">    // ...
+
+    cl_image_desc* imageDescriptor = calloc(sizeof(cl_image_desc), 1);
+
+    imageDescriptor-&gt;image_type = CL_MEM_OBJECT_IMAGE2D;
+    imageDescriptor-&gt;image_width = width;       // Image width
+    imageDescriptor-&gt;image_height = height;     // Image height
+
+    cl_image_format sourceImageFormat;
+    cl_image_format destImageFormat;
+
+    sourceImageFormat.image_channel_order = CL_RGBA;
+    sourceImageFormat.image_channel_data_type = CL_UNORM_INT8;
+
+    destImageFormat.image_channel_order = CL_R;
+    destImageFormat.image_channel_order = CL_UNORM_INT8;
+
+    cl_mem sourceImageBuffer = clCreateImage(context,
+            CL_MEM_READ_ONLY,
+            &amp;sourceImageFormat,
+            imageDescriptor,
+            NULL,
+            NULL);
+
+    cl_mem destImageBuffer = clCreateImage(context,
             CL_MEM_WRITE_ONLY,
             &amp;destImageFormat,
-            width, height,
-            0,
+            imageDescriptor, /**/);                // Image descriptor
+
+    stbi_image_free(sourceImageData);
+
+    clReleaseMemObject(sourceImageBuffer);
+
+    // ...
+</pre>
+
+<pre class="prettyprint lang-c linenums:53" data-step="26">    // ...
+
+    cl_image_desc* imageDescriptor = calloc(sizeof(cl_image_desc), 1);
+
+    imageDescriptor-&gt;image_type = CL_MEM_OBJECT_IMAGE2D;
+    imageDescriptor-&gt;image_width = width;       // Image width
+    imageDescriptor-&gt;image_height = height;     // Image height
+
+    cl_image_format sourceImageFormat;
+    cl_image_format destImageFormat;
+
+    sourceImageFormat.image_channel_order = CL_RGBA;
+    sourceImageFormat.image_channel_data_type = CL_UNORM_INT8;
+
+    destImageFormat.image_channel_order = CL_R;
+    destImageFormat.image_channel_order = CL_UNORM_INT8;
+
+    cl_mem sourceImageBuffer = clCreateImage(context,
+            CL_MEM_READ_ONLY,
+            &amp;sourceImageFormat,
+            imageDescriptor,
+            NULL,
+            NULL);
+
+    cl_mem destImageBuffer = clCreateImage(context,
+            CL_MEM_WRITE_ONLY,
+            &amp;destImageFormat,
+            imageDescriptor,
+            NULL, /**/);                           // Host memory pointer
+
+    stbi_image_free(sourceImageData);
+
+    clReleaseMemObject(sourceImageBuffer);
+
+    // ...
+</pre>
+
+<pre class="prettyprint lang-c linenums:53" data-step="27">    // ...
+
+    cl_image_desc* imageDescriptor = calloc(sizeof(cl_image_desc), 1);
+
+    imageDescriptor-&gt;image_type = CL_MEM_OBJECT_IMAGE2D;
+    imageDescriptor-&gt;image_width = width;       // Image width
+    imageDescriptor-&gt;image_height = height;     // Image height
+
+    cl_image_format sourceImageFormat;
+    cl_image_format destImageFormat;
+
+    sourceImageFormat.image_channel_order = CL_RGBA;
+    sourceImageFormat.image_channel_data_type = CL_UNORM_INT8;
+
+    destImageFormat.image_channel_order = CL_R;
+    destImageFormat.image_channel_order = CL_UNORM_INT8;
+
+    cl_mem sourceImageBuffer = clCreateImage(context,
+            CL_MEM_READ_ONLY,
+            &amp;sourceImageFormat,
+            imageDescriptor,
+            NULL,
+            NULL);
+
+    cl_mem destImageBuffer = clCreateImage(context,
+            CL_MEM_WRITE_ONLY,
+            &amp;destImageFormat,
+            imageDescriptor,
+            NULL,
+            NULL);                                 // Address for error code
+
+    stbi_image_free(sourceImageData);
+
+    clReleaseMemObject(sourceImageBuffer);
+
+    // ...
+</pre>
+
+<pre class="prettyprint lang-c linenums:53" data-step="28">    // ...
+
+    cl_image_desc* imageDescriptor = calloc(sizeof(cl_image_desc), 1);
+
+    imageDescriptor-&gt;image_type = CL_MEM_OBJECT_IMAGE2D;
+    imageDescriptor-&gt;image_width = width;       // Image width
+    imageDescriptor-&gt;image_height = height;     // Image height
+
+    cl_image_format sourceImageFormat;
+    cl_image_format destImageFormat;
+
+    sourceImageFormat.image_channel_order = CL_RGBA;
+    sourceImageFormat.image_channel_data_type = CL_UNORM_INT8;
+
+    destImageFormat.image_channel_order = CL_R;
+    destImageFormat.image_channel_order = CL_UNORM_INT8;
+
+    cl_mem sourceImageBuffer = clCreateImage(context,
+            CL_MEM_READ_ONLY,
+            &amp;sourceImageFormat,
+            imageDescriptor,
+            NULL,
+            NULL);
+
+    cl_mem destImageBuffer = clCreateImage(context,
+            CL_MEM_WRITE_ONLY,
+            &amp;destImageFormat,
+            imageDescriptor,
             NULL,
             NULL);
 
