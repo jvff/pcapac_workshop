@@ -12,4 +12,4 @@ GET         /:presentation                  controllers.Presentations.start(pres
 GET         /assets/js/routes               controllers.JavaScriptRoutes.jsRoutes()
 GET         /assets/*file                   controllers.Assets.at(path="/public", file)
 
-->          /auth                           securesocial.Routes
+GET         /auth/*token                    controllers.Login.login(token: String)

@@ -10,21 +10,15 @@ import play.mvc.WebSocket;
 
 import com.fasterxml.jackson.databind.JsonNode;
 
-import securesocial.core.java.UserAwareAction;
-
 import actors.ViewerActor;
 import controllers.presentation.Presentation;
 import controllers.presentation.PresentationCache;
 import controllers.presentation.SlideHandler;
-import models.User;
 import views.html.presentation.start;
-
-import static securesocial.core.java.SecureSocial.USER_KEY;
 
 public class Presentations extends Controller {
     private static PresentationCache presentations = new PresentationCache();
 
-    @UserAwareAction
     public static Result start(String presentationName) {
         Presentation presentation = presentations.get(presentationName);
 
@@ -37,11 +31,7 @@ public class Presentations extends Controller {
     }
 
     private static void configureUserSession() {
-        User user = (User)ctx().args.get(USER_KEY);
-
-        if (user != null)
-            session("user", "presenter");
-        else
+        if (!"presenter".equals(session("user")))
             session("user", "guest");
     }
 

@@ -4,15 +4,11 @@ import play.libs.Akka;
 
 import akka.actor.ActorSystem;
 
-import securesocial.core.RuntimeEnvironment;
-
 import actors.PresentationManagerActor;
 import actors.SynchronizationActor;
 import actors.terminal.TerminalManagerActor;
 
 public class Global extends GlobalSettings {
-    private RuntimeEnvironment environment = new services.Environment();
-
     @Override
     public void onStart(Application application) {
         ActorSystem system = Akka.system();
@@ -39,17 +35,5 @@ public class Global extends GlobalSettings {
 
     private void registerPresentation(ActorSystem system, String id) {
         system.actorOf(SynchronizationActor.props(id));
-    }
-
-    @Override
-    public <A> A getControllerInstance(Class<A> controllerClass)
-            throws Exception {
-        try {
-            return controllerClass
-                .getDeclaredConstructor(RuntimeEnvironment.class)
-                .newInstance(environment);
-        } catch (NoSuchMethodException exception) {
-            return super.getControllerInstance(controllerClass);
-        }
     }
 }
