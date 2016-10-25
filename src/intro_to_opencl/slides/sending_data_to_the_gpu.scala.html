@@ -136,7 +136,7 @@
 
     clEnqueueWriteBuffer(commandQueue,
             matrixAOnGpu,
-            CL_FALSE, /**/);           // Blocking write
+            CL_FALSE, /**/);           // Non-blocking write
 
     free(source_code);
 
@@ -362,7 +362,7 @@
 
     clEnqueueWriteBuffer(commandQueue,
             matrixBOnGpu,
-            CL_FALSE, /**/);           // Blocking write
+            CL_FALSE, /**/);           // Non-blocking write
 
     free(source_code);
 
