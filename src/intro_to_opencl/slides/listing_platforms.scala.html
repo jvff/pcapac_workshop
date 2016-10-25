@@ -104,8 +104,8 @@ int main(int argc, char* argv[]) {
     clGetPlatformIDs(10, platforms, &amp;numPlatforms);
 
     for (int platformIndex = 0; platformIndex &lt; numPlatforms; ++platformIndex) {
-        char* platformName;             // Pointer to receive platform name
-        char* platformVendor;           // Pointer to receive platform vendor
+        char platformName[256];           // Pointer to receive platform name
+        char platformVendor[256];         // Pointer to receive platform vendor
 
         printf("Platform: %s\n", platformName); // Print platform name
         printf("Vendor: %s\n", platformVendor); // Print platform vendor
@@ -125,8 +125,8 @@ int main(int argc, char* argv[]) {
     clGetPlatformIDs(10, platforms, &amp;numPlatforms);
 
     for (int platformIndex = 0; platformIndex &lt; numPlatforms; ++platformIndex) {
-        char* platformName;
-        char* platformVendor;
+        char platformName[256];
+        char platformVendor[256];
 
         clGetPlatformInfo(/**/);        // Request platform name
 
@@ -148,8 +148,8 @@ int main(int argc, char* argv[]) {
     clGetPlatformIDs(10, platforms, &amp;numPlatforms);
 
     for (int platformIndex = 0; platformIndex &lt; numPlatforms; ++platformIndex) {
-        char* platformName;
-        char* platformVendor;
+        char platformName[256];
+        char platformVendor[256];
 
         clGetPlatformInfo(platforms[platformIndex], /**/); // Current platform
 
@@ -171,8 +171,8 @@ int main(int argc, char* argv[]) {
     clGetPlatformIDs(10, platforms, &amp;numPlatforms);
 
     for (int platformIndex = 0; platformIndex &lt; numPlatforms; ++platformIndex) {
-        char* platformName;
-        char* platformVendor;
+        char platformName[256];
+        char platformVendor[256];
 
         clGetPlatformInfo(platforms[platformIndex],
                 CL_PLATFORM_NAME, /**/);            // Request type
@@ -195,8 +195,8 @@ int main(int argc, char* argv[]) {
     clGetPlatformIDs(10, platforms, &amp;numPlatforms);
 
     for (int platformIndex = 0; platformIndex &lt; numPlatforms; ++platformIndex) {
-        char* platformName;
-        char* platformVendor;
+        char platformName[256];
+        char platformVendor[256];
 
         clGetPlatformInfo(platforms[platformIndex],
                 CL_PLATFORM_NAME,
@@ -220,8 +220,8 @@ int main(int argc, char* argv[]) {
     clGetPlatformIDs(10, platforms, &amp;numPlatforms);
 
     for (int platformIndex = 0; platformIndex &lt; numPlatforms; ++platformIndex) {
-        char* platformName;
-        char* platformVendor;
+        char platformName[256];
+        char platformVendor[256];
 
         clGetPlatformInfo(platforms[platformIndex],
                 CL_PLATFORM_NAME,
@@ -246,8 +246,8 @@ int main(int argc, char* argv[]) {
     clGetPlatformIDs(10, platforms, &amp;numPlatforms);
 
     for (int platformIndex = 0; platformIndex &lt; numPlatforms; ++platformIndex) {
-        char* platformName;
-        char* platformVendor;
+        char platformName[256];
+        char platformVendor[256];
 
         clGetPlatformInfo(platforms[platformIndex],
                 CL_PLATFORM_NAME,
@@ -273,8 +273,8 @@ int main(int argc, char* argv[]) {
     clGetPlatformIDs(10, platforms, &amp;numPlatforms);
 
     for (int platformIndex = 0; platformIndex &lt; numPlatforms; ++platformIndex) {
-        char* platformName;
-        char* platformVendor;
+        char platformName[256];
+        char platformVendor[256];
 
         clGetPlatformInfo(platforms[platformIndex],
                 CL_PLATFORM_NAME,
@@ -302,8 +302,8 @@ int main(int argc, char* argv[]) {
     clGetPlatformIDs(10, platforms, &amp;numPlatforms);
 
     for (int platformIndex = 0; platformIndex &lt; numPlatforms; ++platformIndex) {
-        char* platformName;
-        char* platformVendor;
+        char platformName[256];
+        char platformVendor[256];
 
         clGetPlatformInfo(platforms[platformIndex],
                 CL_PLATFORM_NAME,
@@ -331,8 +331,8 @@ int main(int argc, char* argv[]) {
     clGetPlatformIDs(10, platforms, &amp;numPlatforms);
 
     for (int platformIndex = 0; platformIndex &lt; numPlatforms; ++platformIndex) {
-        char* platformName;
-        char* platformVendor;
+        char platformName[256];
+        char platformVendor[256];
 
         clGetPlatformInfo(platforms[platformIndex],
                 CL_PLATFORM_NAME,
@@ -361,8 +361,8 @@ int main(int argc, char* argv[]) {
     clGetPlatformIDs(10, platforms, &amp;numPlatforms);
 
     for (int platformIndex = 0; platformIndex &lt; numPlatforms; ++platformIndex) {
-        char* platformName;
-        char* platformVendor;
+        char platformName[256];
+        char platformVendor[256];
 
         clGetPlatformInfo(platforms[platformIndex],
                 CL_PLATFORM_NAME,
@@ -392,8 +392,8 @@ int main(int argc, char* argv[]) {
     clGetPlatformIDs(10, platforms, &amp;numPlatforms);
 
     for (int platformIndex = 0; platformIndex &lt; numPlatforms; ++platformIndex) {
-        char* platformName;
-        char* platformVendor;
+        char platformName[256];
+        char platformVendor[256];
 
         clGetPlatformInfo(platforms[platformIndex],
                 CL_PLATFORM_NAME,
@@ -424,8 +424,8 @@ int main(int argc, char* argv[]) {
     clGetPlatformIDs(10, platforms, &amp;numPlatforms);
 
     for (int platformIndex = 0; platformIndex &lt; numPlatforms; ++platformIndex) {
-        char* platformName;
-        char* platformVendor;
+        char platformName[256];
+        char platformVendor[256];
 
         clGetPlatformInfo(platforms[platformIndex],
                 CL_PLATFORM_NAME,
