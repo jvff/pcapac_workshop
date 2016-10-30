@@ -213,8 +213,11 @@ public class TerminalContainer {
     }
 
     public void sendData(char operation, String data) throws IOException {
-        writer.write(operation);
-        writer.write(data);
+        for (char dataPiece : data.toCharArray()) {
+            writer.write(operation);
+            writer.write(dataPiece);
+        }
+
         writer.flush();
     }
 
