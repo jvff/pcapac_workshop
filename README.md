@@ -6,6 +6,7 @@ workshop:
 
 - Introduction to Git
 - Introduction to OpenCL
+- Effective OpenCL
 
 Organization
 ------------
