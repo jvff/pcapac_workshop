@@ -15,9 +15,14 @@ import controllers.presentation.Presentation;
 import controllers.presentation.PresentationCache;
 import controllers.presentation.SlideHandler;
 import views.html.presentation.start;
+import views.html.presentation.list;
 
 public class Presentations extends Controller {
     private static PresentationCache presentations = new PresentationCache();
+
+    public static Result list() {
+        return ok(list.render(presentations.list()));
+    }
 
     public static Result start(String presentationName) {
         Presentation presentation = presentations.get(presentationName);

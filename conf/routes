@@ -1,3 +1,5 @@
+GET         /                               controllers.Presentations.list
+
 GET         /terminal                       controllers.Terminal.token
 GET         /terminal/connect/:token        controllers.Terminal.socket(token: String)
 POST        /terminal/resize/:token         controllers.Terminal.resize(token: String)

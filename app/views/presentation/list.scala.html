@@ -1,0 +1,13 @@
+@import controllers.presentation.Presentation
+
+@(presentations: java.util.List[Presentation])
+
+<h1>PCaPAC Workshop Tutorials</h1>
+
+<ul>
+    @for(presentation <- presentations) {
+        <li><a href="@routes.Presentations.start(presentation.getName())">
+                @presentation.getTitle()
+        </a></li>
+    }
+</ul>
