@@ -11,14 +11,11 @@ import org.yaml.snakeyaml.events.MappingStartEvent;
 import org.yaml.snakeyaml.events.ScalarEvent;
 import org.yaml.snakeyaml.events.SequenceStartEvent;
 import org.yaml.snakeyaml.events.SequenceEndEvent;
-import org.yaml.snakeyaml.events.StreamEndEvent;
-import org.yaml.snakeyaml.reader.UnicodeReader;
-import org.yaml.snakeyaml.Yaml;
 
 import play.Logger;
 import play.twirl.api.Html;
 
-public class Presentation {
+public class Presentation extends AbstractYamlParser {
     private String name;
     private String title;
     private String[] slides;
@@ -47,10 +44,7 @@ public class Presentation {
     }
 
     private void parsePresentation(InputStream stream) throws IOException {
-        Yaml yaml = new Yaml();
-        UnicodeReader reader = new UnicodeReader(stream);
-        Iterable<Event> yamlEventStream = yaml.parse(reader);
-        Iterator<Event> yamlEvents = yamlEventStream.iterator();
+        Iterator<Event> yamlEvents = parseYamlStream(stream);
 
         loadTitle(yamlEvents);
         loadSlides(yamlEvents);
@@ -62,12 +56,6 @@ public class Presentation {
         title = loadScalar(events);
 
         Logger.debug("Presentation title: " + title);
-    }
-
-    private String loadScalar(Iterator<Event> events) throws IOException {
-        ScalarEvent event = waitFor(ScalarEvent.class, events);
-
-        return event.getValue();
     }
 
     private void loadSlides(Iterator<Event> events) throws IOException {
@@ -88,40 +76,6 @@ public class Presentation {
 
         this.slides = new String[slides.size()];
         slides.toArray(this.slides);
-    }
-
-    private void skipToEnd(Iterator<Event> events) throws IOException {
-        waitFor(StreamEndEvent.class, events);
-    }
-
-    private <T> T waitFor(Class<T> eventType, Iterator<Event> events)
-            throws IOException {
-        Logger.debug("Presentation.waitFor(" + eventType.getSimpleName() + ")");
-
-        if (!events.hasNext())
-            throw endOfEventStreamWhileWaitingFor(eventType);
-
-        Event event = events.next();
-        Class<?> eventClass = event.getClass();
-
-        Logger.debug("  event: " + eventClass.getSimpleName());
-
-        while (events.hasNext() && !(eventType.isAssignableFrom(eventClass))) {
-            event = events.next();
-            eventClass = event.getClass();
-
-            Logger.debug("  event: " + eventClass.getSimpleName());
-        }
-
-        if (!eventType.isAssignableFrom(eventClass))
-            throw endOfEventStreamWhileWaitingFor(eventType);
-
-        return (T)event;
-    }
-
-    private IOException endOfEventStreamWhileWaitingFor(Class<?> eventType) {
-        return new IOException("End of YAML event stream while waiting for "
-                + eventType.getName());
     }
 
     private void createSlideHandlers() throws IOException {
