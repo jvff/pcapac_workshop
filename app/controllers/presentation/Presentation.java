@@ -5,6 +5,8 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Iterator;
 
+import akka.actor.ActorSystem;
+
 import org.yaml.snakeyaml.error.YAMLException;
 import org.yaml.snakeyaml.events.Event;
 import org.yaml.snakeyaml.events.MappingStartEvent;
@@ -12,8 +14,11 @@ import org.yaml.snakeyaml.events.ScalarEvent;
 import org.yaml.snakeyaml.events.SequenceStartEvent;
 import org.yaml.snakeyaml.events.SequenceEndEvent;
 
+import play.libs.Akka;
 import play.Logger;
 import play.twirl.api.Html;
+
+import actors.SynchronizationActor;
 
 public class Presentation extends AbstractYamlParser {
     private String name;
@@ -28,6 +33,7 @@ public class Presentation extends AbstractYamlParser {
         loadPresentation();
         createSlideHandlers();
         loadSideBar();
+        startSynchronizer();
     }
 
     private void loadPresentation() throws IOException {
@@ -99,6 +105,12 @@ public class Presentation extends AbstractYamlParser {
 
     private void loadSideBar() {
         sideBar = new SideBar(name);
+    }
+
+    private void startSynchronizer() {
+        ActorSystem system = Akka.system();
+
+        system.actorOf(SynchronizationActor.props(name));
     }
 
     public String getName() {

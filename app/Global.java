@@ -5,7 +5,6 @@ import play.libs.Akka;
 import akka.actor.ActorSystem;
 
 import actors.PresentationManagerActor;
-import actors.SynchronizationActor;
 import actors.terminal.TerminalManagerActor;
 
 public class Global extends GlobalSettings {
@@ -15,10 +14,6 @@ public class Global extends GlobalSettings {
 
         createTerminalManager(system);
         createPresentationManager(system);
-
-        registerPresentation(system, "intro_to_git");
-        registerPresentation(system, "intro_to_opencl");
-        registerPresentation(system, "effective_opencl");
     }
 
     private void createTerminalManager(ActorSystem system) {
@@ -31,9 +26,5 @@ public class Global extends GlobalSettings {
         String actorName = PresentationManagerActor.NAME;
 
         system.actorOf(PresentationManagerActor.props(), actorName);
-    }
-
-    private void registerPresentation(ActorSystem system, String id) {
-        system.actorOf(SynchronizationActor.props(id));
     }
 }
