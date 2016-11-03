@@ -8,6 +8,21 @@ workshop:
 - Introduction to OpenCL
 - Effective OpenCL
 
+Important Note on Sub-Modules
+-----------------------------
+
+This repository uses sub-modules. They are located in the `external` directory.
+Make sure to clone them with the repository, using the command:
+
+    git clone -r https://github.com/jvff/pcapac_workshop
+
+or to clone them afterwards, using the sub-module commands:
+
+    git clone https://github.com/jvff/pcapac_workshop
+    cd pcapac_workshop
+    git submodule init
+    git submodule update
+
 Running the Presentations
 -------------------------
 
