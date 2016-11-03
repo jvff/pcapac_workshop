@@ -79,7 +79,7 @@ Creating a presentation
 
 To create a presentation, the following steps must be performed:
 
-1. Register the presentation identifier in app/Global.java
+1. Register the presentation identifier in the build.gradle file
 2. Create a directory in src with the same name as the identifier
 3. Create a src/<presentation_id>/resources/slides.yml file
     1. First line must contain only the presentation title
