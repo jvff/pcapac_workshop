@@ -8,6 +8,30 @@ workshop:
 - Introduction to OpenCL
 - Effective OpenCL
 
+Running the Presentations
+-------------------------
+
+To run a presentation with the interactive shell, Docker needs to be installed.
+
+With the Java JDK installed, you can just run the following commands in the root
+project directory to build and start the server.
+
+    ./gradlew assemble
+    ./gradlew runPlayBinary
+
+You should see the following message at the end (the address might be
+different):
+
+    [info] play - Listening for HTTP on /0:0:0:0:0:0:0:0:9000
+
+If you have any problems, you can clean the output directory (`build`) to start
+a clean build afterwards. The command to clean the directory is
+
+    ./gradlew clean
+
+With the server running, you can just connect to it using a normal web browser
+on the address specified on the console output.
+
 Organization
 ------------
 
