@@ -47,6 +47,21 @@ a clean build afterwards. The command to clean the directory is
 With the server running, you can just connect to it using a normal web browser
 on the address specified on the console output.
 
+Running as the Presenter
+------------------------
+
+Currently the authentication system is very limited, and should not be
+considered secure. The presenter is identified by a special session variable
+called `user`. The variable can be set to the value `presenter` simply by
+visiting the URL <http://localhost:9000/auth/iam/presenter>. With the variable
+set, you can navigate normally to the presentation using the same session
+(i.e., using the same browser session) to start it as the presenter.
+
+When the variable is set to `presenter`, the presentation behaves differently.
+If the "play" button is pressed in the presentation interface, every
+navigation change is sent to the server, and propagated to all connected
+clients that also have the play button pressed.
+
 Organization
 ------------
 
