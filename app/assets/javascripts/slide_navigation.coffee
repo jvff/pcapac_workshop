@@ -174,7 +174,7 @@ page_up = 33
 page_down = 34
 
 is_handled_key = (key_code) ->
-    return is_arrow_key(key_code) or key_code is enter or
+    return is_arrow_key(key_code) or #key_code is enter or
         key_code is page_up or key_code is page_down
 
 arrow_left = 37
