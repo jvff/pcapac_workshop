@@ -1,16 +1,16 @@
 Conflict Resolution Example
 ===========================
 
-- `git checkout -b conflict_branch first_branch`
+- `git checkout -b conflict_branch primeira_ramificacao`
 - `git log --oneline --decorate --all --graph`
-- `echo "Different line" > second_file`
+- `echo "Linha diferente" > segundo_arquivo`
 - `git status`
-- `git add second_file`
+- `git add segundo_arquivo`
 - `git commit`
 - `git log --oneline --decorate --all --graph`
-- `git merge second_branch`
+- `git merge segundo_arquivo`
 - `git status`
 - `git diff`
-- `nano second_file`
-- `git add second_file`
+- `nano segundo_arquivo`
+- `git add segundo_arquivo`
 - `git commit`

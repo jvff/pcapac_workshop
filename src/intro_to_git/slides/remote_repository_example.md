@@ -1,29 +1,29 @@
 Remote Repository Example
 =========================
 
-- `cd ..`: leave repository directory
-- `git clone new_repo remote_repo`: clones repo into a new directory
-- `cd remote_repo`: enter the remote repository
+- `cd ..`: sai da pasta do repositório
+- `git clone novo_repo repo_remoto`: clona o repositório em outra pasta
+- `cd repo_remoto`: entra na pasta nova
 - `git status`
 - `git branch`
 - `git branch -a`
-- `git checkout third_branch`
-- `touch first_remote_file`
-- `git add first_remote_file`
+- `git checkout terceira_ramificacao`
+- `touch primeiro_arquivo_remoto`
+- `git add primeiro_arquivo_remoto`
 - `git commit`
 - `git log --oneline --decorate --all --graph`
-- `git push origin third_branch`
+- `git push origin terceira_ramificacao`
 - `git log --oneline --decorate --all --graph`
-- `touch second_remote_file`
-- `git add second_remote_file`
+- `touch segundo_arquivo_remoto`
+- `git add segundo_arquivo_remoto`
 - `git commit`
 - `git log --oneline --decorate --all --graph`
-- `cd ..`: leave repository directory
-- `cd new_repo`: return to original repository
+- `cd ..`: sai da pasta do repositório remoto
+- `cd novo_repo`: volta ao repositório original
 - `git branch -a`
 - `git log --oneline --decorate --all --graph`
-- `git remote add my_other_repo ../remote_repo`
-- `git fetch my_other_repo`
-- `git checkout third_branch`
+- `git remote add meu_outro_repo ../repo_remoto`
+- `git fetch meu_outro_repo`
+- `git checkout terceira_ramificacao`
 - `git log --oneline --decorate --all --graph`
-- `git merge my_other_repo/third_branch`
+- `git merge meu_outro_repo/terceira_ramificacao`

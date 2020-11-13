@@ -1,13 +1,13 @@
-Branch
-======
+Ramificações (branches)
+=======================
 
-- In theory, a branch is a sequence of commits
+- Em teoria, uma ramificação é uma sequência de commits
 
 <div class="git_tree">
     <ul data-step="0">
-        <li><span class="branch">(Branch)</span> Third commit</li>
-        <li>Second commit</li>
-        <li>First commit</li>
+        <li><span class="branch">(Ramificação)</span> Terceiro commit</li>
+        <li>Segundo commit</li>
+        <li>Primeiro commit</li>
     </ul>
 </div>
 

@@ -1,12 +1,12 @@
 Agenda
 ======
 
-- Introduction
-- Basic Git Concepts
-- Viewing History
-- Branches
-- Merges
-- Conflict Resolution
-- Remote Repositories
-- Final Thoughts
-- Next Steps
+- Introdução
+- Conceitos básicos do Git
+- Visualizando o histórico
+- Ramificações
+- Junções
+- Resolução de conflitos
+- Repositórios remotos
+- Conclusões
+- Próximos passos

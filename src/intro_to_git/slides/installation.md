@@ -1,15 +1,15 @@
-Installation
-============
+Instalação
+==========
 
 - Linux
-    - Ubuntu and Debian: `sudo apt-get install git`
-    - Fedora and CentOS: `sudo yum install git`
-    - Other distributions (or UNIX): https://git-scm.com/download/linux
+    - Ubuntu e Debian: `sudo apt-get install git`
+    - Fedora e CentOS: `sudo yum install git`
+    - Outras distribuições (ou UNIX): https://git-scm.com/download/linux
 - Windows
-    - Several options available
-    - Recommendation: **Git for Windows Portable**
-        - Usage similar to Linux
+    - Várias opções disponíveis
+    - Recomendação: **Git for Windows Portable**
+        - Uso similar à versão para Linux
         - https://git-scm.com/download/win
-- After installation, configure your name and email
-    - `git config --global user.name "Your Full Name"`
+- Após a instalação, configure teu nome e email
+    - `git config --global user.name "Seu nome completo"`
     - `git config --global user.email "email@@host.com"`

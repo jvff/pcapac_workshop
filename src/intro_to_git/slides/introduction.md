@@ -1,8 +1,8 @@
-Introduction
-============
+Introdução
+==========
 
-- Every project has artefacts
-- The complexity of managing those artefacts depends on:
-    - Number of artefacts
-    - Frequency of changes
-    - Number of people involved
+- Todo projeto tem artefatos
+- A complexidade para gerenciar esses artefatos depende de:
+    - O número de artefatos
+    - A frequência das mudanças
+    - Número de pessoas envolvidas

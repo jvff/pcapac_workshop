@@ -1,25 +1,25 @@
-<h1>Simple Merge</h1>
+<h1>Junção simples</h1>
 
 <ul>
-    <li>The simplest way to merge is using the <kbd>git merge branch</kbd>
-        command</li>
-    <li>The command creates a special commit</li>
-    <li>The difference to a normal commit is that it has two parents
+    <li>O jeito mais fácil de fazer uma junção é através do comando
+        <kbd>git merge branch</kbd></li>
+    <li>O comando cria um commit especial</li>
+    <li>A diferença para um commit normal é que ele tem dois pais
         <ul>
-            <li>The first parent is the current commit (HEAD)</li>
-            <li>The second parent is the commit request to merge</li>
+            <li>O primeiro pai é o commit atual (HEAD)</li>
+            <li>O segundo pai é o commit juntado</li>
         </ul>
     </li>
-    <li data-step="6..">Important notes:
+    <li data-step="6..">Observações importantes:
         <ul>
-            <li data-step="7..">It works by joining commits, not branches</li>
+            <li data-step="7..">Funciona juntando commits, não ramificações</li>
             <li data-step="8..">
-                The branch of the merged commit is not erased
+                A ramificação do commit não é apagada
             </li>
             <li data-step="9..">
-                Which means that the branch can evolve in the future
+                O que significa que a ramificação pode evoluir no futuro
             </li>
-            <li data-step="10..">And require more merges in the future</li>
+            <li data-step="10..">E precisar de mais junções no futuro</li>
         </ul>
     </li>
 </ul>
@@ -27,16 +27,16 @@
 <div class="git_tree" data-steps="1..">
     <ul data-step="0..">
         <li data-step="1.." data-git-id="special_commit" data-git-merge="fork">
-            <span class="branch" data-step="5..">(HEAD)</span> Special commit
+            <span class="branch" data-step="5..">(HEAD)</span> Commit especial
         </li>
         <li><span class="branch" data-step="0..4">(HEAD)</span></li>
         <li></li>
         <li></li>
         <li>
-            Common ancestor
+            Antecessor comum
 
             <ul>
-                <li data-git-id="fork">(branch)</li>
+                <li data-git-id="fork">(ramificação)</li>
                 <li></li>
                 <li></li>
             </ul>

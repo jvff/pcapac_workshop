@@ -1,18 +1,17 @@
-Basic Concepts
-==============
+Conceitos básicos
+=================
 
-- Git controls a directory that contains the repository
-    - To create an initial repository
-        - `mkdir new_repo`: create a new directory
-        - `cd new_repo`: enter the new directory
-        - `git init`: prepare directory to be managed by git
-- Inside the directory, a hidden <samp>.git</samp> directory is created
-    - `ls -a`: to see it
-    - Stores copies of artefacts, meta-data and other internal files
-    - `ls -a .git`: to see its contents
-- Git assumes ownership of the directory, and controls the artefacts stored in
-  it
-    - `touch new_file`: adds a file to the directory
-    - `git status`: shows the status of the repository
-    - The new file is in the directory, but is not tracked as a repository
-      artifact
+- Git controla uma pasta que contém o repositório
+    - Para criar um repositório inicial
+        - `mkdir novo_repo`: cria uma nova pasta
+        - `cd novo_repo`: entra na pasta
+        - `git init`: prepara a pasta para ser gerenciada pelo Git
+- Dentro da pasta, uma pasta escondida <samp>.git</samp> é criada
+    - `ls -a`: para vê-la
+    - Contém cópias dos artefatos, meta-dados e outros arquivos internos
+    - `ls -a .git`: para ver o conteúdo
+- Git toma posse da pasta, e controla os artefatos armazenados nela
+    - `touch novo_arquivo`: cria um arquivo na pasta
+    - `git status`: mostra o estado atual do repositório
+    - O novo arquivo está na pasta, mas não é rastreado como um artefato do
+      repositório

@@ -1,15 +1,17 @@
-First Branch
-============
+Primeira ramificação
+====================
 
-- `git branch`: list local branches (current branch has an asterisk next to it)
-- `git status`: also shows current branch
-- `git branch first_branch`: create a new branch
+- `git branch`: lista ramificações locais (ramificação atual tem um asterisco ao
+  lado dela)
+- `git status`: também mostra a ramificação atual
+- `git branch primeira_ramificacao`: cria uma nova ramificação
 - `git branch`
-- `git checkout first_branch`: go to the new branch
+- `git checkout primeira_ramificacao`: muda para a nova ramificação
 - `git branch`
-- `git show first_branch`: shows latest commit of the branch
-- `touch first_file`: create a new file
-- `git add first_file`: add the new file to the index
+- `git show primeira_ramificacao`: mostra o commit mais recente da ramificação
+- `touch primeiro_arquivo`: cria um novo arquivo
+- `git add primeiro_arquivo`: acrescenta o novo arquivo ao índice
 - `git commit`
-- `git show first_branch`
-- `git show first_branch~1`: show commit before the latest commit in the branch
+- `git show primeira_ramificacao`
+- `git show primeira_ramificacao~1`: mostra o commit antes do commit mais
+  recente da ramificação

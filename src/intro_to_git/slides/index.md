@@ -1,9 +1,9 @@
-Index
-=====
+Índice
+======
 
-- A temporary area to store artifact copies
-- The files in the index are used to create a new version
-- Example:
+- Um espaço temporário para armazenar cópias de artefatos
+- Os arquivos no índice são usados para criar uma nova versão
+- Exemplo:
     - `git status`
     - `git add ".gitignore"`
     - `git status`

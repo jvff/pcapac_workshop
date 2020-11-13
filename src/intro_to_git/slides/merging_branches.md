@@ -1,16 +1,16 @@
-Merging Branches
-================
+Juntando ramificações
+=====================
 
-- A useful feature of branches is that they can be merged
+- Uma funcionalidade útil das ramificações é que elas podem ser juntadas
 
 <div class="git_tree" data-steps="1..">
     <ul data-step="0">
-        <li data-git-merge="fork">Merge commit</li>
+        <li data-git-merge="fork">Commit de junção</li>
         <li></li>
         <li></li>
         <li></li>
         <li>
-            Common ancestor
+            Ascendente comum
 
             <ul>
                 <li data-git-id="fork"></li>

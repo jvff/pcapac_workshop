@@ -1,14 +1,16 @@
-Version Control System
-======================
+Sistema de Controle de Versões
+==============================
 
-- Tool to help managing digital artefacts (files)
-- Focuses on managing artefact versions
-- Focuses on facilitating usage by several people concurrently
-- **Repositories** are sets of artefacts managed together
-- Several version control systems exist
+- Ferramenta para ajudar a gerenciar artefatos digitais (arquivos)
+- Foco em gerenciar versões de artefatos
+- Foco em facilitar o uso por múltiplas pessoas concorrentemente
+- **Repositórios** são conjuntos de artefatos gerenciados de forma conjunta
+- Existem vários sistemas de controle de versões
     - Concurrent Versions Systems (CVS)
     - Subversion (SVN)
     - Mercurial (Hg)
     - Git
     - Fossil
     - Bazaar
+    - Darcs
+    - Pijul

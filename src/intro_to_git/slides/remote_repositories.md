@@ -1,19 +1,19 @@
-Remote Repositories
-===================
+Repositórios remotos
+====================
 
-- Remote repositories can be referenced in the local repository
-- Commits, branches and tags from remote repositories can be downloaded to the
-  local repository
-- Each branch from a remote repository can referenced in the local repository
-  prefixed by the remote's name
-    - Example: `my_remote/my_branch`
-- Important commands
-    - `git clone "url"`: creates a local repository by copying the remote
-      repository at the URL
-    - `git remote add "name" "url"`: registers a remote repository reference
-      "name" available at the given URL
-    - `git remote rm "name"`: removes a remote reference
-    - `git push "remote" "branch"`: sends the branch and all necessary commits
-      to the remote
-    - `git fetch "remote"`: retrieves all branches and tags from the remote, and
-      the necessary commits, and updates the local references
+- Repositórios remotos podem ser referenciados no repositório local
+- Commits, ramificações e rótulos dos repositórios remotos podem ser baixados
+  para dentro do repositório local
+- Cada ramificação de um repositório remoto pode ser referenciado no repositório
+  local com um prefixo igual ao nome do repositório remoto
+    - Exemplo: `meu_remoto/minha_ramificacao`
+- Comandos importantes
+    - `git clone "url"`: cria um repositório local copiando o repositório remoto
+      da URL
+    - `git remote add "nome" "url"`: registra uma referência chamada "nome" a um
+      repositório na URL dada
+    - `git remote rm "nome"`: remove uma referência remota
+    - `git push "remoto" "ramificacao"`: envia uma ramificação e todos os
+      commits necessário ao repositório chamado "remoto"
+    - `git fetch "remoto"`: busca todas as ramificações e rótulos de um remoto,
+      e os commits necessários, e atualiza as referências locais

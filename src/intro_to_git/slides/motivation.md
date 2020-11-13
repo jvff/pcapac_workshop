@@ -1,8 +1,8 @@
-Motivation
-==========
+Motivação
+=========
 
-- Incorrect management can result in several problems:
-    - Loss of artefacts
-    - Loss of traceability
-    - Loss of reproducibility
-    - Loss of coherence in the team
+- Gerenciamento incorreto pode resultar em vários problemas:
+    - Perda de artefatos
+    - Perda de rastreabilidade
+    - Perda de reprodutibilidade
+    - Perda de coerência no time

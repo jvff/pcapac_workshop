@@ -1,8 +1,9 @@
-Repository Directory Precautions
-================================
+Precauções com o diretório do repositório
+=========================================
 
-- Some care should be taken when using the Git controlled repository directory
-    - Git will overwrite files on certain commands
-    - The idea is to restore the directory to its requested state
-    - Uncommitted changes are lost
-    - Git warns about any uncommitted changes on most cases
+- Precisa-se tomar alguns cuidados quando se usa a pasta do repositório
+  gerenciado pelo Git
+    - O Git irá sobre-escrever arquivos com alguns comandos
+    - A ideia é restaurar a pasta ao estado desejado
+    - Mudanças não "comitadas" são perdidas
+    - Na maioria das vezes o Git avisa sobre quaisquer mudanças não "comitadas"

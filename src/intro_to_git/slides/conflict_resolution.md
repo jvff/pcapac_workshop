@@ -1,9 +1,10 @@
-Conflict Resolution
+Resolução de conflitos
 ===================
 
-- Conflicts happen when merging two files that were edited separately
-- Git always tries to resolve conflicts automatically
-- If it fails to do so, it will mark the conflict lines in the file
+- Conflitos acontecem quando se junta dois arquivos que foram editados
+  separadamente
+- O Git sempre tenta resolver os conflitos automaticamente
+- Se ele não consegue, vai marcar as linhas conflitantes no arquivo
 
 ```````
 <<<<<<<
@@ -13,4 +14,4 @@ Nam fermentum tristique massa sit amet dictum.
 >>>>>>>
 ```````
 
-- After the conflicts are resolved manually, you can commit the changes
+- Após a resolução manual dos conflitos, as mudanças podem ser comitadas

@@ -1,13 +1,13 @@
-Fast-Forward Merge
-==================
+Junção de avanço (fast-forward)
+===============================
 
-- A fast-forward merge is one without a merge commit
+- Uma junção de avanço é uma junção sem um commit especial
 
 <div class="git_tree" data-steps="1..">
     <ul data-step="0..">
         <li>
-            <span class="branch" data-step="1..">(HEAD -> master, branch)</span>
-            <span class="branch" data-step="0">(branch)</span>
+            <span class="branch" data-step="1..">(HEAD -> master, ramificacao)</span>
+            <span class="branch" data-step="0">(ramificacao)</span>
         </li>
         <li></li>
         <li></li>

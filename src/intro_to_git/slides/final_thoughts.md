@@ -1,8 +1,10 @@
-Final Thoughts
-==============
+Conclusões
+==========
 
-- Short and specific commits are better to understand
-- There are different usages for branches
-    - You can create feature branches that are merged to a master branch
+- Commits curtos e específicos são mais fáceis de entender
+- Tem diferentes usos para ramificações
+    - Pode-se criar ramificações para funcionalidades que depois são juntadas na
+      ramificação principal
     - You can always use rebases to write a linear commit history
-- A version control tool does not solve the problem by itself
+    - Pode-se usar "rebases" para escrever uma história linear de commits
+- A ferramenta de controle de versões não resolve o problema sozinha

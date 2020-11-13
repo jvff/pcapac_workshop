@@ -1,16 +1,16 @@
-First Commit
-============
+Primeiro commit
+===============
 
-- `git add .gitignore`: add changes to index
+- `git add .gitignore`: acrescenta mudanças no índice
 - `git status`
-- `git commit`: create a new commit with the index contents
-- `git show`: show latest commit (HEAD)
-- `echo test > new_file`: create a new file
+- `git commit`: cria um novo commit com o conteúdo do índice
+- `git show`: mostra o commit mais recente (HEAD)
+- `echo teste > novo_arquivo`: cria um novo arquivo
 - `git status`
-- `git add new_file`
+- `git add novo_arquivo`
 - `git diff --cached`
-- `git commit`: create another new commit with the new_file
+- `git commit`: cria um novo commit com o novo arquivo
 - `git show`
-- `git checkout HEAD~1`: goes back to the previous commit
+- `git checkout HEAD~1`: volta para o commit anterior
 - `git show`
-- `git checkout master`: return to latest commit on master branch 
+- `git checkout master`: volta para o commit na ramificação principal (master)

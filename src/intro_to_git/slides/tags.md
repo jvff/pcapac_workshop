@@ -1,11 +1,11 @@
-Tags
-====
+Rótulos (tags)
+==============
 
-- Tagging a commit allows referencing the commit with a friendlier name
-- Internally, it is similar to a fixed pointer to a given commit
-- Tags are used to mark important events
-    - Published versions
-    - Tested versions
-- Example:
-    - `git tag my_first_commit HEAD~1`
-    - `git show my_first_commit`
+- Rotular um commit permite referenciá-lo com um nome mais amigável
+- Internamente, é similar a um ponteiro fixo para um dado commit
+- Rótulos são usados para marcar eventos importantes
+    - Versões publicadas
+    - Versões testadas
+- Exemplo:
+    - `git tag meu_primeiro_commit HEAD~1`
+    - `git show meu_primeiro_commit`

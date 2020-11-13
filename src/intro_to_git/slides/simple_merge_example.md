@@ -1,7 +1,7 @@
-Simple Merge Example
-====================
+Exemplo de uma junção simples
+=============================
 
-- `git checkout third_branch`
+- `git checkout terceira_ramificacao`
 - `git log --oneline --decorate --graph --all`
-- `git merge second_branch`
+- `git merge segundo_ramificacao`
 - `git log --oneline --decorate --graph --all`

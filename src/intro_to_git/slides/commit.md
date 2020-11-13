@@ -1,12 +1,13 @@
 Commit
 ======
 
-- Represents a version of the repository
-- A commit is named by its SHA-1 hash
-- References a full copy of the entire artifact tree in a given time frame
-- Information stored in a commit:
-    - Copy of each artefact (state)
-    - Title and description (why)
-    - Author (who)
-    - Data (when)
-    - Parent commit (from)
+- Representa uma versão do repositório
+- Um commit é identificado por sua hash SHA-1
+- Referencia uma cópia completa da árvore de artefatos inteira em um dado
+  momento
+- Informações armazenadas em um commit:
+    - Cópia de cada artefato (estado)
+    - Título e descrição (por quê)
+    - Autora (quem)
+    - Data (quando)
+    - Commit(s) pai(s) (estado anterior)

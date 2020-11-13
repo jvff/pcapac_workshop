@@ -1,12 +1,12 @@
-Solution
-========
+Solução
+=======
 
-- All solutions are connected to two key points:
-    - Increase documentation
-        - Label artefacts
-        - Describe artefacts
-        - Track artefact evolution
-    - Increase redundancy
-        - Keep copies of the artefacts (in their current state)
-        - Keep copies of previous versions of the artefacts
-        - Keep copies of documentation
+- Todas as soluções estão relacionadas a dois pontos chave:
+    - Aumentar a documentação
+        - Rotular artefatos
+        - Descrever artefatos
+        - Rastrear a evolução dos artefatos
+    - Aumentar a redundância
+        - Manter cópias dos artefatos (em seus estados atuais)
+        - Manter cópias de versões anteriores dos artefatos (em seus estados atuais)
+        - Manter cópias da documentação
